@@ -9,14 +9,20 @@
 
 import Foundation
 
-class Strings {
+class CS {
     
     struct EndPoints {
       static let Login = "Login"
     }
     
+    struct Params {
+        static let email = "email"
+        static let password = "password"
+
+    }
+    
     struct Common {
-        static let waiting = "Please wait.."
+        static let waiting = "Loading.."
         static let defaultFailedMessage = "Failed. Please try again."
         static let cameramessage = "Can't aceess camera in this device."
         static let Getdata = "Getting Data Successfully"
@@ -25,7 +31,10 @@ class Strings {
         static let NoData = "Data not Found."
         static let Internet = "Check your internet connection."
         static let FetchData = "Fetching data..."
+        static let wrongMsg = "Something went wrong. Please try again."
+
     }
+    
     struct Login {
         static let invalidName = "Please enter a valid name."
         static let invalidEmail = "Please enter a valid Email."

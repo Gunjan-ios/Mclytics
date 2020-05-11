@@ -51,6 +51,8 @@ import UIKit
 // ----------------------------------------------------------
 
 class UserData {
+    static let sharedInstance = UserData()
+
     static func saveData(value: String?, key: String) {
 
         UserDefaults.standard.set(value, forKey: key)

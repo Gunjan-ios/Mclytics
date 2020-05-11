@@ -7,15 +7,25 @@
 //
 
 import UIKit
+import IQKeyboardManagerSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    var open_count = Int()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        IQKeyboardManager.shared.enable = true
+        IQKeyboardManager.shared.enableAutoToolbar = false
+        open_count =  1
+//        self.window.safeAreaInsets.bottom;
+//        if IS_IPHONE_X_XR_XMAX{
+//            ParentClass.sharedInstance.iPhone_X_Top_Padding = (self.window?.safeAreaInsets.top)!
+//            ParentClass.sharedInstance.iPhone_X_Bottom_Padding = (self.window?.safeAreaInsets.bottom)!
+//        }
+//        
         return true
     }
 

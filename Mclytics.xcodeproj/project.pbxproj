@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -15,7 +15,7 @@
 		5319CEE42469095D00140E8F /* MclyticsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5319CEE32469095D00140E8F /* MclyticsTests.swift */; };
 		5319CEEF2469095D00140E8F /* MclyticsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5319CEEE2469095D00140E8F /* MclyticsUITests.swift */; };
 		5319CF0A24690B0F00140E8F /* LanguageStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5319CF0024690B0F00140E8F /* LanguageStrings.swift */; };
-		5319CF0B24690B0F00140E8F /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5319CF0124690B0F00140E8F /* Strings.swift */; };
+		5319CF0B24690B0F00140E8F /* CS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5319CF0124690B0F00140E8F /* CS.swift */; };
 		5319CF0C24690B0F00140E8F /* Consts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5319CF0224690B0F00140E8F /* Consts.swift */; };
 		5319CF0D24690B0F00140E8F /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5319CF0324690B0F00140E8F /* Enums.swift */; };
 		5319CF0E24690B0F00140E8F /* UIView_Borders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5319CF0424690B0F00140E8F /* UIView_Borders.swift */; };
@@ -27,6 +27,18 @@
 		5319CF1B24690B2B00140E8F /* AlertManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5319CF1624690B2B00140E8F /* AlertManager.swift */; };
 		5319CF1C24690B2B00140E8F /* Reach.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5319CF1824690B2B00140E8F /* Reach.swift */; };
 		5319CF1D24690B2B00140E8F /* Hud.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5319CF1A24690B2B00140E8F /* Hud.swift */; };
+		5319CF20246918B500140E8F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5319CF1F246918B500140E8F /* LoginViewController.swift */; };
+		5319CF22246918F700140E8F /* ParentClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5319CF21246918F700140E8F /* ParentClass.swift */; };
+		5325649E246935760055EBAE /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5325649D246935760055EBAE /* CustomButton.swift */; };
+		532564A0246935810055EBAE /* CustomTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5325649F246935810055EBAE /* CustomTextView.swift */; };
+		532564A2246935870055EBAE /* CustomInputTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 532564A1246935870055EBAE /* CustomInputTextView.swift */; };
+		532564A4246935940055EBAE /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 532564A3246935940055EBAE /* CustomTextField.swift */; };
+		532564A6246935990055EBAE /* InputTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 532564A5246935990055EBAE /* InputTextField.swift */; };
+		532564A8246935A40055EBAE /* CustomInputFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 532564A7246935A40055EBAE /* CustomInputFieldView.swift */; };
+		532564AA246935CB0055EBAE /* CustomComboBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 532564A9246935CB0055EBAE /* CustomComboBoxView.swift */; };
+		532564AC246935D20055EBAE /* GenderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 532564AB246935D20055EBAE /* GenderView.swift */; };
+		532564AE246936BB0055EBAE /* GeneralConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 532564AD246936BB0055EBAE /* GeneralConstants.swift */; };
+		53B2B9C024691B850040F573 /* WebServicesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53B2B9BF24691B850040F573 /* WebServicesManager.swift */; };
 		AA0461401ACE3EAD3B051209 /* Pods_Mclytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78E2A00718C95A5F06EB2BD8 /* Pods_Mclytics.framework */; };
 /* End PBXBuildFile section */
 
@@ -62,7 +74,7 @@
 		5319CEEE2469095D00140E8F /* MclyticsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MclyticsUITests.swift; sourceTree = "<group>"; };
 		5319CEF02469095D00140E8F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5319CF0024690B0F00140E8F /* LanguageStrings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LanguageStrings.swift; sourceTree = "<group>"; };
-		5319CF0124690B0F00140E8F /* Strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
+		5319CF0124690B0F00140E8F /* CS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CS.swift; sourceTree = "<group>"; };
 		5319CF0224690B0F00140E8F /* Consts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Consts.swift; sourceTree = "<group>"; };
 		5319CF0324690B0F00140E8F /* Enums.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		5319CF0424690B0F00140E8F /* UIView_Borders.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIView_Borders.swift; sourceTree = "<group>"; };
@@ -74,6 +86,18 @@
 		5319CF1624690B2B00140E8F /* AlertManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertManager.swift; sourceTree = "<group>"; };
 		5319CF1824690B2B00140E8F /* Reach.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reach.swift; sourceTree = "<group>"; };
 		5319CF1A24690B2B00140E8F /* Hud.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Hud.swift; sourceTree = "<group>"; };
+		5319CF1F246918B500140E8F /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		5319CF21246918F700140E8F /* ParentClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParentClass.swift; sourceTree = "<group>"; };
+		5325649D246935760055EBAE /* CustomButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
+		5325649F246935810055EBAE /* CustomTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTextView.swift; sourceTree = "<group>"; };
+		532564A1246935870055EBAE /* CustomInputTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomInputTextView.swift; sourceTree = "<group>"; };
+		532564A3246935940055EBAE /* CustomTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
+		532564A5246935990055EBAE /* InputTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputTextField.swift; sourceTree = "<group>"; };
+		532564A7246935A40055EBAE /* CustomInputFieldView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomInputFieldView.swift; sourceTree = "<group>"; };
+		532564A9246935CB0055EBAE /* CustomComboBoxView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomComboBoxView.swift; sourceTree = "<group>"; };
+		532564AB246935D20055EBAE /* GenderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenderView.swift; sourceTree = "<group>"; };
+		532564AD246936BB0055EBAE /* GeneralConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneralConstants.swift; sourceTree = "<group>"; };
+		53B2B9BF24691B850040F573 /* WebServicesManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebServicesManager.swift; sourceTree = "<group>"; };
 		78E2A00718C95A5F06EB2BD8 /* Pods_Mclytics.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Mclytics.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		796F5709F1D880DF0210319C /* Pods-Mclytics.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mclytics.release.xcconfig"; path = "Target Support Files/Pods-Mclytics/Pods-Mclytics.release.xcconfig"; sourceTree = "<group>"; };
 		F80C362F65FD5554BD46429D /* Pods-Mclytics.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mclytics.debug.xcconfig"; path = "Target Support Files/Pods-Mclytics/Pods-Mclytics.debug.xcconfig"; sourceTree = "<group>"; };
@@ -130,8 +154,8 @@
 		5319CECD2469095C00140E8F /* Mclytics */ = {
 			isa = PBXGroup;
 			children = (
-				5319CF1E24690B4800140E8F /* View */,
 				5319CEFC24690AC500140E8F /* Classes */,
+				5319CF1E24690B4800140E8F /* View */,
 				5319CEDA2469095D00140E8F /* Info.plist */,
 			);
 			path = Mclytics;
@@ -177,7 +201,10 @@
 		5319CEFE24690AF000140E8F /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				53B2B9BE24691B730040F573 /* Webservice */,
+				5319CF21246918F700140E8F /* ParentClass.swift */,
 				5319CED02469095C00140E8F /* ViewController.swift */,
+				5319CF1F246918B500140E8F /* LoginViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -185,8 +212,9 @@
 		5319CEFF24690B0F00140E8F /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				532564AD246936BB0055EBAE /* GeneralConstants.swift */,
 				5319CF0024690B0F00140E8F /* LanguageStrings.swift */,
-				5319CF0124690B0F00140E8F /* Strings.swift */,
+				5319CF0124690B0F00140E8F /* CS.swift */,
 				5319CF0224690B0F00140E8F /* Consts.swift */,
 				5319CF0324690B0F00140E8F /* Enums.swift */,
 				5319CF0424690B0F00140E8F /* UIView_Borders.swift */,
@@ -202,6 +230,7 @@
 		5319CF1424690B2B00140E8F /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				5325649C246935350055EBAE /* CustomVIew */,
 				5319CF1524690B2B00140E8F /* AlertManager */,
 				5319CF1724690B2B00140E8F /* Reach */,
 				5319CF1924690B2B00140E8F /* HUD */,
@@ -243,13 +272,35 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		5325649C246935350055EBAE /* CustomVIew */ = {
+			isa = PBXGroup;
+			children = (
+				532564AB246935D20055EBAE /* GenderView.swift */,
+				532564A9246935CB0055EBAE /* CustomComboBoxView.swift */,
+				532564A7246935A40055EBAE /* CustomInputFieldView.swift */,
+				532564A5246935990055EBAE /* InputTextField.swift */,
+				532564A3246935940055EBAE /* CustomTextField.swift */,
+				532564A1246935870055EBAE /* CustomInputTextView.swift */,
+				5325649F246935810055EBAE /* CustomTextView.swift */,
+				5325649D246935760055EBAE /* CustomButton.swift */,
+			);
+			path = CustomVIew;
+			sourceTree = "<group>";
+		};
+		53B2B9BE24691B730040F573 /* Webservice */ = {
+			isa = PBXGroup;
+			children = (
+				53B2B9BF24691B850040F573 /* WebServicesManager.swift */,
+			);
+			path = Webservice;
+			sourceTree = "<group>";
+		};
 		C15440F3D4E339EBFCDEF36F /* Pods */ = {
 			isa = PBXGroup;
 			children = (
 				F80C362F65FD5554BD46429D /* Pods-Mclytics.debug.xcconfig */,
 				796F5709F1D880DF0210319C /* Pods-Mclytics.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -437,20 +488,32 @@
 			buildActionMask = 2147483647;
 			files = (
 				5319CF0F24690B0F00140E8F /* RoundedView.swift in Sources */,
+				5325649E246935760055EBAE /* CustomButton.swift in Sources */,
+				5319CF22246918F700140E8F /* ParentClass.swift in Sources */,
+				532564A6246935990055EBAE /* InputTextField.swift in Sources */,
 				5319CED12469095C00140E8F /* ViewController.swift in Sources */,
 				5319CF1224690B0F00140E8F /* Validation.swift in Sources */,
 				5319CF0C24690B0F00140E8F /* Consts.swift in Sources */,
+				532564A0246935810055EBAE /* CustomTextView.swift in Sources */,
+				532564A2246935870055EBAE /* CustomInputTextView.swift in Sources */,
 				5319CF1024690B0F00140E8F /* UserData.swift in Sources */,
+				532564AE246936BB0055EBAE /* GeneralConstants.swift in Sources */,
 				5319CF1D24690B2B00140E8F /* Hud.swift in Sources */,
 				5319CF1B24690B2B00140E8F /* AlertManager.swift in Sources */,
+				53B2B9C024691B850040F573 /* WebServicesManager.swift in Sources */,
+				532564A4246935940055EBAE /* CustomTextField.swift in Sources */,
 				5319CF0A24690B0F00140E8F /* LanguageStrings.swift in Sources */,
 				5319CF1124690B0F00140E8F /* Extensions.swift in Sources */,
-				5319CF0B24690B0F00140E8F /* Strings.swift in Sources */,
+				5319CF0B24690B0F00140E8F /* CS.swift in Sources */,
+				532564AC246935D20055EBAE /* GenderView.swift in Sources */,
 				5319CF0D24690B0F00140E8F /* Enums.swift in Sources */,
 				5319CECF2469095C00140E8F /* AppDelegate.swift in Sources */,
+				5319CF20246918B500140E8F /* LoginViewController.swift in Sources */,
 				5319CF1C24690B2B00140E8F /* Reach.swift in Sources */,
 				5319CF0E24690B0F00140E8F /* UIView_Borders.swift in Sources */,
 				5319CF1324690B0F00140E8F /* Utils.swift in Sources */,
+				532564A8246935A40055EBAE /* CustomInputFieldView.swift in Sources */,
+				532564AA246935CB0055EBAE /* CustomComboBoxView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -629,6 +692,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = YA4536WK7P;
 				INFOPLIST_FILE = Mclytics/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -648,6 +712,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = YA4536WK7P;
 				INFOPLIST_FILE = Mclytics/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

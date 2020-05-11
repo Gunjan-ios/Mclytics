@@ -9,7 +9,6 @@
 
 import Foundation
 import LIHAlert
-import KOLocalizedString
 
 class AlertManager: LIHAlertManager {
 
@@ -18,22 +17,14 @@ class AlertManager: LIHAlertManager {
 
     static func getErrorAlert() -> LIHAlert
     {
-        let alert = super.getTextAlert(message: KOLocalizedString(Language.Common.defaultFailedMessage))
+        let alert = super.getTextAlert(message: Language.Common.defaultFailedMessage)
         alert.alertColor = errorColor
         alert.alertAlpha = 1.0
         alert.autoCloseTimeInterval = 2.0
         
-        if UIScreen.main.bounds.size.height == 812 || UIScreen.main.bounds.size.height == 896
-        {
-                    alert.alertHeight += 20
-                    alert.paddingTop += 10
-
-        }
-//      if UIScreen.main.bounds.size.height == 896
-//        {
-//            alert.alertHeight += 20
-//            alert.paddingTop += 10
-//
+//        if IS_IPHONE_X_XR_XMAX{
+//                    alert.alertHeight += 15
+//                    alert.paddingTop += 10
 //        }
 
         return alert
@@ -41,36 +32,39 @@ class AlertManager: LIHAlertManager {
 
     static func getErrorAlertNoNavBar() -> LIHAlert {
 
-        let alert = super.getTextAlert(message: KOLocalizedString(Language.Common.defaultFailedMessage))
+        let alert = super.getTextAlert(message: Language.Common.defaultFailedMessage)
         alert.alertColor = errorColor
         alert.alertAlpha = 1.0
         alert.autoCloseTimeInterval = 2.0
         alert.hasNavigationBar = false
-        alert.alertHeight += 20
-        alert.paddingTop += 10
+        
+        if IS_IPHONE_X_XR_XMAX{
+            alert.alertHeight += 35
+            alert.paddingTop += 20
+        }else{
+            alert.alertHeight += 15
+            alert.paddingTop += 10
+        }
+       
         return alert
     }
     
     static func FetchErrorAlert() -> LIHAlert
     {
-        let  alert = super.getProcessingAlert(message: KOLocalizedString(Language.Common.Internet))
+        let  alert = super.getProcessingAlert(message: Language.Common.Internet)
         alert.alertColor = errorColor
         alert.alertAlpha = 1.0
         alert.autoCloseTimeInterval = 2.0
         alert.touchBackgroundToDismiss = true
         alert.dimsBackground = true
-        if UIScreen.main.bounds.size.height == 812 || UIScreen.main.bounds.size.height == 896
-        {
-            alert.alertHeight += 20
+        alert.hasNavigationBar = false
+        if IS_IPHONE_X_XR_XMAX{
+            alert.alertHeight += 35
+            alert.paddingTop += 20
+        }else{
+            alert.alertHeight += 15
             alert.paddingTop += 10
-            
         }
-//        if UIScreen.main.bounds.size.height == 896
-//        {
-//            alert.alertHeight += 25
-//            alert.paddingTop += 12.5
-//
-//        }
         return alert
     }
     

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import JQProgressHUD
 
 class Utils: NSObject {
 
@@ -21,6 +22,12 @@ class Utils: NSObject {
         let hogenMessage = NSMutableAttributedString.init(string: message, attributes: attrsM)
         alertVc.setValue(hogenMessage,forKey: "attributedMessage")
         return alertVc
+    }
+    static func showLoading(title : String)  {
+        JQProgressHUDTool.jq_showCustomHUD( msg: title)
+    }
+    static func hideLoading()  {
+        JQProgressHUDTool.jq_hideHUD()
     }
     
 }
