@@ -14,6 +14,20 @@
 		5319CED92469095D00140E8F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5319CED72469095D00140E8F /* LaunchScreen.storyboard */; };
 		5319CEE42469095D00140E8F /* MclyticsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5319CEE32469095D00140E8F /* MclyticsTests.swift */; };
 		5319CEEF2469095D00140E8F /* MclyticsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5319CEEE2469095D00140E8F /* MclyticsUITests.swift */; };
+		5319CF0A24690B0F00140E8F /* LanguageStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5319CF0024690B0F00140E8F /* LanguageStrings.swift */; };
+		5319CF0B24690B0F00140E8F /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5319CF0124690B0F00140E8F /* Strings.swift */; };
+		5319CF0C24690B0F00140E8F /* Consts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5319CF0224690B0F00140E8F /* Consts.swift */; };
+		5319CF0D24690B0F00140E8F /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5319CF0324690B0F00140E8F /* Enums.swift */; };
+		5319CF0E24690B0F00140E8F /* UIView_Borders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5319CF0424690B0F00140E8F /* UIView_Borders.swift */; };
+		5319CF0F24690B0F00140E8F /* RoundedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5319CF0524690B0F00140E8F /* RoundedView.swift */; };
+		5319CF1024690B0F00140E8F /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5319CF0624690B0F00140E8F /* UserData.swift */; };
+		5319CF1124690B0F00140E8F /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5319CF0724690B0F00140E8F /* Extensions.swift */; };
+		5319CF1224690B0F00140E8F /* Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5319CF0824690B0F00140E8F /* Validation.swift */; };
+		5319CF1324690B0F00140E8F /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5319CF0924690B0F00140E8F /* Utils.swift */; };
+		5319CF1B24690B2B00140E8F /* AlertManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5319CF1624690B2B00140E8F /* AlertManager.swift */; };
+		5319CF1C24690B2B00140E8F /* Reach.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5319CF1824690B2B00140E8F /* Reach.swift */; };
+		5319CF1D24690B2B00140E8F /* Hud.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5319CF1A24690B2B00140E8F /* Hud.swift */; };
+		AA0461401ACE3EAD3B051209 /* Pods_Mclytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78E2A00718C95A5F06EB2BD8 /* Pods_Mclytics.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +61,22 @@
 		5319CEEA2469095D00140E8F /* MclyticsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MclyticsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5319CEEE2469095D00140E8F /* MclyticsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MclyticsUITests.swift; sourceTree = "<group>"; };
 		5319CEF02469095D00140E8F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5319CF0024690B0F00140E8F /* LanguageStrings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LanguageStrings.swift; sourceTree = "<group>"; };
+		5319CF0124690B0F00140E8F /* Strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
+		5319CF0224690B0F00140E8F /* Consts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Consts.swift; sourceTree = "<group>"; };
+		5319CF0324690B0F00140E8F /* Enums.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
+		5319CF0424690B0F00140E8F /* UIView_Borders.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIView_Borders.swift; sourceTree = "<group>"; };
+		5319CF0524690B0F00140E8F /* RoundedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedView.swift; sourceTree = "<group>"; };
+		5319CF0624690B0F00140E8F /* UserData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
+		5319CF0724690B0F00140E8F /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		5319CF0824690B0F00140E8F /* Validation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Validation.swift; sourceTree = "<group>"; };
+		5319CF0924690B0F00140E8F /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		5319CF1624690B2B00140E8F /* AlertManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertManager.swift; sourceTree = "<group>"; };
+		5319CF1824690B2B00140E8F /* Reach.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reach.swift; sourceTree = "<group>"; };
+		5319CF1A24690B2B00140E8F /* Hud.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Hud.swift; sourceTree = "<group>"; };
+		78E2A00718C95A5F06EB2BD8 /* Pods_Mclytics.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Mclytics.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		796F5709F1D880DF0210319C /* Pods-Mclytics.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mclytics.release.xcconfig"; path = "Target Support Files/Pods-Mclytics/Pods-Mclytics.release.xcconfig"; sourceTree = "<group>"; };
+		F80C362F65FD5554BD46429D /* Pods-Mclytics.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mclytics.debug.xcconfig"; path = "Target Support Files/Pods-Mclytics/Pods-Mclytics.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +84,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AA0461401ACE3EAD3B051209 /* Pods_Mclytics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -81,6 +112,8 @@
 				5319CEE22469095D00140E8F /* MclyticsTests */,
 				5319CEED2469095D00140E8F /* MclyticsUITests */,
 				5319CECC2469095C00140E8F /* Products */,
+				C15440F3D4E339EBFCDEF36F /* Pods */,
+				F5AE77314C17F0C3B2E5FEAF /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -97,11 +130,8 @@
 		5319CECD2469095C00140E8F /* Mclytics */ = {
 			isa = PBXGroup;
 			children = (
-				5319CECE2469095C00140E8F /* AppDelegate.swift */,
-				5319CED02469095C00140E8F /* ViewController.swift */,
-				5319CED22469095C00140E8F /* Main.storyboard */,
-				5319CED52469095D00140E8F /* Assets.xcassets */,
-				5319CED72469095D00140E8F /* LaunchScreen.storyboard */,
+				5319CF1E24690B4800140E8F /* View */,
+				5319CEFC24690AC500140E8F /* Classes */,
 				5319CEDA2469095D00140E8F /* Info.plist */,
 			);
 			path = Mclytics;
@@ -125,6 +155,112 @@
 			path = MclyticsUITests;
 			sourceTree = "<group>";
 		};
+		5319CEFC24690AC500140E8F /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				5319CEFD24690AE400140E8F /* AppDelegate */,
+				5319CEFE24690AF000140E8F /* Controller */,
+				5319CEFF24690B0F00140E8F /* Helpers */,
+				5319CF1424690B2B00140E8F /* Utils */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		5319CEFD24690AE400140E8F /* AppDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				5319CECE2469095C00140E8F /* AppDelegate.swift */,
+			);
+			path = AppDelegate;
+			sourceTree = "<group>";
+		};
+		5319CEFE24690AF000140E8F /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				5319CED02469095C00140E8F /* ViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		5319CEFF24690B0F00140E8F /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				5319CF0024690B0F00140E8F /* LanguageStrings.swift */,
+				5319CF0124690B0F00140E8F /* Strings.swift */,
+				5319CF0224690B0F00140E8F /* Consts.swift */,
+				5319CF0324690B0F00140E8F /* Enums.swift */,
+				5319CF0424690B0F00140E8F /* UIView_Borders.swift */,
+				5319CF0524690B0F00140E8F /* RoundedView.swift */,
+				5319CF0624690B0F00140E8F /* UserData.swift */,
+				5319CF0724690B0F00140E8F /* Extensions.swift */,
+				5319CF0824690B0F00140E8F /* Validation.swift */,
+				5319CF0924690B0F00140E8F /* Utils.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		5319CF1424690B2B00140E8F /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				5319CF1524690B2B00140E8F /* AlertManager */,
+				5319CF1724690B2B00140E8F /* Reach */,
+				5319CF1924690B2B00140E8F /* HUD */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		5319CF1524690B2B00140E8F /* AlertManager */ = {
+			isa = PBXGroup;
+			children = (
+				5319CF1624690B2B00140E8F /* AlertManager.swift */,
+			);
+			path = AlertManager;
+			sourceTree = "<group>";
+		};
+		5319CF1724690B2B00140E8F /* Reach */ = {
+			isa = PBXGroup;
+			children = (
+				5319CF1824690B2B00140E8F /* Reach.swift */,
+			);
+			path = Reach;
+			sourceTree = "<group>";
+		};
+		5319CF1924690B2B00140E8F /* HUD */ = {
+			isa = PBXGroup;
+			children = (
+				5319CF1A24690B2B00140E8F /* Hud.swift */,
+			);
+			path = HUD;
+			sourceTree = "<group>";
+		};
+		5319CF1E24690B4800140E8F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				5319CED22469095C00140E8F /* Main.storyboard */,
+				5319CED52469095D00140E8F /* Assets.xcassets */,
+				5319CED72469095D00140E8F /* LaunchScreen.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		C15440F3D4E339EBFCDEF36F /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F80C362F65FD5554BD46429D /* Pods-Mclytics.debug.xcconfig */,
+				796F5709F1D880DF0210319C /* Pods-Mclytics.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		F5AE77314C17F0C3B2E5FEAF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				78E2A00718C95A5F06EB2BD8 /* Pods_Mclytics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -132,9 +268,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5319CEF32469095D00140E8F /* Build configuration list for PBXNativeTarget "Mclytics" */;
 			buildPhases = (
+				7B450B9789888AB7400E9841 /* [CP] Check Pods Manifest.lock */,
 				5319CEC72469095C00140E8F /* Sources */,
 				5319CEC82469095C00140E8F /* Frameworks */,
 				5319CEC92469095C00140E8F /* Resources */,
+				7C8DC4F3981D5144F09EA04F /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -251,13 +389,68 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		7B450B9789888AB7400E9841 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Mclytics-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7C8DC4F3981D5144F09EA04F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Mclytics/Pods-Mclytics-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Mclytics/Pods-Mclytics-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Mclytics/Pods-Mclytics-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		5319CEC72469095C00140E8F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5319CF0F24690B0F00140E8F /* RoundedView.swift in Sources */,
 				5319CED12469095C00140E8F /* ViewController.swift in Sources */,
+				5319CF1224690B0F00140E8F /* Validation.swift in Sources */,
+				5319CF0C24690B0F00140E8F /* Consts.swift in Sources */,
+				5319CF1024690B0F00140E8F /* UserData.swift in Sources */,
+				5319CF1D24690B2B00140E8F /* Hud.swift in Sources */,
+				5319CF1B24690B2B00140E8F /* AlertManager.swift in Sources */,
+				5319CF0A24690B0F00140E8F /* LanguageStrings.swift in Sources */,
+				5319CF1124690B0F00140E8F /* Extensions.swift in Sources */,
+				5319CF0B24690B0F00140E8F /* Strings.swift in Sources */,
+				5319CF0D24690B0F00140E8F /* Enums.swift in Sources */,
 				5319CECF2469095C00140E8F /* AppDelegate.swift in Sources */,
+				5319CF1C24690B2B00140E8F /* Reach.swift in Sources */,
+				5319CF0E24690B0F00140E8F /* UIView_Borders.swift in Sources */,
+				5319CF1324690B0F00140E8F /* Utils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -430,6 +623,7 @@
 		};
 		5319CEF42469095D00140E8F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F80C362F65FD5554BD46429D /* Pods-Mclytics.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -448,6 +642,7 @@
 		};
 		5319CEF52469095D00140E8F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 796F5709F1D880DF0210319C /* Pods-Mclytics.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
