@@ -11,6 +11,20 @@
       "scale" : "2x"
     },
     {
+      "resizing" : {
+        "mode" : "9-part",
+        "center" : {
+          "mode" : "tile",
+          "width" : 1,
+          "height" : 1
+        },
+        "cap-insets" : {
+          "bottom" : 18,
+          "top" : 18,
+          "right" : 18,
+          "left" : 18
+        }
+      },
       "idiom" : "universal",
       "filename" : "roundCheckBoxOutlineBlank24Px1@3x.png",
       "scale" : "3x"

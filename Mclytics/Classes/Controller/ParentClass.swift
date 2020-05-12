@@ -30,14 +30,13 @@ class ParentClass: UIViewController{
     {
         super.viewDidLoad()
         self.initAlerts()
+        self.view.backgroundColor = .white
         navigationController?.interactivePopGestureRecognizer?.isEnabled = true
         let imgNav = UIView (frame: CGRect (x: 0, y: 0, width: SCREEN_WIDTH, height: STATUS_BAR_HEIGHT))
-        imgNav.backgroundColor = themeColor
+        imgNav.backgroundColor = colorPrimary
         self.view.addSubview(imgNav)
         
-        
-       if APP.open_count == 1
-       {
+       if APP.open_count == 1{
         APP.open_count = 0
         NotificationCenter.default.addObserver(self, selector: #selector(self.networkStatusChanged(_:)), name: NSNotification.Name(rawValue: ReachabilityStatusChangedNotification), object: nil)
         Reach().monitorReachabilityChanges()
@@ -142,6 +141,28 @@ class ParentClass: UIViewController{
         alert.addAction(yesAction)
         
         self.showDetailViewController(alert, sender: self)
+    }
+    
+    func hexStringToUIColor (hex:String) -> UIColor {
+        var cString:String = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
+        
+        if (cString.hasPrefix("#")) {
+            cString.remove(at: cString.startIndex)
+        }
+        
+        if ((cString.count) != 6) {
+            return UIColor.gray
+        }
+        
+        var rgbValue:UInt64 = 0
+        Scanner(string: cString).scanHexInt64(&rgbValue)
+        
+        return UIColor(
+            red: CGFloat((rgbValue & 0xFF0000) >> 16) / 255.0,
+            green: CGFloat((rgbValue & 0x00FF00) >> 8) / 255.0,
+            blue: CGFloat(rgbValue & 0x0000FF) / 255.0,
+            alpha: CGFloat(1.0)
+        )
     }
     
     //––––––––––––––––––––––––––––––––––––––––

@@ -29,6 +29,7 @@ class LoginViewController: ParentClass,UITextFieldDelegate {
     fileprivate var headerview:UIView!
     fileprivate var buttonBack: UIButton!
 
+    var viewcontroller : ViewController?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,12 +39,12 @@ class LoginViewController: ParentClass,UITextFieldDelegate {
     func loadHeaderView() {
         
         headerview = UIView(frame: CGRect(x: 0, y:( STATUS_BAR_HEIGHT + Int(ParentClass.sharedInstance.iPhone_X_Top_Padding)), width: Int(UIScreen.main.bounds.width), height: 44));
-        headerview.backgroundColor = themeColor
+        headerview.backgroundColor = colorPrimary
         self.view.addSubview(headerview)
         
         self.buttonBack = UIButton(frame: CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: 44))
         self.buttonBack.setTitle("Login", for: .normal)
-        self.buttonBack.setTitleColor(UIColor.black, for: .normal)
+        self.buttonBack.setTitleColor(.white, for: .normal)
         self.buttonBack.contentHorizontalAlignment = .center
         self.buttonBack.backgroundColor = UIColor.clear
         headerview.addSubview(self.buttonBack)
@@ -54,13 +55,13 @@ class LoginViewController: ParentClass,UITextFieldDelegate {
         
         
         stackView = UIView(frame: CGRect(x: X_PADDING, y: Int(headerview.frame.maxY), width: SCREEN_WIDTH - (X_PADDING*2), height: 300))
-        stackView.backgroundColor = UIColor.clear
+        stackView.backgroundColor = .clear
 
         let imgLogo = UIImageView(frame: CGRect(x: 0, y: 30, width: 229, height: 120))
-        imgLogo.backgroundColor = UIColor.clear
+        imgLogo.backgroundColor = .clear
         imgLogo.image = UIImage(named: "logo")
         imgLogo.contentMode = .scaleAspectFit
-        imgLogo.center = CGPoint(x: stackView.center.x, y: imgLogo.frame.origin.y + (imgLogo.frame.size.height/2))
+        imgLogo.center = CGPoint(x: self.view.center.x - 15, y:  imgLogo.frame.origin.y/2)
         stackView.addSubview(imgLogo)
         
         var yPosition = Int(imgLogo.frame.maxY + ParentClass.sharedInstance.iPhone_X_Top_Padding + 50)
@@ -139,9 +140,9 @@ class LoginViewController: ParentClass,UITextFieldDelegate {
 
             if strMsg != ""{
                 super.showAlert(message: strMsg, type: .error, navBar: false)
+                return
             }
-            
-            ParentClass.sharedInstance.setData(strData: strToken , strKey: "token")
+            self.saveUserData(strtoken: strToken)
             
         }) { (error) in
             print(error as Any)
@@ -191,25 +192,22 @@ class LoginViewController: ParentClass,UITextFieldDelegate {
     }
     
     
-    private func saveUserData() {
-        
+    private func saveUserData(strtoken:String) {
         self.passwordTextField.resignFirstResponder()
         self.emailTextField.resignFirstResponder()
-        
+        ParentClass.sharedInstance.setData(strData: strtoken , strKey: TOKEN_KEY)
         ParentClass.sharedInstance.setData(strData: self.isRememberMe, strKey: REMEMBER_ME_KEY)
         ParentClass.sharedInstance.setData(strData: self.emailTextField.text!, strKey: USERNAME_KEY)
         ParentClass.sharedInstance.setData(strData: self.passwordTextField.text!, strKey: PASSWORD_KEY)
-        
-        
-//        let isSurveyor = ParentClass.sharedInstance.getDataForKey(strKey: IS_SURVEYOR_KEY) as? Bool
-//        ParentClass.sharedInstance.IS_USER_SURVEYOR = isSurveyor
+        goToNextScreen()
     }
     
     private func goToNextScreen() {
         
-//        self.vcKhadiStore = KhadiStoreListViewController()
-//
-//        self.navigationController?.pushViewController(self.vcKhadiStore!, animated: true)
+        self.viewcontroller = ViewController()
+        self.navigationController?.pushViewController(self.viewcontroller!, animated: true)
+//        self.present(self.viewcontroller!, animated: true, completion: nil)
+        
         
         //        self.myNavigationController = NavigationController(rootViewController: self.vcKhadiStore!)
         //        self.myNavigationController?.navigationBar.isHidden = true

@@ -1,0 +1,6 @@
+framework module JQProgressHUD {
+  umbrella header "JQProgressHUD-umbrella.h"
+
+  export *
+  module * { export * }
+}

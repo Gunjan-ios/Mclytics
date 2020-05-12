@@ -20,6 +20,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         IQKeyboardManager.shared.enable = true
         IQKeyboardManager.shared.enableAutoToolbar = false
         open_count =  1
+        
+//        ParentClass.sharedInstance.setData(strData:, strKey: REMEMBER_ME_KEY)
+        
+        let isSignedIn = ParentClass.sharedInstance.getDataForKey(strKey: REMEMBER_ME_KEY) as? Bool
+
+//        var strKry =  ParentClass.sharedInstance.getDataForKey(strKey: REMEMBER_ME_KEY)
+        print(isSignedIn)
+        if isSignedIn == true {
+             let view = ViewController()
+            self.window!.rootViewController = view
+            self.window?.makeKeyAndVisible()
+        }
+        
 //        self.window.safeAreaInsets.bottom;
 //        if IS_IPHONE_X_XR_XMAX{
 //            ParentClass.sharedInstance.iPhone_X_Top_Padding = (self.window?.safeAreaInsets.top)!

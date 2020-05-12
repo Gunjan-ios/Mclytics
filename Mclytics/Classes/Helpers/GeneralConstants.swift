@@ -13,6 +13,7 @@ let SCREEN_WIDTH = Int(UIScreen.main.bounds.width)
 let SCREEN_HEIGHT = Int(UIScreen.main.bounds.height)
 
 var STATUS_BAR_HEIGHT = Int(UIApplication.shared.statusBarFrame.height)
+let NAV_HEADER_HEIGHT = 44
 let TOP_HEADER_HEIGHT = 50
 let TOP_PROGRESSBAR_HEIGHT = 50
 let TOP_SUBHEADER_HEIGHT = 72
@@ -135,6 +136,7 @@ let POLYGON_STYLETYPE_DASH_DOT = "Polygon_Dash Dot"
 
 let X_PADDING = 15
 let X_PADDING_SUBHEADER = 3
+let Y_PADDING = 8
 let X_PADDING_FOR_COMBOBOX = 50
 let CUSTOM_TEXTFIELD_HEIGHT = 30
 let CUSTOM_COMBOBOX_TEXTFIELD_HEIGHT = 38
@@ -195,9 +197,9 @@ let REGULAR_FONT_NAME = "SFProText-Regular"
 let TEXTFIELD_FONT_SIZE:CGFloat = 17
 let BUTTON_FONT_SIZE:CGFloat = 16
 let SMALL_BUTTON_FONT_SIZE:CGFloat = 14
-let HEADER_LABEL_FONT_SIZE:CGFloat = 16
+let HEADER_LABEL_FONT_SIZE:CGFloat = 24
 let SUB_HEADER_LABEL_FONT_SIZE:CGFloat = 15
-let TAB_HEADER_LABEL_FONT_SIZE:CGFloat = 14
+let NAV_HEADER_FONT_SIZE:CGFloat = 17
 
 // Colors
 let buttonBorderColor = UIColor(red: 198.0/255.0, green: 198.0/255.0, blue: 198.0/255.0, alpha: 1.0)
@@ -208,6 +210,15 @@ let blueTextColor = UIColor(red: 25.0/255.0, green: 118.0/255.0, blue: 210.0/255
 let grayTextColor = UIColor(red: 0/255.0, green: 0/255.0, blue: 0/255.0, alpha: 0.6)
 let themeColor = UIColor(red: 0/255.0, green: 150/255.0, blue: 136/255.0, alpha: 1)
 
+let colorPrimary = UIColor (hex: "008577")
+let colorPrimaryDark = UIColor (hex: "00574")
+let colorListingHeading_25 = UIColor (hex: "5F5F5F")
+let colorSubHeading_76 = UIColor (hex: "767676")
+let colorSubSubHeading_94 = UIColor (hex: "949494")
+let colorDividerBG_f4 = UIColor (hex: "f4f4f4")
+let colorPlaceHolder_C6 = UIColor (hex: "c6c6c6")
+let colorBudget = UIColor (hex: "0078ff")
+let colorRed = UIColor (hex: "D32F2F")
 
 
 let LINE_BACKGROUND_COLOUR = UIColor.lightGray
@@ -295,6 +306,7 @@ let REMEMBER_ME_KEY = "REMEMBER_ME_KEY"
 let USERNAME_KEY = "USERNAME_KEY"
 let PASSWORD_KEY = "PASSWORD_KEY"
 let IS_SURVEYOR_KEY = "IS_SURVEYOR_KEY"
+let TOKEN_KEY = "TOKEN_KEY"
 
 let TIMER_INTERVAL_FOR_TRACK_LOCARIONS = 2
 

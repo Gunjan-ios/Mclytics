@@ -29,6 +29,7 @@
 		5319CF1D24690B2B00140E8F /* Hud.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5319CF1A24690B2B00140E8F /* Hud.swift */; };
 		5319CF20246918B500140E8F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5319CF1F246918B500140E8F /* LoginViewController.swift */; };
 		5319CF22246918F700140E8F /* ParentClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5319CF21246918F700140E8F /* ParentClass.swift */; };
+		5321664D246AA0AB00472214 /* ListButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5321664C246AA0AB00472214 /* ListButton.swift */; };
 		5325649E246935760055EBAE /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5325649D246935760055EBAE /* CustomButton.swift */; };
 		532564A0246935810055EBAE /* CustomTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5325649F246935810055EBAE /* CustomTextView.swift */; };
 		532564A2246935870055EBAE /* CustomInputTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 532564A1246935870055EBAE /* CustomInputTextView.swift */; };
@@ -88,6 +89,7 @@
 		5319CF1A24690B2B00140E8F /* Hud.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Hud.swift; sourceTree = "<group>"; };
 		5319CF1F246918B500140E8F /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		5319CF21246918F700140E8F /* ParentClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParentClass.swift; sourceTree = "<group>"; };
+		5321664C246AA0AB00472214 /* ListButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ListButton.swift; path = "/Users/gunjanraval/Desktop/WORK 2020/Hardik/Mclytics/Mclytics/Classes/Utils/CustomVIew/ListButton.swift"; sourceTree = "<absolute>"; };
 		5325649D246935760055EBAE /* CustomButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		5325649F246935810055EBAE /* CustomTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTextView.swift; sourceTree = "<group>"; };
 		532564A1246935870055EBAE /* CustomInputTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomInputTextView.swift; sourceTree = "<group>"; };
@@ -282,6 +284,7 @@
 				532564A3246935940055EBAE /* CustomTextField.swift */,
 				532564A1246935870055EBAE /* CustomInputTextView.swift */,
 				5325649F246935810055EBAE /* CustomTextView.swift */,
+				5321664C246AA0AB00472214 /* ListButton.swift */,
 				5325649D246935760055EBAE /* CustomButton.swift */,
 			);
 			path = CustomVIew;
@@ -510,6 +513,7 @@
 				5319CECF2469095C00140E8F /* AppDelegate.swift in Sources */,
 				5319CF20246918B500140E8F /* LoginViewController.swift in Sources */,
 				5319CF1C24690B2B00140E8F /* Reach.swift in Sources */,
+				5321664D246AA0AB00472214 /* ListButton.swift in Sources */,
 				5319CF0E24690B0F00140E8F /* UIView_Borders.swift in Sources */,
 				5319CF1324690B0F00140E8F /* Utils.swift in Sources */,
 				532564A8246935A40055EBAE /* CustomInputFieldView.swift in Sources */,

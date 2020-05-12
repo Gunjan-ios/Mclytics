@@ -15,7 +15,7 @@ class CustomButton : UIButton {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        backgroundColor = themeColor
+        backgroundColor = colorPrimary
         self.contentHorizontalAlignment = .center
         setTitleColor(UIColor.black, for: .normal)
         
@@ -40,8 +40,6 @@ class CustomButton : UIButton {
             shadowLayer.shadowOffset = CGSize(width: 0.0, height: 3.0)
             shadowLayer.shadowOpacity = 0.8
             shadowLayer.shadowRadius = 2
-
-            //          self.layer.insertSublayer(shadowLayer, below: nil) // also works
         }
 
 
@@ -51,8 +49,6 @@ class CustomButton : UIButton {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-//    override func layoutSubviews() {
-////        super.layoutSubviews()
-//}
+
     
 }
