@@ -39,6 +39,7 @@
 		532564AA246935CB0055EBAE /* CustomComboBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 532564A9246935CB0055EBAE /* CustomComboBoxView.swift */; };
 		532564AC246935D20055EBAE /* GenderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 532564AB246935D20055EBAE /* GenderView.swift */; };
 		532564AE246936BB0055EBAE /* GeneralConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 532564AD246936BB0055EBAE /* GeneralConstants.swift */; };
+		5327D0D8246BC55700E0878D /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5327D0D7246BC55700E0878D /* SettingViewController.swift */; };
 		53B2B9C024691B850040F573 /* WebServicesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53B2B9BF24691B850040F573 /* WebServicesManager.swift */; };
 		AA0461401ACE3EAD3B051209 /* Pods_Mclytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78E2A00718C95A5F06EB2BD8 /* Pods_Mclytics.framework */; };
 /* End PBXBuildFile section */
@@ -99,6 +100,7 @@
 		532564A9246935CB0055EBAE /* CustomComboBoxView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomComboBoxView.swift; sourceTree = "<group>"; };
 		532564AB246935D20055EBAE /* GenderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenderView.swift; sourceTree = "<group>"; };
 		532564AD246936BB0055EBAE /* GeneralConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneralConstants.swift; sourceTree = "<group>"; };
+		5327D0D7246BC55700E0878D /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		53B2B9BF24691B850040F573 /* WebServicesManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebServicesManager.swift; sourceTree = "<group>"; };
 		78E2A00718C95A5F06EB2BD8 /* Pods_Mclytics.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Mclytics.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		796F5709F1D880DF0210319C /* Pods-Mclytics.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mclytics.release.xcconfig"; path = "Target Support Files/Pods-Mclytics/Pods-Mclytics.release.xcconfig"; sourceTree = "<group>"; };
@@ -207,6 +209,7 @@
 				5319CF21246918F700140E8F /* ParentClass.swift */,
 				5319CED02469095C00140E8F /* ViewController.swift */,
 				5319CF1F246918B500140E8F /* LoginViewController.swift */,
+				5327D0D7246BC55700E0878D /* SettingViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -490,6 +493,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5327D0D8246BC55700E0878D /* SettingViewController.swift in Sources */,
 				5319CF0F24690B0F00140E8F /* RoundedView.swift in Sources */,
 				5325649E246935760055EBAE /* CustomButton.swift in Sources */,
 				5319CF22246918F700140E8F /* ParentClass.swift in Sources */,

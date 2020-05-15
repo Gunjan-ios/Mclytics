@@ -21,15 +21,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         IQKeyboardManager.shared.enableAutoToolbar = false
         open_count =  1
         
-//        ParentClass.sharedInstance.setData(strData:, strKey: REMEMBER_ME_KEY)
-        
         let isSignedIn = ParentClass.sharedInstance.getDataForKey(strKey: REMEMBER_ME_KEY) as? Bool
 
-//        var strKry =  ParentClass.sharedInstance.getDataForKey(strKey: REMEMBER_ME_KEY)
-        print(isSignedIn)
         if isSignedIn == true {
-             let view = ViewController()
-            self.window!.rootViewController = view
+            window = UIWindow(frame: UIScreen.main.bounds)
+            let mainController = ViewController() as UIViewController
+            let navigationController = UINavigationController(rootViewController: mainController)
+            navigationController.navigationBar.isTranslucent = false
+            navigationController.navigationBar.isHidden = true
+            self.window?.rootViewController = navigationController
             self.window?.makeKeyAndVisible()
         }
         

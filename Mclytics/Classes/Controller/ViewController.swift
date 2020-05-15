@@ -13,25 +13,20 @@ class ViewController: ParentClass {
     fileprivate var headerview:UIView!
     fileprivate var buttonBack: UIButton!
     fileprivate var buttonMenu: UIButton!
-
-    
+    fileprivate var yPosition: Int!
     
     fileprivate var lblTitle: UILabel!
     fileprivate var lblSubTitle: UILabel!
     
-    
     fileprivate var scrlView: UIScrollView!
-    
     fileprivate var btnFillBlank: ListButton!
     fileprivate var btnEditSave: ListButton!
     fileprivate var btnSendFinalized: ListButton!
     fileprivate var btnGetBlank: ListButton!
     fileprivate var btnDeleteSaved: ListButton!
     
-    
-
-
-    fileprivate var yPosition: Int!
+    var settingVC : SettingViewController?
+    var loginVC : LoginViewController?
 
     
     override func viewDidLoad() {
@@ -55,16 +50,42 @@ class ViewController: ParentClass {
         headerview.addSubview(self.buttonBack)
         
         self.buttonMenu = UIButton(frame: CGRect(x: (SCREEN_WIDTH - NAV_HEADER_HEIGHT - X_PADDING), y: 0, width: NAV_HEADER_HEIGHT, height: NAV_HEADER_HEIGHT))
-        self.buttonMenu.setTitle("M", for: .normal)
-//        self.buttonMenu.setImage(UIImage (named: "selectedCheckboxBlue"), for: .normal)
+//        self.buttonMenu.setTitle("M", for: .normal)
+        self.buttonMenu.setImage(UIImage (named: "Menu"), for: .normal)
         self.buttonMenu.contentHorizontalAlignment = .right
         self.buttonMenu.backgroundColor = .clear
+        self.buttonMenu.addTarget(self, action: #selector(goToSetting), for: .touchUpInside)
         headerview.addSubview(self.buttonMenu)
         
         yPosition = Int(headerview.frame.maxY) + Y_PADDING
         
         self.initDesign()
     }
+    
+    @objc func goToSetting()  {
+        
+        DispatchQueue.main.async(execute: {
+            let alert = Utils.getAlertController(title: "", message: "choose option", style: .actionSheet)
+            alert.addAction((UIAlertAction(title: "Setting", style: .default, handler: {(action) -> Void in
+                self.settingVC = SettingViewController()
+                self.navigationController?.pushViewController(self.settingVC!, animated: true)
+            })))
+            
+            alert.addAction((UIAlertAction(title: "Logout", style: .default, handler: {(action) -> Void in
+                ParentClass.sharedInstance.setData(strData: false, strKey: REMEMBER_ME_KEY)
+                self.loginVC = LoginViewController()
+                self.navigationController?.pushViewController(self.loginVC!, animated: true)
+                
+            })))
+            alert.addAction((UIAlertAction(title: "Cancel", style: .cancel, handler: {(action) -> Void in
+                
+            })))
+            
+            self.present(alert, animated: true, completion: nil)
+        })
+        
+    }
+    
     func initDesign(){
         
         lblTitle = UILabel (frame: CGRect (x: 0, y: yPosition, width: SCREEN_WIDTH, height: CUSTOM_BUTTON_HEIGHT))
@@ -88,7 +109,7 @@ class ViewController: ParentClass {
         self.initScroll()
     }
     
-    
+   
     func initScroll(){
         
         scrlView = UIScrollView (frame: CGRect (x: 0, y: yPosition, width: SCREEN_WIDTH, height: SCREEN_HEIGHT - yPosition))
@@ -99,14 +120,14 @@ class ViewController: ParentClass {
         btnFillBlank = ListButton (frame: CGRect (x: X_PADDING, y: yposition , width: SCREEN_WIDTH - X_PADDING*2, height: TOP_HEADER_HEIGHT))
         print(btnFillBlank.frame)
         btnFillBlank.setTitle("Fill Blank Form", for: .normal)
-        btnFillBlank.setImage(UIImage (named: "selectedCheckboxBlue"), for: .normal)
+        btnFillBlank.setImage(UIImage (named: "Fill-Black-Form"), for: .normal)
       scrlView.addSubview(btnFillBlank)
         
          yposition += Y_PADDING + TOP_HEADER_HEIGHT
 
         btnEditSave = ListButton (frame: CGRect (x: X_PADDING, y: yposition , width: SCREEN_WIDTH - X_PADDING*2, height: TOP_HEADER_HEIGHT))
         btnEditSave.setTitle("Edit Saved Form", for: .normal)
-        btnEditSave.setImage(UIImage (named: "selectedCheckboxBlue"), for: .normal)
+        btnEditSave.setImage(UIImage (named: "Edit-Saved-Form"), for: .normal)
         scrlView.addSubview(btnEditSave)
 
          yposition += Y_PADDING + TOP_HEADER_HEIGHT
@@ -114,7 +135,7 @@ class ViewController: ParentClass {
 
         btnSendFinalized = ListButton (frame: CGRect (x: X_PADDING, y: yposition , width: SCREEN_WIDTH - X_PADDING*2, height: TOP_HEADER_HEIGHT))
         btnSendFinalized.setTitle("Send Finalized Form", for: .normal)
-        btnSendFinalized.setImage(UIImage (named: "selectedCheckboxBlue"), for: .normal)
+        btnSendFinalized.setImage(UIImage (named: "Send-Finalized-Form"), for: .normal)
 
         scrlView.addSubview(btnSendFinalized)
 
@@ -123,7 +144,7 @@ class ViewController: ParentClass {
 
         btnGetBlank = ListButton (frame: CGRect (x: X_PADDING, y: yposition , width: SCREEN_WIDTH - X_PADDING*2, height: TOP_HEADER_HEIGHT))
         btnGetBlank.setTitle("Get Blank Form", for: .normal)
-        btnGetBlank.setImage(UIImage (named: "selectedCheckboxBlue"), for: .normal)
+        btnGetBlank.setImage(UIImage (named: "Get-Blank-Form"), for: .normal)
 
         scrlView.addSubview(btnGetBlank)
 
@@ -131,7 +152,7 @@ class ViewController: ParentClass {
 
         btnDeleteSaved = ListButton (frame: CGRect (x: X_PADDING, y: yposition , width: SCREEN_WIDTH - X_PADDING*2, height: TOP_HEADER_HEIGHT))
         btnDeleteSaved.setTitle("Delete Saved Form", for: .normal)
-        btnDeleteSaved.setImage(UIImage (named: "selectedCheckboxBlue"), for: .normal)
+        btnDeleteSaved.setImage(UIImage (named: "Delete-Saved-Form"), for: .normal)
 
         scrlView.addSubview(btnDeleteSaved)
 

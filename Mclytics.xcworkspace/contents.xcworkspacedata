@@ -2,9 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:/Users/gunjanraval/Desktop/WORK 2020/Hardik/Mclytics/Mclytics/Classes/Utils/CustomVIew/ListButton.swift">
-   </FileRef>
-   <FileRef
       location = "group:Mclytics.xcodeproj">
    </FileRef>
    <FileRef
