@@ -11,9 +11,7 @@ import SwiftyJSON
 
 
 class GetBlankFormViewController: ParentClass,UITableViewDelegate,UITableViewDataSource {
-   
-    
-    
+
     fileprivate var headerview:UIView!
     fileprivate var buttonBack: UIButton!
     fileprivate var buttonMenu: UIButton!
