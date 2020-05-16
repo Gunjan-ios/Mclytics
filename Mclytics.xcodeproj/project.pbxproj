@@ -41,6 +41,8 @@
 		532564AE246936BB0055EBAE /* GeneralConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 532564AD246936BB0055EBAE /* GeneralConstants.swift */; };
 		5327D0D8246BC55700E0878D /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5327D0D7246BC55700E0878D /* SettingViewController.swift */; };
 		53B2B9C024691B850040F573 /* WebServicesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53B2B9BF24691B850040F573 /* WebServicesManager.swift */; };
+		53E54C522470115900BD7253 /* GetBlankFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E54C512470115900BD7253 /* GetBlankFormViewController.swift */; };
+		53E54C55247011E700BD7253 /* GetBlankFormCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E54C54247011E700BD7253 /* GetBlankFormCell.swift */; };
 		AA0461401ACE3EAD3B051209 /* Pods_Mclytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78E2A00718C95A5F06EB2BD8 /* Pods_Mclytics.framework */; };
 /* End PBXBuildFile section */
 
@@ -102,6 +104,8 @@
 		532564AD246936BB0055EBAE /* GeneralConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneralConstants.swift; sourceTree = "<group>"; };
 		5327D0D7246BC55700E0878D /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		53B2B9BF24691B850040F573 /* WebServicesManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebServicesManager.swift; sourceTree = "<group>"; };
+		53E54C512470115900BD7253 /* GetBlankFormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetBlankFormViewController.swift; sourceTree = "<group>"; };
+		53E54C54247011E700BD7253 /* GetBlankFormCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetBlankFormCell.swift; sourceTree = "<group>"; };
 		78E2A00718C95A5F06EB2BD8 /* Pods_Mclytics.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Mclytics.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		796F5709F1D880DF0210319C /* Pods-Mclytics.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mclytics.release.xcconfig"; path = "Target Support Files/Pods-Mclytics/Pods-Mclytics.release.xcconfig"; sourceTree = "<group>"; };
 		F80C362F65FD5554BD46429D /* Pods-Mclytics.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mclytics.debug.xcconfig"; path = "Target Support Files/Pods-Mclytics/Pods-Mclytics.debug.xcconfig"; sourceTree = "<group>"; };
@@ -205,10 +209,12 @@
 		5319CEFE24690AF000140E8F /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				53E54C53247011A400BD7253 /* TableViewCell */,
 				53B2B9BE24691B730040F573 /* Webservice */,
 				5319CF21246918F700140E8F /* ParentClass.swift */,
 				5319CED02469095C00140E8F /* ViewController.swift */,
 				5319CF1F246918B500140E8F /* LoginViewController.swift */,
+				53E54C512470115900BD7253 /* GetBlankFormViewController.swift */,
 				5327D0D7246BC55700E0878D /* SettingViewController.swift */,
 			);
 			path = Controller;
@@ -299,6 +305,14 @@
 				53B2B9BF24691B850040F573 /* WebServicesManager.swift */,
 			);
 			path = Webservice;
+			sourceTree = "<group>";
+		};
+		53E54C53247011A400BD7253 /* TableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				53E54C54247011E700BD7253 /* GetBlankFormCell.swift */,
+			);
+			path = TableViewCell;
 			sourceTree = "<group>";
 		};
 		C15440F3D4E339EBFCDEF36F /* Pods */ = {
@@ -505,6 +519,7 @@
 				532564A2246935870055EBAE /* CustomInputTextView.swift in Sources */,
 				5319CF1024690B0F00140E8F /* UserData.swift in Sources */,
 				532564AE246936BB0055EBAE /* GeneralConstants.swift in Sources */,
+				53E54C522470115900BD7253 /* GetBlankFormViewController.swift in Sources */,
 				5319CF1D24690B2B00140E8F /* Hud.swift in Sources */,
 				5319CF1B24690B2B00140E8F /* AlertManager.swift in Sources */,
 				53B2B9C024691B850040F573 /* WebServicesManager.swift in Sources */,
@@ -514,6 +529,7 @@
 				5319CF0B24690B0F00140E8F /* CS.swift in Sources */,
 				532564AC246935D20055EBAE /* GenderView.swift in Sources */,
 				5319CF0D24690B0F00140E8F /* Enums.swift in Sources */,
+				53E54C55247011E700BD7253 /* GetBlankFormCell.swift in Sources */,
 				5319CECF2469095C00140E8F /* AppDelegate.swift in Sources */,
 				5319CF20246918B500140E8F /* LoginViewController.swift in Sources */,
 				5319CF1C24690B2B00140E8F /* Reach.swift in Sources */,

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 class ViewController: ParentClass {
     
@@ -28,11 +29,13 @@ class ViewController: ParentClass {
     var settingVC : SettingViewController?
     var loginVC : LoginViewController?
 
+    var getBalnkForm : GetBlankFormViewController?
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.loadHeaderView()
-        
+
         // Do any additional setup after loading the view.
     }
     func loadHeaderView() {
@@ -121,22 +124,26 @@ class ViewController: ParentClass {
         print(btnFillBlank.frame)
         btnFillBlank.setTitle("Fill Blank Form", for: .normal)
         btnFillBlank.setImage(UIImage (named: "Fill-Black-Form"), for: .normal)
-      scrlView.addSubview(btnFillBlank)
+        btnFillBlank.tag = TAG1
+        btnFillBlank.addTarget(self, action: #selector(onButtonPrssed(sender:)), for: .touchUpInside)
+        scrlView.addSubview(btnFillBlank)
         
          yposition += Y_PADDING + TOP_HEADER_HEIGHT
 
         btnEditSave = ListButton (frame: CGRect (x: X_PADDING, y: yposition , width: SCREEN_WIDTH - X_PADDING*2, height: TOP_HEADER_HEIGHT))
         btnEditSave.setTitle("Edit Saved Form", for: .normal)
         btnEditSave.setImage(UIImage (named: "Edit-Saved-Form"), for: .normal)
+        btnEditSave.tag = TAG2
+        btnEditSave.addTarget(self, action: #selector(onButtonPrssed(sender:)), for: .touchUpInside)
         scrlView.addSubview(btnEditSave)
 
          yposition += Y_PADDING + TOP_HEADER_HEIGHT
 
-
         btnSendFinalized = ListButton (frame: CGRect (x: X_PADDING, y: yposition , width: SCREEN_WIDTH - X_PADDING*2, height: TOP_HEADER_HEIGHT))
         btnSendFinalized.setTitle("Send Finalized Form", for: .normal)
+        btnSendFinalized.tag = TAG3
         btnSendFinalized.setImage(UIImage (named: "Send-Finalized-Form"), for: .normal)
-
+        btnSendFinalized.addTarget(self, action: #selector(onButtonPrssed(sender:)), for: .touchUpInside)
         scrlView.addSubview(btnSendFinalized)
 
          yposition += Y_PADDING + TOP_HEADER_HEIGHT
@@ -145,15 +152,17 @@ class ViewController: ParentClass {
         btnGetBlank = ListButton (frame: CGRect (x: X_PADDING, y: yposition , width: SCREEN_WIDTH - X_PADDING*2, height: TOP_HEADER_HEIGHT))
         btnGetBlank.setTitle("Get Blank Form", for: .normal)
         btnGetBlank.setImage(UIImage (named: "Get-Blank-Form"), for: .normal)
-
+        btnGetBlank.tag = TAG4
+        btnGetBlank.addTarget(self, action: #selector(onButtonPrssed(sender:)), for: .touchUpInside)
         scrlView.addSubview(btnGetBlank)
 
          yposition += Y_PADDING + TOP_HEADER_HEIGHT
 
         btnDeleteSaved = ListButton (frame: CGRect (x: X_PADDING, y: yposition , width: SCREEN_WIDTH - X_PADDING*2, height: TOP_HEADER_HEIGHT))
         btnDeleteSaved.setTitle("Delete Saved Form", for: .normal)
+        btnDeleteSaved.tag = TAG5
+        btnDeleteSaved.addTarget(self, action: #selector(onButtonPrssed(sender:)), for: .touchUpInside)
         btnDeleteSaved.setImage(UIImage (named: "Delete-Saved-Form"), for: .normal)
-
         scrlView.addSubview(btnDeleteSaved)
 
          yposition += Y_PADDING + TOP_HEADER_HEIGHT
@@ -162,6 +171,32 @@ class ViewController: ParentClass {
 
 //        scrlView.contentSize = CGSize (width: SCREEN_WIDTH, height: yposition)
 
+    }
+    
+    
+    @objc func onButtonPrssed(sender : UIButton)  {
+        
+        switch sender.tag {
+        case 1:
+            break
+        case 2:
+            break
+        case 3:
+            break
+        case 4:
+            self.getBalnkForm = GetBlankFormViewController()
+            self.getBalnkForm?.lblTitle = sender.currentTitle
+            self.navigationController?.pushViewController(self.getBalnkForm!, animated: true)
+            break
+        case 5:
+            break
+        default:
+            break
+        }
+        
+        
+        
+        
     }
     
 

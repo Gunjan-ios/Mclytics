@@ -25,6 +25,7 @@ class ParentClass: UIViewController{
     var iPhone_SE:Bool = false
     var iPhone_X_Top_Padding:CGFloat = 0
     var iPhone_X_Bottom_Padding:CGFloat = 0
+    var token : String!
     
     override func viewDidLoad()
     {

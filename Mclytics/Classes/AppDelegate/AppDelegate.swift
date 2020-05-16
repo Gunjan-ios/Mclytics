@@ -24,6 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let isSignedIn = ParentClass.sharedInstance.getDataForKey(strKey: REMEMBER_ME_KEY) as? Bool
 
         if isSignedIn == true {
+            ParentClass.sharedInstance.token =  ParentClass.sharedInstance.getDataForKey(strKey: TOKEN_KEY) as? String
             window = UIWindow(frame: UIScreen.main.bounds)
             let mainController = ViewController() as UIViewController
             let navigationController = UINavigationController(rootViewController: mainController)
@@ -31,6 +32,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             navigationController.navigationBar.isHidden = true
             self.window?.rootViewController = navigationController
             self.window?.makeKeyAndVisible()
+  
         }
         
 //        self.window.safeAreaInsets.bottom;

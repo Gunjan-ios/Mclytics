@@ -11,19 +11,9 @@ import Alamofire
 import SwiftyJSON
 
 let BASE_URL = "http://mclytics.com/api/"
-//let BASE_URL = "http://192.168.20.62:8090/"
 let LOGIN_URL = "login"
 let FORMS_URL = "forms"
 let SUBMIT_URL = "forms/formid/submit"
-let ADDINSPECTION_URL = "api/kvic/addInspectionData"
-let UPLOAD_URL = "api/kvic/upload"
-let DELETE_ATTACHMENT_URL = "api/kvic/deleteAttachment"
-
-let LOGINBYPASS_URL = "api/kvic/login"
-let REVERSE_GEOCODING_URL = "api/kvic/reverseGeocoding"
-let FINAL_SUBMIT_URL = "api/kvic/finalSubmit"
-let LOGIN_DATA_BY_USER = "api/kvic/loginDataByUser"
-//let UPLOAD_URL = "api/kvic/upload"
 
 
 class WebServicesManager {
@@ -58,7 +48,54 @@ class WebServicesManager {
         }
         
     }
+
+
+class func getForm(page:Int, onCompletion: ((JSON?) -> Void)? = nil, onError: ((Error?) -> Void)? = nil) {
     
+    Hud.showLoading(title: CS.Common.waiting)
+    
+    let parameters: Parameters = [
+        CS.Params.page: "1",
+    ]
+//    let header : HTTPHeaders = [
+//        "Authorization": "Bearer  \(ParentClass.sharedInstance.token ?? "")"
+//    ]
+    let header: HTTPHeaders = [
+        "Authorization": "Bearer \(ParentClass.sharedInstance.token ?? "")",
+        "Accept": "application/json"
+    ]
+    
+    print(header)
+    print(parameters)
+    print("\(BASE_URL)\(FORMS_URL)")
+
+    
+    let str_url = "\(BASE_URL)\(FORMS_URL)?\(CS.Params.page)=\(page)"
+    print(str_url)
+
+    Alamofire.request(str_url ,encoding: JSONEncoding.default ,headers: header).responseJSON { (response) in
+        Hud.hideLoading()
+        guard let value = response.result.value
+            else {
+                if let err = response.error{
+                    onError?(err)
+                    return
+                }
+                return }
+        let json = JSON(value)
+        print(json)
+        
+        if let err = response.error{
+            onError?(err)
+            return
+        }
+        
+        onCompletion!(json)
+        
+    }
+    
+}
+}
 //    class func getInspectionView(userName:String, password:String,appType:String, onCompletion: ((JSON?) -> Void)? = nil, onError: ((Error?) -> Void)? = nil) {
 //
 //        Hud.showLoading(title: Strings.Common.waiting)
@@ -447,7 +484,7 @@ class WebServicesManager {
 //        }
 //    }
     
-}
+//}
 //struct JSONStringEncoder {
 //
 //    func encode(_ dictionary: imageData) -> String? {

@@ -199,6 +199,7 @@ class LoginViewController: ParentClass,UITextFieldDelegate {
         ParentClass.sharedInstance.setData(strData: self.isRememberMe, strKey: REMEMBER_ME_KEY)
         ParentClass.sharedInstance.setData(strData: self.emailTextField.text!, strKey: USERNAME_KEY)
         ParentClass.sharedInstance.setData(strData: self.passwordTextField.text!, strKey: PASSWORD_KEY)
+        ParentClass.sharedInstance.token =  strtoken
         goToNextScreen()
     }
     

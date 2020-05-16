@@ -18,6 +18,9 @@ class CS {
     struct Params {
         static let email = "email"
         static let password = "password"
+        static let page = "page"
+
+        
 
     }
     
