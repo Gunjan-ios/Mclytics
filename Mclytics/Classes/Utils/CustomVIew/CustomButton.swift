@@ -17,10 +17,10 @@ class CustomButton : UIButton {
         
         backgroundColor = colorPrimary
         self.contentHorizontalAlignment = .center
-        setTitleColor(UIColor.black, for: .normal)
+        setTitleColor(UIColor.white, for: .normal)
         
         // corner
-        layer.cornerRadius = 10
+        layer.cornerRadius = 5
 //        self.layer.borderWidth = 1
 //        self.layer.borderColor = buttonBorderColor.cgColor
         

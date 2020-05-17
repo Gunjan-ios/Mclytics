@@ -33,7 +33,7 @@ enum LocationType {
 
 
 enum AlertType {
-    case error, success
+    case error, success,issue
 }
 
 

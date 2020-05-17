@@ -54,22 +54,11 @@ class func getForm(page:Int, onCompletion: ((JSON?) -> Void)? = nil, onError: ((
     
     Hud.showLoading(title: CS.Common.waiting)
     
-    let parameters: Parameters = [
-        CS.Params.page: "1",
-    ]
-//    let header : HTTPHeaders = [
-//        "Authorization": "Bearer  \(ParentClass.sharedInstance.token ?? "")"
-//    ]
     let header: HTTPHeaders = [
         "Authorization": "Bearer \(ParentClass.sharedInstance.token ?? "")",
         "Accept": "application/json"
     ]
-    
     print(header)
-    print(parameters)
-    print("\(BASE_URL)\(FORMS_URL)")
-
-    
     let str_url = "\(BASE_URL)\(FORMS_URL)?\(CS.Params.page)=\(page)"
     print(str_url)
 

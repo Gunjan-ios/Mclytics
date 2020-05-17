@@ -73,14 +73,12 @@ class ParentClass: UIViewController{
         case .unknown, .offline:
             print("Not connected")
             APP.open_count = 2
-//             Hud.show(message: Strings.Common.Internet)
-                    self.processingAlert?.show(nil, hidden: nil)
+           self.processingAlert?.show(nil, hidden: nil)
          case .online(.wwan):
             print("Connected via WWAN")
             self.processingAlert?.hideAlert({ () -> () in
                 if self.APP.open_count == 2 {
                     self.APP.open_count = 0
-//                    Hud.showSuccess(message: Strings.Common.Connected)
                     self.showAlert(message: Language.Common.Connected, type: AlertType.success, navBar: false)
                 }
                     })

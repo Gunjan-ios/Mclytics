@@ -15,6 +15,7 @@ class AlertManager: LIHAlertManager {
     static let errorColor = ERROR_COLOR
     static let successColor = SUCCESS_COLOR
 
+
     static func getErrorAlert() -> LIHAlert
     {
         let alert = super.getTextAlert(message: Language.Common.defaultFailedMessage)

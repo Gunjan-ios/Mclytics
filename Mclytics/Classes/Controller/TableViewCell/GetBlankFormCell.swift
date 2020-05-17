@@ -12,9 +12,9 @@ class GetBlankFormCell: UITableViewCell {
     
     var btncheckbox : UIButton = {
         let btn = UIButton(type: .custom)
-        btn.setImage(UIImage(named: "roundCheckBoxOutlineBlank24Px1"), for: .normal)
-        btn.contentHorizontalAlignment = .left
-        btn.isUserInteractionEnabled = false
+        btn.setImage(UIImage(named: "deselectedCheckbox"), for: .normal)
+        btn.setImage(UIImage(named: "selectedCheckboxBlue"), for: .selected)
+        btn.contentHorizontalAlignment = .center
         return btn
     }()
     
@@ -29,9 +29,9 @@ class GetBlankFormCell: UITableViewCell {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 12)
         label.textAlignment = .left
-        
+        label.sizeToFit()
+//        label.backgroundColor = UIColor.red
         return label
-        
     }()
     
     
@@ -40,9 +40,11 @@ class GetBlankFormCell: UITableViewCell {
         
         self.backgroundColor = UIColor.white
         
-        self.lblFieldName.frame = CGRect(x: X_PADDING, y: 3, width: SCREEN_WIDTH - X_PADDING , height: 22)
-        self.lblSubFieldName.frame = CGRect(x: X_PADDING, y:22, width: SCREEN_WIDTH - X_PADDING, height: 22)
-//        addSubview(btncheckbox)
+        self.btncheckbox.frame = CGRect (x: SCREEN_WIDTH - Int(SIDE_PANEL_LABEL_CELL_HEIGHT) - 10 , y: 0, width:Int(SIDE_PANEL_LABEL_CELL_HEIGHT) , height: Int(SIDE_PANEL_LABEL_CELL_HEIGHT))
+        self.lblFieldName.frame = CGRect(x: X_PADDING, y: 0, width: SCREEN_WIDTH - X_PADDING , height: Int(SIDE_PANEL_LABEL_CELL_HEIGHT/2))
+        self.lblSubFieldName.frame = CGRect(x: X_PADDING, y:Int(SIDE_PANEL_LABEL_CELL_HEIGHT/2) - 3, width: SCREEN_WIDTH - X_PADDING, height: Int(SIDE_PANEL_LABEL_CELL_HEIGHT/2))
+        
+        addSubview(btncheckbox)
         addSubview(lblFieldName)
         addSubview(lblSubFieldName)
 
