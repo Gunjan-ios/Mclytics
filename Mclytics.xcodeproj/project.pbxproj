@@ -40,6 +40,8 @@
 		532564AC246935D20055EBAE /* GenderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 532564AB246935D20055EBAE /* GenderView.swift */; };
 		532564AE246936BB0055EBAE /* GeneralConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 532564AD246936BB0055EBAE /* GeneralConstants.swift */; };
 		5327D0D8246BC55700E0878D /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5327D0D7246BC55700E0878D /* SettingViewController.swift */; };
+		532C694B247409940026A28A /* FillFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 532C694A247409940026A28A /* FillFormViewController.swift */; };
+		532C694D24740ACE0026A28A /* FormListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 532C694C24740ACE0026A28A /* FormListCell.swift */; };
 		53B2B9C024691B850040F573 /* WebServicesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53B2B9BF24691B850040F573 /* WebServicesManager.swift */; };
 		53E54C522470115900BD7253 /* GetBlankFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E54C512470115900BD7253 /* GetBlankFormViewController.swift */; };
 		53E54C55247011E700BD7253 /* GetBlankFormCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E54C54247011E700BD7253 /* GetBlankFormCell.swift */; };
@@ -103,6 +105,8 @@
 		532564AB246935D20055EBAE /* GenderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenderView.swift; sourceTree = "<group>"; };
 		532564AD246936BB0055EBAE /* GeneralConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneralConstants.swift; sourceTree = "<group>"; };
 		5327D0D7246BC55700E0878D /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		532C694A247409940026A28A /* FillFormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FillFormViewController.swift; sourceTree = "<group>"; };
+		532C694C24740ACE0026A28A /* FormListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormListCell.swift; sourceTree = "<group>"; };
 		53B2B9BF24691B850040F573 /* WebServicesManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebServicesManager.swift; sourceTree = "<group>"; };
 		53E54C512470115900BD7253 /* GetBlankFormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetBlankFormViewController.swift; sourceTree = "<group>"; };
 		53E54C54247011E700BD7253 /* GetBlankFormCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetBlankFormCell.swift; sourceTree = "<group>"; };
@@ -215,6 +219,7 @@
 				5319CED02469095C00140E8F /* ViewController.swift */,
 				5319CF1F246918B500140E8F /* LoginViewController.swift */,
 				53E54C512470115900BD7253 /* GetBlankFormViewController.swift */,
+				532C694A247409940026A28A /* FillFormViewController.swift */,
 				5327D0D7246BC55700E0878D /* SettingViewController.swift */,
 			);
 			path = Controller;
@@ -311,6 +316,7 @@
 			isa = PBXGroup;
 			children = (
 				53E54C54247011E700BD7253 /* GetBlankFormCell.swift */,
+				532C694C24740ACE0026A28A /* FormListCell.swift */,
 			);
 			path = TableViewCell;
 			sourceTree = "<group>";
@@ -524,9 +530,11 @@
 				5319CF1B24690B2B00140E8F /* AlertManager.swift in Sources */,
 				53B2B9C024691B850040F573 /* WebServicesManager.swift in Sources */,
 				532564A4246935940055EBAE /* CustomTextField.swift in Sources */,
+				532C694B247409940026A28A /* FillFormViewController.swift in Sources */,
 				5319CF0A24690B0F00140E8F /* LanguageStrings.swift in Sources */,
 				5319CF1124690B0F00140E8F /* Extensions.swift in Sources */,
 				5319CF0B24690B0F00140E8F /* CS.swift in Sources */,
+				532C694D24740ACE0026A28A /* FormListCell.swift in Sources */,
 				532564AC246935D20055EBAE /* GenderView.swift in Sources */,
 				5319CF0D24690B0F00140E8F /* Enums.swift in Sources */,
 				53E54C55247011E700BD7253 /* GetBlankFormCell.swift in Sources */,

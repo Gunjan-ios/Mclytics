@@ -30,6 +30,8 @@ class ViewController: ParentClass {
     var loginVC : LoginViewController?
 
     var getBalnkForm : GetBlankFormViewController?
+    var getFillForm : FillFormViewController?
+
 
     
     override func viewDidLoad() {
@@ -178,6 +180,9 @@ class ViewController: ParentClass {
         
         switch sender.tag {
         case 1:
+            self.getFillForm = FillFormViewController()
+            self.getFillForm?.lblTitle = sender.currentTitle
+            self.navigationController?.pushViewController(self.getFillForm!, animated: true)
             break
         case 2:
             break

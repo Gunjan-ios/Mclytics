@@ -8,6 +8,7 @@
 
 import UIKit
 import LIHAlert
+import SwiftyJSON
 //import KOLocalizedString
 
 class ParentClass: UIViewController{
@@ -26,6 +27,7 @@ class ParentClass: UIViewController{
     var iPhone_X_Top_Padding:CGFloat = 0
     var iPhone_X_Bottom_Padding:CGFloat = 0
     var token : String!
+    var saveListArray : [[String : Any]] = [[String:Any]]()
     
     override func viewDidLoad()
     {
@@ -51,10 +53,47 @@ class ParentClass: UIViewController{
     }
     
     func getDataForKey(strKey:String) -> Any {
-        
         return UserDefaults.standard.value(forKey: strKey) as Any
-        
     }
+    
+    func dateConvert(date: Double) -> String{
+        let dateVar = Date(timeIntervalSince1970: (date / 1000.0))
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .full
+        print(dateFormatter.string(from: dateVar))
+       return dateFormatter.string(from: dateVar)
+    }
+    func saveJSON(json: JSON, key:String){
+        if let jsonString = json.rawString() {
+            UserDefaults.standard.setValue(jsonString, forKey: key)
+        }
+    }
+    
+    func getJSON(_ key: String)-> JSON? {
+        var p = ""
+        if let result = UserDefaults.standard.string(forKey: key) {
+            p = result
+        }
+        if p != "" {
+            if let json = p.data(using: String.Encoding.utf8, allowLossyConversion: false) {
+                do {
+                    return try JSON(data: json)
+                } catch {
+                    return nil
+                }
+            } else {
+                return nil
+            }
+        } else {
+            return nil
+        }
+    }
+//    public func loadJSON(strKey:String) -> JSON {
+//        let defaults = UserDefaults.standard
+//        return JSON (parseJSON: (defaults.value(forKey: strKey) as! String))
+////        return JSON.parse(defaults.valueForKey(strKey) as! String))
+//        // JSON from string must be initialized using .parse()
+//    }
     // get color from string
     func getColorFromString(pString:String) -> UIColor {
         

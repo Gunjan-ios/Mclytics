@@ -50,7 +50,8 @@ let IS_IPHONE_XR = (IS_IPHONE && UIScreen.main.nativeBounds.size.height == 1792.
 // When it is used for iphone x , xmax and xr, set iphone x condition at last in if condition
 let IS_IPHONE_X_XR_XMAX = (IS_IPHONE && UIScreen.main.bounds.size.height == 812.0) || (IS_IPHONE && UIScreen.main.bounds.size.height == 896.0)
 
-let SIDE_PANEL_LABEL_CELL_HEIGHT:CGFloat = 44.0
+let SIDE_PANEL_LABEL_CELL_HEIGHT:CGFloat = 50.0
+let TABLEVIEW_CELL_HEIGHT:CGFloat = 60.0
 let SIDE_PANEL_LOGO_CELL_HEIGHT:CGFloat = 90.0
 let SIDE_PANEL_WIDTH:CGFloat = CGFloat(SCREEN_WIDTH) - 50.0
 let SIDE_PANEL_SEPARATOR_CELL_HEIGHT:CGFloat = 21.0
@@ -323,5 +324,6 @@ let USER_ID = "USER_ID"
 let ORG_ID = "ORG_ID"
 let ACCESS_ID = "ACCESS_ID"
 let CATEGORY_ID = "CATEGORY_ID"
+let FILL_BLANK_ARRAY = "FILL_BLANK_ARRAY"
 
 

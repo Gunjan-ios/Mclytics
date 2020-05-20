@@ -9,6 +9,7 @@
 import UIKit
 import JQProgressHUD
 import Foundation
+import SwiftyJSON
 
 class Utils: NSObject {
 
@@ -69,6 +70,19 @@ class Utils: NSObject {
     }
     static func hideLoading()  {
         JQProgressHUDTool.jq_hideHUD()
+    }
+    static func stringFromJson(object: [[String : Any]]) -> String{
+        let newjson = JSON(object)
+        let sjod = newjson.rawString()
+        return sjod!
+//        let jsonData = try? JSONSerialization.data(withJSONObject: object, options: [])
+//        let jsonString = String(data: jsonData!, encoding: .utf8)
+//        return jsonString!
+    }
+    static func jsonObject(jsonString : String) -> [[String : Any]] {
+        let jsonData = jsonString.data(using: .utf8)
+        let dictionary = try? JSONSerialization.jsonObject(with: jsonData!, options:  [])
+        return dictionary as! [[String : Any]]
     }
 }
 

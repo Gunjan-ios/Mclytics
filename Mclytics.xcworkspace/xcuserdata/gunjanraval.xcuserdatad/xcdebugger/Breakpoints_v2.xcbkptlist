@@ -23,13 +23,29 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Mclytics/Classes/Controller/LoginViewController.swift"
-            timestampString = "611392846.387393"
+            filePath = "Mclytics/Classes/Controller/GetBlankFormViewController.swift"
+            timestampString = "611678532.820381"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "159"
-            endingLineNumber = "159"
-            landmarkName = "rememberMePressed(sender:)"
+            startingLineNumber = "157"
+            endingLineNumber = "157"
+            landmarkName = "onCheckListPressed(sender:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Mclytics/Classes/Controller/GetBlankFormViewController.swift"
+            timestampString = "611678532.821418"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "111"
+            endingLineNumber = "111"
+            landmarkName = "getSelected()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
