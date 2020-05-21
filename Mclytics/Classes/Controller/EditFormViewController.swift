@@ -30,6 +30,8 @@ class EditFormViewController: ParentClass,UITableViewDelegate,UITableViewDataSou
         
         if str != "" && str != nil{
             elistArray = Utils.jsonObject(jsonString: str!)
+            self.initTableview()
+
         }
         // Do any additional setup after loading the view.
     }
@@ -71,7 +73,6 @@ class EditFormViewController: ParentClass,UITableViewDelegate,UITableViewDataSou
         //        //        buttonSave.tag = 9999
         //        self.view.addSubview(buttonSave)
         //
-        self.initTableview()
     }
     @objc func onRefreshPressed()  {
         currentPage = 1

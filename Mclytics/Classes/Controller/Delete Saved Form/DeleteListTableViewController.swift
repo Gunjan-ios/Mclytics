@@ -28,8 +28,8 @@ class DeleteListTableViewController: ParentClass,UITableViewDelegate,UITableView
         let str =   ParentClass.sharedInstance.getDataForKey(strKey: FILL_BLANK_ARRAY) as? String
         if str != "" && str != nil{
             arrayStoreLists = Utils.jsonObject(jsonString: str!)
+            self.initTableview()
         }
-       self.initTableview()
     }
     func initTableview()  {
         // layer list
