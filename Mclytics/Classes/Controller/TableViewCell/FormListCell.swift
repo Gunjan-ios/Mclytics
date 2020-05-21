@@ -54,7 +54,7 @@ class FormListCell: UITableViewCell {
         self.lblSubFieldName.frame = CGRect(x: X_PADDING, y:Int(TABLEVIEW_CELL_HEIGHT/3 - 3) , width: SCREEN_WIDTH - X_PADDING, height: Int(TABLEVIEW_CELL_HEIGHT/3))
         self.lblSubFieldDate.frame = CGRect(x: X_PADDING, y:Int(TABLEVIEW_CELL_HEIGHT/3)*2 - 6 , width: SCREEN_WIDTH - X_PADDING, height: Int(TABLEVIEW_CELL_HEIGHT/3))
         
-//        addSubview(btncheckbox)
+        addSubview(btncheckbox)
         addSubview(lblFieldName)
         addSubview(lblSubFieldName)
         addSubview(lblSubFieldDate)

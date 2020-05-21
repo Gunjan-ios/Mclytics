@@ -1,14 +1,14 @@
 //
-//  FillFormViewController.swift
+//  EditFormViewController.swift
 //  Mclytics
 //
-//  Created by Gunjan Raval on 19/05/20.
+//  Created by Gunjan Raval on 21/05/20.
 //  Copyright © 2020 Gunjan Raval. All rights reserved.
 //
 
 import UIKit
 import SwiftyJSON
-class FillFormViewController: ParentClass,UITableViewDelegate,UITableViewDataSource {
+class EditFormViewController: ParentClass,UITableViewDelegate,UITableViewDataSource {
     fileprivate var headerview:UIView!
     fileprivate var buttonBack: UIButton!
     fileprivate var buttonMenu: UIButton!
@@ -19,7 +19,7 @@ class FillFormViewController: ParentClass,UITableViewDelegate,UITableViewDataSou
     private var currentPage = 1
     private var totalPage = 1
     
-    var flistArray : [[String:Any]] = [[String:Any]]()
+    var elistArray : [[String:Any]] = [[String:Any]]()
     
     fileprivate var buttonSave: CustomButton!
     
@@ -29,9 +29,8 @@ class FillFormViewController: ParentClass,UITableViewDelegate,UITableViewDataSou
         let str =   ParentClass.sharedInstance.getDataForKey(strKey: FILL_BLANK_ARRAY) as? String
         
         if str != "" && str != nil{
-            flistArray = Utils.jsonObject(jsonString: str!)
+            elistArray = Utils.jsonObject(jsonString: str!)
         }
-
         // Do any additional setup after loading the view.
     }
     func loadHeaderView() {
@@ -56,27 +55,27 @@ class FillFormViewController: ParentClass,UITableViewDelegate,UITableViewDataSou
         
         yPosition = Int(headerview.frame.maxY) + Y_PADDING
         
-//        //save button
-//        let buttonREFRESH = CustomButton(frame: CGRect(x: X_PADDING, y: SCREEN_HEIGHT -  CUSTOM_BUTTON_HEIGHT - X_PADDING, width: SCREEN_WIDTH/2 - (X_PADDING*2), height: CUSTOM_BUTTON_HEIGHT))
-//        buttonREFRESH.setTitle("REFRESH", for: .normal)
-//        buttonREFRESH.addTarget(self, action: #selector(onRefreshPressed), for: .touchUpInside)
-//        self.view.addSubview(buttonREFRESH)
-//
-//        //save button
-//        buttonSave = CustomButton(frame: CGRect(x: SCREEN_WIDTH - SCREEN_WIDTH/2 + X_PADDING , y: SCREEN_HEIGHT -  CUSTOM_BUTTON_HEIGHT - X_PADDING, width: SCREEN_WIDTH/2 - (X_PADDING*2), height: CUSTOM_BUTTON_HEIGHT))
-//        buttonSave.setTitle("GET SELECTED", for: .normal)
-//        buttonSave.setTitleColor(.darkGray, for: .disabled)
-//        buttonSave.backgroundColor = UIColor.lightGray
-//        buttonSave.isEnabled = false
-//        //        buttonSave.addTarget(self, action: #selector(btnSavePressed), for: .touchUpInside)
-//        //        buttonSave.tag = 9999
-//        self.view.addSubview(buttonSave)
-//
+        //        //save button
+        //        let buttonREFRESH = CustomButton(frame: CGRect(x: X_PADDING, y: SCREEN_HEIGHT -  CUSTOM_BUTTON_HEIGHT - X_PADDING, width: SCREEN_WIDTH/2 - (X_PADDING*2), height: CUSTOM_BUTTON_HEIGHT))
+        //        buttonREFRESH.setTitle("REFRESH", for: .normal)
+        //        buttonREFRESH.addTarget(self, action: #selector(onRefreshPressed), for: .touchUpInside)
+        //        self.view.addSubview(buttonREFRESH)
+        //
+        //        //save button
+        //        buttonSave = CustomButton(frame: CGRect(x: SCREEN_WIDTH - SCREEN_WIDTH/2 + X_PADDING , y: SCREEN_HEIGHT -  CUSTOM_BUTTON_HEIGHT - X_PADDING, width: SCREEN_WIDTH/2 - (X_PADDING*2), height: CUSTOM_BUTTON_HEIGHT))
+        //        buttonSave.setTitle("GET SELECTED", for: .normal)
+        //        buttonSave.setTitleColor(.darkGray, for: .disabled)
+        //        buttonSave.backgroundColor = UIColor.lightGray
+        //        buttonSave.isEnabled = false
+        //        //        buttonSave.addTarget(self, action: #selector(btnSavePressed), for: .touchUpInside)
+        //        //        buttonSave.tag = 9999
+        //        self.view.addSubview(buttonSave)
+        //
         self.initTableview()
     }
     @objc func onRefreshPressed()  {
         currentPage = 1
-//        apiGetBlankFromData(page: 1)
+        //        apiGetBlankFromData(page: 1)
     }
     
     @objc func goToBack()  {
@@ -101,7 +100,7 @@ class FillFormViewController: ParentClass,UITableViewDelegate,UITableViewDataSou
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return   self.flistArray.count
+        return   self.elistArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -111,59 +110,20 @@ class FillFormViewController: ParentClass,UITableViewDelegate,UITableViewDataSou
         cell.selectionStyle = .none
         cell.backgroundColor = UIColor.clear
         
-        print(flistArray[indexPath.row]["name"] as? String)
-        print(flistArray[indexPath.row]["slug"] as? String)
-
-        cell.lblFieldName.text = flistArray[indexPath.row]["name"] as? String
-        cell.lblSubFieldName.text = "sulg: \(flistArray[indexPath.row]["slug"] ?? "")"
-        let strDate = ParentClass.sharedInstance.dateConvert(date: (flistArray[indexPath.row]["created_at"] as? Double)!)
+        print(elistArray[indexPath.row]["name"] as? String)
+        print(elistArray[indexPath.row]["slug"] as? String)
+        
+        cell.lblFieldName.text = elistArray[indexPath.row]["name"] as? String
+        cell.lblSubFieldName.text = "sulg: \(elistArray[indexPath.row]["slug"] ?? "")"
+        let strDate = ParentClass.sharedInstance.dateConvert(date: (elistArray[indexPath.row]["created_at"] as? Double)!)
         cell.lblSubFieldDate.text = "Added on \(strDate)"
         cell.btncheckbox.isHidden = true
-//        cell.btncheckbox.tag = indexPath.row
-//        cell.btncheckbox.addTarget(self, action: #selector(onCheckListPressed(sender:)), for: .touchUpInside)
+        
+        //        cell.btncheckbox.tag = indexPath.row
+        //        cell.btncheckbox.addTarget(self, action: #selector(onCheckListPressed(sender:)), for: .touchUpInside)
         return cell
     }
-    
-//    @objc func onCheckListPressed(sender:UIButton)  {
-//        print(sender.tag)
-//        let tempSlug =  flistArray![sender.tag]["slug"].stringValue
-//
-//        if sender.isSelected {
-//            if ((ParentClass.sharedInstance.saveListArray?.count) != nil){
-//                var array1 : [JSON]!  = [JSON]()
-//                for temp1 in ParentClass.sharedInstance.saveListArray!{
-//                    let strSlug = temp1["slug"].stringValue
-//                    if strSlug != tempSlug{
-//                        array1.append(temp1)
-//                    }
-//                }
-//                ParentClass.sharedInstance.saveListArray = array1
-//                print(ParentClass.sharedInstance.saveListArray)
-//                sender.isSelected = false
-//            }
-//        }else{
-//            var temp = listArry![sender.tag]
-//            print(temp["slug"].stringValue)
-//            ParentClass.sharedInstance.saveListArray.append(temp)
-//            sender.isSelected = true
-//        }
-//        ParentClass.sharedInstance.saveJSON(json: [ParentClass.sharedInstance.saveListArray as Any], key: FILL_BLANK_ARRAY)
-//
-//
-//
-//
-//        if ParentClass.sharedInstance.saveListArray!.count >= 1{
-//            buttonSave.isEnabled = true
-//            buttonSave.backgroundColor = colorPrimary
-//        }else{
-//            buttonSave.setTitleColor(.darkGray, for: .disabled)
-//            buttonSave.backgroundColor = UIColor.lightGray
-//            buttonSave.isEnabled = false
-//        }
-//
-//    }
-    
-   
+
     /*
     // MARK: - Navigation
 

@@ -31,6 +31,8 @@ class ViewController: ParentClass {
 
     var getBalnkForm : GetBlankFormViewController?
     var getFillForm : FillFormViewController?
+    var editForm : EditFormViewController?
+    var deleteVC:DeleteViewController?
 
 
     
@@ -185,6 +187,9 @@ class ViewController: ParentClass {
             self.navigationController?.pushViewController(self.getFillForm!, animated: true)
             break
         case 2:
+            self.editForm = EditFormViewController()
+            self.editForm?.lblTitle = sender.currentTitle
+            self.navigationController?.pushViewController(self.editForm!, animated: true)
             break
         case 3:
             break
@@ -194,6 +199,9 @@ class ViewController: ParentClass {
             self.navigationController?.pushViewController(self.getBalnkForm!, animated: true)
             break
         case 5:
+            self.deleteVC = DeleteViewController()
+            self.deleteVC?.lblTitle = sender.currentTitle
+            self.navigationController?.pushViewController(self.deleteVC!, animated: true)
             break
         default:
             break

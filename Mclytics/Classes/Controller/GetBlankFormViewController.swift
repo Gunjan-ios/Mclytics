@@ -21,6 +21,7 @@ class GetBlankFormViewController: ParentClass,UITableViewDelegate,UITableViewDat
     fileprivate var tblList: UITableView!
     private var currentPage = 1
     private var totalPage = 1
+    var count = 0
 
     var listArry : [[String : Any]] = [[String:Any]]()
     
@@ -47,7 +48,11 @@ class GetBlankFormViewController: ParentClass,UITableViewDelegate,UITableViewDat
         print(self.totalPage)
         
         for tampAry1 in tempAray!{
-            self.listArry.append(tampAry1 as! [String : Any])
+            var tamp : [String : Any] = [String:Any]()
+            tamp = tampAry1 as! [String : Any]
+            tamp["index"] = self.count
+            self.listArry.append(tamp)
+            self.count += 1
         }
         self.currentPage += 1
         if self.listArry.count > 0 {
@@ -108,6 +113,7 @@ class GetBlankFormViewController: ParentClass,UITableViewDelegate,UITableViewDat
 
     @objc func getSelected(){
        print(ParentClass.sharedInstance.saveListArray.count)
+        
         let str = Utils.stringFromJson(object: ParentClass.sharedInstance.saveListArray)
         print(str)
         ParentClass.sharedInstance.setData(strData: str, strKey: FILL_BLANK_ARRAY)
@@ -155,34 +161,39 @@ class GetBlankFormViewController: ParentClass,UITableViewDelegate,UITableViewDat
 
     @objc func onCheckListPressed(sender:UIButton)  {
         print(sender.tag)
-        let tempSlug =  self.listArry[sender.tag]["slug"] as? String
-        
-        let str =   ParentClass.sharedInstance.getDataForKey(strKey: FILL_BLANK_ARRAY) as? String
-        
-        if str != "" && str != nil {
-             ParentClass.sharedInstance.saveListArray = Utils.jsonObject(jsonString: str)
-        }
-        
+        let tempSlug =  self.listArry[sender.tag]["index"] as? Int
         if sender.isSelected {
             if ((ParentClass.sharedInstance.saveListArray.count) != 0){
-                var array1 : [[String:Any]] = [[String:Any]]()
-                for  temp1 in ParentClass.sharedInstance.saveListArray{
-                let strSlug = temp1["slug"] as? String
-                    if strSlug != tempSlug{
-                        array1.append(temp1)
-                    }
-                }
-                ParentClass.sharedInstance.saveListArray = array1
-                print(ParentClass.sharedInstance.saveListArray as Any)
+                ParentClass.sharedInstance.saveListArray.remove(at: tempSlug!)
                 sender.isSelected = false
-               }
-            }else{
+            }
+        }else{
             var temp = listArry[sender.tag]
             print(temp["slug"] as? String)
             ParentClass.sharedInstance.saveListArray.append(temp)
             sender.isSelected = true
         }
         print(ParentClass.sharedInstance.saveListArray.count)
+      
+//        if sender.isSelected {
+//            if ((ParentClass.sharedInstance.saveListArray.count) != 0){
+//                var array1 : [[String:Any]] = [[String:Any]]()
+//                for  temp1 in ParentClass.sharedInstance.saveListArray{
+//                let strSlug = temp1["slug"] as? String
+//                    if strSlug != tempSlug{
+//                        array1.append(temp1)
+//                    }
+//                }
+//                ParentClass.sharedInstance.saveListArray = array1
+//                print(ParentClass.sharedInstance.saveListArray as Any)
+//                sender.isSelected = false
+//               }
+//            }else{
+//            var temp = listArry[sender.tag]
+//            print(temp["slug"] as? String)
+//            ParentClass.sharedInstance.saveListArray.append(temp)
+//            sender.isSelected = true
+//        }
     
         if ParentClass.sharedInstance.saveListArray.count >= 1{
             buttonSave.isEnabled = true
