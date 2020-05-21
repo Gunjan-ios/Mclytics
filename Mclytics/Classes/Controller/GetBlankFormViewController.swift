@@ -156,8 +156,8 @@ class GetBlankFormViewController: ParentClass,UITableViewDelegate,UITableViewDat
     @objc func onCheckListPressed(sender:UIButton)  {
         print(sender.tag)
         let tempSlug =  self.listArry[sender.tag]["slug"] as? String
-//        let aray = ParentClass.sharedInstance.getJSON(FILL_BLANK_ARRAY)
-        let str =   ParentClass.sharedInstance.getDataForKey(strKey: FILL_BLANK_ARRAY) as! String
+        
+        let str =   ParentClass.sharedInstance.getDataForKey(strKey: FILL_BLANK_ARRAY) as? String
         
         if str != "" && str != nil {
              ParentClass.sharedInstance.saveListArray = Utils.jsonObject(jsonString: str)

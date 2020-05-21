@@ -26,10 +26,10 @@ class FillFormViewController: ParentClass,UITableViewDelegate,UITableViewDataSou
     override func viewDidLoad() {
         super.viewDidLoad()
         loadHeaderView()
-        let str =   ParentClass.sharedInstance.getDataForKey(strKey: FILL_BLANK_ARRAY) as! String
+        let str =   ParentClass.sharedInstance.getDataForKey(strKey: FILL_BLANK_ARRAY) as? String
         
-        if str != ""{
-            flistArray = Utils.jsonObject(jsonString: str)
+        if str != "" && str != nil{
+            flistArray = Utils.jsonObject(jsonString: str!)
         }
 
         // Do any additional setup after loading the view.
