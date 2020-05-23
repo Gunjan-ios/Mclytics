@@ -42,6 +42,7 @@
 		5327D0D8246BC55700E0878D /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5327D0D7246BC55700E0878D /* SettingViewController.swift */; };
 		532C694B247409940026A28A /* FillFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 532C694A247409940026A28A /* FillFormViewController.swift */; };
 		532C694D24740ACE0026A28A /* FormListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 532C694C24740ACE0026A28A /* FormListCell.swift */; };
+		536512AD247800C200A5B35E /* SendFinalizedFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536512AC247800C200A5B35E /* SendFinalizedFormViewController.swift */; };
 		53B2B9C024691B850040F573 /* WebServicesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53B2B9BF24691B850040F573 /* WebServicesManager.swift */; };
 		53DC26BE247650EF007995E9 /* StretchableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53DC26BB247650EF007995E9 /* StretchableHeaderView.swift */; };
 		53DC26BF247650EF007995E9 /* SegmentedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53DC26BC247650EF007995E9 /* SegmentedViewController.swift */; };
@@ -113,6 +114,7 @@
 		5327D0D7246BC55700E0878D /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		532C694A247409940026A28A /* FillFormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FillFormViewController.swift; sourceTree = "<group>"; };
 		532C694C24740ACE0026A28A /* FormListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormListCell.swift; sourceTree = "<group>"; };
+		536512AC247800C200A5B35E /* SendFinalizedFormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendFinalizedFormViewController.swift; sourceTree = "<group>"; };
 		53B2B9BF24691B850040F573 /* WebServicesManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebServicesManager.swift; sourceTree = "<group>"; };
 		53DC26BB247650EF007995E9 /* StretchableHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StretchableHeaderView.swift; sourceTree = "<group>"; };
 		53DC26BC247650EF007995E9 /* SegmentedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegmentedViewController.swift; sourceTree = "<group>"; };
@@ -232,6 +234,7 @@
 				5319CF1F246918B500140E8F /* LoginViewController.swift */,
 				53E54C512470115900BD7253 /* GetBlankFormViewController.swift */,
 				532C694A247409940026A28A /* FillFormViewController.swift */,
+				536512AC247800C200A5B35E /* SendFinalizedFormViewController.swift */,
 				5327D0D7246BC55700E0878D /* SettingViewController.swift */,
 				53DC26C62476AE69007995E9 /* EditFormViewController.swift */,
 				53DC26C12476515A007995E9 /* Delete Saved Form */,
@@ -558,6 +561,7 @@
 				5319CF0C24690B0F00140E8F /* Consts.swift in Sources */,
 				532564A0246935810055EBAE /* CustomTextView.swift in Sources */,
 				532564A2246935870055EBAE /* CustomInputTextView.swift in Sources */,
+				536512AD247800C200A5B35E /* SendFinalizedFormViewController.swift in Sources */,
 				53DC26C0247650EF007995E9 /* SegmentedControl.swift in Sources */,
 				5319CF1024690B0F00140E8F /* UserData.swift in Sources */,
 				532564AE246936BB0055EBAE /* GeneralConstants.swift in Sources */,

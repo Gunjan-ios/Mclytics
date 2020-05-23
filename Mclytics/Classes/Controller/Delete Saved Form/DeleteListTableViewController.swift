@@ -29,6 +29,16 @@ class DeleteListTableViewController: ParentClass,UITableViewDelegate,UITableView
         if str != "" && str != nil{
             arrayStoreLists = Utils.jsonObject(jsonString: str!)
             self.initTableview()
+        }else{
+            let lblSubTitle = UILabel (frame: CGRect (x: X_PADDING, y: 0, width: SCREEN_WIDTH - X_PADDING*2, height: SCREEN_HEIGHT))
+            //            lblSubTitle.center = CGPoint (x: self.view.center.x, y: lblSubTitle.center.y)
+            lblSubTitle.text =  CS.Common.NoData
+            lblSubTitle.numberOfLines = 0
+            lblSubTitle.lineBreakMode = .byWordWrapping
+            lblSubTitle.textAlignment = .center
+            lblSubTitle.font = UIFont (name: APP_FONT_NAME_BOLD, size: SUB_LABEL_DESC_FONT_SIZE)
+            lblSubTitle.textColor = .black
+            self.view.addSubview(lblSubTitle)
         }
     }
     func initTableview()  {
@@ -56,20 +66,19 @@ class DeleteListTableViewController: ParentClass,UITableViewDelegate,UITableView
         self.tblList.tableFooterView = UIView()
         //save button
         buttonDELETE = CustomButton(frame: CGRect(x: X_PADDING, y: SCREEN_HEIGHT -  CUSTOM_BUTTON_HEIGHT - X_PADDING, width: SCREEN_WIDTH - (X_PADDING*2), height: CUSTOM_BUTTON_HEIGHT))
-        buttonDELETE.setTitle("REFRESH", for: .normal)
+        buttonDELETE.setTitle("DELETE", for: .normal)
         buttonDELETE.addTarget(self, action: #selector(onDeletePressed), for: .touchUpInside)
         buttonDELETE.setTitleColor(.darkGray, for: .disabled)
         buttonDELETE.backgroundColor = UIColor.lightGray
         buttonDELETE.isEnabled = false
         self.view.addSubview(buttonDELETE)
-     
-        
-        
-        //        self.externalLayerTableView.reloadData()
     }
     
     @objc func onDeletePressed(){
-        
+        self.arrayStoreLists = self.arrayDeleteLists
+      
+         tblList.reloadData()
+        self.arrayDeleteLists =  [[String:Any]]()
     }
     override func viewWillAppear(_ animated: Bool) {
 //        self.arrNotTraceble = ParentClass.sharedInstance.getDataForKey(strKey: STORE_NOT_TRACEBLE_ARRAY) as? [String]
@@ -116,24 +125,46 @@ class DeleteListTableViewController: ParentClass,UITableViewDelegate,UITableView
         print(sender.tag)
         if sender.isSelected {
             if ((self.arrayDeleteLists.count) != 0){
-                for temp in arrayDeleteLists{
-                    let tempIndex =  temp["countDeleteIndex"] as? Int
-                    let tempSlug1 =  temp["slug"] as? String
-                    let tempSlug2 =  self.arrayStoreLists[sender.tag]["slug"] as? String
-                    if tempSlug1 == tempSlug2{
-                        arrayDeleteLists.remove(at: tempIndex!)
-                    }
-                    sender.isSelected = false
+                let tempSlug2 =  self.arrayStoreLists[sender.tag]["index"] as? Int
+
+                let index = self.arrayDeleteLists.firstIndex(where: { dictionary in
+                    guard let value = dictionary["index"] as? Int
+                        else { return false }
+                    return value == tempSlug2
+                })
+                if let index = index {
+                    let tempSlug23 =  self.arrayDeleteLists[index]["index"] as? Int
+                    print(tempSlug23)
+                    arrayDeleteLists.remove(at: index)
                 }
+                sender.isSelected = false
+//                let newArray = array.filter({ (dictionary) -> Bool in
+//                    if let value = dictionary["photo_id"] as? Int{
+//                        return value != 255024731588044
+//                    }
+//                    return false
+//                })
+//                for temp in arrayDeleteLists{
+//
+//                    let tempIndex =  temp["countDeleteIndex"] as? Int
+//                    let tempSlug1 =  temp["slug"] as? String
+//                    let tempSlug2 =  self.arrayStoreLists[sender.tag]["slug"] as? String
+//                    if tempSlug1 == tempSlug2{
+//                        arrayDeleteLists.remove(at: tempIndex!)
+//                    }
+//                    sender.isSelected = false
+//                }
             }
         }else{
             var temp = arrayStoreLists[sender.tag]
             print(temp["slug"] as? String)
-            temp["countDeleteIndex"] = countDeleteList
+//            temp["countDeleteIndex"] = countDeleteList
             arrayDeleteLists.append(temp)
             sender.isSelected = true
         }
         print(self.arrayStoreLists.count)
+        print(self.arrayDeleteLists.count)
+
         
         if self.arrayDeleteLists.count >= 1{
             buttonDELETE.isEnabled = true

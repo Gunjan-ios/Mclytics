@@ -33,6 +33,8 @@ class ViewController: ParentClass {
     var getFillForm : FillFormViewController?
     var editForm : EditFormViewController?
     var deleteVC:DeleteViewController?
+    var sendFinalizedVC:SendFinalizedFormViewController?
+
 
 
     
@@ -80,6 +82,8 @@ class ViewController: ParentClass {
             
             alert.addAction((UIAlertAction(title: "Logout", style: .default, handler: {(action) -> Void in
                 ParentClass.sharedInstance.setData(strData: false, strKey: REMEMBER_ME_KEY)
+                ParentClass.sharedInstance.setData(strData: "", strKey: FILL_BLANK_ARRAY)
+
                 self.loginVC = LoginViewController()
                 self.navigationController?.pushViewController(self.loginVC!, animated: true)
                 
@@ -192,6 +196,9 @@ class ViewController: ParentClass {
             self.navigationController?.pushViewController(self.editForm!, animated: true)
             break
         case 3:
+            self.sendFinalizedVC = SendFinalizedFormViewController()
+            self.sendFinalizedVC?.lblTitle = sender.currentTitle
+            self.navigationController?.pushViewController(self.sendFinalizedVC!, animated: true)
             break
         case 4:
             self.getBalnkForm = GetBlankFormViewController()

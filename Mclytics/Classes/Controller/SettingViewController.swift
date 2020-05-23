@@ -70,7 +70,8 @@ class SettingViewController: ParentClass {
 
         let srTitle = UILabel (frame: CGRect (x: Y_PADDING, y: 0, width: lblWidth, height: LABEL_HEIGHT))
         srTitle.text = "AUTO SEND/RECEIVE"
-        srTitle.font = UIFont .boldSystemFont(ofSize: SUB_HEADER_LABEL_FONT_SIZE)
+
+        srTitle.font = UIFont .boldSystemFont(ofSize: BUTTON_FONT_SIZE)
         srView.addSubview(srTitle)
         
         yInternal += Int(srTitle.bounds.height)
@@ -78,7 +79,7 @@ class SettingViewController: ParentClass {
         let sView =  self.addSeparateVIew(Y: yInternal, Width: Int(srView.bounds.width))
         srView.addSubview(sView)
         
-        let srbtnWifi = ListSettingButton (frame: CGRect (x: Y_PADDING, y: yInternal, width: lblWidth , height: NAV_HEADER_HEIGHT))
+        let srbtnWifi = ListSettingButton (frame: CGRect (x: Y_PADDING, y: yInternal, width: lblWidth , height: TOP_HEADER_HEIGHT))
         let strText : NSString = "Auto send with Wi-Fi\nAuto send when Wi-Fi is available"
         Utils.mulitplelinebutton(strText: strText, btn: srbtnWifi)
         srbtnWifi.setImage(UIImage (named: "deselectedCheckbox"), for: .normal)
@@ -90,7 +91,7 @@ class SettingViewController: ParentClass {
         srView.addSubview(sView1)
         
         
-        let srbtnNet = ListSettingButton (frame: CGRect (x: Y_PADDING, y: yInternal, width: lblWidth , height: NAV_HEADER_HEIGHT))
+        let srbtnNet = ListSettingButton (frame: CGRect (x: Y_PADDING, y: yInternal, width: lblWidth , height: TOP_HEADER_HEIGHT))
         let strNet : NSString = "Auto send with Network\nAuto send when Network is available"
         Utils.mulitplelinebutton(strText: strNet, btn: srbtnNet)
         srbtnNet.setImage(UIImage (named: "deselectedCheckbox"), for: .normal)
@@ -102,7 +103,7 @@ class SettingViewController: ParentClass {
         let sView3 =  self.addSeparateVIew(Y: yInternal, Width: Int(srView.bounds.width))
         srView.addSubview(sView3)
         
-        let srbtnStatus = ListSettingButton (frame: CGRect (x: Y_PADDING, y: yInternal, width: lblWidth , height: NAV_HEADER_HEIGHT))
+        let srbtnStatus = ListSettingButton (frame: CGRect (x: Y_PADDING, y: yInternal, width: lblWidth , height: TOP_HEADER_HEIGHT))
         let strStatus : NSString = "Display send/receive status\nShow form send/receive status on main menu"
         Utils.mulitplelinebutton(strText: strStatus, btn: srbtnStatus)
         srbtnStatus.setImage(UIImage (named: "deselectedCheckbox"), for: .normal)
@@ -127,7 +128,7 @@ class SettingViewController: ParentClass {
         let esfTitle = UILabel (frame: CGRect (x: Y_PADDING, y: 0, width: lblWidth, height: LABEL_HEIGHT))
         esfTitle.text = "EDIT SAVED FORM"
         //        srTitle.backgroundColor = colorDividerBG_f4
-        esfTitle.font = UIFont .boldSystemFont(ofSize: SUB_HEADER_LABEL_FONT_SIZE)
+        esfTitle.font = UIFont .boldSystemFont(ofSize: BUTTON_FONT_SIZE)
         esfView.addSubview(esfTitle)
         
         yInternal += Int(esfTitle.bounds.height)
@@ -135,7 +136,7 @@ class SettingViewController: ParentClass {
         let eView =  self.addSeparateVIew(Y: yInternal, Width: Int(esfView.bounds.width))
         esfView.addSubview(eView)
         
-        let esfbtnResume = ListSettingButton (frame: CGRect (x: Y_PADDING, y: yInternal, width: lblWidth , height: NAV_HEADER_HEIGHT))
+        let esfbtnResume = ListSettingButton (frame: CGRect (x: Y_PADDING, y: yInternal, width: lblWidth , height: TOP_HEADER_HEIGHT))
         let strResume : NSString = "Resume\nAllow resume form where left off"
         Utils.mulitplelinebutton(strText: strResume, btn: esfbtnResume)
         esfbtnResume.setImage(UIImage (named: "deselectedCheckbox"), for: .normal)
@@ -160,7 +161,7 @@ class SettingViewController: ParentClass {
         let uiTitle = UILabel (frame: CGRect (x: Y_PADDING, y: 0, width: lblWidth, height: LABEL_HEIGHT))
         uiTitle.text = "USER INTERFACE"
         //        srTitle.backgroundColor = colorDividerBG_f4
-        uiTitle.font = UIFont .boldSystemFont(ofSize: SUB_HEADER_LABEL_FONT_SIZE)
+        uiTitle.font = UIFont .boldSystemFont(ofSize: BUTTON_FONT_SIZE)
         uiView.addSubview(uiTitle)
         
         yInternal += Int(esfTitle.bounds.height)
@@ -168,7 +169,7 @@ class SettingViewController: ParentClass {
         let uView =  self.addSeparateVIew(Y: yInternal, Width: Int(uiView.bounds.width))
         uiView.addSubview(uView)
         
-        let uibtnfiled = ListSettingButton (frame: CGRect (x: Y_PADDING, y: yInternal, width: lblWidth , height: NAV_HEADER_HEIGHT))
+        let uibtnfiled = ListSettingButton (frame: CGRect (x: Y_PADDING, y: yInternal, width: lblWidth , height: TOP_HEADER_HEIGHT))
         let strfield : NSString = "Form Fields\nShow one by one?"
         Utils.mulitplelinebutton(strText: strfield, btn: uibtnfiled)
         uibtnfiled.setImage(UIImage (named: "deselectedCheckbox"), for: .normal)

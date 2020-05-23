@@ -1,14 +1,14 @@
 //
-//  EditFormViewController.swift
+//  SendFinalizedFormViewController.swift
 //  Mclytics
 //
-//  Created by Gunjan Raval on 21/05/20.
+//  Created by Gunjan Raval on 22/05/20.
 //  Copyright © 2020 Gunjan Raval. All rights reserved.
 //
 
 import UIKit
 import SwiftyJSON
-class EditFormViewController: ParentClass,UITableViewDelegate,UITableViewDataSource {
+class SendFinalizedFormViewController: ParentClass,UITableViewDelegate,UITableViewDataSource  {
     fileprivate var headerview:UIView!
     fileprivate var buttonBack: UIButton!
     fileprivate var buttonMenu: UIButton!
@@ -19,19 +19,18 @@ class EditFormViewController: ParentClass,UITableViewDelegate,UITableViewDataSou
     private var currentPage = 1
     private var totalPage = 1
     
-    var elistArray : [[String:Any]] = [[String:Any]]()
+    var flistArray : [[String:Any]] = [[String:Any]]()
     
     fileprivate var buttonSave: CustomButton!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         loadHeaderView()
-        let str =   ParentClass.sharedInstance.getDataForKey(strKey: FILL_BLANK_ARRAY) as? String
-        
-        if str != "" && str != nil{
-            elistArray = Utils.jsonObject(jsonString: str!)
-            self.initTableview()
-        }else{
+//        let str =   ParentClass.sharedInstance.getDataForKey(strKey: FILL_BLANK_ARRAY) as? String
+//        
+//        if str != "" && str != nil{
+//            flistArray = Utils.jsonObject(jsonString: str!)
+//            self.initTableview()
+//        }else{
             let lblSubTitle = UILabel (frame: CGRect (x: X_PADDING, y: 0, width: SCREEN_WIDTH - X_PADDING*2, height: SCREEN_HEIGHT))
             //            lblSubTitle.center = CGPoint (x: self.view.center.x, y: lblSubTitle.center.y)
             lblSubTitle.text =  CS.Common.NoData
@@ -41,7 +40,7 @@ class EditFormViewController: ParentClass,UITableViewDelegate,UITableViewDataSou
             lblSubTitle.font = UIFont (name: APP_FONT_NAME_BOLD, size: SUB_LABEL_DESC_FONT_SIZE)
             lblSubTitle.textColor = .black
             self.view.addSubview(lblSubTitle)
-        }
+//        }
         // Do any additional setup after loading the view.
     }
     func loadHeaderView() {
@@ -83,11 +82,6 @@ class EditFormViewController: ParentClass,UITableViewDelegate,UITableViewDataSou
         //        self.view.addSubview(buttonSave)
         //
     }
-    @objc func onRefreshPressed()  {
-        currentPage = 1
-        //        apiGetBlankFromData(page: 1)
-    }
-    
     @objc func goToBack()  {
         self.navigationController?.popViewController(animated: true)
     }
@@ -110,7 +104,7 @@ class EditFormViewController: ParentClass,UITableViewDelegate,UITableViewDataSou
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return   self.elistArray.count
+        return   self.flistArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -120,20 +114,18 @@ class EditFormViewController: ParentClass,UITableViewDelegate,UITableViewDataSou
         cell.selectionStyle = .none
         cell.backgroundColor = UIColor.clear
         
-        print(elistArray[indexPath.row]["name"] as? String)
-        print(elistArray[indexPath.row]["slug"] as? String)
+        print(flistArray[indexPath.row]["name"] as? String)
+        print(flistArray[indexPath.row]["slug"] as? String)
         
-        cell.lblFieldName.text = elistArray[indexPath.row]["name"] as? String
-        cell.lblSubFieldName.text = "sulg: \(elistArray[indexPath.row]["slug"] ?? "")"
-        let strDate = ParentClass.sharedInstance.dateConvert(date: (elistArray[indexPath.row]["created_at"] as? Double)!)
+        cell.lblFieldName.text = flistArray[indexPath.row]["name"] as? String
+        cell.lblSubFieldName.text = "sulg: \(flistArray[indexPath.row]["slug"] ?? "")"
+        let strDate = ParentClass.sharedInstance.dateConvert(date: (flistArray[indexPath.row]["created_at"] as? Double)!)
         cell.lblSubFieldDate.text = "Added on \(strDate)"
         cell.btncheckbox.isHidden = true
-        
         //        cell.btncheckbox.tag = indexPath.row
         //        cell.btncheckbox.addTarget(self, action: #selector(onCheckListPressed(sender:)), for: .touchUpInside)
         return cell
     }
-
     /*
     // MARK: - Navigation
 

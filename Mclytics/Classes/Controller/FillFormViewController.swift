@@ -31,9 +31,19 @@ class FillFormViewController: ParentClass,UITableViewDelegate,UITableViewDataSou
         if str != "" && str != nil{
             flistArray = Utils.jsonObject(jsonString: str!)
             self.initTableview()
-
+        }else{
+           let lblSubTitle = UILabel (frame: CGRect (x: X_PADDING, y: 0, width: SCREEN_WIDTH - X_PADDING*2, height: SCREEN_HEIGHT))
+//            lblSubTitle.center = CGPoint (x: self.view.center.x, y: lblSubTitle.center.y)
+            lblSubTitle.text =  CS.Common.NoData
+            lblSubTitle.numberOfLines = 0
+            lblSubTitle.lineBreakMode = .byWordWrapping
+            lblSubTitle.textAlignment = .center
+            lblSubTitle.font = UIFont (name: APP_FONT_NAME_BOLD, size: SUB_LABEL_DESC_FONT_SIZE)
+            lblSubTitle.textColor = .black
+            self.view.addSubview(lblSubTitle)
         }
-
+        
+        
         // Do any additional setup after loading the view.
     }
     func loadHeaderView() {

@@ -31,10 +31,11 @@ class CS {
         static let Getdata = "Getting Data Successfully"
         static let pushdata = "Data saved."
         static let Connected = "Internet connected."
-        static let NoData = "Data not Found."
+        static let NoData = "Nothing availbable to display. \nTry getting and filling out a blank form."
         static let Internet = "Check your internet connection."
         static let FetchData = "Fetching data..."
         static let wrongMsg = "Something went wrong. Please try again."
+        
 
     }
     
