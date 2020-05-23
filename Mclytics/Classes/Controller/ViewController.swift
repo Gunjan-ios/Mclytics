@@ -42,6 +42,8 @@ class ViewController: ParentClass {
         super.viewDidLoad()
         self.loadHeaderView()
 
+        
+        
         //display data sample
         
 //        let txtField = CustomTextFieldForAttribute(frame: CGRect(x: 0, y: label_height, width: SCREEN_WIDTH - (x_padding*2), height: controls_height))
