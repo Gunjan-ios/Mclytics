@@ -42,6 +42,26 @@ class ViewController: ParentClass {
         super.viewDidLoad()
         self.loadHeaderView()
 
+        //display data sample
+        
+//        let txtField = CustomTextFieldForAttribute(frame: CGRect(x: 0, y: label_height, width: SCREEN_WIDTH - (x_padding*2), height: controls_height))
+//        txtField.delegate = self as UITextFieldDelegate
+//        txtField.tag = Int(pLayerField.id!)!
+//        txtField.returnKeyType = .done
+//
+//        let buttonAddImage = CustomButtonImageOrDocument(frame: CGRect(x: 0, y: label_height, width: 170, height: CUSTOM_BUTTON_HEIGHT))
+//        buttonAddImage.setTitle(" Add Image", for: .normal)
+//        buttonAddImage.contentHorizontalAlignment = .left
+//        buttonAddImage.tag = Int(pLayerField.id!)!
+//        buttonAddImage.imgIcon.image = UIImage(named: DATATYPE_IMAGE_ICON)
+//        buttonAddImage.addTarget(self, action: #selector(btnAddImagePressed(sender:)), for: .touchUpInside)
+//        smallView.addSubview(buttonAddImage)
+
+        
+//let genderView = GenderView(frame:  CGRect(x: 0, y: self.global_Y_Position, width: Int(self.appFormScrollView.frame.size.width), height: controlsHeight))
+//        genderView.initDesign(pName: "Gender", pTag: 6, pOptions: ["Male","Female","Other"])
+//        self.appFormScrollView.addSubview(genderView)
+        
         // Do any additional setup after loading the view.
     }
     func loadHeaderView() {

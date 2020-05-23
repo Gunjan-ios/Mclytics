@@ -1,5 +1,6 @@
 PODS:
   - Alamofire (4.9.1)
+  - DLRadioButton (1.4.12)
   - IQKeyboardManagerSwift (6.5.5)
   - JQProgressHUD (2.7)
   - LIHAlert (2.1.1)
@@ -11,6 +12,7 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire (~> 4.7)
+  - DLRadioButton (~> 1.4)
   - IQKeyboardManagerSwift
   - JQProgressHUD
   - LIHAlert
@@ -21,6 +23,7 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
     - Alamofire
+    - DLRadioButton
     - IQKeyboardManagerSwift
     - JQProgressHUD
     - LIHAlert
@@ -30,6 +33,7 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
+  DLRadioButton: d7c4e225ed0e8013cef7be61455230c7557ad7c1
   IQKeyboardManagerSwift: 0fb93310284665245591f50f7a5e38de615960b7
   JQProgressHUD: 45463f7760f004e5c259c2b912a704b5b5b32732
   LIHAlert: a027605673986d03b896e4f4a901f393b15840b9
@@ -37,6 +41,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
   TextFieldEffects: 529b8aff706fb40f82c41c780c0777941a893796
 
-PODFILE CHECKSUM: 106f2091d8fcf54c9436733cf674e16e79ae2cb9
+PODFILE CHECKSUM: 9fedd902e95dbe14e4e21927a807103533d16e0e
 
 COCOAPODS: 1.8.4

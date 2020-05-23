@@ -64,7 +64,18 @@ extension UIColor {
     
     
 }
-
+extension UIView {
+    
+    func view(withId id: String) -> UIView? {
+        
+        for view in self.subviews {
+            if view.tag == Int(id) {
+                return view
+            }
+        }
+        return nil
+    }
+}
 
 extension String {
 	func capitalizingFirstLetter() -> String {

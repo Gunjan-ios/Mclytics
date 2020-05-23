@@ -43,6 +43,12 @@
 		532C694B247409940026A28A /* FillFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 532C694A247409940026A28A /* FillFormViewController.swift */; };
 		532C694D24740ACE0026A28A /* FormListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 532C694C24740ACE0026A28A /* FormListCell.swift */; };
 		536512AD247800C200A5B35E /* SendFinalizedFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536512AC247800C200A5B35E /* SendFinalizedFormViewController.swift */; };
+		539968132478F00800864508 /* CustomImageButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5399680F2478F00800864508 /* CustomImageButton.swift */; };
+		539968142478F00800864508 /* CustomTextFieldForAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 539968102478F00800864508 /* CustomTextFieldForAttribute.swift */; };
+		539968152478F00800864508 /* MarginSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 539968112478F00800864508 /* MarginSelectView.swift */; };
+		539968162478F00800864508 /* GISImageDataTypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 539968122478F00800864508 /* GISImageDataTypeView.swift */; };
+		539968182478F29600864508 /* DropDownPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 539968172478F29600864508 /* DropDownPickerView.swift */; };
+		5399681B2478F38000864508 /* GISDownloadedImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5399681A2478F38000864508 /* GISDownloadedImage.swift */; };
 		53B2B9C024691B850040F573 /* WebServicesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53B2B9BF24691B850040F573 /* WebServicesManager.swift */; };
 		53DC26BE247650EF007995E9 /* StretchableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53DC26BB247650EF007995E9 /* StretchableHeaderView.swift */; };
 		53DC26BF247650EF007995E9 /* SegmentedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53DC26BC247650EF007995E9 /* SegmentedViewController.swift */; };
@@ -115,6 +121,12 @@
 		532C694A247409940026A28A /* FillFormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FillFormViewController.swift; sourceTree = "<group>"; };
 		532C694C24740ACE0026A28A /* FormListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormListCell.swift; sourceTree = "<group>"; };
 		536512AC247800C200A5B35E /* SendFinalizedFormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendFinalizedFormViewController.swift; sourceTree = "<group>"; };
+		5399680F2478F00800864508 /* CustomImageButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomImageButton.swift; sourceTree = "<group>"; };
+		539968102478F00800864508 /* CustomTextFieldForAttribute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTextFieldForAttribute.swift; sourceTree = "<group>"; };
+		539968112478F00800864508 /* MarginSelectView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarginSelectView.swift; sourceTree = "<group>"; };
+		539968122478F00800864508 /* GISImageDataTypeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GISImageDataTypeView.swift; sourceTree = "<group>"; };
+		539968172478F29600864508 /* DropDownPickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropDownPickerView.swift; sourceTree = "<group>"; };
+		5399681A2478F38000864508 /* GISDownloadedImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GISDownloadedImage.swift; sourceTree = "<group>"; };
 		53B2B9BF24691B850040F573 /* WebServicesManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebServicesManager.swift; sourceTree = "<group>"; };
 		53DC26BB247650EF007995E9 /* StretchableHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StretchableHeaderView.swift; sourceTree = "<group>"; };
 		53DC26BC247650EF007995E9 /* SegmentedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegmentedViewController.swift; sourceTree = "<group>"; };
@@ -227,6 +239,7 @@
 		5319CEFE24690AF000140E8F /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				539968192478F37500864508 /* Model */,
 				53E54C53247011A400BD7253 /* TableViewCell */,
 				53B2B9BE24691B730040F573 /* Webservice */,
 				5319CF21246918F700140E8F /* ParentClass.swift */,
@@ -263,8 +276,8 @@
 		5319CF1424690B2B00140E8F /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				53DC26BA247650EF007995E9 /* SegmentTabbar */,
 				5325649C246935350055EBAE /* CustomVIew */,
+				53DC26BA247650EF007995E9 /* SegmentTabbar */,
 				5319CF1524690B2B00140E8F /* AlertManager */,
 				5319CF1724690B2B00140E8F /* Reach */,
 				5319CF1924690B2B00140E8F /* HUD */,
@@ -309,6 +322,11 @@
 		5325649C246935350055EBAE /* CustomVIew */ = {
 			isa = PBXGroup;
 			children = (
+				539968112478F00800864508 /* MarginSelectView.swift */,
+				539968102478F00800864508 /* CustomTextFieldForAttribute.swift */,
+				539968122478F00800864508 /* GISImageDataTypeView.swift */,
+				5399680F2478F00800864508 /* CustomImageButton.swift */,
+				539968172478F29600864508 /* DropDownPickerView.swift */,
 				532564AB246935D20055EBAE /* GenderView.swift */,
 				532564A9246935CB0055EBAE /* CustomComboBoxView.swift */,
 				532564A7246935A40055EBAE /* CustomInputFieldView.swift */,
@@ -320,6 +338,14 @@
 				5325649D246935760055EBAE /* CustomButton.swift */,
 			);
 			path = CustomVIew;
+			sourceTree = "<group>";
+		};
+		539968192478F37500864508 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				5399681A2478F38000864508 /* GISDownloadedImage.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		53B2B9BE24691B730040F573 /* Webservice */ = {
@@ -558,12 +584,15 @@
 				532564A6246935990055EBAE /* InputTextField.swift in Sources */,
 				5319CED12469095C00140E8F /* ViewController.swift in Sources */,
 				5319CF1224690B0F00140E8F /* Validation.swift in Sources */,
+				539968132478F00800864508 /* CustomImageButton.swift in Sources */,
 				5319CF0C24690B0F00140E8F /* Consts.swift in Sources */,
+				539968162478F00800864508 /* GISImageDataTypeView.swift in Sources */,
 				532564A0246935810055EBAE /* CustomTextView.swift in Sources */,
 				532564A2246935870055EBAE /* CustomInputTextView.swift in Sources */,
 				536512AD247800C200A5B35E /* SendFinalizedFormViewController.swift in Sources */,
 				53DC26C0247650EF007995E9 /* SegmentedControl.swift in Sources */,
 				5319CF1024690B0F00140E8F /* UserData.swift in Sources */,
+				539968142478F00800864508 /* CustomTextFieldForAttribute.swift in Sources */,
 				532564AE246936BB0055EBAE /* GeneralConstants.swift in Sources */,
 				53DC26C72476AE69007995E9 /* EditFormViewController.swift in Sources */,
 				53DC26BF247650EF007995E9 /* SegmentedViewController.swift in Sources */,
@@ -572,10 +601,13 @@
 				5319CF1B24690B2B00140E8F /* AlertManager.swift in Sources */,
 				53B2B9C024691B850040F573 /* WebServicesManager.swift in Sources */,
 				532564A4246935940055EBAE /* CustomTextField.swift in Sources */,
+				539968152478F00800864508 /* MarginSelectView.swift in Sources */,
+				5399681B2478F38000864508 /* GISDownloadedImage.swift in Sources */,
 				532C694B247409940026A28A /* FillFormViewController.swift in Sources */,
 				5319CF0A24690B0F00140E8F /* LanguageStrings.swift in Sources */,
 				53DC26BE247650EF007995E9 /* StretchableHeaderView.swift in Sources */,
 				5319CF1124690B0F00140E8F /* Extensions.swift in Sources */,
+				539968182478F29600864508 /* DropDownPickerView.swift in Sources */,
 				5319CF0B24690B0F00140E8F /* CS.swift in Sources */,
 				532C694D24740ACE0026A28A /* FormListCell.swift in Sources */,
 				532564AC246935D20055EBAE /* GenderView.swift in Sources */,
