@@ -122,13 +122,12 @@ class FillFormViewController: ParentClass,UITableViewDelegate,UITableViewDataSou
         cell.selectionStyle = .none
         cell.backgroundColor = UIColor.clear
         
-        print(flistArray[indexPath.row]["name"] as? String)
-        print(flistArray[indexPath.row]["slug"] as? String)
-
+    
         cell.lblFieldName.text = flistArray[indexPath.row]["name"] as? String
         cell.lblSubFieldName.text = "sulg: \(flistArray[indexPath.row]["slug"] ?? "")"
         let strDate = ParentClass.sharedInstance.dateConvert(date: (flistArray[indexPath.row]["created_at"] as? Double)!)
         cell.lblSubFieldDate.text = "Added on \(strDate)"
+
         cell.btncheckbox.isHidden = true
 //        cell.btncheckbox.tag = indexPath.row
 //        cell.btncheckbox.addTarget(self, action: #selector(onCheckListPressed(sender:)), for: .touchUpInside)

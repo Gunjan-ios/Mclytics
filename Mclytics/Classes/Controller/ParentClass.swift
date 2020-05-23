@@ -56,12 +56,18 @@ class ParentClass: UIViewController{
         return UserDefaults.standard.value(forKey: strKey) as Any
     }
     
-    func dateConvert(date: Double) -> String{
-        let dateVar = Date(timeIntervalSince1970: (date / 1000.0))
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .full
-        print(dateFormatter.string(from: dateVar))
-       return dateFormatter.string(from: dateVar)
+    func dateConvert(date: Double?) -> String{
+        
+        if let timeResult = date {
+            let date = NSDate(timeIntervalSince1970: timeResult)
+            let dateFormatter = DateFormatter()
+            dateFormatter.timeStyle = .medium //Set time style
+            dateFormatter.dateStyle = .medium //Set date style
+            let localDate = dateFormatter.string(from: date as Date)
+            return localDate
+        }else{
+            return ""
+        }
     }
     func saveJSON(json: JSON, key:String){
         if let jsonString = json.rawString() {

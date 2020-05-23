@@ -57,8 +57,7 @@ class ViewController: ParentClass {
 //        buttonAddImage.addTarget(self, action: #selector(btnAddImagePressed(sender:)), for: .touchUpInside)
 //        smallView.addSubview(buttonAddImage)
 
-        
-//let genderView = GenderView(frame:  CGRect(x: 0, y: self.global_Y_Position, width: Int(self.appFormScrollView.frame.size.width), height: controlsHeight))
+//        let genderView = GenderView(frame:  CGRect(x: 0, y: self.global_Y_Position, width: Int(self.appFormScrollView.frame.size.width), height: controlsHeight))
 //        genderView.initDesign(pName: "Gender", pTag: 6, pOptions: ["Male","Female","Other"])
 //        self.appFormScrollView.addSubview(genderView)
         

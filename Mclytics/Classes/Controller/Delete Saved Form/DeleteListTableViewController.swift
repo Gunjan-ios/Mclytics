@@ -75,8 +75,22 @@ class DeleteListTableViewController: ParentClass,UITableViewDelegate,UITableView
     }
     
     @objc func onDeletePressed(){
-        self.arrayStoreLists = self.arrayDeleteLists
-      
+
+        for temp in self.arrayDeleteLists{
+            let tempSlug2 =  temp["index"] as? Int
+            let index = self.arrayStoreLists.firstIndex(where: { dictionary in
+                guard let value = dictionary["index"] as? Int
+                    else { return false }
+                return value == tempSlug2
+            })
+            if let index = index {
+                arrayStoreLists.remove(at: index)
+            }
+        }
+        let str = Utils.stringFromJson(object: arrayStoreLists)
+        print(str)
+        ParentClass.sharedInstance.setData(strData: str, strKey: FILL_BLANK_ARRAY)
+        
          tblList.reloadData()
         self.arrayDeleteLists =  [[String:Any]]()
     }
@@ -108,64 +122,37 @@ class DeleteListTableViewController: ParentClass,UITableViewDelegate,UITableView
         cell.selectionStyle = .none
         cell.backgroundColor = UIColor.clear
         
-        print(self.arrayStoreLists[indexPath.row]["name"] as? String)
-        print(self.arrayStoreLists[indexPath.row]["slug"] as? String)
-        
         cell.lblFieldName.text =  self.arrayStoreLists[indexPath.row]["name"] as? String
         cell.lblSubFieldName.text = "sulg: \( self.arrayStoreLists[indexPath.row]["slug"] ?? "")"
         let strDate = ParentClass.sharedInstance.dateConvert(date: ( self.arrayStoreLists[indexPath.row]["created_at"] as? Double)!)
         cell.lblSubFieldDate.text = "Added on \(strDate)"
         cell.btncheckbox.tag = indexPath.row
+        cell.btncheckbox.isSelected = false
         cell.btncheckbox.addTarget(self, action: #selector(onCheckListPressed(sender:)), for: .touchUpInside)
         return cell
        
     
     }
     @objc func onCheckListPressed(sender:UIButton)  {
-        print(sender.tag)
         if sender.isSelected {
             if ((self.arrayDeleteLists.count) != 0){
                 let tempSlug2 =  self.arrayStoreLists[sender.tag]["index"] as? Int
-
                 let index = self.arrayDeleteLists.firstIndex(where: { dictionary in
                     guard let value = dictionary["index"] as? Int
                         else { return false }
                     return value == tempSlug2
                 })
                 if let index = index {
-                    let tempSlug23 =  self.arrayDeleteLists[index]["index"] as? Int
-                    print(tempSlug23)
                     arrayDeleteLists.remove(at: index)
                 }
                 sender.isSelected = false
-//                let newArray = array.filter({ (dictionary) -> Bool in
-//                    if let value = dictionary["photo_id"] as? Int{
-//                        return value != 255024731588044
-//                    }
-//                    return false
-//                })
-//                for temp in arrayDeleteLists{
-//
-//                    let tempIndex =  temp["countDeleteIndex"] as? Int
-//                    let tempSlug1 =  temp["slug"] as? String
-//                    let tempSlug2 =  self.arrayStoreLists[sender.tag]["slug"] as? String
-//                    if tempSlug1 == tempSlug2{
-//                        arrayDeleteLists.remove(at: tempIndex!)
-//                    }
-//                    sender.isSelected = false
-//                }
             }
         }else{
-            var temp = arrayStoreLists[sender.tag]
-            print(temp["slug"] as? String)
-//            temp["countDeleteIndex"] = countDeleteList
+            let temp = arrayStoreLists[sender.tag]
             arrayDeleteLists.append(temp)
             sender.isSelected = true
         }
-        print(self.arrayStoreLists.count)
-        print(self.arrayDeleteLists.count)
-
-        
+   
         if self.arrayDeleteLists.count >= 1{
             buttonDELETE.isEnabled = true
             buttonDELETE.backgroundColor = colorPrimary
