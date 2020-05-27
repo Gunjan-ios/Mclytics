@@ -118,13 +118,13 @@ class ParentClass: UIViewController{
         case .unknown, .offline:
             print("Not connected")
             APP.open_count = 2
-           self.processingAlert?.show(nil, hidden: nil)
+//           self.processingAlert?.show(nil, hidden: nil)
          case .online(.wwan):
             print("Connected via WWAN")
             self.processingAlert?.hideAlert({ () -> () in
                 if self.APP.open_count == 2 {
                     self.APP.open_count = 0
-                    self.showAlert(message: Language.Common.Connected, type: AlertType.success, navBar: false)
+//                    self.showAlert(message: Language.Common.Connected, type: AlertType.success, navBar: false)
                 }
                     })
         case .online(.wiFi):
@@ -133,7 +133,7 @@ class ParentClass: UIViewController{
             self.processingAlert?.hideAlert({ () -> () in
                 if self.APP.open_count == 2 {
                     self.APP.open_count = 0
-                    self.showAlert(message: Language.Common.Connected, type: AlertType.success, navBar: false)
+//                    self.showAlert(message: Language.Common.Connected, type: AlertType.success, navBar: false)
                 }
                     })
         }

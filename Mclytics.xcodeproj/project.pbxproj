@@ -50,6 +50,12 @@
 		539968182478F29600864508 /* DropDownPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 539968172478F29600864508 /* DropDownPickerView.swift */; };
 		5399681B2478F38000864508 /* GISDownloadedImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5399681A2478F38000864508 /* GISDownloadedImage.swift */; };
 		53B2B9C024691B850040F573 /* WebServicesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53B2B9BF24691B850040F573 /* WebServicesManager.swift */; };
+		53D622EA247B9A4700BAB5F0 /* YPDrawSignatureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D622E9247B9A4700BAB5F0 /* YPDrawSignatureView.swift */; };
+		53D622EF247B9A5100BAB5F0 /* shapeFill.png in Resources */ = {isa = PBXBuildFile; fileRef = 53D622EC247B9A5100BAB5F0 /* shapeFill.png */; };
+		53D622F0247B9A5100BAB5F0 /* StarRateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D622ED247B9A5100BAB5F0 /* StarRateView.swift */; };
+		53D622F1247B9A5100BAB5F0 /* shapeEmpty.png in Resources */ = {isa = PBXBuildFile; fileRef = 53D622EE247B9A5100BAB5F0 /* shapeEmpty.png */; };
+		53D622F3247B9A5800BAB5F0 /* CustomeAttacheFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D622F2247B9A5800BAB5F0 /* CustomeAttacheFile.swift */; };
+		53D622F5247B9A7A00BAB5F0 /* FormFieldsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D622F4247B9A7A00BAB5F0 /* FormFieldsVC.swift */; };
 		53DC26BE247650EF007995E9 /* StretchableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53DC26BB247650EF007995E9 /* StretchableHeaderView.swift */; };
 		53DC26BF247650EF007995E9 /* SegmentedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53DC26BC247650EF007995E9 /* SegmentedViewController.swift */; };
 		53DC26C0247650EF007995E9 /* SegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53DC26BD247650EF007995E9 /* SegmentedControl.swift */; };
@@ -128,6 +134,12 @@
 		539968172478F29600864508 /* DropDownPickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropDownPickerView.swift; sourceTree = "<group>"; };
 		5399681A2478F38000864508 /* GISDownloadedImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GISDownloadedImage.swift; sourceTree = "<group>"; };
 		53B2B9BF24691B850040F573 /* WebServicesManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebServicesManager.swift; sourceTree = "<group>"; };
+		53D622E9247B9A4700BAB5F0 /* YPDrawSignatureView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YPDrawSignatureView.swift; sourceTree = "<group>"; };
+		53D622EC247B9A5100BAB5F0 /* shapeFill.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shapeFill.png; sourceTree = "<group>"; };
+		53D622ED247B9A5100BAB5F0 /* StarRateView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StarRateView.swift; sourceTree = "<group>"; };
+		53D622EE247B9A5100BAB5F0 /* shapeEmpty.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shapeEmpty.png; sourceTree = "<group>"; };
+		53D622F2247B9A5800BAB5F0 /* CustomeAttacheFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomeAttacheFile.swift; sourceTree = "<group>"; };
+		53D622F4247B9A7A00BAB5F0 /* FormFieldsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormFieldsVC.swift; sourceTree = "<group>"; };
 		53DC26BB247650EF007995E9 /* StretchableHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StretchableHeaderView.swift; sourceTree = "<group>"; };
 		53DC26BC247650EF007995E9 /* SegmentedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegmentedViewController.swift; sourceTree = "<group>"; };
 		53DC26BD247650EF007995E9 /* SegmentedControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegmentedControl.swift; sourceTree = "<group>"; };
@@ -249,6 +261,7 @@
 				532C694A247409940026A28A /* FillFormViewController.swift */,
 				536512AC247800C200A5B35E /* SendFinalizedFormViewController.swift */,
 				5327D0D7246BC55700E0878D /* SettingViewController.swift */,
+				53D622F4247B9A7A00BAB5F0 /* FormFieldsVC.swift */,
 				53DC26C62476AE69007995E9 /* EditFormViewController.swift */,
 				53DC26C12476515A007995E9 /* Delete Saved Form */,
 			);
@@ -322,7 +335,10 @@
 		5325649C246935350055EBAE /* CustomVIew */ = {
 			isa = PBXGroup;
 			children = (
+				53D622EB247B9A5100BAB5F0 /* StarsRating */,
+				53D622E8247B9A4700BAB5F0 /* Signature */,
 				539968112478F00800864508 /* MarginSelectView.swift */,
+				53D622F2247B9A5800BAB5F0 /* CustomeAttacheFile.swift */,
 				539968102478F00800864508 /* CustomTextFieldForAttribute.swift */,
 				539968122478F00800864508 /* GISImageDataTypeView.swift */,
 				5399680F2478F00800864508 /* CustomImageButton.swift */,
@@ -354,6 +370,25 @@
 				53B2B9BF24691B850040F573 /* WebServicesManager.swift */,
 			);
 			path = Webservice;
+			sourceTree = "<group>";
+		};
+		53D622E8247B9A4700BAB5F0 /* Signature */ = {
+			isa = PBXGroup;
+			children = (
+				53D622E9247B9A4700BAB5F0 /* YPDrawSignatureView.swift */,
+			);
+			path = Signature;
+			sourceTree = "<group>";
+		};
+		53D622EB247B9A5100BAB5F0 /* StarsRating */ = {
+			isa = PBXGroup;
+			children = (
+				53D622EC247B9A5100BAB5F0 /* shapeFill.png */,
+				53D622ED247B9A5100BAB5F0 /* StarRateView.swift */,
+				53D622EE247B9A5100BAB5F0 /* shapeEmpty.png */,
+			);
+			name = StarsRating;
+			path = "../../../../../../../Mclytics-master/Mclytics/Classes/Utils/CustomVIew/StarsRating";
 			sourceTree = "<group>";
 		};
 		53DC26BA247650EF007995E9 /* SegmentTabbar */ = {
@@ -507,6 +542,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				53D622EF247B9A5100BAB5F0 /* shapeFill.png in Resources */,
+				53D622F1247B9A5100BAB5F0 /* shapeEmpty.png in Resources */,
 				5319CED92469095D00140E8F /* LaunchScreen.storyboard in Resources */,
 				5319CED62469095D00140E8F /* Assets.xcassets in Resources */,
 				5319CED42469095C00140E8F /* Main.storyboard in Resources */,
@@ -599,13 +636,16 @@
 				53E54C522470115900BD7253 /* GetBlankFormViewController.swift in Sources */,
 				5319CF1D24690B2B00140E8F /* Hud.swift in Sources */,
 				5319CF1B24690B2B00140E8F /* AlertManager.swift in Sources */,
+				53D622F3247B9A5800BAB5F0 /* CustomeAttacheFile.swift in Sources */,
 				53B2B9C024691B850040F573 /* WebServicesManager.swift in Sources */,
 				532564A4246935940055EBAE /* CustomTextField.swift in Sources */,
 				539968152478F00800864508 /* MarginSelectView.swift in Sources */,
 				5399681B2478F38000864508 /* GISDownloadedImage.swift in Sources */,
 				532C694B247409940026A28A /* FillFormViewController.swift in Sources */,
+				53D622F5247B9A7A00BAB5F0 /* FormFieldsVC.swift in Sources */,
 				5319CF0A24690B0F00140E8F /* LanguageStrings.swift in Sources */,
 				53DC26BE247650EF007995E9 /* StretchableHeaderView.swift in Sources */,
+				53D622F0247B9A5100BAB5F0 /* StarRateView.swift in Sources */,
 				5319CF1124690B0F00140E8F /* Extensions.swift in Sources */,
 				539968182478F29600864508 /* DropDownPickerView.swift in Sources */,
 				5319CF0B24690B0F00140E8F /* CS.swift in Sources */,
@@ -622,6 +662,7 @@
 				5319CF1324690B0F00140E8F /* Utils.swift in Sources */,
 				532564A8246935A40055EBAE /* CustomInputFieldView.swift in Sources */,
 				532564AA246935CB0055EBAE /* CustomComboBoxView.swift in Sources */,
+				53D622EA247B9A4700BAB5F0 /* YPDrawSignatureView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

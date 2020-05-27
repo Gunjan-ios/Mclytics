@@ -9,7 +9,7 @@
 import UIKit
 import SwiftyJSON
 
-class ViewController: ParentClass {
+class ViewController: ParentClass,UITextFieldDelegate {
     
     fileprivate var headerview:UIView!
     fileprivate var buttonBack: UIButton!
@@ -26,42 +26,34 @@ class ViewController: ParentClass {
     fileprivate var btnGetBlank: ListButton!
     fileprivate var btnDeleteSaved: ListButton!
     
+    //contorllers
     var settingVC : SettingViewController?
     var loginVC : LoginViewController?
-
     var getBalnkForm : GetBlankFormViewController?
     var getFillForm : FillFormViewController?
     var editForm : EditFormViewController?
     var deleteVC:DeleteViewController?
     var sendFinalizedVC:SendFinalizedFormViewController?
 
-
-
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        let str = ParentClass.sharedInstance.getDataForKey(strKey: FILL_BLANK_ARRAY) as? String
+        
+        if str != "" && str != nil{
+            saveListArray = Utils.jsonObject(jsonString: str!)
+        }
         self.loadHeaderView()
-
-        //display data sample
-        
-//        let txtField = CustomTextFieldForAttribute(frame: CGRect(x: 0, y: label_height, width: SCREEN_WIDTH - (x_padding*2), height: controls_height))
-//        txtField.delegate = self as UITextFieldDelegate
-//        txtField.tag = Int(pLayerField.id!)!
-//        txtField.returnKeyType = .done
-//
-//        let buttonAddImage = CustomButtonImageOrDocument(frame: CGRect(x: 0, y: label_height, width: 170, height: CUSTOM_BUTTON_HEIGHT))
-//        buttonAddImage.setTitle(" Add Image", for: .normal)
-//        buttonAddImage.contentHorizontalAlignment = .left
-//        buttonAddImage.tag = Int(pLayerField.id!)!
-//        buttonAddImage.imgIcon.image = UIImage(named: DATATYPE_IMAGE_ICON)
-//        buttonAddImage.addTarget(self, action: #selector(btnAddImagePressed(sender:)), for: .touchUpInside)
-//        smallView.addSubview(buttonAddImage)
-
-//        let genderView = GenderView(frame:  CGRect(x: 0, y: self.global_Y_Position, width: Int(self.appFormScrollView.frame.size.width), height: controlsHeight))
-//        genderView.initDesign(pName: "Gender", pTag: 6, pOptions: ["Male","Female","Other"])
-//        self.appFormScrollView.addSubview(genderView)
-        
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        let str = ParentClass.sharedInstance.getDataForKey(strKey: FILL_BLANK_ARRAY) as? String
+        
+        if str != "" && str != nil{
+            saveListArray = Utils.jsonObject(jsonString: str!)
+        }
+        btnEditSave.setTitle("Edit Saved Form (\(saveListArray.count))", for: .normal)
+
     }
     func loadHeaderView() {
         
@@ -158,7 +150,7 @@ class ViewController: ParentClass {
          yposition += Y_PADDING + TOP_HEADER_HEIGHT
 
         btnEditSave = ListButton (frame: CGRect (x: X_PADDING, y: yposition , width: SCREEN_WIDTH - X_PADDING*2, height: TOP_HEADER_HEIGHT))
-        btnEditSave.setTitle("Edit Saved Form", for: .normal)
+        btnEditSave.setTitle("Edit Saved Form (\(saveListArray.count))", for: .normal)
         btnEditSave.setImage(UIImage (named: "Edit-Saved-Form"), for: .normal)
         btnEditSave.tag = TAG2
         btnEditSave.addTarget(self, action: #selector(onButtonPrssed(sender:)), for: .touchUpInside)
@@ -194,9 +186,10 @@ class ViewController: ParentClass {
 
          yposition += Y_PADDING + TOP_HEADER_HEIGHT
 
+     
         self.view.addSubview(scrlView)
 
-//        scrlView.contentSize = CGSize (width: SCREEN_WIDTH, height: yposition)
+        scrlView.contentSize = CGSize (width: SCREEN_WIDTH, height: yposition + 100)
 
     }
     

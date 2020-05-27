@@ -13,7 +13,7 @@ class CustomInputTextView: UIView, UITextViewDelegate {
     
     private var labelTitle:UILabel! = nil
     var txtField:CustomTextView!
-//    var delegateAppForm:KVICApplicationFormIndividualViewController?
+    var delegateAppForm:FormFieldsVC?
     var delegateApp:LoginViewController?
 //    var previewDelegateApp:PreviewViewController?
 //    var verificationDelegateApp:VerificationDetailViewController?

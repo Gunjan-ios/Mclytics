@@ -21,6 +21,8 @@ class FillFormViewController: ParentClass,UITableViewDelegate,UITableViewDataSou
     
     var flistArray : [[String:Any]] = [[String:Any]]()
     
+    var formField:FormFieldsVC?
+
     fileprivate var buttonSave: CustomButton!
     
     override func viewDidLoad() {
@@ -132,6 +134,11 @@ class FillFormViewController: ParentClass,UITableViewDelegate,UITableViewDataSou
 //        cell.btncheckbox.tag = indexPath.row
 //        cell.btncheckbox.addTarget(self, action: #selector(onCheckListPressed(sender:)), for: .touchUpInside)
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.formField = FormFieldsVC()
+        self.navigationController?.pushViewController(self.formField!, animated: true)
     }
     
 //    @objc func onCheckListPressed(sender:UIButton)  {

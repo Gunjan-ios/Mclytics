@@ -16,16 +16,7 @@ class CustomTextFieldForAttribute: UITextField {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
         imgIcon = UIImageView(frame: CGRect(x: self.bounds.size.width - 44, y: 7, width: 24, height: 24))
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
         
         self.imgIcon.contentMode = .center
         self.addSubview(imgIcon)
@@ -37,8 +28,28 @@ class CustomTextFieldForAttribute: UITextField {
         
         self.font = UIFont(name: TAB_FONT, size: TEXTFIELD_FONT_SIZE)
         self.textColor = UIColor.black
-
     }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    
+//    override func layoutSubviews() {
+//        super.layoutSubviews()
+//
+//        self.imgIcon.contentMode = .center
+//        self.addSubview(imgIcon)
+//
+//        self.layer.cornerRadius = 5;
+//        self.layer.borderColor = boxBorderColor
+//        self.layer.borderWidth = 1
+//        self.backgroundColor = UIColor.white
+//
+//        self.font = UIFont(name: TAB_FONT, size: TEXTFIELD_FONT_SIZE)
+//        self.textColor = UIColor.black
+//
+//    }
     
     //  Padding x
     override func textRect(forBounds bounds: CGRect) -> CGRect {
