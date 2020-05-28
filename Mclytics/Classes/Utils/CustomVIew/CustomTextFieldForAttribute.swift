@@ -21,9 +21,22 @@ class CustomTextFieldForAttribute: UITextField {
         self.imgIcon.contentMode = .center
         self.addSubview(imgIcon)
         
-        self.layer.cornerRadius = 5;
-        self.layer.borderColor = boxBorderColor
-        self.layer.borderWidth = 1
+//        self.layer.cornerRadius = 5;
+//        self.layer.borderColor = boxBorderColor
+//        self.layer.borderWidth = 1
+        
+        let rectShape = CAShapeLayer()
+        rectShape.path = UIBezierPath(roundedRect: self.bounds, byRoundingCorners: [ .bottomLeft , .bottomRight], cornerRadii: CGSize(width: 5, height: 5)).cgPath
+        rectShape.strokeColor = UIColor.lightGray.cgColor
+        rectShape.fillColor = UIColor.clear.cgColor
+        rectShape.lineWidth = 1
+        rectShape.frame = self.bounds
+        self.layer.mask =   rectShape
+        self.layer.addSublayer(rectShape)
+        
+        
+        
+        
         self.backgroundColor = UIColor.white
         
         self.font = UIFont(name: TAB_FONT, size: TEXTFIELD_FONT_SIZE)

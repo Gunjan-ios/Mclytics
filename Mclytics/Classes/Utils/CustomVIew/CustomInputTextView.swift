@@ -22,11 +22,19 @@ class CustomInputTextView: UIView, UITextViewDelegate {
     
     func initDesign(pName:String,pTag:Int,pPlaceHolder:String) {
         
-        labelTitle = UILabel(frame: CGRect(x: 0, y: 0, width: Int(frame.size.width), height: labelHeight))
+        labelTitle = PaddingLabel(frame: CGRect(x: 0, y: 0, width: Int(frame.size.width), height: labelHeight))
         labelTitle.textColor = labelTextColor
         labelTitle.font = UIFont(name: APP_FONT_NAME, size: LABEL_FONT_SIZE)
         labelTitle.text = pName
         labelTitle.textAlignment = .left
+        let rectShape = CAShapeLayer()
+        rectShape.path = UIBezierPath(roundedRect: labelTitle.bounds, byRoundingCorners: [ .topRight , .topLeft], cornerRadii: CGSize(width: 5, height: 5)).cgPath
+        rectShape.strokeColor = UIColor.lightGray.cgColor
+        rectShape.fillColor = UIColor.clear.cgColor
+        rectShape.lineWidth = 1
+        rectShape.frame = labelTitle.bounds
+        labelTitle.layer.mask =   rectShape
+        labelTitle.layer.addSublayer(rectShape)
         self.addSubview(labelTitle)
         
         self.txtField = CustomTextView(frame: CGRect(x: 0, y: 25, width: Int(frame.size.width), height: 100))

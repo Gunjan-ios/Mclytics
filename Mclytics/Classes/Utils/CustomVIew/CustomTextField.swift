@@ -16,28 +16,24 @@ class CustomTextField : UITextField {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        let rectShape = CAShapeLayer()
+        rectShape.path = UIBezierPath(roundedRect: self.bounds, byRoundingCorners: [ .bottomRight , .bottomLeft], cornerRadii: CGSize(width: 5, height: 5)).cgPath
+        rectShape.strokeColor = UIColor.lightGray.cgColor
+        rectShape.fillColor = UIColor.clear.cgColor
+        rectShape.lineWidth = 1
+        rectShape.frame = self.bounds
+        self.layer.mask =   rectShape
+        self.layer.addSublayer(rectShape)
         
+        self.backgroundColor = UIColor.clear
+        self.font = UIFont(name: TAB_FONT, size: TEXTFIELD_FONT_SIZE)
+        self.textColor = UIColor.black
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-
-        self.layer.cornerRadius = 5;
-        self.layer.borderColor = boxBorderColor
-        self.layer.borderWidth = 1
-        self.backgroundColor = UIColor.white
-        self.font = UIFont(name: TAB_FONT, size: TEXTFIELD_FONT_SIZE)
-        self.textColor = UIColor.black
         
-       
-//       self.font = UIFont(name: APP_FONT_NAME, size: TEXTFIELD_FONT_SIZE)
-        
-    }
-    
     //  Padding x
     override func textRect(forBounds bounds: CGRect) -> CGRect {
         // let newCGRect = bounds.inset(by: UIEdgeInsets(top: 0, left: padding, bottom: 0, right: padding))

@@ -22,7 +22,7 @@ class GenderView : UIView {
 
     func initDesign(pName:String,pTag:Int,pOptions:[String]) {
 
-        labelTitle = UILabel(frame: CGRect(x: 0, y: 0, width: Int(frame.size.width), height: labelHeight))
+        labelTitle = UILabel(frame: CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: labelHeight))
         labelTitle.textColor = labelTextColor
         labelTitle.font = UIFont(name: APP_FONT_NAME, size: LABEL_FONT_SIZE)
         labelTitle.text = pName

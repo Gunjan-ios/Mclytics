@@ -11,7 +11,7 @@ import SwiftyJSON
 import MobileCoreServices
 import ReCaptcha
 
-class FormFieldsVC: ParentClass,UITextFieldDelegate,UIImagePickerControllerDelegate, UINavigationControllerDelegate,UIDocumentPickerDelegate   {
+class FormFieldsVC: ParentClass,UIImagePickerControllerDelegate, UINavigationControllerDelegate,UIDocumentPickerDelegate   {
     
     fileprivate var headerview:UIView!
     fileprivate var buttonBack: UIButton!
@@ -107,7 +107,7 @@ class FormFieldsVC: ParentClass,UITextFieldDelegate,UIImagePickerControllerDeleg
         
         var yposition : Int! = X_PADDING
 
-        let buttonAddImage = CustomTextFieldForAttribute(frame: CGRect(x: X_PADDING, y: yposition, width: SCREEN_WIDTH - X_PADDING*2 , height: CUSTOM_BUTTON_HEIGHT))
+        let buttonAddImage = CustomLabel(frame: CGRect(x: X_PADDING, y: yposition, width: SCREEN_WIDTH - X_PADDING*2 , height: CUSTOM_BUTTON_HEIGHT))
 //        buttonAddImage.imgIcon.image = UIImage(named: "showPasswordIcon")
         buttonAddImage.text = "text field"
         buttonAddImage.tag = TAG11
@@ -115,13 +115,38 @@ class FormFieldsVC: ParentClass,UITextFieldDelegate,UIImagePickerControllerDeleg
         
         yposition += X_PADDING + CUSTOM_BUTTON_HEIGHT
         
-        let txtField = CustomTextView (frame: CGRect (x: X_PADDING, y: yposition , width: SCREEN_WIDTH - X_PADDING*2 , height: 100))
+        let txtField = InsideTextView (frame: CGRect (x: X_PADDING, y: yposition , width: SCREEN_WIDTH - X_PADDING*2 , height: 100))
         txtField.text = "Hello \nHow are you? \nhow can i help you?"
         txtField.isUserInteractionEnabled = false
         scrlView.addSubview(txtField)
         
         yposition += X_PADDING + Int(txtField.bounds.height)
         
+        let name = CustomInputFieldView(frame: CGRect(x: X_PADDING, y: yposition, width: SCREEN_WIDTH - X_PADDING*2 , height: controls_height))
+        name.delegateAppForm = self
+        name.initDesign(pName: "name *", pTag: UploadTAG109, pPlaceHolder: "enter your name")
+        scrlView.addSubview(name)
+
+        yposition += X_PADDING + Int(name.bounds.height)
+
+        let email = CustomInputFieldView(frame: CGRect(x: X_PADDING, y: yposition, width: SCREEN_WIDTH - X_PADDING*2 , height: controls_height))
+        email.initDesign(pName: "Email Field", pTag: TAG4, pPlaceHolder: "enter your email")
+        email.delegateAppForm = self
+        email.txtField.keyboardType = .emailAddress
+        scrlView.addSubview(email)
+
+        yposition += X_PADDING + Int(email.bounds.height)
+
+        let phone = CustomInputFieldView(frame: CGRect(x: X_PADDING, y: yposition, width: SCREEN_WIDTH - X_PADDING*2 , height: controls_height))
+        //        buttonAddImage.imgIcon.image = UIImage(named: "showPasswordIcon")
+        phone.initDesign(pName: "name", pTag: TAG5, pPlaceHolder: "enter your phone number")
+        phone.delegateAppForm = self
+        phone.txtField.keyboardType = .phonePad
+        scrlView.addSubview(phone)
+
+        yposition += X_PADDING + Int(phone.bounds.height)
+        
+    
         let genderView = GenderView(frame:  CGRect(x: X_PADDING, y: yposition, width: Int(scrlView.frame.size.width), height: controls_height))
         genderView.initDesign(pName: "Gender", pTag: 6, pOptions: ["Male","Female"])
         scrlView.addSubview(genderView)
