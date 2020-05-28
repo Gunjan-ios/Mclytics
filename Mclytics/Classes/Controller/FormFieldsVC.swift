@@ -153,6 +153,13 @@ class FormFieldsVC: ParentClass,UIImagePickerControllerDelegate, UINavigationCon
         
         yposition += X_PADDING + Int( genderView.bounds.height)
         
+        let multiple = MarginSelectView(frame:  CGRect(x: X_PADDING, y: yposition, width: Int(scrlView.frame.size.width), height: controls_height))
+        multiple.initDesign(pName: "multiple selection", pTag: 122, pOptions: ["first","second","third"])
+        scrlView.addSubview(multiple)
+        
+        yposition += X_PADDING + Int( multiple.bounds.height)
+        
+        
         let titleComboBox = CustomComboBoxView(frame: CGRect(x: X_PADDING, y: yposition, width: SCREEN_WIDTH - X_PADDING*2, height: controls_height))
         titleComboBox.initDesign(pName: "selection view", pTag: 12, pOptions: ["Mr","Ms","Mrs"],pPlaceHolder: "")
         scrlView.addSubview(titleComboBox)
@@ -210,7 +217,6 @@ class FormFieldsVC: ParentClass,UIImagePickerControllerDelegate, UINavigationCon
         vv.layer.cornerRadius = 5
         vv.layer.borderWidth = 1
         vv.layer.borderColor = buttonBorderColor.cgColor
-        
         
         let lblSelectChoise = UILabel(frame: CGRect(x: X_PADDING, y: 4, width: Int(self.view.frame.size.width) - 20, height: 28))
         lblSelectChoise.text = "Select a choise"

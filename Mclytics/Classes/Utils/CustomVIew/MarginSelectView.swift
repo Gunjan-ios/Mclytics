@@ -37,7 +37,7 @@ class MarginSelectView : UIView {
         
         let firstRadioButton = self.createRadioButton(frame: CGRect(x: 0, y:25, width: radioBtnWidth, height: radioBtnHeight), title: pOptions[0], color: UIColor.black, view: self);
         firstRadioButton.tag = pTag
-        firstRadioButton.isSelected = true
+//        firstRadioButton.isSelected = true
         
         self.isMarginMoneyCallback = false
         
@@ -69,10 +69,11 @@ class MarginSelectView : UIView {
         radioButton.setTitleColor(color, for: []);
         radioButton.iconColor = color;
         radioButton.indicatorColor = color;
-        radioButton.icon = UIImage(named: "radioBtnOff")!
-        radioButton.iconSelected = UIImage(named: "radioBtnOn")!
+        radioButton.icon = UIImage(named: "deselectedCheckbox")!
+        radioButton.iconSelected = UIImage(named: "selectedCheckboxBlue")!
         radioButton.contentHorizontalAlignment = UIControl.ContentHorizontalAlignment.left;
         radioButton.addTarget(self, action: #selector(self.logSelectedButton(radioButton:)), for: UIControl.Event.touchUpInside);
+        radioButton.isMultipleSelectionEnabled = true
         view.addSubview(radioButton);
         
         return radioButton;
