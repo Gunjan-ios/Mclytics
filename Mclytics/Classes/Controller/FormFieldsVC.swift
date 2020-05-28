@@ -9,6 +9,7 @@
 import UIKit
 import SwiftyJSON
 import MobileCoreServices
+import ReCaptcha
 
 class FormFieldsVC: ParentClass,UITextFieldDelegate,UIImagePickerControllerDelegate, UINavigationControllerDelegate,UIDocumentPickerDelegate   {
     
@@ -27,7 +28,8 @@ class FormFieldsVC: ParentClass,UITextFieldDelegate,UIImagePickerControllerDeleg
     private var attacheFile:CustomeAttacheFile!
     var imagePicker = UIImagePickerController()
     var picker:UIImagePickerController!
-
+    let recaptcha = try? ReCaptcha()
+    
     private var StarRatingView: StarRateView!
 
     private var signatureView: YPDrawSignatureView!
@@ -106,12 +108,19 @@ class FormFieldsVC: ParentClass,UITextFieldDelegate,UIImagePickerControllerDeleg
         var yposition : Int! = X_PADDING
 
         let buttonAddImage = CustomTextFieldForAttribute(frame: CGRect(x: X_PADDING, y: yposition, width: SCREEN_WIDTH - X_PADDING*2 , height: CUSTOM_BUTTON_HEIGHT))
-        buttonAddImage.imgIcon.image = UIImage(named: "showPasswordIcon")
+//        buttonAddImage.imgIcon.image = UIImage(named: "showPasswordIcon")
         buttonAddImage.text = "text field"
         buttonAddImage.tag = TAG11
         scrlView.addSubview(buttonAddImage)
         
         yposition += X_PADDING + CUSTOM_BUTTON_HEIGHT
+        
+        let txtField = CustomTextView (frame: CGRect (x: X_PADDING, y: yposition , width: SCREEN_WIDTH - X_PADDING*2 , height: 100))
+        txtField.text = "Hello \nHow are you? \nhow can i help you?"
+        txtField.isUserInteractionEnabled = false
+        scrlView.addSubview(txtField)
+        
+        yposition += X_PADDING + Int(txtField.bounds.height)
         
         let genderView = GenderView(frame:  CGRect(x: X_PADDING, y: yposition, width: Int(scrlView.frame.size.width), height: controls_height))
         genderView.initDesign(pName: "Gender", pTag: 6, pOptions: ["Male","Female"])

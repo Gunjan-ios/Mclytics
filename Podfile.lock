@@ -4,6 +4,9 @@ PODS:
   - IQKeyboardManagerSwift (6.5.5)
   - JQProgressHUD (2.7)
   - LIHAlert (2.1.1)
+  - ReCaptcha (1.5.0):
+    - ReCaptcha/Core (= 1.5.0)
+  - ReCaptcha/Core (1.5.0)
   - SDWebImage (5.7.2):
     - SDWebImage/Core (= 5.7.2)
   - SDWebImage/Core (5.7.2)
@@ -16,6 +19,7 @@ DEPENDENCIES:
   - IQKeyboardManagerSwift
   - JQProgressHUD
   - LIHAlert
+  - ReCaptcha
   - SDWebImage
   - SwiftyJSON
   - TextFieldEffects
@@ -27,6 +31,7 @@ SPEC REPOS:
     - IQKeyboardManagerSwift
     - JQProgressHUD
     - LIHAlert
+    - ReCaptcha
     - SDWebImage
     - SwiftyJSON
     - TextFieldEffects
@@ -37,10 +42,11 @@ SPEC CHECKSUMS:
   IQKeyboardManagerSwift: 0fb93310284665245591f50f7a5e38de615960b7
   JQProgressHUD: 45463f7760f004e5c259c2b912a704b5b5b32732
   LIHAlert: a027605673986d03b896e4f4a901f393b15840b9
+  ReCaptcha: 40ae1dc390fd5837267674b9a6ae0978abb5eeeb
   SDWebImage: d9ea4959d99c52276dfada481987018fcaea3d58
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
   TextFieldEffects: 529b8aff706fb40f82c41c780c0777941a893796
 
-PODFILE CHECKSUM: 9fedd902e95dbe14e4e21927a807103533d16e0e
+PODFILE CHECKSUM: fb3041ebefdaecd876a81fee3a1eac5f2ef3079c
 
 COCOAPODS: 1.8.4

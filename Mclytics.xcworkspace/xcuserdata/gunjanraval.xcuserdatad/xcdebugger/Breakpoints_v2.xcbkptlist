@@ -9,20 +9,6 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Mclytics/Classes/Utils/CustomVIew/CustomButton.swift"
-            timestampString = "611995175.189836"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "55"
-            endingLineNumber = "55">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "Mclytics/Classes/Utils/SegmentTabbar/SegmentedViewController.swift"
             timestampString = "611744327.568224"
             startingColumnNumber = "9223372036854775807"

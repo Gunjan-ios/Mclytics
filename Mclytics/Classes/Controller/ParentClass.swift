@@ -187,6 +187,23 @@ class ParentClass: UIViewController{
         self.showDetailViewController(alert, sender: self)
     }
     
+//    func heightForView(text:String?, width:CGFloat , Label : CustomLabel) -> Int{
+//        let hValue = CGFloat.greatestFiniteMagnitude
+//        Label.frame.size.height = hValue
+//        Label.numberOfLines = 0
+//        Label.lineBreakMode = NSLineBreakMode.byWordWrapping
+//        Label.text = text
+//        Label.sizeToFit()
+//        //if Int(Label.frame.height) < LABEL_HEIGHT || Int(Label.frame.height)  <= 41 {
+//        
+//        if Int(Label.frame.height) < LABEL_HEIGHT  {
+//            return LABEL_HEIGHT
+//        }
+//        else{
+//            return Int(Label.frame.height)
+//        }
+//    }
+    
     func hexStringToUIColor (hex:String) -> UIColor {
         var cString:String = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
         

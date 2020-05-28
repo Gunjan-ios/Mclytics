@@ -16,25 +16,32 @@ class CustomTextView : UITextView {
     
     override init(frame: CGRect, textContainer: NSTextContainer?) {
         super.init(frame: frame, textContainer: textContainer)
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        
         
         self.layer.cornerRadius = 5;
         self.layer.borderColor = boxBorderColor
         self.layer.borderWidth = 1
         self.backgroundColor = UIColor.white
-    
+        
         self.font = UIFont(name: TAB_FONT, size: TEXTFIELD_FONT_SIZE)
         self.textColor = UIColor.black
-        
     }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+//    
+//    override func layoutSubviews() {
+//        super.layoutSubviews()
+//        
+//        self.layer.cornerRadius = 5;
+//        self.layer.borderColor = boxBorderColor
+//        self.layer.borderWidth = 1
+//        self.backgroundColor = UIColor.white
+//    
+//        self.font = UIFont(name: TAB_FONT, size: TEXTFIELD_FONT_SIZE)
+//        self.textColor = UIColor.black
+//        
+//    }
     
     
 }

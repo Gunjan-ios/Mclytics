@@ -43,6 +43,7 @@
 		532C694B247409940026A28A /* FillFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 532C694A247409940026A28A /* FillFormViewController.swift */; };
 		532C694D24740ACE0026A28A /* FormListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 532C694C24740ACE0026A28A /* FormListCell.swift */; };
 		536512AD247800C200A5B35E /* SendFinalizedFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536512AC247800C200A5B35E /* SendFinalizedFormViewController.swift */; };
+		537E682A247E911E00992820 /* CustomLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 537E6829247E911E00992820 /* CustomLabel.swift */; };
 		539968132478F00800864508 /* CustomImageButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5399680F2478F00800864508 /* CustomImageButton.swift */; };
 		539968142478F00800864508 /* CustomTextFieldForAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 539968102478F00800864508 /* CustomTextFieldForAttribute.swift */; };
 		539968152478F00800864508 /* MarginSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 539968112478F00800864508 /* MarginSelectView.swift */; };
@@ -127,6 +128,7 @@
 		532C694A247409940026A28A /* FillFormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FillFormViewController.swift; sourceTree = "<group>"; };
 		532C694C24740ACE0026A28A /* FormListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormListCell.swift; sourceTree = "<group>"; };
 		536512AC247800C200A5B35E /* SendFinalizedFormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendFinalizedFormViewController.swift; sourceTree = "<group>"; };
+		537E6829247E911E00992820 /* CustomLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLabel.swift; sourceTree = "<group>"; };
 		5399680F2478F00800864508 /* CustomImageButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomImageButton.swift; sourceTree = "<group>"; };
 		539968102478F00800864508 /* CustomTextFieldForAttribute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTextFieldForAttribute.swift; sourceTree = "<group>"; };
 		539968112478F00800864508 /* MarginSelectView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarginSelectView.swift; sourceTree = "<group>"; };
@@ -339,6 +341,7 @@
 				53D622E8247B9A4700BAB5F0 /* Signature */,
 				539968112478F00800864508 /* MarginSelectView.swift */,
 				53D622F2247B9A5800BAB5F0 /* CustomeAttacheFile.swift */,
+				537E6829247E911E00992820 /* CustomLabel.swift */,
 				539968102478F00800864508 /* CustomTextFieldForAttribute.swift */,
 				539968122478F00800864508 /* GISImageDataTypeView.swift */,
 				5399680F2478F00800864508 /* CustomImageButton.swift */,
@@ -655,6 +658,7 @@
 				53E54C55247011E700BD7253 /* GetBlankFormCell.swift in Sources */,
 				5319CECF2469095C00140E8F /* AppDelegate.swift in Sources */,
 				5319CF20246918B500140E8F /* LoginViewController.swift in Sources */,
+				537E682A247E911E00992820 /* CustomLabel.swift in Sources */,
 				5319CF1C24690B2B00140E8F /* Reach.swift in Sources */,
 				53DC26C524765173007995E9 /* DeleteViewController.swift in Sources */,
 				5321664D246AA0AB00472214 /* ListButton.swift in Sources */,
