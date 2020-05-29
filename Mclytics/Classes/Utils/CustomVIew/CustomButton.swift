@@ -20,7 +20,7 @@ class CustomButton : UIButton {
         setTitleColor(UIColor.white, for: .normal)
         
         // corner
-        layer.cornerRadius = 5
+        layer.cornerRadius = radius
 //        self.layer.borderWidth = 1
 //        self.layer.borderColor = buttonBorderColor.cgColor
         

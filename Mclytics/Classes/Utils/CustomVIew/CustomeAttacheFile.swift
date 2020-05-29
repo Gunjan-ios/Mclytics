@@ -77,8 +77,8 @@ class CustomeAttacheFile: UIButton {
         super.layoutSubviews()
 
         // corner
-        layer.cornerRadius = 5
-        self.layer.borderWidth = 1
+        layer.cornerRadius = radius
+        self.layer.borderWidth = borderWidth
         self.layer.borderColor = buttonBorderColor.cgColor
         
         setTitleColor(UIColor.black, for: .normal)

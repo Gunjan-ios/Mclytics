@@ -150,8 +150,8 @@ class FormFieldsVC: ParentClass,UIImagePickerControllerDelegate, UINavigationCon
         let genderView = GenderView(frame:  CGRect(x: X_PADDING, y: yposition, width: Int(scrlView.frame.size.width) - X_PADDING*2, height: controls_height))
         genderView.initDesign(pName: "Gender", pTag: 6, pOptions: ["Male","Female"])
         genderView.frame = genderView.resetHeight()
-        genderView.layer.cornerRadius = 5.0
-        genderView.layer.borderWidth = 1.0
+        genderView.layer.cornerRadius = radius
+        genderView.layer.borderWidth = borderWidth
         genderView.layer.borderColor =  UIColor.lightGray.cgColor
         scrlView.addSubview(genderView)
         
@@ -160,8 +160,8 @@ class FormFieldsVC: ParentClass,UIImagePickerControllerDelegate, UINavigationCon
         let multiple = MarginSelectView(frame:  CGRect(x: X_PADDING, y: yposition, width: Int(scrlView.frame.size.width) - X_PADDING*2, height: controls_height))
         multiple.initDesign(pName: "multiple selection", pTag: 122, pOptions: ["first","second","third","first","second","third"])
        multiple.frame = multiple.resetHeight()
-        multiple.layer.cornerRadius = 5.0
-        multiple.layer.borderWidth = 1.0
+        multiple.layer.cornerRadius = radius
+        multiple.layer.borderWidth = borderWidth
         multiple.layer.borderColor =  UIColor.lightGray.cgColor
         scrlView.addSubview(multiple)
         
@@ -222,8 +222,8 @@ class FormFieldsVC: ParentClass,UIImagePickerControllerDelegate, UINavigationCon
         //Rating view
         
         let vv = UIView(frame: CGRect(x: X_PADDING, y: yposition, width: Int(self.view.frame.size.width) - X_PADDING*2, height: 90))
-        vv.layer.cornerRadius = 5
-        vv.layer.borderWidth = 1
+        vv.layer.cornerRadius = radius
+        vv.layer.borderWidth = borderWidth
         vv.layer.borderColor = buttonBorderColor.cgColor
         
         let lblSelectChoise = UILabel(frame: CGRect(x: X_PADDING, y: 4, width: Int(self.view.frame.size.width) - 20, height: 28))
@@ -243,15 +243,15 @@ class FormFieldsVC: ParentClass,UIImagePickerControllerDelegate, UINavigationCon
         //SignatureView
         signatureView = YPDrawSignatureView(frame: CGRect(x: 15, y: CGFloat(yposition), width: view.frame.size.width - 30, height: 200))
         signatureView.backgroundColor = UIColor.clear
-        signatureView.layer.cornerRadius = 5
-        signatureView.layer.borderWidth = 1
+        signatureView.layer.cornerRadius = radius
+        signatureView.layer.borderWidth = borderWidth
         signatureView.layer.borderColor = buttonBorderColor.cgColor
         scrlView.addSubview(signatureView)
         
         signClearButton = CustomButton(frame: CGRect(x: Int(signatureView.frame.size.width - 70), y: Int(signatureView.frame.size.height - 45), width: 60, height: 32))
         signClearButton.backgroundColor = UIColor.gray
         signClearButton.setTitleColor(.white, for: .normal)
-        signClearButton.layer.cornerRadius = 6
+        signClearButton.layer.cornerRadius = radius
         self.signClearButton.setTitle("Clear", for: .normal)
         signClearButton.addTarget(self, action: #selector(signClearPressed), for: .touchUpInside)
         signatureView.addSubview(signClearButton)

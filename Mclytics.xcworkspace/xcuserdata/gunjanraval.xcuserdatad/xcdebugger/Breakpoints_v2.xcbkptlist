@@ -113,7 +113,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Mclytics/Classes/Utils/CustomVIew/MarginSelectView.swift"
-            timestampString = "612424951.571396"
+            timestampString = "612426238.335754"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "57"
@@ -129,12 +129,28 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Mclytics/Classes/Utils/CustomVIew/MarginSelectView.swift"
-            timestampString = "612424951.571484"
+            timestampString = "612426238.335961"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "41"
             endingLineNumber = "41"
             landmarkName = "initDesign(pName:pTag:pOptions:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Mclytics/Classes/Controller/ViewController.swift"
+            timestampString = "612427706.971246"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "106"
+            endingLineNumber = "106"
+            landmarkName = "goToSetting()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

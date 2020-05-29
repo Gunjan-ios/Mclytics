@@ -85,7 +85,7 @@ class ViewController: ParentClass,UITextFieldDelegate {
     @objc func goToSetting()  {
         
         DispatchQueue.main.async(execute: {
-            let alert = Utils.getAlertController(title: "", message: "choose option", style: .actionSheet)
+            let alert = Utils.getAlertController(title: "", message: "Options", style: .actionSheet)
             alert.addAction((UIAlertAction(title: "Setting", style: .default, handler: {(action) -> Void in
                 self.settingVC = SettingViewController()
                 self.navigationController?.pushViewController(self.settingVC!, animated: true)
@@ -103,7 +103,16 @@ class ViewController: ParentClass,UITextFieldDelegate {
                 
             })))
             
-            self.present(alert, animated: true, completion: nil)
+
+            if let popoverPresentationController = alert.popoverPresentationController {
+                popoverPresentationController.sourceView = self.view
+                popoverPresentationController.sourceRect = self.buttonMenu.frame
+                self.present(alert, animated: true, completion: nil)
+            }else{
+                self.present(alert, animated: true, completion: nil)
+
+            }
+            
         })
         
     }

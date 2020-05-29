@@ -48,5 +48,9 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>ReCaptchaDomain</key>
+	<string>http://localhost</string>
+	<key>ReCaptchaKey</key>
+	<string>6LdE-hkUAAAAAKWfpXjXrsLMwDc0psCcjvpBgGr6</string>
 </dict>
 </plist>

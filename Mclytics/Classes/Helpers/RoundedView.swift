@@ -13,7 +13,7 @@ class RoundedView: UIView {
     override func awakeFromNib() {
         layer.cornerRadius = frame.size.height/2
         layer.borderColor = UIColor.black.cgColor
-        layer.borderWidth = 1
+        layer.borderWidth = borderWidth
     }
     
 }

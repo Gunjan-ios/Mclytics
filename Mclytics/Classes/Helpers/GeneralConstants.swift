@@ -200,7 +200,8 @@ let HEADER_LABEL_FONT_NAME = "SFProText-Semibold"
 let TAB_FONT = "SFProText-Medium"
 let REGULAR_FONT_NAME = "SFProText-Regular"
 
-
+let radius : CGFloat = 5.0
+let borderWidth : CGFloat = 0.5
 
 // Colors
 let buttonBorderColor = UIColor(red: 198.0/255.0, green: 198.0/255.0, blue: 198.0/255.0, alpha: 1.0)

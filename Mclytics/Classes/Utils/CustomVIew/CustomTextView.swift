@@ -63,7 +63,7 @@ class InsideTextView : UITextView {
     override init(frame: CGRect, textContainer: NSTextContainer?) {
         super.init(frame: frame, textContainer: textContainer)
         
-        self.layer.cornerRadius = 5;
+        self.layer.cornerRadius = radius;
         self.layer.borderColor = boxBorderColor
         self.layer.borderWidth = 1
         self.backgroundColor = UIColor.white

@@ -61,8 +61,8 @@ class SettingViewController: ParentClass {
         var lblWidth : Int! = 0
         
         let  srView = UIView (frame: CGRect (x: X_PADDING, y: ypositionView, width: SCREEN_WIDTH - X_PADDING*2, height: 200))
-        srView.layer.cornerRadius = 4.0
-        srView.layer.borderWidth = 2
+        srView.layer.cornerRadius = radius
+        srView.layer.borderWidth = borderWidth
         srView.layer.borderColor = colorDividerBG_f4.cgColor
         scrlView .addSubview(srView)
         
@@ -118,8 +118,8 @@ class SettingViewController: ParentClass {
         yInternal = 0
 
         let  esfView = UIView (frame: CGRect (x: X_PADDING, y: ypositionView, width: SCREEN_WIDTH - X_PADDING*2, height: 100))
-        esfView.layer.cornerRadius = 4.0
-        esfView.layer.borderWidth = 2
+        esfView.layer.cornerRadius = radius
+        esfView.layer.borderWidth = borderWidth
         esfView.layer.borderColor = colorDividerBG_f4.cgColor
         scrlView .addSubview(esfView)
         
@@ -151,8 +151,8 @@ class SettingViewController: ParentClass {
         yInternal = 0
         
         let  uiView = UIView (frame: CGRect (x: X_PADDING, y: ypositionView, width: SCREEN_WIDTH - X_PADDING*2, height: 100))
-        uiView.layer.cornerRadius = 4.0
-        uiView.layer.borderWidth = 2
+        uiView.layer.cornerRadius = radius
+        uiView.layer.borderWidth = borderWidth
         uiView.layer.borderColor = colorDividerBG_f4.cgColor
         scrlView .addSubview(uiView)
         
