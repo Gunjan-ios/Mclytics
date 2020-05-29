@@ -19,30 +19,34 @@ class MarginSelectView : UIView {
 //    var PreviewdelegateApp:PreviewViewController?
 //    var verificationDelegateApp:VerificationDetailViewController?
     var isMarginMoneyCallback = false
-
+    var newHeigt : CGFloat = 70
     let labelHeight = 25
-    let radioBtnHeight = 45
+    let radioBtnHeight = 35
     
     func initDesign(pName:String,pTag:Int,pOptions:[String]) {
      
-        labelTitle = UILabel(frame: CGRect(x: 0, y: 0, width: Int(frame.size.width), height: labelHeight))
-        labelTitle.textColor = labelTextColor
+        labelTitle = PaddingLabel(frame: CGRect(x: 0, y: 0, width: Int(frame.size.width), height: labelHeight))
+        labelTitle.textColor = colorSubHeading_76
         labelTitle.font = UIFont(name: APP_FONT_NAME, size: 17)
         labelTitle.text = pName
         labelTitle.textAlignment = .left
         self.addSubview(labelTitle)
         
-        var otherButtons : [DLRadioButton] = [];
-        let radioBtnWidth = pTag >= VerificationTAG22 ? 120 : 80
+        let labelVIew = UIView(frame: CGRect(x: 0, y: labelHeight , width: Int(frame.size.width), height: 1))
+        labelVIew.backgroundColor = .lightGray
+        self.addSubview(labelVIew)
         
-        let firstRadioButton = self.createRadioButton(frame: CGRect(x: 0, y:25, width: radioBtnWidth, height: radioBtnHeight), title: pOptions[0], color: UIColor.black, view: self);
+        var otherButtons : [DLRadioButton] = [];
+        
+        let firstRadioButton = self.createRadioButton(frame: CGRect(x: 8, y: labelHeight + 1 , width: SCREEN_WIDTH, height: radioBtnHeight), title: pOptions[0], color: UIColor.black, view: self);
+        print(firstRadioButton.frame)
         firstRadioButton.tag = pTag
 //        firstRadioButton.isSelected = true
         
         self.isMarginMoneyCallback = false
         
         var index = 0
-        var x_Spacing = 0
+        var x_Spacing = labelHeight
         
         for name in pOptions {
             if index == 0 {
@@ -50,15 +54,23 @@ class MarginSelectView : UIView {
                 continue
             }
             
-            x_Spacing += (radioBtnWidth + 10)
+            x_Spacing += radioBtnHeight
             
-            let frame = CGRect(x: x_Spacing, y: 25, width: radioBtnWidth, height: radioBtnHeight);
+            let frame = CGRect(x: 8, y: x_Spacing, width: SCREEN_WIDTH, height: radioBtnHeight);
+            print(frame)
             let radioButton = createRadioButton(frame: frame, title: name, color: UIColor.black,view: self);
             otherButtons.append(radioButton);
         }
         
         firstRadioButton.otherButtons = otherButtons;
+        print( firstRadioButton.otherButtons.count + 1)
+        let size = radioBtnHeight*(firstRadioButton.otherButtons.count+1)
+        newHeigt = CGFloat(labelHeight + size)
 
+    }
+    
+    func resetHeight()  -> CGRect {
+           return  CGRect (x: self.frame.origin.x, y: self.frame.origin.y, width: self.frame.size.width, height: newHeigt)
     }
     
     private func createRadioButton(frame : CGRect, title : String, color : UIColor, view:UIView) -> DLRadioButton {

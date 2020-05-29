@@ -16,49 +16,59 @@ class GenderView : UIView {
     private var btnMale:UIButton!
     private var btnFeMale:UIButton!
     private var btnGender:UIButton!
-
+    
+    var newHeigt : CGFloat = 70
     let labelHeight = 25
-    let radioBtnHeight = 45
+    let radioBtnHeight = 35
 
     func initDesign(pName:String,pTag:Int,pOptions:[String]) {
-
-        labelTitle = UILabel(frame: CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: labelHeight))
-        labelTitle.textColor = labelTextColor
-        labelTitle.font = UIFont(name: APP_FONT_NAME, size: LABEL_FONT_SIZE)
+        
+        labelTitle = PaddingLabel(frame: CGRect(x: 0, y: 0, width: Int(frame.size.width), height: labelHeight))
+        labelTitle.textColor = colorSubHeading_76
+        labelTitle.font = UIFont(name: APP_FONT_NAME, size: 17)
         labelTitle.text = pName
         labelTitle.textAlignment = .left
         self.addSubview(labelTitle)
-
+        
+        let labelVIew = UIView(frame: CGRect(x: 0, y: labelHeight , width: Int(frame.size.width), height: 1))
+        labelVIew.backgroundColor = .lightGray
+        self.addSubview(labelVIew)
+        
         var otherButtons : [DLRadioButton] = [];
-
-        let radioBtnWidth = 80
-
-        let firstRadioButton = self.createRadioButton(frame: CGRect(x: 0, y:25, width: radioBtnWidth, height: radioBtnHeight), title: pOptions[0], color: UIColor.black, view: self);
+        
+        let firstRadioButton = self.createRadioButton(frame: CGRect(x: 8, y: labelHeight, width: SCREEN_WIDTH, height: radioBtnHeight), title: pOptions[0], color: UIColor.black, view: self);
+        print(firstRadioButton.frame)
         firstRadioButton.tag = pTag
-
+        //        firstRadioButton.isSelected = true
+        
+//        self.isMarginMoneyCallback = false
+        
         var index = 0
-        var x_Spacing = 0
-
+        var x_Spacing = labelHeight
+        
         for name in pOptions {
-
             if index == 0 {
                 index+=1
                 continue
             }
-
-            x_Spacing += (radioBtnWidth + 10)
-
-            let frame = CGRect(x: x_Spacing, y: 25, width: radioBtnWidth, height: radioBtnHeight);
+            
+            x_Spacing += radioBtnHeight
+            
+            let frame = CGRect(x: 8, y: x_Spacing, width: SCREEN_WIDTH, height: radioBtnHeight);
+            print(frame)
             let radioButton = createRadioButton(frame: frame, title: name, color: UIColor.black,view: self);
-
             otherButtons.append(radioButton);
-
         }
-
+        
         firstRadioButton.otherButtons = otherButtons;
-
+        print( firstRadioButton.otherButtons.count + 1)
+        let size = radioBtnHeight*(firstRadioButton.otherButtons.count+1)
+        newHeigt = CGFloat(labelHeight + size)
+        
     }
-
+    func resetHeight()  -> CGRect {
+        return  CGRect (x: self.frame.origin.x, y: self.frame.origin.y, width: self.frame.size.width, height: newHeigt)
+    }
     private func createRadioButton(frame : CGRect, title : String, color : UIColor, view:UIView) -> DLRadioButton {
 
         let radioButton = DLRadioButton(frame: frame);

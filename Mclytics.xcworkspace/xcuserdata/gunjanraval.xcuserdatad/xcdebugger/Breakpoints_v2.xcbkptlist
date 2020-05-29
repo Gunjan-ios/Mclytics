@@ -112,13 +112,29 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Mclytics/Classes/Utils/CustomVIew/CustomInputFieldView.swift"
-            timestampString = "612363750.9058"
+            filePath = "Mclytics/Classes/Utils/CustomVIew/MarginSelectView.swift"
+            timestampString = "612424951.571396"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "34"
-            endingLineNumber = "34"
-            landmarkName = "initDesign(pName:pTag:pPlaceHolder:)"
+            startingLineNumber = "57"
+            endingLineNumber = "57"
+            landmarkName = "initDesign(pName:pTag:pOptions:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Mclytics/Classes/Utils/CustomVIew/MarginSelectView.swift"
+            timestampString = "612424951.571484"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "41"
+            endingLineNumber = "41"
+            landmarkName = "initDesign(pName:pTag:pOptions:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

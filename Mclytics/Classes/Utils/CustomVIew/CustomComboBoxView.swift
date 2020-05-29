@@ -25,7 +25,7 @@ class CustomComboBoxView: UIView, UIPickerViewDelegate, UIPickerViewDataSource, 
     func initDesign(pName:String,pTag:Int,pOptions:[String],pPlaceHolder:String) {
 
         labelTitle = PaddingLabel(frame: CGRect(x: 0, y: 0, width: Int(frame.size.width), height: labelHeight))
-        labelTitle.textColor = labelTextColor
+        labelTitle.textColor = colorSubHeading_76
         labelTitle.font = UIFont(name: APP_FONT_NAME, size: LABEL_FONT_SIZE)
         labelTitle.text = pName
         labelTitle.textAlignment = .left

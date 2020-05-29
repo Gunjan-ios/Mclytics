@@ -147,21 +147,29 @@ class FormFieldsVC: ParentClass,UIImagePickerControllerDelegate, UINavigationCon
         yposition += X_PADDING + Int(phone.bounds.height)
         
     
-        let genderView = GenderView(frame:  CGRect(x: X_PADDING, y: yposition, width: Int(scrlView.frame.size.width), height: controls_height))
+        let genderView = GenderView(frame:  CGRect(x: X_PADDING, y: yposition, width: Int(scrlView.frame.size.width) - X_PADDING*2, height: controls_height))
         genderView.initDesign(pName: "Gender", pTag: 6, pOptions: ["Male","Female"])
+        genderView.frame = genderView.resetHeight()
+        genderView.layer.cornerRadius = 5.0
+        genderView.layer.borderWidth = 1.0
+        genderView.layer.borderColor =  UIColor.lightGray.cgColor
         scrlView.addSubview(genderView)
         
         yposition += X_PADDING + Int( genderView.bounds.height)
         
-        let multiple = MarginSelectView(frame:  CGRect(x: X_PADDING, y: yposition, width: Int(scrlView.frame.size.width), height: controls_height))
-        multiple.initDesign(pName: "multiple selection", pTag: 122, pOptions: ["first","second","third"])
+        let multiple = MarginSelectView(frame:  CGRect(x: X_PADDING, y: yposition, width: Int(scrlView.frame.size.width) - X_PADDING*2, height: controls_height))
+        multiple.initDesign(pName: "multiple selection", pTag: 122, pOptions: ["first","second","third","first","second","third"])
+       multiple.frame = multiple.resetHeight()
+        multiple.layer.cornerRadius = 5.0
+        multiple.layer.borderWidth = 1.0
+        multiple.layer.borderColor =  UIColor.lightGray.cgColor
         scrlView.addSubview(multiple)
         
         yposition += X_PADDING + Int( multiple.bounds.height)
         
         
         let titleComboBox = CustomComboBoxView(frame: CGRect(x: X_PADDING, y: yposition, width: SCREEN_WIDTH - X_PADDING*2, height: controls_height))
-        titleComboBox.initDesign(pName: "selection view", pTag: 12, pOptions: ["Mr","Ms","Mrs"],pPlaceHolder: "")
+        titleComboBox.initDesign(pName: "selection view", pTag: 12, pOptions: ["Mr","Ms","Mrs"],pPlaceHolder: "Select any one")
         scrlView.addSubview(titleComboBox)
         
         
