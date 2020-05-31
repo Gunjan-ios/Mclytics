@@ -32,7 +32,7 @@ class CustomTextView : UITextView {
         self.layer.addSublayer(rectShape)
 
         self.font = UIFont(name: TAB_FONT, size: TEXTFIELD_FONT_SIZE)
-        self.textColor = .lightGray
+        self.textColor = .darkGray
     }
     
     required init?(coder aDecoder: NSCoder) {

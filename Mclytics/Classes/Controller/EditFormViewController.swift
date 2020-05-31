@@ -19,8 +19,9 @@ class EditFormViewController: ParentClass,UITableViewDelegate,UITableViewDataSou
     private var currentPage = 1
     private var totalPage = 1
     
-    var elistArray : [[String:Any]] = [[String:Any]]()
-    
+//    var elistArray : [[String:Any]] = [[String:Any]]()
+    var elistArray : JSON = JSON()
+
     fileprivate var buttonSave: CustomButton!
     
     override func viewDidLoad() {
@@ -120,12 +121,12 @@ class EditFormViewController: ParentClass,UITableViewDelegate,UITableViewDataSou
         cell.selectionStyle = .none
         cell.backgroundColor = UIColor.clear
         
-        print(elistArray[indexPath.row]["name"] as? String)
-        print(elistArray[indexPath.row]["slug"] as? String)
+//        print(elistArray[indexPath.row]["name"] as? String)
+//        print(elistArray[indexPath.row]["slug"] as? String)
         
-        cell.lblFieldName.text = elistArray[indexPath.row]["name"] as? String
-        cell.lblSubFieldName.text = "sulg: \(elistArray[indexPath.row]["slug"] ?? "")"
-        let strDate = ParentClass.sharedInstance.dateConvert(date: (elistArray[indexPath.row]["created_at"] as? Double)!)
+        cell.lblFieldName.text = elistArray[indexPath.row]["name"].stringValue
+        cell.lblSubFieldName.text = "sulg: \(elistArray[indexPath.row]["slug"].stringValue)"
+        let strDate = ParentClass.sharedInstance.dateConvert(date: elistArray[indexPath.row]["created_at"].doubleValue)
         cell.lblSubFieldDate.text = "Added on \(strDate)"
         cell.btncheckbox.isHidden = true
         

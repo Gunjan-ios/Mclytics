@@ -30,6 +30,9 @@
 		5319CF20246918B500140E8F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5319CF1F246918B500140E8F /* LoginViewController.swift */; };
 		5319CF22246918F700140E8F /* ParentClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5319CF21246918F700140E8F /* ParentClass.swift */; };
 		5321664D246AA0AB00472214 /* ListButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5321664C246AA0AB00472214 /* ListButton.swift */; };
+		5322B21A24828D7300650CC8 /* shapeFill.png in Resources */ = {isa = PBXBuildFile; fileRef = 5322B21724828D7200650CC8 /* shapeFill.png */; };
+		5322B21B24828D7300650CC8 /* StarRateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5322B21824828D7200650CC8 /* StarRateView.swift */; };
+		5322B21C24828D7300650CC8 /* shapeEmpty.png in Resources */ = {isa = PBXBuildFile; fileRef = 5322B21924828D7200650CC8 /* shapeEmpty.png */; };
 		5325649E246935760055EBAE /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5325649D246935760055EBAE /* CustomButton.swift */; };
 		532564A0246935810055EBAE /* CustomTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5325649F246935810055EBAE /* CustomTextView.swift */; };
 		532564A2246935870055EBAE /* CustomInputTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 532564A1246935870055EBAE /* CustomInputTextView.swift */; };
@@ -52,9 +55,6 @@
 		5399681B2478F38000864508 /* GISDownloadedImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5399681A2478F38000864508 /* GISDownloadedImage.swift */; };
 		53B2B9C024691B850040F573 /* WebServicesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53B2B9BF24691B850040F573 /* WebServicesManager.swift */; };
 		53D622EA247B9A4700BAB5F0 /* YPDrawSignatureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D622E9247B9A4700BAB5F0 /* YPDrawSignatureView.swift */; };
-		53D622EF247B9A5100BAB5F0 /* shapeFill.png in Resources */ = {isa = PBXBuildFile; fileRef = 53D622EC247B9A5100BAB5F0 /* shapeFill.png */; };
-		53D622F0247B9A5100BAB5F0 /* StarRateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D622ED247B9A5100BAB5F0 /* StarRateView.swift */; };
-		53D622F1247B9A5100BAB5F0 /* shapeEmpty.png in Resources */ = {isa = PBXBuildFile; fileRef = 53D622EE247B9A5100BAB5F0 /* shapeEmpty.png */; };
 		53D622F3247B9A5800BAB5F0 /* CustomeAttacheFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D622F2247B9A5800BAB5F0 /* CustomeAttacheFile.swift */; };
 		53D622F5247B9A7A00BAB5F0 /* FormFieldsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D622F4247B9A7A00BAB5F0 /* FormFieldsVC.swift */; };
 		53DC26BE247650EF007995E9 /* StretchableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53DC26BB247650EF007995E9 /* StretchableHeaderView.swift */; };
@@ -115,6 +115,9 @@
 		5319CF1F246918B500140E8F /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		5319CF21246918F700140E8F /* ParentClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParentClass.swift; sourceTree = "<group>"; };
 		5321664C246AA0AB00472214 /* ListButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ListButton.swift; path = "/Users/gunjanraval/Desktop/WORK 2020/Hardik/Mclytics/Mclytics/Classes/Utils/CustomVIew/ListButton.swift"; sourceTree = "<absolute>"; };
+		5322B21724828D7200650CC8 /* shapeFill.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shapeFill.png; sourceTree = "<group>"; };
+		5322B21824828D7200650CC8 /* StarRateView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StarRateView.swift; sourceTree = "<group>"; };
+		5322B21924828D7200650CC8 /* shapeEmpty.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shapeEmpty.png; sourceTree = "<group>"; };
 		5325649D246935760055EBAE /* CustomButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		5325649F246935810055EBAE /* CustomTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTextView.swift; sourceTree = "<group>"; };
 		532564A1246935870055EBAE /* CustomInputTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomInputTextView.swift; sourceTree = "<group>"; };
@@ -137,9 +140,6 @@
 		5399681A2478F38000864508 /* GISDownloadedImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GISDownloadedImage.swift; sourceTree = "<group>"; };
 		53B2B9BF24691B850040F573 /* WebServicesManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebServicesManager.swift; sourceTree = "<group>"; };
 		53D622E9247B9A4700BAB5F0 /* YPDrawSignatureView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YPDrawSignatureView.swift; sourceTree = "<group>"; };
-		53D622EC247B9A5100BAB5F0 /* shapeFill.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shapeFill.png; sourceTree = "<group>"; };
-		53D622ED247B9A5100BAB5F0 /* StarRateView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StarRateView.swift; sourceTree = "<group>"; };
-		53D622EE247B9A5100BAB5F0 /* shapeEmpty.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shapeEmpty.png; sourceTree = "<group>"; };
 		53D622F2247B9A5800BAB5F0 /* CustomeAttacheFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomeAttacheFile.swift; sourceTree = "<group>"; };
 		53D622F4247B9A7A00BAB5F0 /* FormFieldsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormFieldsVC.swift; sourceTree = "<group>"; };
 		53DC26BB247650EF007995E9 /* StretchableHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StretchableHeaderView.swift; sourceTree = "<group>"; };
@@ -334,10 +334,20 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		5322B21624828D7200650CC8 /* StarsRating */ = {
+			isa = PBXGroup;
+			children = (
+				5322B21724828D7200650CC8 /* shapeFill.png */,
+				5322B21824828D7200650CC8 /* StarRateView.swift */,
+				5322B21924828D7200650CC8 /* shapeEmpty.png */,
+			);
+			path = StarsRating;
+			sourceTree = "<group>";
+		};
 		5325649C246935350055EBAE /* CustomVIew */ = {
 			isa = PBXGroup;
 			children = (
-				53D622EB247B9A5100BAB5F0 /* StarsRating */,
+				5322B21624828D7200650CC8 /* StarsRating */,
 				53D622E8247B9A4700BAB5F0 /* Signature */,
 				539968112478F00800864508 /* MarginSelectView.swift */,
 				532564AB246935D20055EBAE /* GenderView.swift */,
@@ -381,17 +391,6 @@
 				53D622E9247B9A4700BAB5F0 /* YPDrawSignatureView.swift */,
 			);
 			path = Signature;
-			sourceTree = "<group>";
-		};
-		53D622EB247B9A5100BAB5F0 /* StarsRating */ = {
-			isa = PBXGroup;
-			children = (
-				53D622EC247B9A5100BAB5F0 /* shapeFill.png */,
-				53D622ED247B9A5100BAB5F0 /* StarRateView.swift */,
-				53D622EE247B9A5100BAB5F0 /* shapeEmpty.png */,
-			);
-			name = StarsRating;
-			path = "../../../../../../../Mclytics-master/Mclytics/Classes/Utils/CustomVIew/StarsRating";
 			sourceTree = "<group>";
 		};
 		53DC26BA247650EF007995E9 /* SegmentTabbar */ = {
@@ -545,8 +544,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				53D622EF247B9A5100BAB5F0 /* shapeFill.png in Resources */,
-				53D622F1247B9A5100BAB5F0 /* shapeEmpty.png in Resources */,
+				5322B21A24828D7300650CC8 /* shapeFill.png in Resources */,
+				5322B21C24828D7300650CC8 /* shapeEmpty.png in Resources */,
 				5319CED92469095D00140E8F /* LaunchScreen.storyboard in Resources */,
 				5319CED62469095D00140E8F /* Assets.xcassets in Resources */,
 				5319CED42469095C00140E8F /* Main.storyboard in Resources */,
@@ -622,6 +621,7 @@
 				5319CF22246918F700140E8F /* ParentClass.swift in Sources */,
 				53DC26C424765173007995E9 /* DeleteListTableViewController.swift in Sources */,
 				532564A6246935990055EBAE /* InputTextField.swift in Sources */,
+				5322B21B24828D7300650CC8 /* StarRateView.swift in Sources */,
 				5319CED12469095C00140E8F /* ViewController.swift in Sources */,
 				5319CF1224690B0F00140E8F /* Validation.swift in Sources */,
 				539968132478F00800864508 /* CustomImageButton.swift in Sources */,
@@ -648,7 +648,6 @@
 				53D622F5247B9A7A00BAB5F0 /* FormFieldsVC.swift in Sources */,
 				5319CF0A24690B0F00140E8F /* LanguageStrings.swift in Sources */,
 				53DC26BE247650EF007995E9 /* StretchableHeaderView.swift in Sources */,
-				53D622F0247B9A5100BAB5F0 /* StarRateView.swift in Sources */,
 				5319CF1124690B0F00140E8F /* Extensions.swift in Sources */,
 				539968182478F29600864508 /* DropDownPickerView.swift in Sources */,
 				5319CF0B24690B0F00140E8F /* CS.swift in Sources */,
@@ -845,7 +844,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = YA4536WK7P;
 				INFOPLIST_FILE = Mclytics/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -865,7 +864,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = YA4536WK7P;
 				INFOPLIST_FILE = Mclytics/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

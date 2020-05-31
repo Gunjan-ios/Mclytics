@@ -24,7 +24,8 @@ class GetBlankFormViewController: ParentClass,UITableViewDelegate,UITableViewDat
     var count = 0
 
     var listArry : [[String : Any]] = [[String:Any]]()
-    
+    var listArry1 : [JSON] = [JSON]()
+
     fileprivate var buttonSave: CustomButton!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,8 +34,9 @@ class GetBlankFormViewController: ParentClass,UITableViewDelegate,UITableViewDat
         
         let str =   ParentClass.sharedInstance.getDataForKey(strKey: FILL_BLANK_ARRAY) as? String
         if str != "" && str != nil{
-            ParentClass.sharedInstance.saveListArray = Utils.jsonObject(jsonString: str!)
+            ParentClass.sharedInstance.saveListArray1 = Utils.jsonObject(jsonString: str!).array!
         }
+        print(ParentClass.sharedInstance.saveListArray1)
         // Do any additional setup after loading the view.
     }
     
@@ -48,19 +50,23 @@ class GetBlankFormViewController: ParentClass,UITableViewDelegate,UITableViewDat
             super.showAlert(message: strMsg, type: .error, navBar: false)
             return
         }
-        let tempAray = responce!["response"].arrayObject
+        let tempAray = responce!["response"].array
         self.totalPage  =  responce!["_meta"]["pageCount"].intValue
         print(self.totalPage)
         
         for tampAry1 in tempAray!{
-            var tamp : [String : Any] = [String:Any]()
-            tamp = tampAry1 as! [String : Any]
-            tamp["index"] = self.count
-            self.listArry.append(tamp)
+            var tamp : JSON = JSON()
+            tamp = tampAry1
+//            tamp = ["index" : self.count]
+            tamp["index"].intValue = self.count
+            self.listArry1.append(tamp)
             self.count += 1
+            print(tamp["index"].intValue)
         }
+        
+        
         self.currentPage += 1
-        if self.listArry.count > 0 {
+        if self.listArry1.count > 0 {
                 self.tblList.reloadData()
             }
         
@@ -116,9 +122,14 @@ class GetBlankFormViewController: ParentClass,UITableViewDelegate,UITableViewDat
 
     @objc func getSelected(){
         
-        let str = Utils.stringFromJson(object: ParentClass.sharedInstance.saveListArray)
+//        let str = Utils.stringFromJson(object: ParentClass.sharedInstance.saveListArray)
+//        print(str)
+//        ParentClass.sharedInstance.setData(strData: str, strKey: FILL_BLANK_ARRAY)
+        
+        let str = Utils.stringFromJson(object: ParentClass.sharedInstance.saveListArray1)
         print(str)
         ParentClass.sharedInstance.setData(strData: str, strKey: FILL_BLANK_ARRAY)
+        
         goToBack()
     }
     @objc func goToBack()  {
@@ -143,7 +154,7 @@ class GetBlankFormViewController: ParentClass,UITableViewDelegate,UITableViewDat
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return   self.listArry.count
+        return   self.listArry1.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -153,9 +164,27 @@ class GetBlankFormViewController: ParentClass,UITableViewDelegate,UITableViewDat
         cell.selectionStyle = .none
         cell.backgroundColor = UIColor.clear
 
-        cell.lblFieldName.text = self.listArry[indexPath.row]["name"] as? String
-        let strslg = self.listArry[indexPath.row]["slug"] as? String
-        cell.lblSubFieldName.text = "sulg: \(strslg ?? "")"
+//        cell.lblFieldName.text = self.listArry[indexPath.row]["name"] as? String
+//        let strslg = self.listArry[indexPath.row]["slug"] as? String
+//        cell.lblSubFieldName.text = "sulg: \(strslg ?? "")"
+//        cell.btncheckbox.tag = indexPath.row
+//        cell.btncheckbox.addTarget(self, action: #selector(onCheckListPressed(sender:)), for: .touchUpInside)
+//
+        
+        print(self.listArry1[indexPath.row]["name"].stringValue)
+        
+        
+        let dataFoundInselectedArr =  ParentClass.sharedInstance.saveListArray1.filter { $0["slug"].stringValue == listArry1[indexPath.row]["slug"].stringValue}
+        
+        if(dataFoundInselectedArr.count > 0){
+            cell.btncheckbox.isSelected = true
+        }else{
+            cell.btncheckbox.isSelected = false
+        }
+
+        cell.lblFieldName.text = self.listArry1[indexPath.row]["name"].stringValue
+        let strslg = self.listArry1[indexPath.row]["slug"].stringValue
+        cell.lblSubFieldName.text = "sulg: \(strslg )"
         cell.btncheckbox.tag = indexPath.row
         cell.btncheckbox.addTarget(self, action: #selector(onCheckListPressed(sender:)), for: .touchUpInside)
         return cell
@@ -164,28 +193,29 @@ class GetBlankFormViewController: ParentClass,UITableViewDelegate,UITableViewDat
     @objc func onCheckListPressed(sender:UIButton)  {
 
         if sender.isSelected {
-            if ((ParentClass.sharedInstance.saveListArray.count) != 0){
-                let tempSlug2 =  self.listArry[sender.tag]["index"] as? Int
-                let index = ParentClass.sharedInstance.saveListArray.firstIndex(where: { dictionary in
-                    guard let value = dictionary["index"] as? Int
+            if ((ParentClass.sharedInstance.saveListArray1.count) != 0){
+                let tempSlug2 =  self.listArry1[sender.tag]["index"].intValue
+                let index = ParentClass.sharedInstance.saveListArray1.firstIndex(where: { JSON  in
+                    guard let value = JSON["index"].int
                         else { return false }
                     return value == tempSlug2
                 })
                 if let index = index {
-                    ParentClass.sharedInstance.saveListArray.remove(at: index)
+                    ParentClass.sharedInstance.saveListArray1.remove(at: index)
                 }
                 sender.isSelected = false
             }
         }else{
-            let temp = listArry[sender.tag]
-           ParentClass.sharedInstance.saveListArray.append(temp)
+            let temp = listArry1[sender.tag]
+            print(ParentClass.sharedInstance.saveListArray1.count)
+           ParentClass.sharedInstance.saveListArray1.append(temp)
             sender.isSelected = true
         }
         
-        print(ParentClass.sharedInstance.saveListArray.count)
+        print(ParentClass.sharedInstance.saveListArray1.count)
       
     
-        if ParentClass.sharedInstance.saveListArray.count >= 1{
+        if ParentClass.sharedInstance.saveListArray1.count >= 1{
             buttonSave.isEnabled = true
             buttonSave.backgroundColor = colorPrimary
         }else{
@@ -197,7 +227,7 @@ class GetBlankFormViewController: ParentClass,UITableViewDelegate,UITableViewDat
     }
  
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        let lastItem = self.listArry.count - 1
+        let lastItem = self.listArry1.count - 1
         if indexPath.row == lastItem {
             print("IndexRow\(indexPath.row)")
             if currentPage <= totalPage {

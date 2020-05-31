@@ -28,7 +28,8 @@ class ParentClass: UIViewController{
     var iPhone_X_Bottom_Padding:CGFloat = 0
     var token : String!
     var saveListArray : [[String : Any]] = [[String:Any]]()
-    
+    var saveListArray1 : [JSON] = [JSON]()
+
     override func viewDidLoad()
     {
         super.viewDidLoad()

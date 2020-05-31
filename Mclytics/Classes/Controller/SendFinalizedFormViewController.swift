@@ -8,6 +8,7 @@
 
 import UIKit
 import SwiftyJSON
+
 class SendFinalizedFormViewController: ParentClass,UITableViewDelegate,UITableViewDataSource  {
     fileprivate var headerview:UIView!
     fileprivate var buttonBack: UIButton!
@@ -19,18 +20,20 @@ class SendFinalizedFormViewController: ParentClass,UITableViewDelegate,UITableVi
     private var currentPage = 1
     private var totalPage = 1
     
-    var flistArray : [[String:Any]] = [[String:Any]]()
+//    var flistArray : [[String:Any]] = [[String:Any]]()
+    var flistArray : JSON! = JSON()
+
     
     fileprivate var buttonSave: CustomButton!
     override func viewDidLoad() {
         super.viewDidLoad()
         loadHeaderView()
-//        let str =   ParentClass.sharedInstance.getDataForKey(strKey: FILL_BLANK_ARRAY) as? String
-//        
-//        if str != "" && str != nil{
-//            flistArray = Utils.jsonObject(jsonString: str!)
-//            self.initTableview()
-//        }else{
+        let str =   ParentClass.sharedInstance.getDataForKey(strKey: FILL_BLANK_ARRAY) as? String
+        
+        if str != "" && str != nil{
+            flistArray = Utils.jsonObject(jsonString: str!)
+            self.initTableview()
+        }else{
             let lblSubTitle = UILabel (frame: CGRect (x: X_PADDING, y: 0, width: SCREEN_WIDTH - X_PADDING*2, height: SCREEN_HEIGHT))
             //            lblSubTitle.center = CGPoint (x: self.view.center.x, y: lblSubTitle.center.y)
             lblSubTitle.text =  CS.Common.NoData
@@ -40,7 +43,7 @@ class SendFinalizedFormViewController: ParentClass,UITableViewDelegate,UITableVi
             lblSubTitle.font = UIFont (name: APP_FONT_NAME_BOLD, size: SUB_LABEL_DESC_FONT_SIZE)
             lblSubTitle.textColor = .black
             self.view.addSubview(lblSubTitle)
-//        }
+        }
         // Do any additional setup after loading the view.
     }
     func loadHeaderView() {

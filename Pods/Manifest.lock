@@ -4,12 +4,20 @@ PODS:
   - IQKeyboardManagerSwift (6.5.5)
   - JQProgressHUD (2.7)
   - LIHAlert (2.1.1)
-  - ReCaptcha (1.5.0):
-    - ReCaptcha/Core (= 1.5.0)
   - ReCaptcha/Core (1.5.0)
+  - ReCaptcha/RxSwift (1.5.0):
+    - ReCaptcha/Core
+    - RxSwift (~> 5.0)
+  - RxCocoa (5.1.1):
+    - RxRelay (~> 5)
+    - RxSwift (~> 5)
+  - RxRelay (5.1.1):
+    - RxSwift (~> 5)
+  - RxSwift (5.1.1)
   - SDWebImage (5.7.2):
     - SDWebImage/Core (= 5.7.2)
   - SDWebImage/Core (5.7.2)
+  - SwiftLint (0.39.2)
   - SwiftyJSON (5.0.0)
   - TextFieldEffects (1.6.0)
 
@@ -19,8 +27,10 @@ DEPENDENCIES:
   - IQKeyboardManagerSwift
   - JQProgressHUD
   - LIHAlert
-  - ReCaptcha
+  - ReCaptcha/RxSwift
+  - RxCocoa
   - SDWebImage
+  - SwiftLint
   - SwiftyJSON
   - TextFieldEffects
 
@@ -32,7 +42,11 @@ SPEC REPOS:
     - JQProgressHUD
     - LIHAlert
     - ReCaptcha
+    - RxCocoa
+    - RxRelay
+    - RxSwift
     - SDWebImage
+    - SwiftLint
     - SwiftyJSON
     - TextFieldEffects
 
@@ -43,10 +57,14 @@ SPEC CHECKSUMS:
   JQProgressHUD: 45463f7760f004e5c259c2b912a704b5b5b32732
   LIHAlert: a027605673986d03b896e4f4a901f393b15840b9
   ReCaptcha: 40ae1dc390fd5837267674b9a6ae0978abb5eeeb
+  RxCocoa: 32065309a38d29b5b0db858819b5bf9ef038b601
+  RxRelay: d77f7d771495f43c556cbc43eebd1bb54d01e8e9
+  RxSwift: 81470a2074fa8780320ea5fe4102807cb7118178
   SDWebImage: d9ea4959d99c52276dfada481987018fcaea3d58
+  SwiftLint: 22ccbbe3b8008684be5955693bab135e0ed6a447
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
   TextFieldEffects: 529b8aff706fb40f82c41c780c0777941a893796
 
-PODFILE CHECKSUM: fb3041ebefdaecd876a81fee3a1eac5f2ef3079c
+PODFILE CHECKSUM: a8f3921ce2f8dc7d02a3c635d41703cbedc7995e
 
 COCOAPODS: 1.8.4

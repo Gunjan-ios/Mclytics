@@ -71,18 +71,37 @@ class Utils: NSObject {
     static func hideLoading()  {
         JQProgressHUDTool.jq_hideHUD()
     }
-    static func stringFromJson(object: [[String : Any]]) -> String{
+//    static func stringFromJson(object: [[String : Any]]) -> String{
+//        let newjson = JSON(object)
+//        let sjod = newjson.rawString()
+//        return sjod!
+////        let jsonData = try? JSONSerialization.data(withJSONObject: object, options: [])
+////        let jsonString = String(data: jsonData!, encoding: .utf8)
+////        return jsonString!
+//    }
+//    static func jsonObject(jsonString : String) -> [[String : Any]] {
+//        let jsonData = jsonString.data(using: .utf8)
+//        let dictionary = try? JSONSerialization.jsonObject(with: jsonData!, options:  [])
+//        return dictionary as! [[String : Any]]
+//    }
+    
+    static func stringFromJson(object: [JSON]) -> String{
         let newjson = JSON(object)
         let sjod = newjson.rawString()
         return sjod!
-//        let jsonData = try? JSONSerialization.data(withJSONObject: object, options: [])
-//        let jsonString = String(data: jsonData!, encoding: .utf8)
-//        return jsonString!
+        //        let jsonData = try? JSONSerialization.data(withJSONObject: object, options: [])
+        //        let jsonString = String(data: jsonData!, encoding: .utf8)
+        //        return jsonString!
     }
-    static func jsonObject(jsonString : String) -> [[String : Any]] {
+    static func jsonObject(jsonString : String) -> JSON {
         let jsonData = jsonString.data(using: .utf8)
-        let dictionary = try? JSONSerialization.jsonObject(with: jsonData!, options:  [])
-        return dictionary as! [[String : Any]]
+        if (jsonData != nil) {
+            let finalJSON = try? JSON(data: jsonData!)
+            return finalJSON!
+        }
+        else{
+            return JSON()
+        }
     }
 }
 

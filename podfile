@@ -13,7 +13,9 @@ target 'Mclytics' do
 	pod 'SwiftyJSON'
 	pod 'JQProgressHUD'
  	pod 'DLRadioButton', '~> 1.4'
-	pod "ReCaptcha"
 
+  pod 'ReCaptcha/RxSwift'
+  pod 'RxCocoa'
+  pod 'SwiftLint'
 
   end

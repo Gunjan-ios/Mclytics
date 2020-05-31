@@ -51,7 +51,11 @@ class GetBlankFormCell: UITableViewCell {
 
         
     }
-    
+    override func prepareForReuse() {
+        // invoke superclass implementation
+        super.prepareForReuse()
+        btncheckbox.isSelected = false
+    }
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

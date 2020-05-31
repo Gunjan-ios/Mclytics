@@ -12,10 +12,10 @@ import SwiftyJSON
 class DeleteViewController: SegmentedViewController, UIGestureRecognizerDelegate,SegmentedViewControllerDelegate, UITextFieldDelegate, UITextViewDelegate {
 
     let tags: [String] = ["tag1", "tag2", "tag3", "tag4", "tag5", "tag6", "tag7"]
-    var arrayStoreLists:[[String:Any]]!
-    var arrayPendingStoreLists:[[String:Any]]! = [[String:Any]]()
-    var arrayVisitedStoreLists:[[String:Any]]! = [[String:Any]]()
-    var arrayNottrceableStoreLists:[[String:Any]]! = [[String:Any]]()
+    var arrayStoreLists: [JSON] = [JSON]()
+    var arrayPendingStoreLists: [JSON] = [JSON]()
+    var arrayVisitedStoreLists: [JSON] = [JSON]()
+    var arrayNottrceableStoreLists: [JSON] = [JSON]()
 
     var lblTitle: String!
 

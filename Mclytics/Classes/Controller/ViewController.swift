@@ -40,7 +40,8 @@ class ViewController: ParentClass,UITextFieldDelegate {
         let str = ParentClass.sharedInstance.getDataForKey(strKey: FILL_BLANK_ARRAY) as? String
         
         if str != "" && str != nil{
-            saveListArray = Utils.jsonObject(jsonString: str!)
+            saveListArray1 = Utils.jsonObject(jsonString: str!).array!
+            print(saveListArray1)
         }
         self.loadHeaderView()
         // Do any additional setup after loading the view.
@@ -50,9 +51,9 @@ class ViewController: ParentClass,UITextFieldDelegate {
         let str = ParentClass.sharedInstance.getDataForKey(strKey: FILL_BLANK_ARRAY) as? String
         
         if str != "" && str != nil{
-            saveListArray = Utils.jsonObject(jsonString: str!)
+            saveListArray1 = Utils.jsonObject(jsonString: str!).array!
+            btnEditSave.setTitle("Edit Saved Form (\(saveListArray1.count))", for: .normal)
         }
-        btnEditSave.setTitle("Edit Saved Form (\(saveListArray.count))", for: .normal)
 
     }
     func loadHeaderView() {

@@ -19,7 +19,9 @@ class FillFormViewController: ParentClass,UITableViewDelegate,UITableViewDataSou
     private var currentPage = 1
     private var totalPage = 1
     
-    var flistArray : [[String:Any]] = [[String:Any]]()
+//    var flistArray : [[String:Any]] = [[String:Any]]()
+    var flistArray : JSON = JSON()
+
     
     var formField:FormFieldsVC?
 
@@ -29,9 +31,10 @@ class FillFormViewController: ParentClass,UITableViewDelegate,UITableViewDataSou
         super.viewDidLoad()
         loadHeaderView()
         let str =   ParentClass.sharedInstance.getDataForKey(strKey: FILL_BLANK_ARRAY) as? String
-        
+        print(str)
         if str != "" && str != nil{
             flistArray = Utils.jsonObject(jsonString: str!)
+            print(flistArray)
             self.initTableview()
         }else{
            let lblSubTitle = UILabel (frame: CGRect (x: X_PADDING, y: 0, width: SCREEN_WIDTH - X_PADDING*2, height: SCREEN_HEIGHT))
@@ -124,11 +127,13 @@ class FillFormViewController: ParentClass,UITableViewDelegate,UITableViewDataSou
         cell.selectionStyle = .none
         cell.backgroundColor = UIColor.clear
         
-    
-        cell.lblFieldName.text = flistArray[indexPath.row]["name"] as? String
-        cell.lblSubFieldName.text = "sulg: \(flistArray[indexPath.row]["slug"] ?? "")"
-        let strDate = ParentClass.sharedInstance.dateConvert(date: (flistArray[indexPath.row]["created_at"] as? Double)!)
+     print(flistArray[indexPath.row]["name"].stringValue)
+        cell.lblFieldName.text = flistArray[indexPath.row]["name"].stringValue
+        cell.lblSubFieldName.text = "sulg: \(flistArray[indexPath.row]["slug"].stringValue)"
+        let strDate = ParentClass.sharedInstance.dateConvert(date: flistArray[indexPath.row]["created_at"].doubleValue)
         cell.lblSubFieldDate.text = "Added on \(strDate)"
+        
+        
 
         cell.btncheckbox.isHidden = true
 //        cell.btncheckbox.tag = indexPath.row
@@ -137,8 +142,15 @@ class FillFormViewController: ParentClass,UITableViewDelegate,UITableViewDataSou
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.formField = FormFieldsVC()
-        self.navigationController?.pushViewController(self.formField!, animated: true)
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let newViewController = storyBoard.instantiateViewController(withIdentifier: "FormFieldsVC") as! FormFieldsVC
+        newViewController.lblTitle = "form"
+        print(flistArray[indexPath.row]["fields"])
+        newViewController.arrayfield = flistArray[indexPath.row]["fields"]
+        self.navigationController?.pushViewController(newViewController, animated: true)
+        
+//        self.formField = FormFieldsVC()
+//        self.navigationController?.pushViewController(self.formField!, animated: true)
     }
     
 //    @objc func onCheckListPressed(sender:UIButton)  {
