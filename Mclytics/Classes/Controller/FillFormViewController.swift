@@ -101,7 +101,7 @@ class FillFormViewController: ParentClass,UITableViewDelegate,UITableViewDataSou
     
     func initTableview()  {
         // layer list
-        self.tblList = UITableView (frame: CGRect(x: 0, y: yPosition, width: SCREEN_WIDTH, height: SCREEN_HEIGHT - yPosition - CUSTOM_BUTTON_HEIGHT - X_PADDING*2), style: .plain)
+        self.tblList = UITableView (frame: CGRect(x: 0, y: yPosition, width: SCREEN_WIDTH, height: SCREEN_HEIGHT - yPosition), style: .plain)
         self.tblList.delegate = self
         self.tblList.dataSource = self
         self.tblList.tag = 8888
@@ -127,7 +127,7 @@ class FillFormViewController: ParentClass,UITableViewDelegate,UITableViewDataSou
         cell.selectionStyle = .none
         cell.backgroundColor = UIColor.clear
         
-     print(flistArray[indexPath.row]["name"].stringValue)
+        print(flistArray[indexPath.row]["name"].stringValue)
         cell.lblFieldName.text = flistArray[indexPath.row]["name"].stringValue
         cell.lblSubFieldName.text = "sulg: \(flistArray[indexPath.row]["slug"].stringValue)"
         let strDate = ParentClass.sharedInstance.dateConvert(date: flistArray[indexPath.row]["created_at"].doubleValue)
@@ -146,7 +146,7 @@ class FillFormViewController: ParentClass,UITableViewDelegate,UITableViewDataSou
         let newViewController = storyBoard.instantiateViewController(withIdentifier: "FormFieldsVC") as! FormFieldsVC
         newViewController.lblTitle = "form"
         print(flistArray[indexPath.row]["fields"])
-        newViewController.arrayfield = flistArray[indexPath.row]["fields"]
+        newViewController.arrayList = flistArray[indexPath.row]
         self.navigationController?.pushViewController(newViewController, animated: true)
         
 //        self.formField = FormFieldsVC()

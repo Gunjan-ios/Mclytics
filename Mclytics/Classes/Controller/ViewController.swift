@@ -48,11 +48,11 @@ class ViewController: ParentClass,UITextFieldDelegate {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        let str = ParentClass.sharedInstance.getDataForKey(strKey: FILL_BLANK_ARRAY) as? String
+        let str = ParentClass.sharedInstance.getDataForKey(strKey: EDIT_BLANK_ARRAY) as? String
         
         if str != "" && str != nil{
-            saveListArray1 = Utils.jsonObject(jsonString: str!).array!
-            btnEditSave.setTitle("Edit Saved Form (\(saveListArray1.count))", for: .normal)
+            editListArray1 = Utils.jsonObject(jsonString: str!).array!
+            btnEditSave.setTitle("Edit Saved Form (\(editListArray1.count))", for: .normal)
         }
 
     }

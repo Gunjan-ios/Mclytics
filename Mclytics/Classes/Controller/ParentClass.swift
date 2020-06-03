@@ -29,6 +29,9 @@ class ParentClass: UIViewController{
     var token : String!
     var saveListArray : [[String : Any]] = [[String:Any]]()
     var saveListArray1 : [JSON] = [JSON]()
+//    var tempArray : [JSON] = [JSON]()
+    var editListArray1 : [JSON] = [JSON]()
+
 
     override func viewDidLoad()
     {

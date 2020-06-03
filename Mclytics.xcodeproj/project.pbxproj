@@ -45,6 +45,11 @@
 		5327D0D8246BC55700E0878D /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5327D0D7246BC55700E0878D /* SettingViewController.swift */; };
 		532C694B247409940026A28A /* FillFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 532C694A247409940026A28A /* FillFormViewController.swift */; };
 		532C694D24740ACE0026A28A /* FormListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 532C694C24740ACE0026A28A /* FormListCell.swift */; };
+		535E3B0724861D4900CD56F0 /* Option.swift in Sources */ = {isa = PBXBuildFile; fileRef = 535E3B0224861D4900CD56F0 /* Option.swift */; };
+		535E3B0824861D4900CD56F0 /* RootClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 535E3B0324861D4900CD56F0 /* RootClass.swift */; };
+		535E3B0924861D4900CD56F0 /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = 535E3B0424861D4900CD56F0 /* Question.swift */; };
+		535E3B0A24861D4900CD56F0 /* Field.swift in Sources */ = {isa = PBXBuildFile; fileRef = 535E3B0524861D4900CD56F0 /* Field.swift */; };
+		535E3B0B24861D4900CD56F0 /* Answer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 535E3B0624861D4900CD56F0 /* Answer.swift */; };
 		536512AD247800C200A5B35E /* SendFinalizedFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536512AC247800C200A5B35E /* SendFinalizedFormViewController.swift */; };
 		537E682A247E911E00992820 /* CustomLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 537E6829247E911E00992820 /* CustomLabel.swift */; };
 		539968132478F00800864508 /* CustomImageButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5399680F2478F00800864508 /* CustomImageButton.swift */; };
@@ -130,6 +135,11 @@
 		5327D0D7246BC55700E0878D /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		532C694A247409940026A28A /* FillFormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FillFormViewController.swift; sourceTree = "<group>"; };
 		532C694C24740ACE0026A28A /* FormListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormListCell.swift; sourceTree = "<group>"; };
+		535E3B0224861D4900CD56F0 /* Option.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Option.swift; sourceTree = "<group>"; };
+		535E3B0324861D4900CD56F0 /* RootClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootClass.swift; sourceTree = "<group>"; };
+		535E3B0424861D4900CD56F0 /* Question.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
+		535E3B0524861D4900CD56F0 /* Field.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Field.swift; sourceTree = "<group>"; };
+		535E3B0624861D4900CD56F0 /* Answer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Answer.swift; sourceTree = "<group>"; };
 		536512AC247800C200A5B35E /* SendFinalizedFormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendFinalizedFormViewController.swift; sourceTree = "<group>"; };
 		537E6829247E911E00992820 /* CustomLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLabel.swift; sourceTree = "<group>"; };
 		5399680F2478F00800864508 /* CustomImageButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomImageButton.swift; sourceTree = "<group>"; };
@@ -369,6 +379,18 @@
 			path = CustomVIew;
 			sourceTree = "<group>";
 		};
+		535E3B0124861D4900CD56F0 /* Json */ = {
+			isa = PBXGroup;
+			children = (
+				535E3B0224861D4900CD56F0 /* Option.swift */,
+				535E3B0324861D4900CD56F0 /* RootClass.swift */,
+				535E3B0424861D4900CD56F0 /* Question.swift */,
+				535E3B0524861D4900CD56F0 /* Field.swift */,
+				535E3B0624861D4900CD56F0 /* Answer.swift */,
+			);
+			path = Json;
+			sourceTree = "<group>";
+		};
 		539968192478F37500864508 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -380,6 +402,7 @@
 		53B2B9BE24691B730040F573 /* Webservice */ = {
 			isa = PBXGroup;
 			children = (
+				535E3B0124861D4900CD56F0 /* Json */,
 				53B2B9BF24691B850040F573 /* WebServicesManager.swift */,
 			);
 			path = Webservice;
@@ -625,6 +648,7 @@
 				5319CED12469095C00140E8F /* ViewController.swift in Sources */,
 				5319CF1224690B0F00140E8F /* Validation.swift in Sources */,
 				539968132478F00800864508 /* CustomImageButton.swift in Sources */,
+				535E3B0A24861D4900CD56F0 /* Field.swift in Sources */,
 				5319CF0C24690B0F00140E8F /* Consts.swift in Sources */,
 				539968162478F00800864508 /* GISImageDataTypeView.swift in Sources */,
 				532564A0246935810055EBAE /* CustomTextView.swift in Sources */,
@@ -635,6 +659,8 @@
 				539968142478F00800864508 /* CustomTextFieldForAttribute.swift in Sources */,
 				532564AE246936BB0055EBAE /* GeneralConstants.swift in Sources */,
 				53DC26C72476AE69007995E9 /* EditFormViewController.swift in Sources */,
+				535E3B0724861D4900CD56F0 /* Option.swift in Sources */,
+				535E3B0924861D4900CD56F0 /* Question.swift in Sources */,
 				53DC26BF247650EF007995E9 /* SegmentedViewController.swift in Sources */,
 				53E54C522470115900BD7253 /* GetBlankFormViewController.swift in Sources */,
 				5319CF1D24690B2B00140E8F /* Hud.swift in Sources */,
@@ -643,6 +669,7 @@
 				53B2B9C024691B850040F573 /* WebServicesManager.swift in Sources */,
 				532564A4246935940055EBAE /* CustomTextField.swift in Sources */,
 				539968152478F00800864508 /* MarginSelectView.swift in Sources */,
+				535E3B0B24861D4900CD56F0 /* Answer.swift in Sources */,
 				5399681B2478F38000864508 /* GISDownloadedImage.swift in Sources */,
 				532C694B247409940026A28A /* FillFormViewController.swift in Sources */,
 				53D622F5247B9A7A00BAB5F0 /* FormFieldsVC.swift in Sources */,
@@ -656,6 +683,7 @@
 				5319CF0D24690B0F00140E8F /* Enums.swift in Sources */,
 				53E54C55247011E700BD7253 /* GetBlankFormCell.swift in Sources */,
 				5319CECF2469095C00140E8F /* AppDelegate.swift in Sources */,
+				535E3B0824861D4900CD56F0 /* RootClass.swift in Sources */,
 				5319CF20246918B500140E8F /* LoginViewController.swift in Sources */,
 				537E682A247E911E00992820 /* CustomLabel.swift in Sources */,
 				5319CF1C24690B2B00140E8F /* Reach.swift in Sources */,

@@ -27,10 +27,11 @@ class EditFormViewController: ParentClass,UITableViewDelegate,UITableViewDataSou
     override func viewDidLoad() {
         super.viewDidLoad()
         loadHeaderView()
-        let str =   ParentClass.sharedInstance.getDataForKey(strKey: FILL_BLANK_ARRAY) as? String
+        let str =   ParentClass.sharedInstance.getDataForKey(strKey: EDIT_BLANK_ARRAY) as? String
         
         if str != "" && str != nil{
             elistArray = Utils.jsonObject(jsonString: str!)
+            print(elistArray)
             self.initTableview()
         }else{
             let lblSubTitle = UILabel (frame: CGRect (x: X_PADDING, y: 0, width: SCREEN_WIDTH - X_PADDING*2, height: SCREEN_HEIGHT))
@@ -95,7 +96,7 @@ class EditFormViewController: ParentClass,UITableViewDelegate,UITableViewDataSou
     
     func initTableview()  {
         // layer list
-        self.tblList = UITableView (frame: CGRect(x: 0, y: yPosition, width: SCREEN_WIDTH, height: SCREEN_HEIGHT - yPosition - CUSTOM_BUTTON_HEIGHT - X_PADDING*2), style: .plain)
+        self.tblList = UITableView (frame: CGRect(x: 0, y: yPosition, width: SCREEN_WIDTH, height: SCREEN_HEIGHT - yPosition), style: .plain)
         self.tblList.delegate = self
         self.tblList.dataSource = self
         self.tblList.tag = 8888
@@ -124,9 +125,9 @@ class EditFormViewController: ParentClass,UITableViewDelegate,UITableViewDataSou
 //        print(elistArray[indexPath.row]["name"] as? String)
 //        print(elistArray[indexPath.row]["slug"] as? String)
         
-        cell.lblFieldName.text = elistArray[indexPath.row]["name"].stringValue
-        cell.lblSubFieldName.text = "sulg: \(elistArray[indexPath.row]["slug"].stringValue)"
-        let strDate = ParentClass.sharedInstance.dateConvert(date: elistArray[indexPath.row]["created_at"].doubleValue)
+        cell.lblFieldName.text = elistArray[indexPath.row]["data"]["name"].stringValue
+        cell.lblSubFieldName.text = "sulg: \(elistArray[indexPath.row]["data"]["slug"].stringValue)"
+        let strDate = ParentClass.sharedInstance.dateConvert(date: elistArray[indexPath.row]["data"]["created_at"].doubleValue)
         cell.lblSubFieldDate.text = "Added on \(strDate)"
         cell.btncheckbox.isHidden = true
         
@@ -134,7 +135,19 @@ class EditFormViewController: ParentClass,UITableViewDelegate,UITableViewDataSou
         //        cell.btncheckbox.addTarget(self, action: #selector(onCheckListPressed(sender:)), for: .touchUpInside)
         return cell
     }
-
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let newViewController = storyBoard.instantiateViewController(withIdentifier: "FormFieldsVC") as! FormFieldsVC
+        newViewController.lblTitle = "form"
+        print(elistArray[indexPath.row]["fields"])
+        newViewController.arrayList = elistArray[indexPath.row]
+        newViewController.type = "Edit"
+        self.navigationController?.pushViewController(newViewController, animated: true)
+        
+        //        self.formField = FormFieldsVC()
+        //        self.navigationController?.pushViewController(self.formField!, animated: true)
+    }
     /*
     // MARK: - Navigation
 

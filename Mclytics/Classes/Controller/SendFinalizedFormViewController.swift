@@ -91,7 +91,7 @@ class SendFinalizedFormViewController: ParentClass,UITableViewDelegate,UITableVi
     
     func initTableview()  {
         // layer list
-        self.tblList = UITableView (frame: CGRect(x: 0, y: yPosition, width: SCREEN_WIDTH, height: SCREEN_HEIGHT - yPosition - CUSTOM_BUTTON_HEIGHT - X_PADDING*2), style: .plain)
+        self.tblList = UITableView (frame: CGRect(x: 0, y: yPosition, width: SCREEN_WIDTH, height: SCREEN_HEIGHT - yPosition), style: .plain)
         self.tblList.delegate = self
         self.tblList.dataSource = self
         self.tblList.tag = 8888

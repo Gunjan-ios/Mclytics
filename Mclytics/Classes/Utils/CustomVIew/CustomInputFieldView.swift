@@ -15,7 +15,7 @@ class CustomInputFieldView: UIView, UITextFieldDelegate {
     var delegateAppForm:FormFieldsVC?
     var delegateApp:LoginViewController?
 //    var verificationDelegateApp:VerificationDetailViewController?
-    
+    var idString = ""
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
@@ -26,8 +26,9 @@ class CustomInputFieldView: UIView, UITextFieldDelegate {
 
     let labelHeight = 25
     
-    func initDesign(pName:String,pTag:Int,pPlaceHolder:String) {
+    func initDesign(pName:String,pTag:Int,pPlaceHolder:String,str_id :String) {
         
+        idString = str_id
         labelTitle = PaddingLabel(frame: CGRect(x: 0, y: 0, width: Int(frame.size.width), height: labelHeight))
         labelTitle.textColor = colorSubHeading_76
         labelTitle.font = UIFont(name: APP_FONT_NAME, size: LABEL_FONT_SIZE)
@@ -69,18 +70,18 @@ class CustomInputFieldView: UIView, UITextFieldDelegate {
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        if let delegate = self.delegateApp {
-//            delegate.getTextfield(textField)
+        if let delegate = self.delegateAppForm {
+            delegate.getTextfield(textField: textField, str_id: idString)
         }
     }
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        
-        if textField.tag == TAG13 || textField.tag == TAG14 || textField.tag == TAG15 || textField.tag == TAG16 || textField.tag == TAG17{
-        let maxLength = 2
-        let currentString: NSString = textField.text! as NSString
-        let newString: NSString = currentString.replacingCharacters(in: range, with: string) as NSString
-        return newString.length <= maxLength
-        }
+//    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+    
+//        if textField.tag == TAG13 || textField.tag == TAG14 || textField.tag == TAG15 || textField.tag == TAG16 || textField.tag == TAG17{
+//        let maxLength = 2
+//        let currentString: NSString = textField.text! as NSString
+//        let newString: NSString = currentString.replacingCharacters(in: range, with: string) as NSString
+//        return newString.length <= maxLength
+//        }
 //        else if textField.tag == TAG20{
 //            let maxLength = Int(SingletonViewControllerClassSwift.shared.mm_rel_amt!)!
 //            let currentString: NSString = textField.text! as NSString
@@ -92,9 +93,9 @@ class CustomInputFieldView: UIView, UITextFieldDelegate {
 //                return false
 //            }
 //        }
-        return true
-        
-    }
+//        return true
+    
+//    }
     
 //    func textFieldDidBeginEditing(_ textField: UITextField) {
 //
