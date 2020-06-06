@@ -114,13 +114,7 @@ class FormFieldsVC: ParentClass,UIImagePickerControllerDelegate, UINavigationCon
             slug =  arrayList["slug"].stringValue
             created = arrayList["created_at"].doubleValue
         }
-    
-    
-//        let params : JSON = ["data": ["name":name,"slug":slug,"created_at":created],"fields": self.tempAraay]
-//
-//        answerfield.append(params)
-//        print(answerfield)
-
+        
         loadHeaderView()
         dataSetupformAPI()
         
@@ -473,7 +467,8 @@ class FormFieldsVC: ParentClass,UIImagePickerControllerDelegate, UINavigationCon
     }
     @objc func goToBack()  {
         
-        let params : JSON = ["data": ["name":name,"slug":slug,"created_at":created],"fields": tempAraay]
+
+        let params : JSON = ["data": ["name":name,"slug":slug,"created_at":created],"fields": tempAraay,"edit":editData]
         
         ParentClass.sharedInstance.editListArray1.append(params)
         
@@ -494,8 +489,7 @@ class FormFieldsVC: ParentClass,UIImagePickerControllerDelegate, UINavigationCon
                     tamp["Ans"].string = textField.text
                     let updated = try? obejct.merged(with:tamp)
                     if (updated != nil){
-                        tempAraay.append(updated!)
-                        print(tempAraay)
+                        editData.append(updated!)
                     }
                 }
             }

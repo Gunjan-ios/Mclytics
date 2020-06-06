@@ -133,8 +133,6 @@ class FillFormViewController: ParentClass,UITableViewDelegate,UITableViewDataSou
         let strDate = ParentClass.sharedInstance.dateConvert(date: flistArray[indexPath.row]["created_at"].doubleValue)
         cell.lblSubFieldDate.text = "Added on \(strDate)"
         
-        
-
         cell.btncheckbox.isHidden = true
 //        cell.btncheckbox.tag = indexPath.row
 //        cell.btncheckbox.addTarget(self, action: #selector(onCheckListPressed(sender:)), for: .touchUpInside)
