@@ -211,7 +211,7 @@ class RankingView: UIView, UIPickerViewDelegate, UIPickerViewDataSource, UITextF
         print(pOptions)
         pickerView.pickerOptions = dropDownOptions
         pickerView.delegate = self as UIPickerViewDelegate
-        self.txtField = CustomTextFieldForAttribute(frame: CGRect(x: 0, y: 0, width: 70, height: txtFieldHeight))
+        self.txtField = RankingTextFieldForAttribute(frame: CGRect(x: 0, y: 0, width: 70, height: txtFieldHeight))
         self.txtField.delegate = self
 
         self.txtField.tag = pTag

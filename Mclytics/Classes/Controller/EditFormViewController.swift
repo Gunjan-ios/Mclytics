@@ -160,13 +160,12 @@ class EditFormViewController: ParentClass,UITableViewDelegate,UITableViewDataSou
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let newViewController = storyBoard.instantiateViewController(withIdentifier: "FormFieldsVC") as! FormFieldsVC
-        newViewController.lblTitle = "form"
+        newViewController.lblTitle = editListArray[indexPath.row].name
         
         newViewController.selectedForm = editListArray[indexPath.row]
         newViewController.selectedFormIndex = indexPath.row
         newViewController.formArray = editListArray
         
-//        newViewController.arrayList = elistArray[indexPath.row]
         newViewController.type = "Edit"
         self.navigationController?.pushViewController(newViewController, animated: true)
         

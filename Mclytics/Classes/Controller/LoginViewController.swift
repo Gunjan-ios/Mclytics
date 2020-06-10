@@ -53,7 +53,6 @@ class LoginViewController: ParentClass, UITextFieldDelegate {
     
     private func initDesign() {
         
-        
         stackView = UIView(frame: CGRect(x: X_PADDING, y: Int(headerview.frame.maxY), width: SCREEN_WIDTH - (X_PADDING*2), height: 300))
         stackView.backgroundColor = .clear
 

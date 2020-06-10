@@ -10,30 +10,46 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Mclytics/Classes/Controller/FormFieldsVC.swift"
-            timestampString = "613401547.8997819"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "487"
-            endingLineNumber = "487"
-            landmarkName = "dataSetupformOnebyOne(object:)"
-            landmarkType = "9">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "Mclytics/Classes/Controller/ViewController.swift"
-            timestampString = "613311704.5609829"
+            timestampString = "613463973.664461"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "96"
             endingLineNumber = "96"
             landmarkName = "goToSetting()"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mclytics.ViewController.goToSetting() -&gt; ()"
+                  moduleName = "Mclytics"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/gunjanraval/Desktop/WORK%202020/Hardik/Mclytics/Mclytics/Classes/Controller/ViewController.swift"
+                  timestampString = "613463737.848177"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "96"
+                  endingLineNumber = "96"
+                  offsetFromSymbolStart = "124">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; () in Mclytics.ViewController.goToSetting() -&gt; ()"
+                  moduleName = "Mclytics"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/gunjanraval/Desktop/WORK%202020/Hardik/Mclytics/Mclytics/Classes/Controller/ViewController.swift"
+                  timestampString = "613463737.8503979"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "97"
+                  endingLineNumber = "97"
+                  offsetFromSymbolStart = "86">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -43,11 +59,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Mclytics/Classes/Controller/LoginViewController.swift"
-            timestampString = "613312758.536299"
+            timestampString = "613463973.664867"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "161"
-            endingLineNumber = "161"
+            startingLineNumber = "160"
+            endingLineNumber = "160"
             landmarkName = "rememberMePressed(sender:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -59,13 +75,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Mclytics/Classes/Controller/FormFieldsVC.swift"
-            timestampString = "613401547.900344"
+            timestampString = "613463973.6649311"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "753"
-            endingLineNumber = "753"
-            landmarkName = "dataSetupformAPI()"
-            landmarkType = "9">
+            startingLineNumber = "619"
+            endingLineNumber = "619"
+            landmarkName = "onNextPressed()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
