@@ -71,7 +71,7 @@ class CustomInputFieldView: UIView, UITextFieldDelegate {
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         if let delegate = self.delegateAppForm {
-            delegate.getTextfield(textField: textField, str_id: idString)
+            delegate.getTextfield(textField: textField, str_id: idString, selectedOption: 1000)
         }
     }
 //    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {

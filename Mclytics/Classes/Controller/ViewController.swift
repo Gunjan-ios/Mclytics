@@ -37,22 +37,30 @@ class ViewController: ParentClass,UITextFieldDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        let str = ParentClass.sharedInstance.getDataForKey(strKey: FILL_BLANK_ARRAY) as? String
         
-        if str != "" && str != nil{
-            saveListArray1 = Utils.jsonObject(jsonString: str!).array!
-            print(saveListArray1)
+        if let listArray = ParentClass.sharedInstance.getDataForKey(strKey: FILL_BLANK_ARRAY) as? Data {
+            if let decodedArray = NSKeyedUnarchiver.unarchiveObject(with: listArray) as? [MainFormModal] {
+                saveListArray = decodedArray
+            }
         }
+        
         self.loadHeaderView()
         // Do any additional setup after loading the view.
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        let str = ParentClass.sharedInstance.getDataForKey(strKey: EDIT_BLANK_ARRAY) as? String
+//        let str = ParentClass.sharedInstance.getDataForKey(strKey: EDIT_BLANK_ARRAY) as? String
+//
+//        if str != "" && str != nil{
+//            editListArray1 = Utils.jsonObject(jsonString: str!).array!
+//            btnEditSave.setTitle("Edit Saved Form (\(editListArray1.count))", for: .normal)
+//        }
         
-        if str != "" && str != nil{
-            editListArray1 = Utils.jsonObject(jsonString: str!).array!
-            btnEditSave.setTitle("Edit Saved Form (\(editListArray1.count))", for: .normal)
+        if let listArray = ParentClass.sharedInstance.getDataForKey(strKey: EDIT_BLANK_ARRAY) as? Data {
+            if let decodedArray = NSKeyedUnarchiver.unarchiveObject(with: listArray) as? [MainFormModal] {
+                editListArray = decodedArray
+                btnEditSave.setTitle("Edit Saved Form (\(editListArray.count))", for: .normal)
+            }
         }
 
     }

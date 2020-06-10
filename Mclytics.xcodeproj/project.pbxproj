@@ -29,7 +29,6 @@
 		5319CF1D24690B2B00140E8F /* Hud.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5319CF1A24690B2B00140E8F /* Hud.swift */; };
 		5319CF20246918B500140E8F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5319CF1F246918B500140E8F /* LoginViewController.swift */; };
 		5319CF22246918F700140E8F /* ParentClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5319CF21246918F700140E8F /* ParentClass.swift */; };
-		5321664D246AA0AB00472214 /* ListButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5321664C246AA0AB00472214 /* ListButton.swift */; };
 		5322B21A24828D7300650CC8 /* shapeFill.png in Resources */ = {isa = PBXBuildFile; fileRef = 5322B21724828D7200650CC8 /* shapeFill.png */; };
 		5322B21B24828D7300650CC8 /* StarRateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5322B21824828D7200650CC8 /* StarRateView.swift */; };
 		5322B21C24828D7300650CC8 /* shapeEmpty.png in Resources */ = {isa = PBXBuildFile; fileRef = 5322B21924828D7200650CC8 /* shapeEmpty.png */; };
@@ -70,6 +69,8 @@
 		53DC26C72476AE69007995E9 /* EditFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53DC26C62476AE69007995E9 /* EditFormViewController.swift */; };
 		53E54C522470115900BD7253 /* GetBlankFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E54C512470115900BD7253 /* GetBlankFormViewController.swift */; };
 		53E54C55247011E700BD7253 /* GetBlankFormCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E54C54247011E700BD7253 /* GetBlankFormCell.swift */; };
+		A12AF6AF2488FEEC00123A00 /* ListButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12AF6AE2488FEEC00123A00 /* ListButton.swift */; };
+		A1E989DD24895A98004B94E6 /* FormModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E989DC24895A98004B94E6 /* FormModal.swift */; };
 		AA0461401ACE3EAD3B051209 /* Pods_Mclytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78E2A00718C95A5F06EB2BD8 /* Pods_Mclytics.framework */; };
 /* End PBXBuildFile section */
 
@@ -119,7 +120,6 @@
 		5319CF1A24690B2B00140E8F /* Hud.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Hud.swift; sourceTree = "<group>"; };
 		5319CF1F246918B500140E8F /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		5319CF21246918F700140E8F /* ParentClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParentClass.swift; sourceTree = "<group>"; };
-		5321664C246AA0AB00472214 /* ListButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ListButton.swift; path = "/Users/gunjanraval/Desktop/WORK 2020/Hardik/Mclytics/Mclytics/Classes/Utils/CustomVIew/ListButton.swift"; sourceTree = "<absolute>"; };
 		5322B21724828D7200650CC8 /* shapeFill.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shapeFill.png; sourceTree = "<group>"; };
 		5322B21824828D7200650CC8 /* StarRateView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StarRateView.swift; sourceTree = "<group>"; };
 		5322B21924828D7200650CC8 /* shapeEmpty.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shapeEmpty.png; sourceTree = "<group>"; };
@@ -162,6 +162,8 @@
 		53E54C54247011E700BD7253 /* GetBlankFormCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetBlankFormCell.swift; sourceTree = "<group>"; };
 		78E2A00718C95A5F06EB2BD8 /* Pods_Mclytics.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Mclytics.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		796F5709F1D880DF0210319C /* Pods-Mclytics.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mclytics.release.xcconfig"; path = "Target Support Files/Pods-Mclytics/Pods-Mclytics.release.xcconfig"; sourceTree = "<group>"; };
+		A12AF6AE2488FEEC00123A00 /* ListButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListButton.swift; sourceTree = "<group>"; };
+		A1E989DC24895A98004B94E6 /* FormModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormModal.swift; sourceTree = "<group>"; };
 		F80C362F65FD5554BD46429D /* Pods-Mclytics.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mclytics.debug.xcconfig"; path = "Target Support Files/Pods-Mclytics/Pods-Mclytics.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -357,6 +359,7 @@
 		5325649C246935350055EBAE /* CustomVIew */ = {
 			isa = PBXGroup;
 			children = (
+				A12AF6AE2488FEEC00123A00 /* ListButton.swift */,
 				5322B21624828D7200650CC8 /* StarsRating */,
 				53D622E8247B9A4700BAB5F0 /* Signature */,
 				539968112478F00800864508 /* MarginSelectView.swift */,
@@ -373,7 +376,6 @@
 				532564A3246935940055EBAE /* CustomTextField.swift */,
 				532564A1246935870055EBAE /* CustomInputTextView.swift */,
 				5325649F246935810055EBAE /* CustomTextView.swift */,
-				5321664C246AA0AB00472214 /* ListButton.swift */,
 				5325649D246935760055EBAE /* CustomButton.swift */,
 			);
 			path = CustomVIew;
@@ -395,6 +397,7 @@
 			isa = PBXGroup;
 			children = (
 				5399681A2478F38000864508 /* GISDownloadedImage.swift */,
+				A1E989DC24895A98004B94E6 /* FormModal.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -638,6 +641,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A12AF6AF2488FEEC00123A00 /* ListButton.swift in Sources */,
 				5327D0D8246BC55700E0878D /* SettingViewController.swift in Sources */,
 				5319CF0F24690B0F00140E8F /* RoundedView.swift in Sources */,
 				5325649E246935760055EBAE /* CustomButton.swift in Sources */,
@@ -681,6 +685,7 @@
 				532C694D24740ACE0026A28A /* FormListCell.swift in Sources */,
 				532564AC246935D20055EBAE /* GenderView.swift in Sources */,
 				5319CF0D24690B0F00140E8F /* Enums.swift in Sources */,
+				A1E989DD24895A98004B94E6 /* FormModal.swift in Sources */,
 				53E54C55247011E700BD7253 /* GetBlankFormCell.swift in Sources */,
 				5319CECF2469095C00140E8F /* AppDelegate.swift in Sources */,
 				535E3B0824861D4900CD56F0 /* RootClass.swift in Sources */,
@@ -688,7 +693,6 @@
 				537E682A247E911E00992820 /* CustomLabel.swift in Sources */,
 				5319CF1C24690B2B00140E8F /* Reach.swift in Sources */,
 				53DC26C524765173007995E9 /* DeleteViewController.swift in Sources */,
-				5321664D246AA0AB00472214 /* ListButton.swift in Sources */,
 				5319CF0E24690B0F00140E8F /* UIView_Borders.swift in Sources */,
 				5319CF1324690B0F00140E8F /* Utils.swift in Sources */,
 				532564A8246935A40055EBAE /* CustomInputFieldView.swift in Sources */,

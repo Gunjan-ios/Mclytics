@@ -8,8 +8,9 @@
 
 import Foundation
 import UIKit
+
 protocol RatingViewDelegate {
-    func updateRatingFormatValue(_ value: Int)
+    func updateRatingFormatValue(_ value: Int, str_id : String)
 }
 @IBDesignable
 class StarRateView: UIView {
@@ -17,6 +18,8 @@ class StarRateView: UIView {
     var imageViewList = [UIImageView]()
     var rating = 0.0
     var delegate: RatingViewDelegate!
+    var idString = ""
+    
     @IBInspectable
     var maxCount: Int = 5 {
         didSet {
@@ -38,7 +41,7 @@ class StarRateView: UIView {
     @IBInspectable
     var ratingValue: Int = -1 {
         didSet {
-             updateViewAppearance(ratingValue)
+             updateViewAppearanceForRating(ratingValue)
         }
     }
     override init(frame: CGRect) {
@@ -74,6 +77,23 @@ class StarRateView: UIView {
         stackView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
         stackView.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
         stackView.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true
+    }
+    
+    func updateViewAppearanceForRating(_ xPoint: Int) {
+        var tag = 0
+        for imageView in imageViewList {
+            let imageViewX = Int(imageView.frame.origin.x)
+            print("imageViewX = ",imageViewX)
+            if xPoint > tag {
+                imageView.image = fillImage
+                setNeedsDisplay()
+                tag = tag + 1
+            } else {
+                imageView.image = emptyImage
+                setNeedsDisplay()
+            }
+        }
+        updateRating(tag)
     }
     
     func updateViewAppearance(_ xPoint: Int) {
@@ -114,7 +134,7 @@ class StarRateView: UIView {
     //MARK: - Delegate
     func updateRating(_ value: Int) {
         if delegate != nil {
-            delegate.updateRatingFormatValue(value)
+            delegate.updateRatingFormatValue(value, str_id: idString)
         }
     }
 }

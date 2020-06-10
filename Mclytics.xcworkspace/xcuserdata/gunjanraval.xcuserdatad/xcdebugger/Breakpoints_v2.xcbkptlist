@@ -51,7 +51,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "150"
             endingLineNumber = "150"
-            landmarkName = "onCheckListPressed(sender:)"
+            landmarkName = "tableView(_:cellForRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -70,6 +70,38 @@
             endingLineNumber = "159"
             landmarkName = "onCheckListPressed(sender:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "6B37B1BC-8FC7-434A-B37D-DF1C83439C82 - a26a62a01fc36be1"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mclytics.DeleteListTableViewController.onCheckListPressed(sender: __C.UIButton) -&gt; ()"
+                  moduleName = "Mclytics"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/gunjanraval/Desktop/Mclytics/Mclytics/Classes/Controller/Delete%20Saved%20Form/DeleteListTableViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "160"
+                  endingLineNumber = "160"
+                  offsetFromSymbolStart = "605">
+               </Location>
+               <Location
+                  uuid = "6B37B1BC-8FC7-434A-B37D-DF1C83439C82 - 6cea9865587f5842"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Mclytics.MainFormModal) -&gt; Swift.Bool in Mclytics.DeleteListTableViewController.onCheckListPressed(sender: __C.UIButton) -&gt; ()"
+                  moduleName = "Mclytics"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/gunjanraval/Desktop/Mclytics/Mclytics/Classes/Controller/Delete%20Saved%20Form/DeleteListTableViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "160"
+                  endingLineNumber = "160"
+                  offsetFromSymbolStart = "34">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -92,6 +124,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
+            uuid = "B6D518A0-3198-45FA-876E-50A6693C5AE9"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"

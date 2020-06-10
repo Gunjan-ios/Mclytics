@@ -9,7 +9,7 @@
 import UIKit
 import Foundation
 
-class LoginViewController: ParentClass,UITextFieldDelegate {
+class LoginViewController: ParentClass, UITextFieldDelegate {
     
     private var stackView:UIView!
     
@@ -227,6 +227,10 @@ class LoginViewController: ParentClass,UITextFieldDelegate {
         
     }
     
+    
+    func textViewDidBeginEditing_VC(_ textView :UITextView , str_id : String) {
+        
+    }
     /*
     // MARK: - Navigation
 

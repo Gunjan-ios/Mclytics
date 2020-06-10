@@ -10,13 +10,9 @@ import UIKit
 import SwiftyJSON
 
 class DeleteListTableViewController: ParentClass,UITableViewDelegate,UITableViewDataSource {
-    
-//    var inspctionForm:InspectionFormViewController!
-//    var arrayStoreLists:[[String:Any]]! = [[String:Any]]()
-//    var arrayDeleteLists:[[String:Any]]! = [[String:Any]]()
-    var arrayStoreLists : [JSON] = [JSON]()
-    var arrayDeleteLists : [JSON] = [JSON]()
-
+ 
+    var arrayStoreLists = [MainFormModal]()
+    var arrayDeleteLists = [MainFormModal]()
 
     var countDeleteList = 0
     var vcDelegate:DeleteViewController!
@@ -29,9 +25,14 @@ class DeleteListTableViewController: ParentClass,UITableViewDelegate,UITableView
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let str =   ParentClass.sharedInstance.getDataForKey(strKey: FILL_BLANK_ARRAY) as? String
-        if str != "" && str != nil{
-            arrayStoreLists = Utils.jsonObject(jsonString: str!).array!
+        
+//        if let listArray = ParentClass.sharedInstance.getDataForKey(strKey: FILL_BLANK_ARRAY) as? Data {
+//            if let decodedArray = NSKeyedUnarchiver.unarchiveObject(with: listArray) as? [MainFormModal] {
+//                arrayStoreLists = decodedArray
+//            }
+//        }
+        
+        if arrayStoreLists.count > 0 {
             self.initTableview()
         }else{
             let lblSubTitle = UILabel (frame: CGRect (x: X_PADDING, y: 0, width: SCREEN_WIDTH - X_PADDING*2, height: SCREEN_HEIGHT))
@@ -80,23 +81,27 @@ class DeleteListTableViewController: ParentClass,UITableViewDelegate,UITableView
     
     @objc func onDeletePressed(){
 
-        for temp in self.arrayDeleteLists{
-            let tempSlug2 =  temp["index"].intValue
-            let index = self.arrayStoreLists.firstIndex(where: { dictionary in
-                guard let value = dictionary["index"].int
-                    else { return false }
-                return value == tempSlug2
-            })
-            if let index = index {
-                arrayStoreLists.remove(at: index)
+        for temp in arrayDeleteLists {
+            let tempSlug2 = temp.index
+            
+            if let object = arrayStoreLists.filter({ $0.index == tempSlug2 }).first {
+                print("found")
+                let index = arrayStoreLists.firstIndex(of: object)
+                arrayStoreLists.remove(at: index!)
+                
+                if segmentedController?.selectedIndex == 0 {
+                    ParentClass.sharedInstance.editListArray = arrayStoreLists
+                    let encodedData: Data = NSKeyedArchiver.archivedData(withRootObject: ParentClass.sharedInstance.editListArray)
+                    ParentClass.sharedInstance.setData(strData: encodedData, strKey: EDIT_BLANK_ARRAY)
+                } else {
+                    let encodedData: Data = NSKeyedArchiver.archivedData(withRootObject: arrayStoreLists)
+                    ParentClass.sharedInstance.setData(strData: encodedData, strKey: FILL_BLANK_ARRAY)
+                }
             }
         }
-        let str = Utils.stringFromJson(object: arrayStoreLists)
-        print(str)
-        ParentClass.sharedInstance.setData(strData: str, strKey: FILL_BLANK_ARRAY)
         
-         tblList.reloadData()
-        self.arrayDeleteLists =  [JSON]()
+        tblList.reloadData()
+        self.arrayDeleteLists.removeAll()
     }
     override func viewWillAppear(_ animated: Bool) {
 //        self.arrNotTraceble = ParentClass.sharedInstance.getDataForKey(strKey: STORE_NOT_TRACEBLE_ARRAY) as? [String]
@@ -116,7 +121,7 @@ class DeleteListTableViewController: ParentClass,UITableViewDelegate,UITableView
 
      func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return self.arrayStoreLists.count
+        return arrayStoreLists.count
     }
 
     
@@ -126,8 +131,9 @@ class DeleteListTableViewController: ParentClass,UITableViewDelegate,UITableView
         cell.selectionStyle = .none
         cell.backgroundColor = UIColor.clear
         
+        let formObject = arrayStoreLists[indexPath.row]
         
-        let dataFoundInselectedArr =  arrayDeleteLists.filter { $0["slug"].stringValue == arrayStoreLists[indexPath.row]["slug"].stringValue}
+        let dataFoundInselectedArr =  arrayDeleteLists.filter { $0.slug == formObject.slug}
         
         if(dataFoundInselectedArr.count > 0){
             cell.btncheckbox.isSelected = true
@@ -135,9 +141,9 @@ class DeleteListTableViewController: ParentClass,UITableViewDelegate,UITableView
             cell.btncheckbox.isSelected = false
         }
 
-        cell.lblFieldName.text =  self.arrayStoreLists[indexPath.row]["name"].stringValue
-        cell.lblSubFieldName.text = "sulg: \( self.arrayStoreLists[indexPath.row]["slug"].stringValue)"
-        let strDate = ParentClass.sharedInstance.dateConvert(date: self.arrayStoreLists[indexPath.row]["created_at"].doubleValue)
+        cell.lblFieldName.text =  formObject.name
+        cell.lblSubFieldName.text = "sulg: \( formObject.slug)"
+        let strDate = ParentClass.sharedInstance.dateConvert(date: formObject.created_at)
         cell.lblSubFieldDate.text = "Added on \(strDate)"
         cell.btncheckbox.tag = indexPath.row
         cell.btncheckbox.isSelected = false
@@ -149,18 +155,16 @@ class DeleteListTableViewController: ParentClass,UITableViewDelegate,UITableView
     @objc func onCheckListPressed(sender:UIButton)  {
         if sender.isSelected {
             if ((self.arrayDeleteLists.count) != 0){
-                let tempSlug2 =  self.arrayStoreLists[sender.tag]["index"].intValue
-                let index = self.arrayDeleteLists.firstIndex(where: { dictionary in
-                    guard let value = dictionary["index"].int
-                        else { return false }
-                    return value == tempSlug2
-                })
-                if let index = index {
-                    arrayDeleteLists.remove(at: index)
+                let tempSlug2 =  arrayStoreLists[sender.tag].index
+                
+                if let object = arrayDeleteLists.filter({ $0.index == tempSlug2 }).first {
+                    let index = arrayDeleteLists.firstIndex(of: object)
+                    arrayDeleteLists.remove(at: index!)
                 }
+                
                 sender.isSelected = false
             }
-        }else{
+        } else {
             let temp = arrayStoreLists[sender.tag]
             arrayDeleteLists.append(temp)
             sender.isSelected = true

@@ -15,13 +15,14 @@ class CustomInputTextView: UIView, UITextViewDelegate {
     var txtField:CustomTextView!
     var delegateAppForm:FormFieldsVC?
     var delegateApp:LoginViewController?
+    var idString = ""
 //    var previewDelegateApp:PreviewViewController?
 //    var verificationDelegateApp:VerificationDetailViewController?
 
     let labelHeight = 25
     
-    func initDesign(pName:String,pTag:Int,pPlaceHolder:String) {
-        
+    func initDesign(pName:String,pTag:Int,pPlaceHolder:String,str_id :String) {
+        idString = str_id
         labelTitle = PaddingLabel(frame: CGRect(x: 0, y: 0, width: Int(frame.size.width), height: labelHeight))
         labelTitle.textColor = colorSubHeading_76
         labelTitle.font = UIFont(name: APP_FONT_NAME, size: LABEL_FONT_SIZE)
@@ -57,9 +58,11 @@ class CustomInputTextView: UIView, UITextViewDelegate {
     }
     
     func textViewDidBeginEditing(_ textView: UITextView) {
-
-        if let delegate = self.delegateApp {
-//            delegate.textViewDidBeginEditing_VC(textView)
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if let delegate = self.delegateAppForm {
+            delegate.textViewDidBeginEditing_VC(textView, str_id: idString)
         }
     }
 }
