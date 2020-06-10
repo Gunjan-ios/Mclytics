@@ -26,10 +26,10 @@ class CustomTextFieldForAttribute: UITextField {
 //        self.layer.borderWidth = borderWidth
         
         let rectShape = CAShapeLayer()
-        rectShape.path = UIBezierPath(roundedRect: self.bounds, byRoundingCorners: [ .bottomLeft , .bottomRight], cornerRadii: CGSize(width: 5, height: 5)).cgPath
-        rectShape.strokeColor = UIColor.lightGray.cgColor
+        rectShape.path = UIBezierPath(roundedRect: self.bounds, byRoundingCorners: [ .bottomLeft , .bottomRight], cornerRadii: CGSize(width: radius, height: radius)).cgPath
+        rectShape.strokeColor = colorDividerBG_f4.cgColor
         rectShape.fillColor = UIColor.clear.cgColor
-        rectShape.lineWidth = 1
+        rectShape.lineWidth = borderWidth
         rectShape.frame = self.bounds
         self.layer.mask =   rectShape
         self.layer.addSublayer(rectShape)
@@ -80,7 +80,7 @@ class RankingTextFieldForAttribute: UITextField {
         self.addSubview(imgIcon)
         
                 self.layer.cornerRadius = radius
-                self.layer.borderColor = boxBorderColor
+                self.layer.borderColor = colorDividerBG_f4.cgColor
                 self.layer.borderWidth = borderWidth
         
 //        let rectShape = CAShapeLayer()

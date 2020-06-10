@@ -31,10 +31,10 @@ class CustomComboBoxView: UIView, UIPickerViewDelegate, UIPickerViewDataSource, 
         labelTitle.text = pName
         labelTitle.textAlignment = .left
         let rectShape = CAShapeLayer()
-        rectShape.path = UIBezierPath(roundedRect: labelTitle.bounds, byRoundingCorners: [ .topRight , .topLeft], cornerRadii: CGSize(width: 5, height: 5)).cgPath
-        rectShape.strokeColor = UIColor.lightGray.cgColor
+        rectShape.path = UIBezierPath(roundedRect: labelTitle.bounds, byRoundingCorners: [ .topRight , .topLeft], cornerRadii: CGSize(width: radius, height: radius)).cgPath
+        rectShape.strokeColor = colorDividerBG_f4.cgColor
         rectShape.fillColor = UIColor.clear.cgColor
-        rectShape.lineWidth = 1
+        rectShape.lineWidth = borderWidth
         rectShape.frame = labelTitle.bounds
         labelTitle.layer.mask =   rectShape
         labelTitle.layer.addSublayer(rectShape)
@@ -185,10 +185,9 @@ class RankingView: UIView, UIPickerViewDelegate, UIPickerViewDataSource, UITextF
     func initDesign(pName:String,pTag:Int,pOptions:[String],pPlaceHolder:String,str_id :String, textFieldIndex : Int) {
         idString = str_id
         selectedOption = textFieldIndex
-        let label = PaddingLabel (frame: CGRect(x: 100 , y: 0, width: Int(frame.size.width) - 100 , height: txtFieldHeight))
+        let label = PaddingLabel (frame: CGRect(x: 70 , y: 0, width: Int(frame.size.width) - 70 , height: txtFieldHeight))
         label.text = pName
         label.textColor = .gray
-//        label.backgroundColor = .red
         self.addSubview(label)
         
         let toolBar = UIToolbar()

@@ -25,7 +25,7 @@ class CS {
     }
     
     struct Common {
-        static let waiting = "Loading.."
+        static let waiting = "Loading..."
         static let defaultFailedMessage = "Failed. Please try again."
         static let cameramessage = "Can't aceess camera in this device."
         static let Getdata = "Getting Data Successfully"

@@ -310,7 +310,7 @@ class FormFieldsVC: ParentClass, UIImagePickerControllerDelegate, UINavigationCo
                 genderView.frame = genderView.resetHeight()
                 genderView.layer.cornerRadius = radius
                 genderView.layer.borderWidth = borderWidth
-                genderView.layer.borderColor =  UIColor.lightGray.cgColor
+                genderView.layer.borderColor =  colorDividerBG_f4.cgColor
                 genderView.delegateApp = self
                 scrlView.addSubview(genderView)
                 
@@ -328,7 +328,7 @@ class FormFieldsVC: ParentClass, UIImagePickerControllerDelegate, UINavigationCo
                 multiple.frame = multiple.resetHeight()
                 multiple.layer.cornerRadius = radius
                 multiple.layer.borderWidth = borderWidth
-                multiple.layer.borderColor =  UIColor.lightGray.cgColor
+                multiple.layer.borderColor =  colorDividerBG_f4.cgColor
                 scrlView.addSubview(multiple)
                 
 //                yposition += X_PADDING + Int( multiple.bounds.height)
@@ -349,7 +349,7 @@ class FormFieldsVC: ParentClass, UIImagePickerControllerDelegate, UINavigationCo
                 title.textColor = colorSubHeading_76
                 let rectShape = CAShapeLayer()
                 rectShape.path = UIBezierPath(roundedRect: title.bounds, byRoundingCorners: [ .topRight , .topLeft], cornerRadii: CGSize(width: radius, height: radius)).cgPath
-                rectShape.strokeColor = UIColor.lightGray.cgColor
+                rectShape.strokeColor = colorDividerBG_f4.cgColor
                 rectShape.fillColor = UIColor.clear.cgColor
                 rectShape.lineWidth = borderWidth
                 rectShape.frame = title.bounds
@@ -362,7 +362,7 @@ class FormFieldsVC: ParentClass, UIImagePickerControllerDelegate, UINavigationCo
                 let vv1 = UIView(frame: CGRect(x: X_PADDING, y: yposition, width: Int(self.view.frame.size.width) - X_PADDING*2, height: 90))
                 vv1.layer.cornerRadius = radius
                 vv1.layer.borderWidth = borderWidth
-                vv1.layer.borderColor = buttonBorderColor.cgColor
+                vv1.layer.borderColor = colorDividerBG_f4.cgColor
                 
                 var y_Internal_position : Int! = X_PADDING
                 
@@ -394,8 +394,8 @@ class FormFieldsVC: ParentClass, UIImagePickerControllerDelegate, UINavigationCo
             }
             else if dataType == DATATYPE_SIDEBYSIDE{
                 //controller SidebySide
-                vSideBySide.frame = CGRect(x: X_PADDING, y: yposition, width: Int(self.view.frame.size.width) - X_PADDING*2, height: 128)
-                vSideBySide.layer.borderColor = UIColor.lightGray.cgColor
+                vSideBySide.frame = CGRect(x: X_PADDING, y: yposition, width: Int(self.view.frame.size.width) - X_PADDING*2, height: 100)
+                vSideBySide.layer.borderColor = colorDividerBG_f4.cgColor
                 vSideBySide.layer.borderWidth = borderWidth
                 vSideBySide.layer.cornerRadius = radius
                 scrollSideBySide.showsHorizontalScrollIndicator = false
@@ -421,7 +421,7 @@ class FormFieldsVC: ParentClass, UIImagePickerControllerDelegate, UINavigationCo
                     let vv = UIView(frame: CGRect(x: X_PADDING, y: yposition, width: Int(self.view.frame.size.width) - X_PADDING*2, height: 90))
                     vv.layer.cornerRadius = radius
                     vv.layer.borderWidth = borderWidth
-                    vv.layer.borderColor = buttonBorderColor.cgColor
+                    vv.layer.borderColor = colorDividerBG_f4.cgColor
                     
                     let lblSelectChoise = PaddingLabel(frame: CGRect(x: 0, y: 0, width: Int(self.view.frame.size.width) - X_PADDING, height: 29))
                     lblSelectChoise.text = object.label.htmlToString
@@ -454,7 +454,7 @@ class FormFieldsVC: ParentClass, UIImagePickerControllerDelegate, UINavigationCo
                 else{
                     //Slider selection
                     vSliderSelection.frame = CGRect(x: X_PADDING, y: yposition, width: Int(self.view.frame.size.width) - X_PADDING*2, height: 100)
-                    vSliderSelection.layer.borderColor = UIColor.lightGray.cgColor
+                    vSliderSelection.layer.borderColor = colorDividerBG_f4.cgColor
                     vSliderSelection.layer.borderWidth = borderWidth
                     vSliderSelection.layer.cornerRadius = radius
                     
@@ -472,7 +472,7 @@ class FormFieldsVC: ParentClass, UIImagePickerControllerDelegate, UINavigationCo
                 //image file
                 
                 let iconImage:UIImage? = UIImage(named: "gallery")
-                let attacheFile2 = CustomeAttacheFile(frame: CGRect(x: X_PADDING, y: yposition, width: 130, height: 130))
+                attachImage = CustomeAttacheFile(frame: CGRect(x: X_PADDING, y: yposition, width: 130, height: 130))
                 attachImage.accessibilityIdentifier = object.id
                 attachImage.addTarget(self, action: #selector(openGallary), for: .touchUpInside)
                 scrlView.addSubview(attachImage)
@@ -555,7 +555,7 @@ class FormFieldsVC: ParentClass, UIImagePickerControllerDelegate, UINavigationCo
                 signatureView.backgroundColor = UIColor.clear
                 signatureView.layer.cornerRadius = radius
                 signatureView.layer.borderWidth = borderWidth
-                signatureView.layer.borderColor = buttonBorderColor.cgColor
+                signatureView.layer.borderColor = colorDividerBG_f4.cgColor
                 signatureView.accessibilityIdentifier = object.id
                 scrlView.addSubview(signatureView)
                 
@@ -569,11 +569,10 @@ class FormFieldsVC: ParentClass, UIImagePickerControllerDelegate, UINavigationCo
                 
                 signatureView.delegate = self
                 if object.answer != "" {
-                    signatureImageView = UIImageView(frame:CGRect(x: Int(signatureView.frame.origin.x), y: Int(signatureView.frame.origin.y), width: Int(signatureView.frame.size.width), height: 200))
-                    signatureImageView.backgroundColor = UIColor.red
+                    signatureImageView = UIImageView(frame:CGRect(x: 0, y: 0, width: Int(signatureView.frame.size.width), height: 200))
                     signatureImageView.layer.cornerRadius = radius
                     signatureImageView.layer.borderWidth = borderWidth
-                    signatureImageView.layer.borderColor = buttonBorderColor.cgColor
+                    signatureImageView.layer.borderColor = colorDividerBG_f4.cgColor
                     signatureImageView.accessibilityIdentifier = object.id
                     signatureImageView.image = loadImageFromDocumentDirectory(fileName: object.answer)
                     signatureView.addSubview(signatureImageView)
@@ -585,18 +584,12 @@ class FormFieldsVC: ParentClass, UIImagePickerControllerDelegate, UINavigationCo
                 
                 //Captch
                 vCaptcha.frame = CGRect(x: X_PADDING, y: yposition, width: Int(self.view.frame.size.width) - X_PADDING*2, height: 90)
-                vCaptcha.layer.borderColor = UIColor.lightGray.cgColor
-                vCaptcha.layer.borderWidth = 1
-                vCaptcha.layer.cornerRadius = 4
+                vCaptcha.layer.borderColor = colorDividerBG_f4.cgColor
+                vCaptcha.layer.borderWidth = borderWidth
+                vCaptcha.layer.cornerRadius = radius
                 vCaptcha.accessibilityIdentifier = object.id
                 scrlView.addSubview(vCaptcha)
-                //<<<<<<< HEAD
-                //                setupReCaptcha()
-                //
-                //                yposition += X_PADDING +  Int( vCaptcha.bounds.height)
-                //            }
-                //        }
-                //=======
+                
                 if object.answer == "" {
                     visibleChallengeSwitch.setOn(false, animated: true)
                     setupReCaptcha()
@@ -683,7 +676,6 @@ class FormFieldsVC: ParentClass, UIImagePickerControllerDelegate, UINavigationCo
             let dataType = object.type
             
             if dataType == DATATYPE_HEADING {
-//>>>>>>> 5f1d6bd4002acece87b3cf83a55b27fc962600b6
                 
                 let buttonAddImage = CustomLabel(frame: CGRect(x: X_PADDING, y: yposition, width: SCREEN_WIDTH - X_PADDING*2 , height: CUSTOM_BUTTON_HEIGHT))
                 buttonAddImage.text = object.text
@@ -792,7 +784,7 @@ class FormFieldsVC: ParentClass, UIImagePickerControllerDelegate, UINavigationCo
                 genderView.frame = genderView.resetHeight()
                 genderView.layer.cornerRadius = radius
                 genderView.layer.borderWidth = borderWidth
-                genderView.layer.borderColor =  UIColor.lightGray.cgColor
+                genderView.layer.borderColor =  colorDividerBG_f4.cgColor
                 genderView.delegateApp = self
                 scrlView.addSubview(genderView)
                 
@@ -810,7 +802,7 @@ class FormFieldsVC: ParentClass, UIImagePickerControllerDelegate, UINavigationCo
                 multiple.frame = multiple.resetHeight()
                 multiple.layer.cornerRadius = radius
                 multiple.layer.borderWidth = borderWidth
-                multiple.layer.borderColor =  UIColor.lightGray.cgColor
+                multiple.layer.borderColor =  colorDividerBG_f4.cgColor
                 scrlView.addSubview(multiple)
                 
                 yposition += X_PADDING + Int( multiple.bounds.height)
@@ -831,7 +823,7 @@ class FormFieldsVC: ParentClass, UIImagePickerControllerDelegate, UINavigationCo
                 title.textColor = colorSubHeading_76
                 let rectShape = CAShapeLayer()
                 rectShape.path = UIBezierPath(roundedRect: title.bounds, byRoundingCorners: [ .topRight , .topLeft], cornerRadii: CGSize(width: radius, height: radius)).cgPath
-                rectShape.strokeColor = UIColor.lightGray.cgColor
+                rectShape.strokeColor = colorDividerBG_f4.cgColor
                 rectShape.fillColor = UIColor.clear.cgColor
                 rectShape.lineWidth = borderWidth
                 rectShape.frame = title.bounds
@@ -842,18 +834,14 @@ class FormFieldsVC: ParentClass, UIImagePickerControllerDelegate, UINavigationCo
                 yposition +=  Int( title.bounds.height)
                 
                 let vv1 = UIView(frame: CGRect(x: X_PADDING, y: yposition, width: Int(self.view.frame.size.width) - X_PADDING*2, height: 90))
-                vv1.layer.cornerRadius = radius
-                vv1.layer.borderWidth = borderWidth
-                vv1.layer.borderColor = buttonBorderColor.cgColor
+//                vv1.layer.cornerRadius = radius
+//                vv1.layer.borderWidth = borderWidth
+//                vv1.layer.borderColor = colorDividerBG_f4.cgColor
+                
+           
                 
                 var y_Internal_position : Int! = X_PADDING
                 
-//<<<<<<< HEAD
-//                for (_, value) in object["options"] {
-//
-//                    let  titleComboBox = RankingView(frame: CGRect(x: X_PADDING, y: y_Internal_position, width: Int(scrlView.frame.size.width) - X_PADDING*2 , height: 35))
-//                    titleComboBox.initDesign(pName: value["label"].stringValue, pTag: TAG18, pOptions: strOption,pPlaceHolder: "")
-//=======
                 var count = 0
                 for option in object.options {
                     
@@ -869,15 +857,23 @@ class FormFieldsVC: ParentClass, UIImagePickerControllerDelegate, UINavigationCo
                 
                 let optionsCount = object.options.count
                 vv1.frame =  CGRect(x: X_PADDING, y: yposition, width: Int(self.view.frame.size.width) - X_PADDING*2, height: 35*optionsCount + X_PADDING*(optionsCount+1))
+           
+                let rectShape1 = CAShapeLayer()
+                rectShape1.path = UIBezierPath(roundedRect: vv1.bounds, byRoundingCorners: [ .bottomRight , .bottomLeft], cornerRadii: CGSize(width: radius, height: radius)).cgPath
+                rectShape1.strokeColor = colorDividerBG_f4.cgColor
+                rectShape1.fillColor = UIColor.clear.cgColor
+                rectShape1.lineWidth = borderWidth
+                rectShape1.frame = title.bounds
+                vv1.layer.mask =   rectShape1
+                vv1.layer.addSublayer(rectShape1)
                 scrlView.addSubview(vv1)
-                
                 yposition +=  X_PADDING +  Int( vv1.bounds.height)
                 
             }
             else if dataType == DATATYPE_SIDEBYSIDE{
                 //controller SidebySide
-                vSideBySide.frame = CGRect(x: X_PADDING, y: yposition, width: Int(self.view.frame.size.width) - X_PADDING*2, height: 128)
-                vSideBySide.layer.borderColor = UIColor.lightGray.cgColor
+                vSideBySide.frame = CGRect(x: X_PADDING, y: yposition, width: Int(self.view.frame.size.width) - X_PADDING*2, height: 100)
+                vSideBySide.layer.borderColor = colorDividerBG_f4.cgColor
                 vSideBySide.layer.borderWidth = borderWidth
                 vSideBySide.layer.cornerRadius = radius
                 scrollSideBySide.showsHorizontalScrollIndicator = false
@@ -903,7 +899,7 @@ class FormFieldsVC: ParentClass, UIImagePickerControllerDelegate, UINavigationCo
                     let vv = UIView(frame: CGRect(x: X_PADDING, y: yposition, width: Int(self.view.frame.size.width) - X_PADDING*2, height: 90))
                     vv.layer.cornerRadius = radius
                     vv.layer.borderWidth = borderWidth
-                    vv.layer.borderColor = buttonBorderColor.cgColor
+                    vv.layer.borderColor = colorDividerBG_f4.cgColor
                     
                     let lblSelectChoise = PaddingLabel(frame: CGRect(x: 0, y: 0, width: Int(self.view.frame.size.width) - X_PADDING, height: 29))
                     lblSelectChoise.text = object.label.htmlToString
@@ -936,7 +932,7 @@ class FormFieldsVC: ParentClass, UIImagePickerControllerDelegate, UINavigationCo
                 else{
                     //Slider selection
                     vSliderSelection.frame = CGRect(x: X_PADDING, y: yposition, width: Int(self.view.frame.size.width) - X_PADDING*2, height: 100)
-                    vSliderSelection.layer.borderColor = UIColor.lightGray.cgColor
+                    vSliderSelection.layer.borderColor = colorDividerBG_f4.cgColor
                     vSliderSelection.layer.borderWidth = borderWidth
                     vSliderSelection.layer.cornerRadius = radius
 
@@ -954,7 +950,7 @@ class FormFieldsVC: ParentClass, UIImagePickerControllerDelegate, UINavigationCo
                 //image file
 
                 let iconImage:UIImage? = UIImage(named: "gallery")
-                let attacheFile2 = CustomeAttacheFile(frame: CGRect(x: X_PADDING, y: yposition, width: 130, height: 130))
+                 attachImage = CustomeAttacheFile(frame: CGRect(x: X_PADDING, y: yposition, width: 130, height: 130))
                 attachImage.accessibilityIdentifier = object.id
                 attachImage.addTarget(self, action: #selector(openGallary), for: .touchUpInside)
                 scrlView.addSubview(attachImage)
@@ -1037,7 +1033,7 @@ class FormFieldsVC: ParentClass, UIImagePickerControllerDelegate, UINavigationCo
                 signatureView.backgroundColor = UIColor.clear
                 signatureView.layer.cornerRadius = radius
                 signatureView.layer.borderWidth = borderWidth
-                signatureView.layer.borderColor = buttonBorderColor.cgColor
+                signatureView.layer.borderColor = colorDividerBG_f4.cgColor
                 signatureView.accessibilityIdentifier = object.id
                 scrlView.addSubview(signatureView)
                 
@@ -1050,12 +1046,13 @@ class FormFieldsVC: ParentClass, UIImagePickerControllerDelegate, UINavigationCo
                 signatureView.addSubview(signClearButton)
                 
                 signatureView.delegate = self
+                
                 if object.answer != "" {
-                    signatureImageView = UIImageView(frame:CGRect(x: Int(signatureView.frame.origin.x), y: Int(signatureView.frame.origin.y), width: Int(signatureView.frame.size.width), height: 200))
-                    signatureImageView.backgroundColor = UIColor.red
+                    signatureImageView = UIImageView(frame:CGRect(x: 0, y: 0, width: Int(signatureView.frame.size.width), height: 200))
+                    signatureImageView.backgroundColor = UIColor.clear
                     signatureImageView.layer.cornerRadius = radius
                     signatureImageView.layer.borderWidth = borderWidth
-                    signatureImageView.layer.borderColor = buttonBorderColor.cgColor
+                    signatureImageView.layer.borderColor = colorDividerBG_f4.cgColor
                     signatureImageView.accessibilityIdentifier = object.id
                     signatureImageView.image = loadImageFromDocumentDirectory(fileName: object.answer)
                     signatureView.addSubview(signatureImageView)
@@ -1067,18 +1064,12 @@ class FormFieldsVC: ParentClass, UIImagePickerControllerDelegate, UINavigationCo
                 
                 //Captch
                 vCaptcha.frame = CGRect(x: X_PADDING, y: yposition, width: Int(self.view.frame.size.width) - X_PADDING*2, height: 90)
-                vCaptcha.layer.borderColor = UIColor.lightGray.cgColor
-                vCaptcha.layer.borderWidth = 1
-                vCaptcha.layer.cornerRadius = 4
+                vCaptcha.layer.borderColor = colorDividerBG_f4.cgColor
+                vCaptcha.layer.borderWidth = borderWidth
+                vCaptcha.layer.cornerRadius = radius
                 vCaptcha.accessibilityIdentifier = object.id
                 scrlView.addSubview(vCaptcha)
-//<<<<<<< HEAD
-//                setupReCaptcha()
-//
-//                yposition += X_PADDING +  Int( vCaptcha.bounds.height)
-//            }
-//        }
-//=======
+
                 if object.answer == "" {
                     visibleChallengeSwitch.setOn(false, animated: true)
                     setupReCaptcha()
@@ -1228,7 +1219,7 @@ class FormFieldsVC: ParentClass, UIImagePickerControllerDelegate, UINavigationCo
             recaptcha.configureWebView { [weak self] webview in
                 webview.frame = self?.view.bounds ?? CGRect.zero
                 webview.tag = Constants.webViewTag
-
+                print(webview)
                 // For testing purposes
                 // If the webview requires presentation, this should work as a way of detecting the webview in UI tests
                 self?.scrlView.viewWithTag(Constants.testLabelTag)?.removeFromSuperview()
@@ -1280,7 +1271,7 @@ class FormFieldsVC: ParentClass, UIImagePickerControllerDelegate, UINavigationCo
 
             validate
                 .map { [weak self] _ in
-                    self?.view.viewWithTag(Constants.webViewTag)
+                    self?.scrlView.viewWithTag(Constants.webViewTag)
                 }
                 .subscribe(onNext: { subview in
                     subview?.removeFromSuperview()
@@ -1560,6 +1551,10 @@ extension FormFieldsVC: RatingViewDelegate, YPSignatureDelegate {
     func didStart(_ view : YPDrawSignatureView) {
         print("Started Drawing")
         scrlView.isScrollEnabled = false
+        
+        if signatureImageView != nil{
+            signatureImageView.isHidden = true
+        }
     }
     func didFinish(_ view : YPDrawSignatureView) {
         print("Finished Drawing")

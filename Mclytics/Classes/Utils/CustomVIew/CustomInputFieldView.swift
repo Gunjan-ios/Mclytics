@@ -35,10 +35,10 @@ class CustomInputFieldView: UIView, UITextFieldDelegate {
         labelTitle.text = pName
         labelTitle.drawText(in: labelTitle.frame)
         let rectShape = CAShapeLayer()
-        rectShape.path = UIBezierPath(roundedRect: labelTitle.bounds, byRoundingCorners: [ .topRight , .topLeft], cornerRadii: CGSize(width: 5, height: 5)).cgPath
-        rectShape.strokeColor = UIColor.lightGray.cgColor
+        rectShape.path = UIBezierPath(roundedRect: labelTitle.bounds, byRoundingCorners: [ .topRight , .topLeft], cornerRadii: CGSize(width: radius, height: radius)).cgPath
+        rectShape.strokeColor = colorDividerBG_f4.cgColor
         rectShape.fillColor = UIColor.clear.cgColor
-        rectShape.lineWidth = 1
+        rectShape.lineWidth = borderWidth
         rectShape.frame = labelTitle.bounds
         labelTitle.layer.mask =   rectShape
         labelTitle.layer.addSublayer(rectShape)

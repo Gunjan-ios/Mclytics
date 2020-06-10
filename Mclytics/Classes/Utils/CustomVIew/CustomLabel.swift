@@ -17,7 +17,7 @@ class CustomLabel: UILabel {
         // font
         self.font = UIFont (name: APP_FONT_NAME, size: SUB_HEADER_LABEL_FONT_SIZE)
         self.layer.cornerRadius = radius
-        self.layer.borderColor =  UIColor.lightGray.cgColor
+        self.layer.borderColor =  colorDividerBG_f4.cgColor
         self.layer.borderWidth = borderWidth
 //        self.textContainerInset = UIEdgeInsetsMake(10, 0, 10, 0);
 

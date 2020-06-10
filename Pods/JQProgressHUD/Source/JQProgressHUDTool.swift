@@ -26,7 +26,7 @@ open class JQProgressHUDTool: NSObject {
     }
     
     @discardableResult
-    public class func jq_showCustomHUD(view: UIView? = UIApplication.shared.windows.last, msg: String? = "", isNeedmask: Bool? = false, isUserInteractionEnabled: Bool? = false, animation: Bool? = true) -> JQProgressHUD {
+    public class func jq_showCustomHUD(view: UIView? = UIApplication.shared.windows.last, msg: String? = "", isNeedmask: Bool? = false, isUserInteractionEnabled: Bool? = true, animation: Bool? = true) -> JQProgressHUD {
         
         let hud: JQProgressHUD = JQProgressHUD.showHUD(addTo: view!, animation: animation!)
         hud.isNeedMask = isNeedmask!

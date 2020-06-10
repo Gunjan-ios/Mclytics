@@ -33,7 +33,7 @@ class MarginSelectView : UIView {
         self.addSubview(labelTitle)
         
         let labelVIew = UIView(frame: CGRect(x: 0, y: labelHeight , width: Int(frame.size.width), height: 1))
-        labelVIew.backgroundColor = .lightGray
+        labelVIew.backgroundColor = colorDividerBG_f4
         self.addSubview(labelVIew)
         
         var otherButtons : [DLRadioButton] = [];

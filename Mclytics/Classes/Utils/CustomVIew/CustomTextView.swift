@@ -23,10 +23,10 @@ class CustomTextView : UITextView {
 //        self.backgroundColor = UIColor.white
 //
         let rectShape = CAShapeLayer()
-        rectShape.path = UIBezierPath(roundedRect: self.bounds, byRoundingCorners: [ .bottomLeft , .bottomRight], cornerRadii: CGSize(width: 5, height: 5)).cgPath
-        rectShape.strokeColor = UIColor.lightGray.cgColor
+        rectShape.path = UIBezierPath(roundedRect: self.bounds, byRoundingCorners: [ .bottomLeft , .bottomRight], cornerRadii: CGSize(width: radius, height: radius)).cgPath
+        rectShape.strokeColor = colorDividerBG_f4.cgColor
         rectShape.fillColor = UIColor.clear.cgColor
-        rectShape.lineWidth = 1
+        rectShape.lineWidth = borderWidth
         rectShape.frame = self.bounds
         self.layer.mask =   rectShape
         self.layer.addSublayer(rectShape)
@@ -63,12 +63,12 @@ class InsideTextView : UITextView {
     override init(frame: CGRect, textContainer: NSTextContainer?) {
         super.init(frame: frame, textContainer: textContainer)
         
-        self.layer.cornerRadius = radius;
-        self.layer.borderColor = boxBorderColor
-        self.layer.borderWidth = 1
+        self.layer.cornerRadius = radius
+        self.layer.borderColor = colorDividerBG_f4.cgColor
+        self.layer.borderWidth = borderWidth
         self.backgroundColor = UIColor.white
         self.font = UIFont(name: TAB_FONT, size: TEXTFIELD_FONT_SIZE)
-        self.textColor = .lightGray
+        self.textColor = colorSubSubHeading_94
     }
     
     required init?(coder aDecoder: NSCoder) {
