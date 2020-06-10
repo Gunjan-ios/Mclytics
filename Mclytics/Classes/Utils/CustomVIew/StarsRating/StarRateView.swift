@@ -8,8 +8,9 @@
 
 import Foundation
 import UIKit
+
 protocol RatingViewDelegate {
-    func updateRatingFormatValue(_ value: Int)
+    func updateRatingFormatValue(_ value: Int, str_id : String)
 }
 @IBDesignable
 class StarRateView: UIView {
@@ -17,6 +18,8 @@ class StarRateView: UIView {
     var imageViewList = [UIImageView]()
     var rating = 0.0
     var delegate: RatingViewDelegate!
+    var idString = ""
+    
     @IBInspectable
     var maxCount: Int = 5 {
         didSet {
@@ -92,6 +95,7 @@ class StarRateView: UIView {
         }
         updateRating(tag)
     }
+
     func updateViewAppearance(_ xPoint: Int) {
         var tag = 0
         for imageView in imageViewList {
@@ -130,7 +134,7 @@ class StarRateView: UIView {
     //MARK: - Delegate
     func updateRating(_ value: Int) {
         if delegate != nil {
-            delegate.updateRatingFormatValue(value)
+            delegate.updateRatingFormatValue(value, str_id: idString)
         }
     }
 }

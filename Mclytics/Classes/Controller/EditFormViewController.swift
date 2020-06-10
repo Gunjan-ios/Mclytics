@@ -19,19 +19,21 @@ class EditFormViewController: ParentClass,UITableViewDelegate,UITableViewDataSou
     private var currentPage = 1
     private var totalPage = 1
     
-//    var elistArray : [[String:Any]] = [[String:Any]]()
-    var elistArray : JSON = JSON()
+//    var elistArray : JSON = JSON()
 
     fileprivate var buttonSave: CustomButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         loadHeaderView()
-        let str =   ParentClass.sharedInstance.getDataForKey(strKey: FILL_BLANK_ARRAY) as? String
         
-        if str != "" && str != nil{
-            elistArray = Utils.jsonObject(jsonString: str!)
-            print(elistArray)
+        if let listArray = ParentClass.sharedInstance.getDataForKey(strKey: EDIT_BLANK_ARRAY) as? Data {
+            if let decodedArray = NSKeyedUnarchiver.unarchiveObject(with: listArray) as? [MainFormModal] {
+                editListArray = decodedArray
+            }
+        }
+
+        if editListArray.count > 0 {
             self.initTableview()
         }else{
             let lblSubTitle = UILabel (frame: CGRect (x: X_PADDING, y: 0, width: SCREEN_WIDTH - X_PADDING*2, height: SCREEN_HEIGHT))
@@ -44,6 +46,24 @@ class EditFormViewController: ParentClass,UITableViewDelegate,UITableViewDataSou
             lblSubTitle.textColor = .black
             self.view.addSubview(lblSubTitle)
         }
+        
+//        let str =   ParentClass.sharedInstance.getDataForKey(strKey: EDIT_BLANK_ARRAY) as? String
+//
+//        if str != "" && str != nil{
+//            elistArray = Utils.jsonObject(jsonString: str!)
+//            print(elistArray)
+//            self.initTableview()
+//        }else{
+//            let lblSubTitle = UILabel (frame: CGRect (x: X_PADDING, y: 0, width: SCREEN_WIDTH - X_PADDING*2, height: SCREEN_HEIGHT))
+//            //            lblSubTitle.center = CGPoint (x: self.view.center.x, y: lblSubTitle.center.y)
+//            lblSubTitle.text =  CS.Common.NoData
+//            lblSubTitle.numberOfLines = 0
+//            lblSubTitle.lineBreakMode = .byWordWrapping
+//            lblSubTitle.textAlignment = .center
+//            lblSubTitle.font = UIFont (name: APP_FONT_NAME_BOLD, size: SUB_LABEL_DESC_FONT_SIZE)
+//            lblSubTitle.textColor = .black
+//            self.view.addSubview(lblSubTitle)
+//        }
         // Do any additional setup after loading the view.
     }
     func loadHeaderView() {
@@ -112,7 +132,7 @@ class EditFormViewController: ParentClass,UITableViewDelegate,UITableViewDataSou
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return   self.elistArray.count
+        return self.editListArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -124,10 +144,11 @@ class EditFormViewController: ParentClass,UITableViewDelegate,UITableViewDataSou
         
 //        print(elistArray[indexPath.row]["name"] as? String)
 //        print(elistArray[indexPath.row]["slug"] as? String)
-        
-        cell.lblFieldName.text = elistArray[indexPath.row]["name"].stringValue
-        cell.lblSubFieldName.text = "sulg: \(elistArray[indexPath.row]["slug"].stringValue)"
-        let strDate = ParentClass.sharedInstance.dateConvert(date: elistArray[indexPath.row]["created_at"].doubleValue)
+
+        let formObject = editListArray[indexPath.row]
+        cell.lblFieldName.text = formObject.name
+        cell.lblSubFieldName.text = "sulg: \(formObject.slug)"
+        let strDate = ParentClass.sharedInstance.dateConvert(date: formObject.created_at)
         cell.lblSubFieldDate.text = "Added on \(strDate)"
         cell.btncheckbox.isHidden = true
         
@@ -140,22 +161,15 @@ class EditFormViewController: ParentClass,UITableViewDelegate,UITableViewDataSou
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let newViewController = storyBoard.instantiateViewController(withIdentifier: "FormFieldsVC") as! FormFieldsVC
         newViewController.lblTitle = "form"
-        print(elistArray[indexPath.row]["fields"])
-        newViewController.arrayList = elistArray[indexPath.row]
+        
+        newViewController.selectedForm = editListArray[indexPath.row]
+        newViewController.selectedFormIndex = indexPath.row
+        newViewController.formArray = editListArray
+        
+//        newViewController.arrayList = elistArray[indexPath.row]
         newViewController.type = "Edit"
         self.navigationController?.pushViewController(newViewController, animated: true)
         
-        //        self.formField = FormFieldsVC()
-        //        self.navigationController?.pushViewController(self.formField!, animated: true)
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

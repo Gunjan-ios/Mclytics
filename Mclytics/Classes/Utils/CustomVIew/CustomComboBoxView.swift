@@ -14,16 +14,17 @@ class CustomComboBoxView: UIView, UIPickerViewDelegate, UIPickerViewDataSource, 
     private let pickerView = DropDownPickerView()
     var txtField:CustomTextFieldForAttribute!
     private var datePickerView:UIDatePicker? = nil
-//    var delegateAppForm:KVICApplicationFormIndividualViewController?
+    var delegateAppForm : FormFieldsVC?
     var delegateApp:LoginViewController?
+    var idString = ""
 //    var PreviewdelegateApp:PreviewViewController?
 
 
     let labelHeight = 25
     let txtFieldHeight = 45
 
-    func initDesign(pName:String,pTag:Int,pOptions:[String],pPlaceHolder:String) {
-
+    func initDesign(pName:String,pTag:Int,pOptions:[String],pPlaceHolder:String,str_id :String) {
+        idString = str_id
         labelTitle = PaddingLabel(frame: CGRect(x: 0, y: 0, width: Int(frame.size.width), height: labelHeight))
         labelTitle.textColor = colorSubHeading_76
         labelTitle.font = UIFont(name: APP_FONT_NAME, size: LABEL_FONT_SIZE)
@@ -61,7 +62,7 @@ class CustomComboBoxView: UIView, UIPickerViewDelegate, UIPickerViewDataSource, 
         pickerView.pickerOptions = dropDownOptions
         pickerView.delegate = self as UIPickerViewDelegate
         self.txtField = CustomTextFieldForAttribute(frame: CGRect(x: 0, y: 25, width: Int(frame.size.width), height: txtFieldHeight))
-        self.txtField.delegate = self as UITextFieldDelegate
+        self.txtField.delegate = self
         self.txtField.tag = pTag
         self.txtField.returnKeyType = .done
         self.txtField.placeholder = pPlaceHolder
@@ -153,12 +154,16 @@ class CustomComboBoxView: UIView, UIPickerViewDelegate, UIPickerViewDataSource, 
     }
 
     func textFieldDidBeginEditing(_ textField: UITextField) {
-
 //        if let delegate = self.delegateAppForm {
 //            delegate.textFieldDidBeginEditing_VC(textField)
 //        }
     }
 
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if let delegate = self.delegateAppForm {
+            delegate.getTextfield(textField: textField, str_id: idString, selectedOption: 1000)
+        }
+    }
 
 }
 class RankingView: UIView, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {
@@ -167,17 +172,20 @@ class RankingView: UIView, UIPickerViewDelegate, UIPickerViewDataSource, UITextF
     private let pickerView = DropDownPickerView()
     var txtField:RankingTextFieldForAttribute!
     private var datePickerView:UIDatePicker? = nil
-    //    var delegateAppForm:KVICApplicationFormIndividualViewController?
+    var delegateAppForm:FormFieldsVC?
     var delegateApp:LoginViewController?
+    var idString = ""
+    var selectedOption = 0
     //    var PreviewdelegateApp:PreviewViewController?
     
     
     let labelHeight = 25
     let txtFieldHeight = 35
     
-    func initDesign(pName:String,pTag:Int,pOptions:[String],pPlaceHolder:String) {
-        
-        let label = PaddingLabel (frame: CGRect(x: 70 , y: 0, width: Int(frame.size.width) - 70 , height: txtFieldHeight))
+    func initDesign(pName:String,pTag:Int,pOptions:[String],pPlaceHolder:String,str_id :String, textFieldIndex : Int) {
+        idString = str_id
+        selectedOption = textFieldIndex
+        let label = PaddingLabel (frame: CGRect(x: 100 , y: 0, width: Int(frame.size.width) - 100 , height: txtFieldHeight))
         label.text = pName
         label.textColor = .gray
 //        label.backgroundColor = .red
@@ -203,8 +211,9 @@ class RankingView: UIView, UIPickerViewDelegate, UIPickerViewDataSource, UITextF
         print(pOptions)
         pickerView.pickerOptions = dropDownOptions
         pickerView.delegate = self as UIPickerViewDelegate
-        self.txtField = RankingTextFieldForAttribute(frame: CGRect(x: 0, y: 0, width: 70, height: txtFieldHeight))
-        self.txtField.delegate = self as UITextFieldDelegate
+        self.txtField = CustomTextFieldForAttribute(frame: CGRect(x: 0, y: 0, width: 70, height: txtFieldHeight))
+        self.txtField.delegate = self
+
         self.txtField.tag = pTag
         self.txtField.returnKeyType = .done
         self.txtField.placeholder = pPlaceHolder
@@ -302,5 +311,10 @@ class RankingView: UIView, UIPickerViewDelegate, UIPickerViewDataSource, UITextF
         //        }
     }
     
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if let delegate = self.delegateAppForm {
+            delegate.getTextfield(textField: textField, str_id: idString, selectedOption: selectedOption)
+        }
+    }
     
 }

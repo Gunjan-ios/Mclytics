@@ -37,17 +37,31 @@ class DeleteViewController: SegmentedViewController, UIGestureRecognizerDelegate
 
         // Do any additional setup after loading the view.
         self.delegate = self
-        self.separatingStores()
+//        self.separatingStores()
+        
+        var savedForms = [MainFormModal]()
+        if let listArray = ParentClass.sharedInstance.getDataForKey(strKey: EDIT_BLANK_ARRAY) as? Data {
+            if let decodedArray = NSKeyedUnarchiver.unarchiveObject(with: listArray) as? [MainFormModal] {
+                savedForms = decodedArray
+            }
+        }
         
         var test: [(title: SegmentedControl.SegmentedItem, controller: UIViewController)] = []
         pendingVC = DeleteListTableViewController()
-        pendingVC.arrayStoreLists = self.arrayPendingStoreLists
+        pendingVC.arrayStoreLists = savedForms
         pendingVC.view.tag = 1
         pendingVC.vcDelegate = self
         pendingVC.type = "Saved Forms"
         
+        var blankForms = [MainFormModal]()
+        if let listArray = ParentClass.sharedInstance.getDataForKey(strKey: FILL_BLANK_ARRAY) as? Data {
+            if let decodedArray = NSKeyedUnarchiver.unarchiveObject(with: listArray) as? [MainFormModal] {
+                blankForms = decodedArray
+            }
+        }
+        
         visitedVC = DeleteListTableViewController()
-        visitedVC.arrayStoreLists = self.arrayVisitedStoreLists
+        visitedVC.arrayStoreLists = blankForms
         visitedVC.vcDelegate = self
         visitedVC.type = "Blank Forms"
         visitedVC.view.tag = 1
@@ -210,7 +224,7 @@ class DeleteViewController: SegmentedViewController, UIGestureRecognizerDelegate
     func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
         if let pan = gestureRecognizer as? UIPanGestureRecognizer {
             let point = pan.translation(in: headerView!)
-            if fabs(point.y) <= fabs(point.x) {
+            if abs(point.y) <= abs(point.x) {
                 return false
             }
         }

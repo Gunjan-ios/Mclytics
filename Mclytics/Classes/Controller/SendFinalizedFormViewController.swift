@@ -20,18 +20,18 @@ class SendFinalizedFormViewController: ParentClass,UITableViewDelegate,UITableVi
     private var currentPage = 1
     private var totalPage = 1
     
-//    var flistArray : [[String:Any]] = [[String:Any]]()
-    var flistArray : JSON! = JSON()
-
-    
     fileprivate var buttonSave: CustomButton!
     override func viewDidLoad() {
         super.viewDidLoad()
         loadHeaderView()
-        let str =   ParentClass.sharedInstance.getDataForKey(strKey: FILL_BLANK_ARRAY) as? String
         
-        if str != "" && str != nil{
-            flistArray = Utils.jsonObject(jsonString: str!)
+        if let listArray = ParentClass.sharedInstance.getDataForKey(strKey: FILL_BLANK_ARRAY) as? Data {
+            if let decodedArray = NSKeyedUnarchiver.unarchiveObject(with: listArray) as? [MainFormModal] {
+                saveListArray = decodedArray
+            }
+        }
+        
+        if saveListArray.count > 0 {
             self.initTableview()
         }else{
             let lblSubTitle = UILabel (frame: CGRect (x: X_PADDING, y: 0, width: SCREEN_WIDTH - X_PADDING*2, height: SCREEN_HEIGHT))
@@ -107,7 +107,7 @@ class SendFinalizedFormViewController: ParentClass,UITableViewDelegate,UITableVi
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return   self.flistArray.count
+        return  self.saveListArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -117,24 +117,19 @@ class SendFinalizedFormViewController: ParentClass,UITableViewDelegate,UITableVi
         cell.selectionStyle = .none
         cell.backgroundColor = UIColor.clear
         
-        
-        cell.lblFieldName.text = flistArray[indexPath.row]["name"].stringValue
-        cell.lblSubFieldName.text = "sulg: \(flistArray[indexPath.row]["slug"].stringValue)"
-        let strDate = ParentClass.sharedInstance.dateConvert(date: flistArray[indexPath.row]["created_at"].doubleValue)
+        let formObject = MainFormModal()
+        cell.lblFieldName.text = formObject.name
+        cell.lblSubFieldName.text = "sulg: \(formObject.slug)"
+        let strDate = ParentClass.sharedInstance.dateConvert(date: formObject.created_at)
         cell.lblSubFieldDate.text = "Added on \(strDate)"
         cell.btncheckbox.isHidden = true
+        
+//        cell.lblFieldName.text = flistArray[indexPath.row]["name"].stringValue
+//        cell.lblSubFieldName.text = "sulg: \(flistArray[indexPath.row]["slug"].stringValue)"
+//        let strDate = ParentClass.sharedInstance.dateConvert(date: flistArray[indexPath.row]["created_at"].doubleValue)
+     
         //        cell.btncheckbox.tag = indexPath.row
         //        cell.btncheckbox.addTarget(self, action: #selector(onCheckListPressed(sender:)), for: .touchUpInside)
         return cell
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

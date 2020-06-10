@@ -29,11 +29,14 @@ class ParentClass: UIViewController{
     var token : String!
 //    var CONNECTED_WIFI : String!
 //    var CONNECTED_NET : String!
-    var saveListArray : [[String : Any]] = [[String:Any]]()
+//    var saveListArray : [[String : Any]] = [[String:Any]]()
     var saveListArray1 : [JSON] = [JSON]()
 //    var tempArray : [JSON] = [JSON]()
     var editListArray1 : [JSON] = [JSON]()
 
+    
+    var saveListArray = [MainFormModal]()
+    var editListArray = [MainFormModal]()
 
     override func viewDidLoad()
     {

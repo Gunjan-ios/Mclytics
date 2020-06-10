@@ -46,44 +46,72 @@ class WebServicesManager {
             onCompletion!(json)
      
         }
-        
     }
 
-
-class func getForm(page:Int, onCompletion: ((JSON?) -> Void)? = nil, onError: ((Error?) -> Void)? = nil) {
+//    class func getForm(page:Int, onCompletion: ((JSON?) -> Void)? = nil, onError: ((Error?) -> Void)? = nil) {
+//
+//        Hud.showLoading(title: CS.Common.waiting)
+//
+//        let header: HTTPHeaders = [
+//            "Authorization": "Bearer \(ParentClass.sharedInstance.token ?? "")",
+//            "Accept": "application/json"
+//        ]
+//        print(header)
+//        let str_url = "\(BASE_URL)\(FORMS_URL)?\(CS.Params.page)=\(page)"
+//        print(str_url)
+//
+//        Alamofire.request(str_url ,encoding: JSONEncoding.default ,headers: header).responseJSON { (response) in
+//            Hud.hideLoading()
+//            guard let value = response.result.value
+//                else {
+//                    if let err = response.error{
+//                        onError?(err)
+//                        return
+//                    }
+//                    return }
+//            let json = JSON(value)
+//            print(json)
+//
+//            if let err = response.error{
+//                onError?(err)
+//                return
+//            }
+//
+//            onCompletion!(json)
+//
+//        }
+//
+//    }
     
-    Hud.showLoading(title: CS.Common.waiting)
-    
-    let header: HTTPHeaders = [
-        "Authorization": "Bearer \(ParentClass.sharedInstance.token ?? "")",
-        "Accept": "application/json"
-    ]
-    print(header)
-    let str_url = "\(BASE_URL)\(FORMS_URL)?\(CS.Params.page)=\(page)"
-    print(str_url)
-
-    Alamofire.request(str_url ,encoding: JSONEncoding.default ,headers: header).responseJSON { (response) in
-        Hud.hideLoading()
-        guard let value = response.result.value
-            else {
-                if let err = response.error{
-                    onError?(err)
-                    return
-                }
-                return }
-        let json = JSON(value)
-        print(json)
+    class func getForm(page:Int, andCompletion completion: @escaping (_ isSuccess: Bool, _ data: NSDictionary) -> Void, onError: ((Error?) -> Void)? = nil) {
         
-        if let err = response.error{
-            onError?(err)
-            return
+        Hud.showLoading(title: CS.Common.waiting)
+        
+        let header: HTTPHeaders = [
+            "Authorization": "Bearer \(ParentClass.sharedInstance.token ?? "")",
+            "Accept": "application/json"
+        ]
+        print(header)
+        let str_url = "\(BASE_URL)\(FORMS_URL)?\(CS.Params.page)=\(page)"
+        print(str_url)
+        
+        Alamofire.request(str_url ,encoding: JSONEncoding.default ,headers: header).responseJSON { (response) in
+            Hud.hideLoading()
+            
+            if let err = response.error{
+                onError?(err)
+                return
+            }
+            
+            switch response.result {
+            case .success(let JSON):
+                let dictJSON = JSON as! NSDictionary
+                completion(true, dictJSON)
+            case .failure( _):
+                completion(false, NSDictionary())
+            }
         }
-        
-        onCompletion!(json)
-        
     }
-    
-}
 }
 //    class func getInspectionView(userName:String, password:String,appType:String, onCompletion: ((JSON?) -> Void)? = nil, onError: ((Error?) -> Void)? = nil) {
 //

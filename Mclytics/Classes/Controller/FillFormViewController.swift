@@ -19,9 +19,8 @@ class FillFormViewController: ParentClass,UITableViewDelegate,UITableViewDataSou
     private var currentPage = 1
     private var totalPage = 1
     
-//    var flistArray : [[String:Any]] = [[String:Any]]()
-    var flistArray : JSON = JSON()
-
+//    var flistArray : JSON = JSON()
+    var selectedFromArray = [MainFormModal]()
     
     var formField:FormFieldsVC?
 
@@ -30,15 +29,36 @@ class FillFormViewController: ParentClass,UITableViewDelegate,UITableViewDataSou
     override func viewDidLoad() {
         super.viewDidLoad()
         loadHeaderView()
-        let str =   ParentClass.sharedInstance.getDataForKey(strKey: FILL_BLANK_ARRAY) as? String
-        print(str)
-        if str != "" && str != nil{
-            flistArray = Utils.jsonObject(jsonString: str!)
-            print(flistArray)
+//        let str =   ParentClass.sharedInstance.getDataForKey(strKey: FILL_BLANK_ARRAY) as? String
+//        print(str)
+//        if str != "" && str != nil{
+//            flistArray = Utils.jsonObject(jsonString: str!)
+//            print(flistArray)
+//            self.initTableview()
+//        }else{
+//           let lblSubTitle = UILabel (frame: CGRect (x: X_PADDING, y: 0, width: SCREEN_WIDTH - X_PADDING*2, height: SCREEN_HEIGHT))
+////            lblSubTitle.center = CGPoint (x: self.view.center.x, y: lblSubTitle.center.y)
+//            lblSubTitle.text =  CS.Common.NoData
+//            lblSubTitle.numberOfLines = 0
+//            lblSubTitle.lineBreakMode = .byWordWrapping
+//            lblSubTitle.textAlignment = .center
+//            lblSubTitle.font = UIFont (name: APP_FONT_NAME_BOLD, size: SUB_LABEL_DESC_FONT_SIZE)
+//            lblSubTitle.textColor = .black
+//            self.view.addSubview(lblSubTitle)
+//        }
+        
+        
+        if let listArray = ParentClass.sharedInstance.getDataForKey(strKey: FILL_BLANK_ARRAY) as? Data {
+            if let decodedArray = NSKeyedUnarchiver.unarchiveObject(with: listArray) as? [MainFormModal] {
+                selectedFromArray = decodedArray
+            }
+        }
+        
+        if selectedFromArray.count > 0 {
             self.initTableview()
-        }else{
-           let lblSubTitle = UILabel (frame: CGRect (x: X_PADDING, y: 0, width: SCREEN_WIDTH - X_PADDING*2, height: SCREEN_HEIGHT))
-//            lblSubTitle.center = CGPoint (x: self.view.center.x, y: lblSubTitle.center.y)
+        } else {
+            let lblSubTitle = UILabel (frame: CGRect (x: X_PADDING, y: 0, width: SCREEN_WIDTH - X_PADDING*2, height: SCREEN_HEIGHT))
+            //            lblSubTitle.center = CGPoint (x: self.view.center.x, y: lblSubTitle.center.y)
             lblSubTitle.text =  CS.Common.NoData
             lblSubTitle.numberOfLines = 0
             lblSubTitle.lineBreakMode = .byWordWrapping
@@ -47,10 +67,8 @@ class FillFormViewController: ParentClass,UITableViewDelegate,UITableViewDataSou
             lblSubTitle.textColor = .black
             self.view.addSubview(lblSubTitle)
         }
-        
-        
-        // Do any additional setup after loading the view.
     }
+    
     func loadHeaderView() {
         
         headerview = UIView(frame: CGRect(x: 0, y:( STATUS_BAR_HEIGHT + Int(ParentClass.sharedInstance.iPhone_X_Top_Padding)), width: Int(UIScreen.main.bounds.width), height: NAV_HEADER_HEIGHT));
@@ -90,6 +108,7 @@ class FillFormViewController: ParentClass,UITableViewDelegate,UITableViewDataSou
 //        self.view.addSubview(buttonSave)
 //
     }
+    
     @objc func onRefreshPressed()  {
         currentPage = 1
 //        apiGetBlankFromData(page: 1)
@@ -117,7 +136,8 @@ class FillFormViewController: ParentClass,UITableViewDelegate,UITableViewDataSou
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return   self.flistArray.count
+//        return   self.flistArray.count
+        return self.selectedFromArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -127,24 +147,46 @@ class FillFormViewController: ParentClass,UITableViewDelegate,UITableViewDataSou
         cell.selectionStyle = .none
         cell.backgroundColor = UIColor.clear
         
-        print(flistArray[indexPath.row]["name"].stringValue)
-        cell.lblFieldName.text = flistArray[indexPath.row]["name"].stringValue
-        cell.lblSubFieldName.text = "sulg: \(flistArray[indexPath.row]["slug"].stringValue)"
-        let strDate = ParentClass.sharedInstance.dateConvert(date: flistArray[indexPath.row]["created_at"].doubleValue)
-        cell.lblSubFieldDate.text = "Added on \(strDate)"
-        
-        cell.btncheckbox.isHidden = true
+//        print(flistArray[indexPath.row]["name"].stringValue)
+//        cell.lblFieldName.text = flistArray[indexPath.row]["name"].stringValue
+//        cell.lblSubFieldName.text = "sulg: \(flistArray[indexPath.row]["slug"].stringValue)"
+//        let strDate = ParentClass.sharedInstance.dateConvert(date: flistArray[indexPath.row]["created_at"].doubleValue)
+//        cell.lblSubFieldDate.text = "Added on \(strDate)"
+//
+//        cell.btncheckbox.isHidden = true
 //        cell.btncheckbox.tag = indexPath.row
 //        cell.btncheckbox.addTarget(self, action: #selector(onCheckListPressed(sender:)), for: .touchUpInside)
+        
+
+        
+        let mainDict = selectedFromArray[indexPath.row]
+        print(mainDict.name)
+        cell.lblFieldName.text = mainDict.name
+        cell.lblSubFieldName.text = "sulg: \(mainDict.slug)"
+        let strDate = ParentClass.sharedInstance.dateConvert(date: mainDict.created_at)
+        cell.lblSubFieldDate.text = "Added on \(strDate)"
+    
+        cell.btncheckbox.isHidden = true
+        
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let newViewController = storyBoard.instantiateViewController(withIdentifier: "FormFieldsVC") as! FormFieldsVC
-        newViewController.lblTitle = flistArray[indexPath.row]["name"].stringValue
-        print(flistArray[indexPath.row]["fields"])
-        newViewController.arrayList = flistArray[indexPath.row]
+//<<<<<<< HEAD
+//        newViewController.lblTitle = flistArray[indexPath.row]["name"].stringValue
+//        print(flistArray[indexPath.row]["fields"])
+//        newViewController.arrayList = flistArray[indexPath.row]
+//=======
+        newViewController.lblTitle = "form"
+//        print(flistArray[indexPath.row]["fields"])
+//        newViewController.arrayList = flistArray[indexPath.row]
+        
+        newViewController.selectedForm = selectedFromArray[indexPath.row]
+        newViewController.selectedFormIndex = indexPath.row
+        newViewController.formArray = selectedFromArray
+//>>>>>>> 5f1d6bd4002acece87b3cf83a55b27fc962600b6
         self.navigationController?.pushViewController(newViewController, animated: true)
         
 //        self.formField = FormFieldsVC()

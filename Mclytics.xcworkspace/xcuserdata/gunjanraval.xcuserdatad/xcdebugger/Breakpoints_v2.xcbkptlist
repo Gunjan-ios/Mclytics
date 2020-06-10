@@ -16,8 +16,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "487"
             endingLineNumber = "487"
-            landmarkName = "onNextPressed()"
-            landmarkType = "7">
+            landmarkName = "dataSetupformOnebyOne(object:)"
+            landmarkType = "9">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -65,7 +65,7 @@
             startingLineNumber = "753"
             endingLineNumber = "753"
             landmarkName = "dataSetupformAPI()"
-            landmarkType = "7">
+            landmarkType = "9">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
