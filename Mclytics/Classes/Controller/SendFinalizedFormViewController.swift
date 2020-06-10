@@ -123,6 +123,11 @@ class SendFinalizedFormViewController: ParentClass,UITableViewDelegate,UITableVi
         let strDate = ParentClass.sharedInstance.dateConvert(date: formObject.created_at)
         cell.lblSubFieldDate.text = "Added on \(strDate)"
         cell.btncheckbox.isHidden = true
+        
+//        cell.lblFieldName.text = flistArray[indexPath.row]["name"].stringValue
+//        cell.lblSubFieldName.text = "sulg: \(flistArray[indexPath.row]["slug"].stringValue)"
+//        let strDate = ParentClass.sharedInstance.dateConvert(date: flistArray[indexPath.row]["created_at"].doubleValue)
+     
         //        cell.btncheckbox.tag = indexPath.row
         //        cell.btncheckbox.addTarget(self, action: #selector(onCheckListPressed(sender:)), for: .touchUpInside)
         return cell

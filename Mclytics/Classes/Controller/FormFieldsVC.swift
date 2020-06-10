@@ -100,11 +100,6 @@ class FormFieldsVC: ParentClass, UIImagePickerControllerDelegate, UINavigationCo
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        name =  selectedForm.name
-        slug =  selectedForm.slug
-        created = selectedForm.created_at
-        
         loadHeaderView()
         dataSetupformAPI()
         
@@ -536,13 +531,7 @@ class FormFieldsVC: ParentClass, UIImagePickerControllerDelegate, UINavigationCo
                 editListArray = decodedArray
             }
         }
-        
-        if type == "Edit" {
-            formArray[selectedFormIndex] = selectedForm
-            ParentClass.sharedInstance.editListArray = formArray
-        } else {
-            ParentClass.sharedInstance.editListArray.append(selectedForm)
-        }
+
         
         let encodedData: Data = NSKeyedArchiver.archivedData(withRootObject: ParentClass.sharedInstance.editListArray)
         ParentClass.sharedInstance.setData(strData: encodedData, strKey: EDIT_BLANK_ARRAY)
@@ -551,6 +540,7 @@ class FormFieldsVC: ParentClass, UIImagePickerControllerDelegate, UINavigationCo
 
     }
    
+
     func  getTextfield(textField :UITextField , str_id : String, selectedOption : Int){
         
         for obejct in selectedForm.fields {
@@ -582,9 +572,19 @@ class FormFieldsVC: ParentClass, UIImagePickerControllerDelegate, UINavigationCo
                         option.selected = true
                     } else {
                         option.selected = false
-                    }
-                }
-            }
+
+//    func  getTextfield(textField :UITextField , str_id : String){
+//            for var obejct in tempAraay{
+//                var tamp : JSON = JSON()
+//                tamp = obejct
+//                if  str_id ==  obejct["id"].stringValue{
+//                    tamp["Ans"].string = textField.text
+//                    let updated = try? obejct.merged(with:tamp)
+//                    if (updated != nil){
+//                        editData.append(updated!)
+//                    }
+//                }
+//            }
         }
     }
     

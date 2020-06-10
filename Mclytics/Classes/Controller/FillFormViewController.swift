@@ -157,7 +157,7 @@ class FillFormViewController: ParentClass,UITableViewDelegate,UITableViewDataSou
 //        cell.btncheckbox.tag = indexPath.row
 //        cell.btncheckbox.addTarget(self, action: #selector(onCheckListPressed(sender:)), for: .touchUpInside)
         
-        //Riddhi
+
         
         let mainDict = selectedFromArray[indexPath.row]
         print(mainDict.name)
@@ -165,7 +165,7 @@ class FillFormViewController: ParentClass,UITableViewDelegate,UITableViewDataSou
         cell.lblSubFieldName.text = "sulg: \(mainDict.slug)"
         let strDate = ParentClass.sharedInstance.dateConvert(date: mainDict.created_at)
         cell.lblSubFieldDate.text = "Added on \(strDate)"
-        
+    
         cell.btncheckbox.isHidden = true
         
         return cell

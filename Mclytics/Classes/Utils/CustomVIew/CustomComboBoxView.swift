@@ -211,14 +211,16 @@ class RankingView: UIView, UIPickerViewDelegate, UIPickerViewDataSource, UITextF
         print(pOptions)
         pickerView.pickerOptions = dropDownOptions
         pickerView.delegate = self as UIPickerViewDelegate
-        self.txtField = CustomTextFieldForAttribute(frame: CGRect(x: 0, y: 0, width: 100, height: txtFieldHeight))
+        
+        self.txtField = CustomTextFieldForAttribute(frame: CGRect(x: 0, y: 0, width: 70, height: txtFieldHeight))
         self.txtField.delegate = self
+
         self.txtField.tag = pTag
         self.txtField.returnKeyType = .done
         self.txtField.placeholder = pPlaceHolder
         self.txtField.inputView = pickerView
         self.txtField.inputAccessoryView = toolBar
-        self.txtField.imgIcon.frame = CGRect(x: 100 - txtFieldHeight, y: 0, width: txtFieldHeight, height: txtFieldHeight)
+        self.txtField.imgIcon.frame = CGRect(x: 70 - txtFieldHeight, y: 0, width: txtFieldHeight, height: txtFieldHeight)
         self.txtField.imgIcon.image = UIImage(named: DATATYPE_DROPDOWN_ICON)
         self.addSubview(self.txtField)
         
