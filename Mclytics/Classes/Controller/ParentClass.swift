@@ -27,6 +27,8 @@ class ParentClass: UIViewController{
     var iPhone_X_Top_Padding:CGFloat = 0
     var iPhone_X_Bottom_Padding:CGFloat = 0
     var token : String!
+//    var CONNECTED_WIFI : String!
+//    var CONNECTED_NET : String!
     var saveListArray : [[String : Any]] = [[String:Any]]()
     var saveListArray1 : [JSON] = [JSON]()
 //    var tempArray : [JSON] = [JSON]()
@@ -43,6 +45,12 @@ class ParentClass: UIViewController{
         imgNav.backgroundColor = colorPrimary
         self.view.addSubview(imgNav)
         
+//        if ParentClass.sharedInstance.getDataForKey(strKey: AUTO_WIFI) as? Bool == true{
+//            CONNECTED_WIFI = "CONNECTED_WIFI"
+//        }
+//        if ParentClass.sharedInstance.getDataForKey(strKey: AUTO_NETWORK)  as? Bool == true{
+//            CONNECTED_NET = "CONNECTED_NET"
+//        }
        if APP.open_count == 1{
         APP.open_count = 0
         NotificationCenter.default.addObserver(self, selector: #selector(self.networkStatusChanged(_:)), name: NSNotification.Name(rawValue: ReachabilityStatusChangedNotification), object: nil)
@@ -125,6 +133,7 @@ class ParentClass: UIViewController{
 //           self.processingAlert?.show(nil, hidden: nil)
          case .online(.wwan):
             print("Connected via WWAN")
+//            CONNECTED_NET = "CONNECTED_NET"
             self.processingAlert?.hideAlert({ () -> () in
                 if self.APP.open_count == 2 {
                     self.APP.open_count = 0
@@ -133,7 +142,7 @@ class ParentClass: UIViewController{
                     })
         case .online(.wiFi):
             print("Connected via WiFi")
-
+//          CONNECTED_WIFI = "CONNECTED_WIFI"
             self.processingAlert?.hideAlert({ () -> () in
                 if self.APP.open_count == 2 {
                     self.APP.open_count = 0

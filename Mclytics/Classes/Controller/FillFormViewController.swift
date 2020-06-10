@@ -142,7 +142,7 @@ class FillFormViewController: ParentClass,UITableViewDelegate,UITableViewDataSou
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let newViewController = storyBoard.instantiateViewController(withIdentifier: "FormFieldsVC") as! FormFieldsVC
-        newViewController.lblTitle = "form"
+        newViewController.lblTitle = flistArray[indexPath.row]["name"].stringValue
         print(flistArray[indexPath.row]["fields"])
         newViewController.arrayList = flistArray[indexPath.row]
         self.navigationController?.pushViewController(newViewController, animated: true)

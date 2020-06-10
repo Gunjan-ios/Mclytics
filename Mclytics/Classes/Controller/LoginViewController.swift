@@ -23,7 +23,7 @@ class LoginViewController: ParentClass,UITextFieldDelegate {
     private var showHidePasswordButton:UIButton!
     
     private var imgCheckbox:UIImageView!
-    private var isRememberMe = false
+    private var isRememberMe = true
     private var isShowPassword = false
     
     fileprivate var headerview:UIView!
@@ -97,7 +97,7 @@ class LoginViewController: ParentClass,UITextFieldDelegate {
         yPosition += CUSTOM_TEXTFIELD_HEIGHT + 20
 
         imgCheckbox = UIImageView(frame: CGRect(x: 0, y: yPosition + 4, width: 24, height: 24))
-        imgCheckbox.image = UIImage(named: "deselectedCheckbox")
+        imgCheckbox.image = UIImage(named: "selectedCheckboxBlue")
         stackView.addSubview(imgCheckbox)
 
         self.rememberMeButton = UIButton(frame: CGRect(x: 0 , y: yPosition, width: 140, height: CUSTOM_TEXTFIELD_HEIGHT))
@@ -123,7 +123,9 @@ class LoginViewController: ParentClass,UITextFieldDelegate {
     
     //MARK: action
     @objc func signInPressed(sender:UIButton) {
-        
+        if (self.isShowPassword == true) {
+        ParentClass.sharedInstance.setData(strData: true, strKey: REMEMBER_ME_KEY)
+        }
         if (self.emailTextField.text == "") {
             super.showAlert(message: "Please Enter Email", type: .error, navBar: false)
             return
@@ -162,7 +164,7 @@ class LoginViewController: ParentClass,UITextFieldDelegate {
             self.isRememberMe = false
             ParentClass.sharedInstance.setData(strData: false, strKey: REMEMBER_ME_KEY)
         } else {
-            self.imgCheckbox.image = UIImage(named: "selectedCheckbox")
+            self.imgCheckbox.image = UIImage(named: "selectedCheckboxBlue")
             self.isRememberMe = true
         }
     }

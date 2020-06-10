@@ -165,7 +165,7 @@ class RankingView: UIView, UIPickerViewDelegate, UIPickerViewDataSource, UITextF
     
     private var labelTitle:UILabel! = nil
     private let pickerView = DropDownPickerView()
-    var txtField:CustomTextFieldForAttribute!
+    var txtField:RankingTextFieldForAttribute!
     private var datePickerView:UIDatePicker? = nil
     //    var delegateAppForm:KVICApplicationFormIndividualViewController?
     var delegateApp:LoginViewController?
@@ -203,7 +203,7 @@ class RankingView: UIView, UIPickerViewDelegate, UIPickerViewDataSource, UITextF
         print(pOptions)
         pickerView.pickerOptions = dropDownOptions
         pickerView.delegate = self as UIPickerViewDelegate
-        self.txtField = CustomTextFieldForAttribute(frame: CGRect(x: 0, y: 0, width: 70, height: txtFieldHeight))
+        self.txtField = RankingTextFieldForAttribute(frame: CGRect(x: 0, y: 0, width: 70, height: txtFieldHeight))
         self.txtField.delegate = self as UITextFieldDelegate
         self.txtField.tag = pTag
         self.txtField.returnKeyType = .done

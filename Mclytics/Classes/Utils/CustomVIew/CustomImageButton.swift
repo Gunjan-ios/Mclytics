@@ -20,20 +20,21 @@ class CustomImageButton : UIButton {
         var fontSize : CGFloat = 0.0
         var imgCustomHeight = 0
 
-//        if SingletonClassSwift.sharedInstance.iPhone_SE {
-//            fontSize = 15.0
-//            imgCustomHeight = 23
-//        }else{
-//            fontSize = 17.0
-//            imgCustomHeight = 34
-//
-//        }
-//
-        imgLogo = UIImageView(frame: CGRect(x: Int((self.frame.size.width/2) - CGFloat(imgCustomHeight/2)), y: 15, width: imgCustomHeight, height: imgCustomHeight))
+        if ParentClass.sharedInstance.iPhone_SE {
+            fontSize = 15.0
+            imgCustomHeight = 23
+        }else{
+            fontSize = 17.0
+            imgCustomHeight = 50
+
+        }
+
+        imgLogo = UIImageView(frame: CGRect(x: Int((self.frame.size.width/2) - CGFloat(imgCustomHeight/2)), y: 25, width: imgCustomHeight, height: imgCustomHeight))
         imgLogo.image = pImage
+//        imgLogo.center = CGPoint (x: self.frame.width/2, y: self.imgLogo.center.y)
         self.addSubview(imgLogo)
-        
-        lblTitle = UILabel(frame: CGRect(x: 0, y: imgCustomHeight + 20, width: Int(self.frame.size.width), height: 20))
+
+        lblTitle = UILabel(frame: CGRect(x: 0, y: Int(self.frame.height - 30) , width: Int(self.frame.size.width), height: 20))
         lblTitle.textColor = blueTextColor
         lblTitle.font = UIFont(name: REGULAR_FONT_NAME, size: fontSize)
         lblTitle.text = pTitle

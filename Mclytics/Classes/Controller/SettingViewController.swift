@@ -22,6 +22,8 @@ class SettingViewController: ParentClass {
         self.loadHeaderView()
         // Do any additional setup after loading the view.
     }
+    
+ 
     func loadHeaderView() {
         
         headerview = UIView(frame: CGRect(x: 0, y:( STATUS_BAR_HEIGHT + Int(ParentClass.sharedInstance.iPhone_X_Top_Padding)), width: Int(UIScreen.main.bounds.width), height: NAV_HEADER_HEIGHT));
@@ -62,7 +64,7 @@ class SettingViewController: ParentClass {
         
         let  srView = UIView (frame: CGRect (x: X_PADDING, y: ypositionView, width: SCREEN_WIDTH - X_PADDING*2, height: 200))
         srView.layer.cornerRadius = radius
-        srView.layer.borderWidth = borderWidth
+        srView.layer.borderWidth = 2
         srView.layer.borderColor = colorDividerBG_f4.cgColor
         scrlView .addSubview(srView)
         
@@ -83,6 +85,9 @@ class SettingViewController: ParentClass {
         let strText : NSString = "Auto send with Wi-Fi\nAuto send when Wi-Fi is available"
         Utils.mulitplelinebutton(strText: strText, btn: srbtnWifi)
         srbtnWifi.setImage(UIImage (named: "deselectedCheckbox"), for: .normal)
+        srbtnWifi.setImage(UIImage (named: "selectedCheckboxBlue"), for: .selected)
+        srbtnWifi.tag = 1001
+        srbtnWifi.addTarget(self, action: #selector(onbuttonPressed(sender:)), for: .touchUpInside)
         srView.addSubview(srbtnWifi)
     
         yInternal += Int(srbtnWifi.bounds.height)
@@ -95,6 +100,11 @@ class SettingViewController: ParentClass {
         let strNet : NSString = "Auto send with Network\nAuto send when Network is available"
         Utils.mulitplelinebutton(strText: strNet, btn: srbtnNet)
         srbtnNet.setImage(UIImage (named: "deselectedCheckbox"), for: .normal)
+        srbtnNet.setImage(UIImage (named: "selectedCheckboxBlue"), for: .selected)
+
+        srbtnNet.tag = 1002
+        srbtnNet.addTarget(self, action: #selector(onbuttonPressed(sender:)), for: .touchUpInside)
+
         srView.addSubview(srbtnNet)
         
         
@@ -107,6 +117,9 @@ class SettingViewController: ParentClass {
         let strStatus : NSString = "Display send/receive status\nShow form send/receive status on main menu"
         Utils.mulitplelinebutton(strText: strStatus, btn: srbtnStatus)
         srbtnStatus.setImage(UIImage (named: "deselectedCheckbox"), for: .normal)
+        srbtnStatus.setImage(UIImage (named: "selectedCheckboxBlue"), for: .selected)
+        srbtnStatus.addTarget(self, action: #selector(onbuttonPressed(sender:)), for: .touchUpInside)
+        srbtnStatus.tag = 1003
         srView.addSubview(srbtnStatus)
         
         yInternal += Int(srbtnNet.bounds.height)
@@ -119,7 +132,7 @@ class SettingViewController: ParentClass {
 
         let  esfView = UIView (frame: CGRect (x: X_PADDING, y: ypositionView, width: SCREEN_WIDTH - X_PADDING*2, height: 100))
         esfView.layer.cornerRadius = radius
-        esfView.layer.borderWidth = borderWidth
+        esfView.layer.borderWidth = 2
         esfView.layer.borderColor = colorDividerBG_f4.cgColor
         scrlView .addSubview(esfView)
         
@@ -140,6 +153,12 @@ class SettingViewController: ParentClass {
         let strResume : NSString = "Resume\nAllow resume form where left off"
         Utils.mulitplelinebutton(strText: strResume, btn: esfbtnResume)
         esfbtnResume.setImage(UIImage (named: "deselectedCheckbox"), for: .normal)
+        esfbtnResume.setImage(UIImage (named: "selectedCheckboxBlue"), for: .selected)
+
+        esfbtnResume.addTarget(self, action: #selector(onbuttonPressed(sender:)), for: .touchUpInside)
+        esfbtnResume.tag = 1004
+
+
         esfView.addSubview(esfbtnResume)
         
         yInternal += Int(esfbtnResume.bounds.height)
@@ -152,7 +171,7 @@ class SettingViewController: ParentClass {
         
         let  uiView = UIView (frame: CGRect (x: X_PADDING, y: ypositionView, width: SCREEN_WIDTH - X_PADDING*2, height: 100))
         uiView.layer.cornerRadius = radius
-        uiView.layer.borderWidth = borderWidth
+        uiView.layer.borderWidth = 2
         uiView.layer.borderColor = colorDividerBG_f4.cgColor
         scrlView .addSubview(uiView)
         
@@ -173,6 +192,9 @@ class SettingViewController: ParentClass {
         let strfield : NSString = "Form Fields\nShow one by one?"
         Utils.mulitplelinebutton(strText: strfield, btn: uibtnfiled)
         uibtnfiled.setImage(UIImage (named: "deselectedCheckbox"), for: .normal)
+        uibtnfiled.setImage(UIImage (named: "selectedCheckboxBlue"), for: .selected)
+        uibtnfiled.addTarget(self, action: #selector(onbuttonPressed(sender:)), for: .touchUpInside)
+        uibtnfiled.tag = 1005
         uiView.addSubview(uibtnfiled)
         
         yInternal += Int(esfbtnResume.bounds.height)
@@ -182,10 +204,79 @@ class SettingViewController: ParentClass {
         ypositionView += yInternal + X_PADDING
 
         scrlView.contentSize = CGSize (width: SCREEN_WIDTH, height: ypositionView)
-
+        
+        if ParentClass.sharedInstance.getDataForKey(strKey: AUTO_WIFI) as? Bool == true{
+            srbtnWifi.isSelected = true
+        }
+        if ParentClass.sharedInstance.getDataForKey(strKey: AUTO_NETWORK)  as? Bool == true{
+            srbtnNet.isSelected = true
+        }
+        if ParentClass.sharedInstance.getDataForKey(strKey: DISPLAY_STATUS) as? Bool == true{
+            srbtnStatus.isSelected = true
+        }
+        if ParentClass.sharedInstance.getDataForKey(strKey: RESUME) as? Bool == true{
+            esfbtnResume.isSelected = true
+        }
+        if ParentClass.sharedInstance.getDataForKey(strKey: USER_INTERFACE) as? Bool == true{
+            uibtnfiled.isSelected = true
+        }
     }
     
+
     
+    @objc func onbuttonPressed(sender : UIButton){
+        
+        
+        switch sender.tag {
+        case 1001:
+            if sender.isSelected{
+                sender.isSelected = false
+                ParentClass.sharedInstance.setData(strData: false, strKey: AUTO_WIFI)
+            }else{
+                sender.isSelected = true
+                ParentClass.sharedInstance.setData(strData: true, strKey: AUTO_WIFI)
+            }
+            break
+        case 1002:
+            if sender.isSelected{
+                sender.isSelected = false
+                ParentClass.sharedInstance.setData(strData: false, strKey: AUTO_NETWORK)
+            }else{
+                sender.isSelected = true
+                ParentClass.sharedInstance.setData(strData: true, strKey: AUTO_NETWORK)
+            }
+            break
+        case 1003:
+            if sender.isSelected{
+                sender.isSelected = false
+                ParentClass.sharedInstance.setData(strData: false, strKey: DISPLAY_STATUS)
+            }else{
+                sender.isSelected = true
+                ParentClass.sharedInstance.setData(strData: true, strKey: DISPLAY_STATUS)
+            }
+            break
+        case 1004:
+            if sender.isSelected{
+                sender.isSelected = false
+                ParentClass.sharedInstance.setData(strData: false, strKey: RESUME)
+            }else{
+                sender.isSelected = true
+                ParentClass.sharedInstance.setData(strData: true, strKey: RESUME)
+            }
+            break
+        case 1005:
+            if sender.isSelected{
+                sender.isSelected = false
+                ParentClass.sharedInstance.setData(strData: false, strKey: USER_INTERFACE)
+            }else{
+                sender.isSelected = true
+                ParentClass.sharedInstance.setData(strData: true, strKey: USER_INTERFACE)
+            }
+            break
+        default:
+            break
+        }
+    }
     
     func addSeparateVIew(Y: Int ,Width:Int) -> UIView {
         let cView = UIView (frame: CGRect (x: 0, y: Y, width:Width, height: X_PADDING_SUBHEADER))

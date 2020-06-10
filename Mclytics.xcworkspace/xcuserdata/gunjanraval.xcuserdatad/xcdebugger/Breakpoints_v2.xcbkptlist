@@ -7,85 +7,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "CD2DCFB4-EA1C-4B5A-A49D-06607E543A80"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Mclytics/Classes/Utils/SegmentTabbar/SegmentedViewController.swift"
-            timestampString = "611744327.568224"
+            filePath = "Mclytics/Classes/Controller/FormFieldsVC.swift"
+            timestampString = "613401547.8997819"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "117"
-            endingLineNumber = "117"
-            landmarkName = "layoutHeaderViewAndTabBar()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "6F56C465-8BEC-4195-BE4A-D8DB364100F7"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Mclytics/Classes/Controller/Delete Saved Form/DeleteListTableViewController.swift"
-            timestampString = "612599538.8653899"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "165"
-            endingLineNumber = "165"
-            landmarkName = "onCheckListPressed(sender:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "B13D2281-260D-48ED-878F-924A698387D1"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Mclytics/Classes/Controller/Delete Saved Form/DeleteListTableViewController.swift"
-            timestampString = "612599538.865835"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "150"
-            endingLineNumber = "150"
-            landmarkName = "onCheckListPressed(sender:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "6B37B1BC-8FC7-434A-B37D-DF1C83439C82"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Mclytics/Classes/Controller/Delete Saved Form/DeleteListTableViewController.swift"
-            timestampString = "612599538.8661079"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "159"
-            endingLineNumber = "159"
-            landmarkName = "onCheckListPressed(sender:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "50C1259F-4A58-4532-A48C-FDC1A56B9606"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Mclytics/Classes/Controller/Delete Saved Form/DeleteListTableViewController.swift"
-            timestampString = "612599538.866377"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "82"
-            endingLineNumber = "82"
-            landmarkName = "onDeletePressed()"
+            startingLineNumber = "487"
+            endingLineNumber = "487"
+            landmarkName = "onNextPressed()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -95,13 +26,45 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Mclytics/Classes/Controller/Webservice/SwiftyJson/RootClass.swift"
-            timestampString = "612769033.171641"
+            filePath = "Mclytics/Classes/Controller/ViewController.swift"
+            timestampString = "613311704.5609829"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "59"
-            endingLineNumber = "59"
-            landmarkName = "init(fromJson:)"
+            startingLineNumber = "96"
+            endingLineNumber = "96"
+            landmarkName = "goToSetting()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Mclytics/Classes/Controller/LoginViewController.swift"
+            timestampString = "613312758.536299"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "161"
+            endingLineNumber = "161"
+            landmarkName = "rememberMePressed(sender:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Mclytics/Classes/Controller/FormFieldsVC.swift"
+            timestampString = "613401547.900344"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "753"
+            endingLineNumber = "753"
+            landmarkName = "dataSetupformAPI()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

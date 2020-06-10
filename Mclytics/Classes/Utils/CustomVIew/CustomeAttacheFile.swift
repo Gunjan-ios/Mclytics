@@ -7,70 +7,7 @@
 //
 
 import UIKit
-
-//class CustomeAttacheFile: UIButton {
-//
-//    private var shadowLayer: CAShapeLayer!
-//
-//    override init(frame: CGRect) {
-//            super.init(frame: frame)
-//
-//        backgroundColor = .white
-////        self.contentHorizontalAlignment = .center
-//            setTitleColor(UIColor.black, for: .normal)
-//
-//            // corner
-//            layer.cornerRadius = 5
-//            self.layer.borderWidth = 1
-//            self.layer.borderColor = buttonBorderColor.cgColor
-//
-//            // title color
-//
-//            // font
-//            titleLabel?.font = UIFont(name:APP_FONT_NAME_BOLD, size: BUTTON_FONT_SIZE)
-//
-//    //         shadow
-//            if shadowLayer == nil {
-//                shadowLayer = CAShapeLayer()
-//                shadowLayer.path = UIBezierPath(roundedRect: bounds, cornerRadius: 5).cgPath
-//                shadowLayer.fillColor = UIColor.white.cgColor
-//
-//                shadowLayer.shadowColor = UIColor.darkGray.cgColor
-//                shadowLayer.shadowPath = shadowLayer.path
-//                shadowLayer.shadowOffset = CGSize(width: 0.0, height: 3.0)
-//                shadowLayer.shadowOpacity = 0.8
-//                shadowLayer.shadowRadius = 2
-//            }
-//
-//
-//        //
-//        let imageSize = self.imageView!.frame.size
-//        let titleSize = self.titleLabel!.frame.size
-//        let totalHeight = imageSize.height + titleSize.height + 6
-//
-//        self.imageEdgeInsets = UIEdgeInsets(
-//            top: 6,
-//            left: 8,
-//            bottom: 8,
-//            right: -8
-//        )
-//
-//        self.titleEdgeInsets = UIEdgeInsets(
-//            top: self.frame.size.height - 20,
-//            left: 0,
-//            bottom: 4,
-//            right: 0
-//        )
-//
-//
-//        }
-//
-//        required init?(coder aDecoder: NSCoder) {
-//            fatalError("init(coder:) has not been implemented")
-//        }
-//
-//
-//}
+import CoreFoundation
 
 class CustomeAttacheFile: UIButton {
     override func layoutSubviews() {
@@ -81,9 +18,7 @@ class CustomeAttacheFile: UIButton {
         self.layer.borderWidth = borderWidth
         self.layer.borderColor = buttonBorderColor.cgColor
         
-        setTitleColor(UIColor.black, for: .normal)
-//        self.titleLabel?.font = UIFont(16)
-//        self.titleLabel?.font = UIFont(name:APP_FONT_NAME_BOLD, size: BUTTON_FONT_SIZE)
+        setTitleColor(UIColor.darkGray, for: .normal)
 
         let kTextTopPadding:CGFloat = 3.0;
 
@@ -95,13 +30,16 @@ class CustomeAttacheFile: UIButton {
         var imageFrame = self.imageView!.frame;
 
         let fitBoxSize = CGSize(width: max(imageFrame.size.width, labelSize.width), height: labelSize.height + kTextTopPadding + imageFrame.size.height)
-
+//
         let fitBoxRect = self.bounds.insetBy(dx: (self.bounds.size.width - fitBoxSize.width)/2, dy: (self.bounds.size.height - fitBoxSize.height)/2);
 
         imageFrame.origin.y = fitBoxRect.origin.y;
-        imageFrame.origin.x = fitBoxRect.midX - (imageFrame.size.width/2);
-        self.imageView!.frame = imageFrame;
+//        imageFrame.origin.x = fitBoxRect.midX - (imageFrame.size.width/2);
+//        self.imageView!.frame = imageFrame;
+        self.imageView?.frame = CGRect (x: 0, y: Int(imageFrame.origin.y), width: Int(self.frame.height/2), height:  Int(self.frame.height/2))
 
+        self.imageView?.center = CGPoint (x: self.frame.width/2, y: (self.imageView?.center.y)!)
+        
         // Adjust the label size to fit the text, and move it below the image
 
         titleLabelFrame.size.width = labelSize.width;
@@ -110,6 +48,8 @@ class CustomeAttacheFile: UIButton {
         titleLabelFrame.origin.y = self.frame.size.height - 26//fitBoxRect.origin.y + imageFrame.size.height + kTextTopPadding;
         self.titleLabel!.frame = titleLabelFrame;
         self.titleLabel!.textAlignment = .center
+        self.titleLabel!.font = UIFont .boldSystemFont(ofSize: 15)
+
     }
 
 }

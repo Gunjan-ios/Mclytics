@@ -88,20 +88,14 @@ class FormFieldsVC: ParentClass,UIImagePickerControllerDelegate, UINavigationCon
     var name : String = ""
     var slug : String = ""
     var created : Double = 0
+    var count : Int = 0
+    
+    var buttonPrevious : CustomButton!
+    var buttonNext : CustomButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        if type == "Edit"{
-            arrayfield = arrayList["fields"]
-            
-            for tampAry1 in arrayfield.arrayValue{
-                self.tempAraay.append(tampAry1)
-            }
-            name =  arrayList["data"]["name"].stringValue
-            slug =  arrayList["data"]["slug"].stringValue
-            created = arrayList["data"]["created_at"].doubleValue
-        }
-        else{
+        self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
             arrayfield = arrayList["fields"]
             
             for tampAry1 in arrayfield.arrayValue{
@@ -113,16 +107,35 @@ class FormFieldsVC: ParentClass,UIImagePickerControllerDelegate, UINavigationCon
             name =  arrayList["name"].stringValue
             slug =  arrayList["slug"].stringValue
             created = arrayList["created_at"].doubleValue
-        }
         
         loadHeaderView()
-        dataSetupformAPI()
+        
+        if ParentClass.sharedInstance.getDataForKey(strKey: USER_INTERFACE) as? Bool == true{
+            dataSetupformOnebyOne(object: tempAraay[count])
+            
+            buttonPrevious = CustomButton(frame: CGRect(x: X_PADDING, y: SCREEN_HEIGHT - (CUSTOM_BUTTON_HEIGHT*2), width: SCREEN_WIDTH/2 - (X_PADDING*2), height: CUSTOM_BUTTON_HEIGHT))
+            buttonPrevious.setTitle("Previous", for: .normal)
+            buttonPrevious.setTitleColor(.darkGray, for: .disabled)
+            buttonPrevious.backgroundColor = UIColor.lightGray
+            buttonPrevious.isEnabled = false
+            buttonPrevious.addTarget(self, action: #selector(onPreviousPressed), for: .touchUpInside)
+            self.view.addSubview(buttonPrevious)
+            
+            buttonNext = CustomButton(frame: CGRect(x: SCREEN_WIDTH - SCREEN_WIDTH/2 + X_PADDING , y: SCREEN_HEIGHT - (CUSTOM_BUTTON_HEIGHT*2), width: SCREEN_WIDTH/2 - (X_PADDING*2), height: CUSTOM_BUTTON_HEIGHT))
+            buttonNext.addTarget(self, action: #selector(onNextPressed), for: .touchUpInside)
+            buttonNext.setTitle("Next", for: .normal)
+            self.view.addSubview(buttonNext)
+            
+        }else{
+            dataSetupformAPI()
+        }
+        
         
     }
     
     func setupRatingView() {
         StarRatingView.delegate = self
-        StarRatingView.ratingValue = -1
+        StarRatingView.ratingValue = 2
     }
     
     func loadHeaderView() {
@@ -150,6 +163,369 @@ class FormFieldsVC: ParentClass,UIImagePickerControllerDelegate, UINavigationCon
     }
     
     
+    func dataSetupformOnebyOne(object : JSON) {
+        
+        scrlView = UIScrollView (frame: CGRect (x: 0, y: yPosition, width: SCREEN_WIDTH, height: SCREEN_HEIGHT - yPosition - CUSTOM_BUTTON_HEIGHT * 2))
+        scrlView.backgroundColor = .white
+        scrlView.bounces = false
+//        scrlView.isPagingEnabled = true
+        
+            var yposition : Int! = 0
+            yposition = X_PADDING
+        
+            let dataType = object["type"].stringValue
+            
+            if dataType == DATATYPE_HEADING{
+                
+                let buttonAddImage = CustomLabel(frame: CGRect(x: yposition, y: X_PADDING, width: SCREEN_WIDTH - X_PADDING*2 , height: CUSTOM_BUTTON_HEIGHT))
+                buttonAddImage.text = object["text"].stringValue
+                buttonAddImage.tag = TAG1
+                scrlView.addSubview(buttonAddImage)
+                
+//                yposition += X_PADDING + CUSTOM_BUTTON_HEIGHT
+                
+            } else if dataType == DATATYPE_PARAGRAPH {
+                
+                let txtField = InsideTextView (frame: CGRect (x: yposition, y: X_PADDING , width: SCREEN_WIDTH - X_PADDING*2 , height: 100))
+                txtField.text =  object["text"].stringValue
+                txtField.attributedText = txtField.text.htmlToAttributedString
+                txtField.isUserInteractionEnabled = false
+                scrlView.addSubview(txtField)
+                
+//                yposition += X_PADDING + Int(txtField.bounds.width)
+         
+            } else if dataType == DATATYPE_TEXT {
+                
+                let name = CustomInputFieldView(frame: CGRect(x: yposition, y: X_PADDING, width: SCREEN_WIDTH - X_PADDING*2 , height: controls_height))
+                name.delegateAppForm = self
+                name.initDesign(pName: object["label"].stringValue.htmlToString , pTag: UploadTAG109, pPlaceHolder: object["placeholder"].stringValue, str_id: object["id"].stringValue)
+                print(object["Ans"].stringValue)
+                name.txtField.text =  object["Ans"].stringValue
+                scrlView.addSubview(name)
+                
+//                yposition += X_PADDING + Int(name.bounds.width)
+           
+            } else if dataType == DATATYPE_Email{
+                
+                let email = CustomInputFieldView(frame: CGRect(x: yposition, y: X_PADDING, width: SCREEN_WIDTH - X_PADDING*2 , height: controls_height))
+                email.initDesign(pName: object["label"].stringValue.htmlToString, pTag: TAG4, pPlaceHolder: object["placeholder"].stringValue, str_id: object["id"].stringValue)
+                email.delegateAppForm = self
+                email.txtField.keyboardType = .emailAddress
+                scrlView.addSubview(email)
+                    
+//              yposition += X_PADDING + Int(email.bounds.width)
+            
+            } else if dataType == DATATYPE_PHONE{
+            let phone = CustomInputFieldView(frame: CGRect(x: yposition, y: X_PADDING, width: SCREEN_WIDTH - X_PADDING*2 , height: controls_height))
+                phone.initDesign(pName: object["label"].stringValue.htmlToString, pTag: TAG4, pPlaceHolder: object["placeholder"].stringValue, str_id: object["id"].stringValue)
+            phone.delegateAppForm = self
+            phone.txtField.keyboardType = .phonePad
+            scrlView.addSubview(phone)
+//            yposition += X_PADDING + Int(phone.bounds.width)
+
+            } else if dataType == DATATYPE_TEXTAREA{
+                
+                let districtView = CustomInputTextView(frame: CGRect(x: yposition, y: X_PADDING, width:  SCREEN_WIDTH - X_PADDING*2, height: 125))
+                districtView.delegateAppForm = self
+                districtView.initDesign(pName:  object["label"].stringValue.htmlToString, pTag: 13, pPlaceHolder: object["predefinedValue"].stringValue)
+                scrlView.addSubview(districtView)
+                
+//                yposition += X_PADDING  + 125
+                
+            }else if dataType == DATATYPE_DATE{
+                
+                let UnitEstablishmentDate = CustomComboBoxView(frame: CGRect(x: yposition, y: X_PADDING, width: Int(scrlView.frame.size.width)  - (X_PADDING * 2), height: controls_height))
+                UnitEstablishmentDate.initDesign(pName:object["label"].stringValue.htmlToString, pTag: TAG8, pOptions: [],pPlaceHolder: object["placeholder"].stringValue)
+                UnitEstablishmentDate.setDatePicker()
+                scrlView.addSubview(UnitEstablishmentDate)
+                
+//                yposition += X_PADDING + Int( UnitEstablishmentDate.bounds.width)
+                
+            }else if dataType == DATATYPE_SELECTLIST{
+                
+                let titleComboBox = CustomComboBoxView(frame: CGRect(x: yposition, y: X_PADDING, width: SCREEN_WIDTH - X_PADDING*2, height: controls_height))
+                var strOption : [String] = [String]()
+                for (_, value) in object["options"] {
+                    strOption.append(value["label"].stringValue)
+                }
+                titleComboBox.initDesign(pName: object["label"].stringValue.htmlToString, pTag: 12, pOptions: strOption,pPlaceHolder: "")
+                scrlView.addSubview(titleComboBox)
+
+//                yposition += X_PADDING + Int( titleComboBox.bounds.width)
+                
+            }else if dataType == DATATYPE_RADIO{
+                
+                let genderView = GenderView(frame:  CGRect(x: yposition, y: X_PADDING, width: Int(scrlView.frame.size.width) - X_PADDING*2, height: controls_height))
+                var strOption : [String] = [String]()
+                for (_, value) in object["options"] {
+                    strOption.append(value["label"].stringValue)
+                }
+                genderView.initDesign(pName:object["label"].stringValue.htmlToString, pTag: 6, pOptions: strOption)
+                genderView.frame = genderView.resetHeight()
+                genderView.layer.cornerRadius = radius
+                genderView.layer.borderWidth = borderWidth
+                genderView.layer.borderColor =  UIColor.lightGray.cgColor
+                scrlView.addSubview(genderView)
+
+//                yposition += X_PADDING + Int( genderView.bounds.width)
+         
+            }else if dataType == DATATYPE_CHECKBOX{
+                
+                let multiple = MarginSelectView(frame:  CGRect(x: yposition, y: X_PADDING, width: Int(scrlView.frame.size.width) - X_PADDING*2, height: controls_height))
+                var strOption : [String] = [String]()
+                for (_, value) in object["options"] {
+                    strOption.append(value["label"].stringValue)
+                }
+                multiple.initDesign(pName: object["label"].stringValue.htmlToString, pTag: 122, pOptions: strOption)
+                multiple.frame = multiple.resetHeight()
+                multiple.layer.cornerRadius = radius
+                multiple.layer.borderWidth = borderWidth
+                multiple.layer.borderColor =  UIColor.lightGray.cgColor
+                scrlView.addSubview(multiple)
+                
+//                yposition += X_PADDING + Int( multiple.bounds.width)
+                
+            }else if dataType == DATATYPE_RANKINGSCALE{
+                
+                var strOption : [String] = [String]()
+                
+                let ranks = object["ranks"].intValue
+               
+                for n in 1...ranks {
+                    strOption.append("\(n)")
+                }
+                
+                let title = PaddingLabel (frame: CGRect (x: yposition, y: X_PADDING, width: SCREEN_WIDTH - X_PADDING*2, height: 25))
+                title.text = object["label"].stringValue.htmlToString
+                title.font = UIFont(name: APP_FONT_NAME, size: 17)
+                title.textColor = colorSubHeading_76
+                let rectShape = CAShapeLayer()
+                rectShape.path = UIBezierPath(roundedRect: title.bounds, byRoundingCorners: [ .topRight , .topLeft], cornerRadii: CGSize(width: radius, height: radius)).cgPath
+                rectShape.strokeColor = UIColor.lightGray.cgColor
+                rectShape.fillColor = UIColor.clear.cgColor
+                rectShape.lineWidth = borderWidth
+                rectShape.frame = title.bounds
+                title.layer.mask =   rectShape
+                title.layer.addSublayer(rectShape)
+                scrlView.addSubview(title)
+                
+                yposition +=  Int( title.bounds.height)
+                
+                let vv1 = UIView(frame: CGRect(x: X_PADDING, y: yposition, width: Int(self.view.frame.size.width) - X_PADDING*2, height: 90))
+                vv1.layer.cornerRadius = radius
+                vv1.layer.borderWidth = borderWidth
+                vv1.layer.borderColor = buttonBorderColor.cgColor
+                
+                var y_Internal_position : Int! = X_PADDING
+
+                for (_, value) in object["options"] {
+             
+                   let  titleComboBox = RankingView(frame: CGRect(x: X_PADDING, y: y_Internal_position, width: Int(scrlView.frame.size.width) - X_PADDING*2 , height: 35))
+                    titleComboBox.initDesign(pName: value["label"].stringValue, pTag: TAG18, pOptions: strOption,pPlaceHolder: "")
+                    vv1.addSubview(titleComboBox)
+                    
+                    y_Internal_position +=  X_PADDING +  Int( titleComboBox.bounds.height)
+                }
+                
+                let optionsCount = object["options"].count
+                vv1.frame =  CGRect(x: X_PADDING, y: yposition, width: Int(self.view.frame.size.width) - X_PADDING*2, height: 35*optionsCount + X_PADDING*(optionsCount+1))
+                scrlView.addSubview(vv1)
+                
+//                yposition +=  X_PADDING +  Int( vv1.bounds.width)
+
+            }
+            else if dataType == DATATYPE_SIDEBYSIDE{
+                //controller SidebySide
+                vSideBySide.frame = CGRect(x: yposition, y: X_PADDING, width: Int(self.view.frame.size.width) - X_PADDING*2, height: 128)
+                vSideBySide.layer.borderColor = UIColor.lightGray.cgColor
+                vSideBySide.layer.borderWidth = borderWidth
+                vSideBySide.layer.cornerRadius = radius
+                scrollSideBySide.showsHorizontalScrollIndicator = false
+                scrollSideBySide.showsVerticalScrollIndicator = false
+                scrollSideBySide.contentSize = CGSize(width: vSideBySide.frame.size.width, height: 60)
+                scrlView.addSubview(vSideBySide)
+                
+                sideBySideDisplay(display: object["ranks"].intValue, leftName: object["side1"].stringValue, rightName: object["side2"].stringValue)
+                
+//                yposition += X_PADDING +  Int(vSideBySide.bounds.width)
+                
+                
+            }else if dataType == DATATYPE_RATING{
+                //Rating view
+                 let inputType = object["inputType"].stringValue
+                
+                var strOption : [String] = [String]()
+                for (_, value) in object["options"] {
+                    strOption.append(value["label"].stringValue)
+                }
+                if inputType == "star" {
+                    
+                    let vv = UIView(frame: CGRect(x: yposition, y: X_PADDING, width: Int(self.view.frame.size.width) - X_PADDING*2, height: 90))
+                    vv.layer.cornerRadius = radius
+                    vv.layer.borderWidth = borderWidth
+                    vv.layer.borderColor = buttonBorderColor.cgColor
+                    
+                    let lblSelectChoise = PaddingLabel(frame: CGRect(x: 0, y: 0, width: Int(self.view.frame.size.width) - X_PADDING, height: 29))
+                    lblSelectChoise.text = object["label"].stringValue.htmlToString
+                    lblSelectChoise.font = UIFont(name: APP_FONT_NAME, size: 17)
+                    lblSelectChoise.textColor = colorSubHeading_76
+                    
+                    let line = UIView(frame: CGRect(x: 0, y: Int(lblSelectChoise.bounds.height), width: Int(vv.frame.size.width), height: 1))
+                    line.backgroundColor = buttonBorderColor
+                    
+        
+                    StarRatingView = StarRateView(frame: CGRect(x: yposition, y: 40, width: 40, height: 40))
+                    StarRatingView.maxCount = strOption.count
+                    vv.addSubview(lblSelectChoise)
+                    vv.addSubview(line)
+                    vv.addSubview(StarRatingView)
+                    scrlView.addSubview(vv)
+                    StarRatingView.frame = CGRect (x: yposition, y: 40, width: 40*strOption.count, height: 40)
+//                    yposition += X_PADDING +  Int( vv.bounds.width)
+                    
+                    setupRatingView()
+                }
+                else{
+                    //Slider selection
+                    vSliderSelection.frame = CGRect(x: yposition, y: X_PADDING, width: Int(self.view.frame.size.width) - X_PADDING*2, height: 100)
+                    vSliderSelection.layer.borderColor = UIColor.lightGray.cgColor
+                    vSliderSelection.layer.borderWidth = borderWidth
+                    vSliderSelection.layer.cornerRadius = radius
+                    
+//                    sliderSelection!.addTarget(self, action: #selector(valueChanged(sender:)), for: .valueChanged)
+
+                    scrlView.addSubview(vSliderSelection)
+                    
+//                    yposition += X_PADDING +  Int(vSliderSelection.bounds.width)
+                }
+
+            }else if dataType == DATATYPE_IMAGE{
+                
+                //image file
+                        let iconImage:UIImage? = UIImage(named: "Fill-Black-Form")
+                let attacheFile2 = CustomeAttacheFile(frame: CGRect(x: yposition, y: yposition, width: 130, height: 130))
+                attacheFile2.setTitle(object["label"].stringValue.htmlToString, for: .normal)
+                attacheFile2.setImage(iconImage, for: .normal)
+                attacheFile2.addTarget(self, action: #selector(openGallary), for: .touchUpInside)
+                scrlView.addSubview(attacheFile2)
+                
+//                yposition += X_PADDING + SCREEN_WIDTH
+            }else if dataType == DATATYPE_VIDEO{
+                //video file
+                let iconImage1:UIImage? = UIImage(named: "Fill-Black-Form")
+                let attacheFile1 = CustomeAttacheFile(frame: CGRect(x: yposition, y: X_PADDING, width: 130, height: 130))
+                attacheFile1.setTitle(object["label"].stringValue.htmlToString, for: .normal)
+                attacheFile1.sizeToFit()
+                attacheFile1.setImage(iconImage1, for: .normal)
+                attacheFile1.addTarget(self, action: #selector(openCamera), for: .touchUpInside)
+                scrlView.addSubview(attacheFile1)
+                
+//                yposition += X_PADDING + SCREEN_WIDTH
+            }else if dataType == DATATYPE_FILE{
+                //Attche file
+                let iconImage:UIImage? = UIImage(named: "Fill-Black-Form")
+                attacheFile = CustomeAttacheFile(frame: CGRect(x: yposition, y: X_PADDING, width: 130, height: 130))
+                self.attacheFile.setTitle(object["label"].stringValue.htmlToString, for: .normal)
+                self.attacheFile.setImage(iconImage, for: .normal)
+                self.attacheFile.addTarget(self, action: #selector(openAttchementFile(_:)), for: .touchUpInside)
+                scrlView.addSubview(attacheFile)
+                
+//                yposition += X_PADDING + SCREEN_WIDTH
+
+            }else if dataType == DATATYPE_SIGNATURE{
+                
+                //SignatureView
+
+                signatureView = YPDrawSignatureView(frame:CGRect(x: yposition, y: X_PADDING, width: Int(self.view.frame.size.width) - X_PADDING*2, height: 200))
+                signatureView.backgroundColor = UIColor.clear
+                signatureView.layer.cornerRadius = radius
+                signatureView.layer.borderWidth = borderWidth
+                signatureView.layer.borderColor = buttonBorderColor.cgColor
+                scrlView.addSubview(signatureView)
+                
+                signClearButton = CustomButton(frame: CGRect(x: Int(signatureView.frame.size.width - 70), y: Int(signatureView.frame.size.height - 45), width: 60, height: 32))
+                signClearButton.backgroundColor = UIColor.gray
+                signClearButton.setTitleColor(.white, for: .normal)
+                signClearButton.layer.cornerRadius = radius
+                self.signClearButton.setTitle("Clear", for: .normal)
+                signClearButton.addTarget(self, action: #selector(signClearPressed), for: .touchUpInside)
+                signatureView.addSubview(signClearButton)
+                
+                signatureView.delegate = self
+                
+//                yposition += X_PADDING +  Int( signatureView.bounds.width)
+                
+            }else if dataType == DATATYPE_RECAPTCHA{
+                
+                //Captch
+                vCaptcha.frame = CGRect(x: yposition, y: X_PADDING, width: Int(self.view.frame.size.width) - X_PADDING*2, height: 90)
+                vCaptcha.layer.borderColor = UIColor.lightGray.cgColor
+                vCaptcha.layer.borderWidth = 1
+                vCaptcha.layer.cornerRadius = 4
+                scrlView.addSubview(vCaptcha)
+                
+                setupReCaptcha()
+                
+//                yposition += X_PADDING +  Int( vCaptcha.bounds.width)
+            }
+        scrlView.contentSize = CGSize (width: SCREEN_WIDTH, height: SCREEN_HEIGHT - yPosition - CUSTOM_BUTTON_HEIGHT * 2)
+        self.view.addSubview(scrlView)
+    }
+    @objc func valueChanged(sender: UISlider) {
+        let index = (Int)(sliderSelection!.value + 1);
+        sliderSelection?.setValue(Float(index), animated: false)
+    }
+    @objc func onNextPressed() {
+        count += 1
+         if count == 0{
+            buttonPrevious.setTitleColor(.darkGray, for: .disabled)
+            buttonPrevious.backgroundColor = UIColor.lightGray
+            buttonPrevious.isEnabled = false
+            buttonNext.isEnabled = true
+            buttonNext.backgroundColor = colorPrimary
+            dataSetupformOnebyOne(object: tempAraay[count])
+        }else if tempAraay.count > count{
+            buttonPrevious.isEnabled = true
+            buttonNext.isEnabled = true
+            buttonNext.backgroundColor = colorPrimary
+            buttonPrevious.backgroundColor = colorPrimary
+            dataSetupformOnebyOne(object: tempAraay[count])
+        }else if  tempAraay.count == count{
+            buttonPrevious.isEnabled = true
+            buttonPrevious.backgroundColor = colorPrimary
+            buttonNext.setTitleColor(.darkGray, for: .disabled)
+            buttonNext.backgroundColor = UIColor.lightGray
+            buttonNext.isEnabled = false
+            dataSetupformOnebyOne(object: tempAraay[count-1])
+        }
+    }
+    @objc func onPreviousPressed() {
+        count -= 1
+          if count == 0{
+            buttonPrevious.setTitleColor(.darkGray, for: .disabled)
+            buttonPrevious.backgroundColor = UIColor.lightGray
+            buttonPrevious.isEnabled = false
+            buttonNext.isEnabled = true
+            buttonNext.backgroundColor = colorPrimary
+            dataSetupformOnebyOne(object: tempAraay[count])
+        }else if count > 0{
+            buttonPrevious.isEnabled = true
+            buttonNext.isEnabled = true
+            buttonNext.backgroundColor = colorPrimary
+            buttonPrevious.backgroundColor = colorPrimary
+            dataSetupformOnebyOne(object: tempAraay[count])
+        }else  if count == tempAraay.count{
+            buttonPrevious.isEnabled = true
+            buttonPrevious.backgroundColor = colorPrimary
+            buttonNext.setTitleColor(.darkGray, for: .disabled)
+            buttonNext.backgroundColor = UIColor.lightGray
+            buttonNext.isEnabled = false
+            dataSetupformOnebyOne(object: tempAraay[count-1])
+        }
+        
+    }
+    
+    
     func dataSetupformAPI() {
         
         scrlView = UIScrollView (frame: CGRect (x: 0, y: yPosition, width: SCREEN_WIDTH, height: SCREEN_HEIGHT - yPosition))
@@ -158,8 +534,6 @@ class FormFieldsVC: ParentClass,UIImagePickerControllerDelegate, UINavigationCon
         var yposition : Int! = X_PADDING
         
         for var object in tempAraay{
-            
-//            let data = Field.init(fromJson: object)
             
             let dataType = object["type"].stringValue
             
@@ -181,7 +555,7 @@ class FormFieldsVC: ParentClass,UIImagePickerControllerDelegate, UINavigationCon
                 scrlView.addSubview(txtField)
                 
                 yposition += X_PADDING + Int(txtField.bounds.height)
-         
+                
             } else if dataType == DATATYPE_TEXT {
                 
                 let name = CustomInputFieldView(frame: CGRect(x: X_PADDING, y: yposition, width: SCREEN_WIDTH - X_PADDING*2 , height: controls_height))
@@ -192,7 +566,7 @@ class FormFieldsVC: ParentClass,UIImagePickerControllerDelegate, UINavigationCon
                 scrlView.addSubview(name)
                 
                 yposition += X_PADDING + Int(name.bounds.height)
-           
+                
             } else if dataType == DATATYPE_Email{
                 
                 let email = CustomInputFieldView(frame: CGRect(x: X_PADDING, y: yposition, width: SCREEN_WIDTH - X_PADDING*2 , height: controls_height))
@@ -200,16 +574,17 @@ class FormFieldsVC: ParentClass,UIImagePickerControllerDelegate, UINavigationCon
                 email.delegateAppForm = self
                 email.txtField.keyboardType = .emailAddress
                 scrlView.addSubview(email)
-                    
+                
               yposition += X_PADDING + Int(email.bounds.height)
             
             } else if dataType == DATATYPE_PHONE{
-            let phone = CustomInputFieldView(frame: CGRect(x: X_PADDING, y: yposition, width: SCREEN_WIDTH - X_PADDING*2 , height: controls_height))
+                
+                let phone = CustomInputFieldView(frame: CGRect(x: X_PADDING, y: yposition, width: SCREEN_WIDTH - X_PADDING*2 , height: controls_height))
                 phone.initDesign(pName: object["label"].stringValue.htmlToString, pTag: TAG4, pPlaceHolder: object["placeholder"].stringValue, str_id: object["id"].stringValue)
-            phone.delegateAppForm = self
-            phone.txtField.keyboardType = .phonePad
-            scrlView.addSubview(phone)
-            yposition += X_PADDING + Int(phone.bounds.height)
+                phone.delegateAppForm = self
+                phone.txtField.keyboardType = .phonePad
+                scrlView.addSubview(phone)
+                yposition += X_PADDING + Int(phone.bounds.height)
 
             } else if dataType == DATATYPE_TEXTAREA{
                 
@@ -305,10 +680,10 @@ class FormFieldsVC: ParentClass,UIImagePickerControllerDelegate, UINavigationCon
                 vv1.layer.borderColor = buttonBorderColor.cgColor
                 
                 var y_Internal_position : Int! = X_PADDING
-
+                
                 for (_, value) in object["options"] {
-             
-                   let  titleComboBox = RankingView(frame: CGRect(x: X_PADDING, y: y_Internal_position, width: Int(scrlView.frame.size.width) - X_PADDING*2 , height: 35))
+                    
+                    let  titleComboBox = RankingView(frame: CGRect(x: X_PADDING, y: y_Internal_position, width: Int(scrlView.frame.size.width) - X_PADDING*2 , height: 35))
                     titleComboBox.initDesign(pName: value["label"].stringValue, pTag: TAG18, pOptions: strOption,pPlaceHolder: "")
                     vv1.addSubview(titleComboBox)
                     
@@ -364,14 +739,18 @@ class FormFieldsVC: ParentClass,UIImagePickerControllerDelegate, UINavigationCon
         
                     StarRatingView = StarRateView(frame: CGRect(x: X_PADDING, y: 40, width: 40, height: 40))
                     StarRatingView.maxCount = strOption.count
+//                    StarRatingView.delegate = self
+//                    StarRatingView.ratingValue = 2
                     vv.addSubview(lblSelectChoise)
                     vv.addSubview(line)
                     vv.addSubview(StarRatingView)
                     scrlView.addSubview(vv)
                     StarRatingView.frame = CGRect (x: X_PADDING, y: 40, width: 40*strOption.count, height: 40)
+                    
                     yposition += X_PADDING +  Int( vv.bounds.height)
                     
                     setupRatingView()
+                    StarRatingView.ratingValue = 1
                 }
                 else{
                     //Slider selection
@@ -379,48 +758,50 @@ class FormFieldsVC: ParentClass,UIImagePickerControllerDelegate, UINavigationCon
                     vSliderSelection.layer.borderColor = UIColor.lightGray.cgColor
                     vSliderSelection.layer.borderWidth = borderWidth
                     vSliderSelection.layer.cornerRadius = radius
-
+                    
                     scrlView.addSubview(vSliderSelection)
                     
                     yposition += X_PADDING +  Int(vSliderSelection.bounds.height)
                 }
-
+                
             }else if dataType == DATATYPE_IMAGE{
                 
                 //image file
-                        let iconImage:UIImage? = UIImage(named: "Fill-Black-Form")
-                let attacheFile2 = CustomeAttacheFile(frame: CGRect(x: X_PADDING, y: yposition, width: 110, height: 110))
+                let iconImage:UIImage? = UIImage(named: "gallery")
+                let attacheFile2 = CustomeAttacheFile(frame: CGRect(x: X_PADDING, y: yposition, width: 130, height: 130))
                 attacheFile2.setTitle(object["label"].stringValue.htmlToString, for: .normal)
                 attacheFile2.setImage(iconImage, for: .normal)
                 attacheFile2.addTarget(self, action: #selector(openGallary), for: .touchUpInside)
                 scrlView.addSubview(attacheFile2)
                 
-                yposition += X_PADDING + 110
+                yposition += X_PADDING + 130
+                
             }else if dataType == DATATYPE_VIDEO{
                 //video file
-                let iconImage1:UIImage? = UIImage(named: "Fill-Black-Form")
-                let attacheFile1 = CustomeAttacheFile(frame: CGRect(x: X_PADDING, y: yposition, width: 110, height: 110))
+                let iconImage1:UIImage? = UIImage(named: "gallery")
+                let attacheFile1 = CustomeAttacheFile(frame: CGRect(x: X_PADDING, y: yposition, width: 130, height: 130))
                 attacheFile1.setTitle(object["label"].stringValue.htmlToString, for: .normal)
                 attacheFile1.setImage(iconImage1, for: .normal)
                 attacheFile1.addTarget(self, action: #selector(openCamera), for: .touchUpInside)
                 scrlView.addSubview(attacheFile1)
                 
-                yposition += X_PADDING + 110
+                yposition += X_PADDING + 130
+                
             }else if dataType == DATATYPE_FILE{
                 //Attche file
-                let iconImage:UIImage? = UIImage(named: "Fill-Black-Form")
-                attacheFile = CustomeAttacheFile(frame: CGRect(x: X_PADDING, y: yposition, width: 110, height: 110))
+                let iconImage:UIImage? = UIImage(named: "attach")
+                attacheFile = CustomeAttacheFile(frame: CGRect(x: X_PADDING, y: yposition, width: 130, height: 130))
                 self.attacheFile.setTitle(object["label"].stringValue.htmlToString, for: .normal)
                 self.attacheFile.setImage(iconImage, for: .normal)
                 self.attacheFile.addTarget(self, action: #selector(openAttchementFile(_:)), for: .touchUpInside)
                 scrlView.addSubview(attacheFile)
                 
-                yposition += X_PADDING + 110
-
+                yposition += X_PADDING + 130
+                
             }else if dataType == DATATYPE_SIGNATURE{
                 
                 //SignatureView
-
+                
                 signatureView = YPDrawSignatureView(frame:CGRect(x: X_PADDING, y: yposition, width: Int(self.view.frame.size.width) - X_PADDING*2, height: 200))
                 signatureView.backgroundColor = UIColor.clear
                 signatureView.layer.cornerRadius = radius
@@ -448,33 +829,33 @@ class FormFieldsVC: ParentClass,UIImagePickerControllerDelegate, UINavigationCon
                 vCaptcha.layer.borderWidth = 1
                 vCaptcha.layer.cornerRadius = 4
                 scrlView.addSubview(vCaptcha)
-                
                 setupReCaptcha()
                 
                 yposition += X_PADDING +  Int( vCaptcha.bounds.height)
             }
-    }
+        }
         let buttonREFRESH = CustomButton(frame: CGRect(x: X_PADDING, y: yposition, width: SCREEN_WIDTH - (X_PADDING*2), height: CUSTOM_BUTTON_HEIGHT))
         buttonREFRESH.setTitle("SUBMIT", for: .normal)
-        //            buttonREFRESH.addTarget(self, action: #selector(onRefreshPressed), for: .touchUpInside)
+        //buttonREFRESH.addTarget(self, action: #selector(onRefreshPressed), for: .touchUpInside)
         scrlView.addSubview(buttonREFRESH)
         self.view.addSubview(scrlView)
         
         yposition += X_PADDING +  Int( buttonREFRESH.bounds.height)
-
-        scrlView.contentSize = CGSize (width: SCREEN_WIDTH, height: yposition )
-
+        
+        scrlView.contentSize = CGSize (width: SCREEN_WIDTH, height: yposition)
+        
     }
     @objc func goToBack()  {
         
+         self.navigationController?.interactivePopGestureRecognizer?.isEnabled = true
 
         let params : JSON = ["data": ["name":name,"slug":slug,"created_at":created],"fields": tempAraay,"edit":editData]
         
-        ParentClass.sharedInstance.editListArray1.append(params)
+//        ParentClass.sharedInstance.editListArray1.append(params)
         
-        let str = Utils.stringFromJson(object: ParentClass.sharedInstance.editListArray1)
-        print(str)
-        ParentClass.sharedInstance.setData(strData: str, strKey: EDIT_BLANK_ARRAY)
+//        let str = Utils.stringFromJson(object: ParentClass.sharedInstance.editListArray1)
+//        print(str)
+//        ParentClass.sharedInstance.setData(strData: str, strKey: EDIT_BLANK_ARRAY)
         
         self.navigationController?.popViewController(animated: true)
 
@@ -564,7 +945,8 @@ class FormFieldsVC: ParentClass,UIImagePickerControllerDelegate, UINavigationCon
 
                 // For testing purposes
                 // If the webview requires presentation, this should work as a way of detecting the webview in UI tests
-                self?.view.viewWithTag(Constants.testLabelTag)?.removeFromSuperview()
+                self?.scrlView.viewWithTag(Constants.testLabelTag)?.removeFromSuperview()
+                print("vERIFY")
                 let label = UILabel(frame: CGRect(x: 0, y: 0, width: 1, height: 1))
                 label.tag = Constants.testLabelTag
                 label.accessibilityLabel = "webview"
@@ -585,7 +967,7 @@ class FormFieldsVC: ParentClass,UIImagePickerControllerDelegate, UINavigationCon
                 .catchError { error in
                     return .just("Error \(error)")
                 }
-                .debug("validate")
+                .debug("validate OK ")
                 .share()
 
             let isLoading = validate
@@ -606,9 +988,9 @@ class FormFieldsVC: ParentClass,UIImagePickerControllerDelegate, UINavigationCon
                 .bind(to: sender.rx.isEnabled)
                 .disposed(by: disposeBag)
 
-    //        isEnabled
-    //            .bind(to: endpointSegmentedControl.rx.isEnabled)
-    //            .disposed(by: disposeBag)
+//            isEnabled
+//                .bind(to: endpointSegmentedControl.rx.isEnabled)
+//                .disposed(by: disposeBag)
 
             validate
                 .map { [weak self] _ in
@@ -622,20 +1004,23 @@ class FormFieldsVC: ParentClass,UIImagePickerControllerDelegate, UINavigationCon
             validate
                 .bind(to: label.rx.text)
                 .disposed(by: disposeBag)
+                print("validate ")
 
             visibleChallengeSwitch.rx.value
                 .subscribe(onNext: { [weak recaptcha] value in
                     recaptcha?.forceVisibleChallenge = value
+                    print("validate subscribe")
                 })
                 .disposed(by: disposeBag)
-                print("validate")
+                print("validate YES")
         }
         
         
         //Slider select a choise
         @IBAction func timeSliderChanged(sender: UISlider) {
-            let newValue = Int(sender.value/25) * 25
-            sender.setValue(Float(newValue), animated: false)
+            let index = (Int)(sliderSelection!.value)
+            print(index)
+            sender.setValue(Float(index), animated: false)
         }
         
         //SideBySide buttons actions

@@ -27,7 +27,7 @@ class EditFormViewController: ParentClass,UITableViewDelegate,UITableViewDataSou
     override func viewDidLoad() {
         super.viewDidLoad()
         loadHeaderView()
-        let str =   ParentClass.sharedInstance.getDataForKey(strKey: EDIT_BLANK_ARRAY) as? String
+        let str =   ParentClass.sharedInstance.getDataForKey(strKey: FILL_BLANK_ARRAY) as? String
         
         if str != "" && str != nil{
             elistArray = Utils.jsonObject(jsonString: str!)
@@ -125,9 +125,9 @@ class EditFormViewController: ParentClass,UITableViewDelegate,UITableViewDataSou
 //        print(elistArray[indexPath.row]["name"] as? String)
 //        print(elistArray[indexPath.row]["slug"] as? String)
         
-        cell.lblFieldName.text = elistArray[indexPath.row]["data"]["name"].stringValue
-        cell.lblSubFieldName.text = "sulg: \(elistArray[indexPath.row]["data"]["slug"].stringValue)"
-        let strDate = ParentClass.sharedInstance.dateConvert(date: elistArray[indexPath.row]["data"]["created_at"].doubleValue)
+        cell.lblFieldName.text = elistArray[indexPath.row]["name"].stringValue
+        cell.lblSubFieldName.text = "sulg: \(elistArray[indexPath.row]["slug"].stringValue)"
+        let strDate = ParentClass.sharedInstance.dateConvert(date: elistArray[indexPath.row]["created_at"].doubleValue)
         cell.lblSubFieldDate.text = "Added on \(strDate)"
         cell.btncheckbox.isHidden = true
         

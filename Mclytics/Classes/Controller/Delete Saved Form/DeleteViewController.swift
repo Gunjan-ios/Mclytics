@@ -21,7 +21,7 @@ class DeleteViewController: SegmentedViewController, UIGestureRecognizerDelegate
 
     var pendingVC:DeleteListTableViewController!
     var visitedVC:DeleteListTableViewController!
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -221,7 +221,7 @@ class DeleteViewController: SegmentedViewController, UIGestureRecognizerDelegate
         return true
     }
     @objc func goToBack()  {
-        self.navigationController?.popToRootViewController(animated: true)
+        self.navigationController?.popViewController(animated: true)
     }
     //MARK:- actions
     @objc func btnLogoutPressed(sender:UIButton) {
