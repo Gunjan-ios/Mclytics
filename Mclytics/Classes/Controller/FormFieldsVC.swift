@@ -100,6 +100,35 @@ class FormFieldsVC: ParentClass, UIImagePickerControllerDelegate, UINavigationCo
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        name =  selectedForm.name
+        slug =  selectedForm.slug
+        created = selectedForm.created_at
+//        if type == "Edit"{
+//            arrayfield = arrayList["fields"]
+//
+//            for tampAry1 in arrayfield.arrayValue{
+//                self.tempAraay.append(tampAry1)
+//            }
+//            name =  arrayList["data"]["name"].stringValue
+//            slug =  arrayList["data"]["slug"].stringValue
+//            created = arrayList["data"]["created_at"].doubleValue
+//        }
+//        else{
+//            arrayfield = arrayList["fields"]
+//
+//            for tampAry1 in arrayfield.arrayValue{
+//                var tamp : JSON = JSON()
+//                tamp = tampAry1
+//                tamp["Ans"].string = ""
+//                self.tempAraay.append(tamp)
+//            }
+//            name =  arrayList["name"].stringValue
+//            slug =  arrayList["slug"].stringValue
+//            created = arrayList["created_at"].doubleValue
+//        }
+//>>>>>>> 65b71c90fd6599efeab0e95aced54ffe3239f9fe
+        
         loadHeaderView()
         dataSetupformAPI()
         
@@ -531,7 +560,19 @@ class FormFieldsVC: ParentClass, UIImagePickerControllerDelegate, UINavigationCo
                 editListArray = decodedArray
             }
         }
+        
 
+        if type == "Edit" {
+            formArray[selectedFormIndex] = selectedForm
+            ParentClass.sharedInstance.editListArray = formArray
+        } else {
+            ParentClass.sharedInstance.editListArray.append(selectedForm)
+        }
+//
+//        let params : JSON = ["data": ["name":name,"slug":slug,"created_at":created],"fields": tempAraay,"edit":editData]
+//        
+//        ParentClass.sharedInstance.editListArray1.append(params)
+//>>>>>>> 65b71c90fd6599efeab0e95aced54ffe3239f9fe
         
         let encodedData: Data = NSKeyedArchiver.archivedData(withRootObject: ParentClass.sharedInstance.editListArray)
         ParentClass.sharedInstance.setData(strData: encodedData, strKey: EDIT_BLANK_ARRAY)
@@ -572,7 +613,6 @@ class FormFieldsVC: ParentClass, UIImagePickerControllerDelegate, UINavigationCo
                         option.selected = true
                     } else {
                         option.selected = false
-
 //    func  getTextfield(textField :UITextField , str_id : String){
 //            for var obejct in tempAraay{
 //                var tamp : JSON = JSON()
@@ -582,9 +622,10 @@ class FormFieldsVC: ParentClass, UIImagePickerControllerDelegate, UINavigationCo
 //                    let updated = try? obejct.merged(with:tamp)
 //                    if (updated != nil){
 //                        editData.append(updated!)
-//                    }
-//                }
-//            }
+//>>>>>>> 65b71c90fd6599efeab0e95aced54ffe3239f9fe
+                    }
+                }
+            }
         }
     }
     
