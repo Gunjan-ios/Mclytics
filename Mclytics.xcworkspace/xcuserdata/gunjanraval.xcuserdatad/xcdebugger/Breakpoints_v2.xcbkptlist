@@ -10,24 +10,8 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Mclytics/Classes/Controller/ViewController.swift"
-            timestampString = "613482705.907285"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "96"
-            endingLineNumber = "96"
-            landmarkName = "goToSetting()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "Mclytics/Classes/Controller/LoginViewController.swift"
-            timestampString = "613482705.907364"
+            timestampString = "614069171.7487921"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "160"
@@ -43,11 +27,59 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Mclytics/Classes/Controller/FormFieldsVC.swift"
-            timestampString = "613489329.475522"
+            timestampString = "614158899.969677"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "612"
-            endingLineNumber = "612"
+            startingLineNumber = "560"
+            endingLineNumber = "560"
+            landmarkName = "dataSetupformOnebyOne(object:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Mclytics/Classes/Controller/FormFieldsVC.swift"
+            timestampString = "614158899.97025"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "735"
+            endingLineNumber = "735"
+            landmarkName = "dataSetupformAPI()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Mclytics/Classes/Controller/FormFieldsVC.swift"
+            timestampString = "614158899.97065"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1229"
+            endingLineNumber = "1229"
+            landmarkName = "onSubmitPressed()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Mclytics/Classes/Controller/FormFieldsVC.swift"
+            timestampString = "614158899.970975"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "648"
+            endingLineNumber = "648"
             landmarkName = "onNextPressed()"
             landmarkType = "7">
          </BreakpointContent>
@@ -59,12 +91,28 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Mclytics/Classes/Controller/FormFieldsVC.swift"
-            timestampString = "613489329.476252"
+            timestampString = "614158899.971318"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1222"
-            endingLineNumber = "1222"
-            landmarkName = "setupReCaptcha()"
+            startingLineNumber = "657"
+            endingLineNumber = "657"
+            landmarkName = "onNextPressed()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Mclytics/Classes/Controller/FormFieldsVC.swift"
+            timestampString = "614158899.971657"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "641"
+            endingLineNumber = "641"
+            landmarkName = "onNextPressed()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

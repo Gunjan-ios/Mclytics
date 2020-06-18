@@ -174,6 +174,7 @@ class FieldsModal : NSObject, NSCoding {
     
     var inline : Bool = false
     var options = [OptionsModal]()
+    var selectedOptions = [OptionsModal]()
     var side2 : String = ""
     var side1 : String = ""
 
@@ -184,9 +185,14 @@ class FieldsModal : NSObject, NSCoding {
     var ranks : Int = 0
     var questions = [OptionsModal]()
     var answers = [OptionsModal]()
-    var carryforwardsource : Int = 0
+    var carryforwardsource : String = ""
     var intro : String = ""
     var answer : String = ""
+    var checkbox_answer : [String] = [String]()
+    var lat : Double = 0.0
+    var long : Double = 0.0
+    
+
     
     override init() {
 //        super.init()
@@ -194,6 +200,8 @@ class FieldsModal : NSObject, NSCoding {
 
     convenience init(_ dict : NSDictionary) {
         self.init()
+        self.lat = dict.object_forKeyWithValidationForClass_Double(aKey: "lat")
+        self.long = dict.object_forKeyWithValidationForClass_Double(aKey: "long")
         
         self.text = dict.object_forKeyWithValidationForClass_String(aKey: "text")
         self.id = dict.object_forKeyWithValidationForClass_String(aKey: "id")
@@ -225,6 +233,17 @@ class FieldsModal : NSObject, NSCoding {
             self.options.append(modelData)
         }
         
+        self.selectedOptions = []
+        let selectOptionsArray = dict.object_forKeyWithValidationForClass_NSArray(aKey: "selectedOptions")
+        for i in 0..<selectOptionsArray.count {
+            let dictData = selectOptionsArray.object(at: i) as! NSDictionary
+            let modelData = OptionsModal(dictData)
+            self.selectedOptions.append(modelData)
+        }
+        
+         self.checkbox_answer  = dict.object_forKeyWithValidationForClass_stringArray(aKey: "checkbox_answer")
+
+        
         self.side1 = dict.object_forKeyWithValidationForClass_String(aKey: "side1")
         self.side2 = dict.object_forKeyWithValidationForClass_String(aKey: "side2")
         self.showLabel = dict.object_forKeyWithValidationForClass_Bool(aKey: "showLabel")
@@ -249,8 +268,9 @@ class FieldsModal : NSObject, NSCoding {
             self.answers.append(modelData)
         }
         
-        self.carryforwardsource = dict.object_forKeyWithValidationForClass_Int(aKey: "carryforwardsource")
+        self.carryforwardsource = dict.object_forKeyWithValidationForClass_String(aKey: "carryforwardsource")
         self.intro = dict.object_forKeyWithValidationForClass_String(aKey: "intro")
+    
         
     }
 
@@ -280,6 +300,13 @@ class FieldsModal : NSObject, NSCoding {
         let obj = aDecoder.decodeObject(forKey: "options") as! Data
         self.options = NSKeyedUnarchiver.unarchiveObject(with: obj) as! [OptionsModal]
         
+        let selectobj = aDecoder.decodeObject(forKey: "selectedOptions") as! Data
+        self.selectedOptions = NSKeyedUnarchiver.unarchiveObject(with: selectobj) as! [OptionsModal]
+        
+        let selectobj1 = aDecoder.decodeObject(forKey: "checkbox_answer") as! Data
+        self.checkbox_answer = NSKeyedUnarchiver.unarchiveObject(with: selectobj1) as! [String]
+        
+        
         self.side1 = aDecoder.decodeObject(forKey: "side1") as! String
         self.side2 = aDecoder.decodeObject(forKey: "side2") as! String
         self.showLabel = aDecoder.decodeBool(forKey: "showLabel")
@@ -294,9 +321,12 @@ class FieldsModal : NSObject, NSCoding {
         let objAnswer = aDecoder.decodeObject(forKey: "answers") as! Data
         self.answers = NSKeyedUnarchiver.unarchiveObject(with: objAnswer) as! [OptionsModal]
         
-        self.carryforwardsource = aDecoder.decodeInteger(forKey: "carryforwardsource")
+        self.carryforwardsource = aDecoder.decodeObject(forKey: "carryforwardsource") as! String
         self.intro = aDecoder.decodeObject(forKey: "intro") as! String
         self.answer = aDecoder.decodeObject(forKey: "answer") as! String
+        
+        self.lat = aDecoder.decodeDouble(forKey: "lat")
+        self.long = aDecoder.decodeDouble(forKey: "long")
     }
 
     func encode(with aCoder: NSCoder) {
@@ -325,6 +355,13 @@ class FieldsModal : NSObject, NSCoding {
         let fieldsData = NSKeyedArchiver.archivedData(withRootObject: options)
         aCoder.encode(fieldsData, forKey: "options")
         
+        let selectFieldsData = NSKeyedArchiver.archivedData(withRootObject: selectedOptions)
+        aCoder.encode(selectFieldsData, forKey: "selectedOptions")
+        
+        let checkBoxData = NSKeyedArchiver.archivedData(withRootObject: checkbox_answer)
+        aCoder.encode(checkBoxData, forKey: "checkbox_answer")
+
+        
         aCoder.encode(side1, forKey: "side1")
         aCoder.encode(side2, forKey: "side2")
         aCoder.encode(showLabel, forKey: "showLabel")
@@ -343,6 +380,9 @@ class FieldsModal : NSObject, NSCoding {
         aCoder.encode(intro, forKey: "intro")
         
         aCoder.encode(answer, forKey: "answer")
+        aCoder.encode(lat, forKey: "lat")
+        aCoder.encode(long, forKey: "long")
+
     }
 }
 
@@ -352,7 +392,10 @@ class OptionsModal : NSObject, NSCoding {
     var label : String = ""
     var checked : Bool = false
     var answer  = ""
-    
+    var ans_key  = ""
+    var ans_value  = ""
+    var index  = 0
+
     override init() {
 //        super.init()
     }
@@ -362,12 +405,16 @@ class OptionsModal : NSObject, NSCoding {
         
         self.selected = dict.object_forKeyWithValidationForClass_Bool(aKey: "selected")
         self.label = dict.object_forKeyWithValidationForClass_String(aKey: "label")
+        self.index = dict.object_forKeyWithValidationForClass_Int(aKey: "index")
         self.checked = dict.object_forKeyWithValidationForClass_Bool(aKey: "checked")
+        self.answer = dict.object_forKeyWithValidationForClass_String(aKey: "answer")
+        
     }
 
     required init(coder aDecoder: NSCoder) {
         self.selected = aDecoder.decodeBool(forKey: "selected")
         self.label = aDecoder.decodeObject(forKey: "label") as! String
+        self.index = aDecoder.decodeInteger(forKey: "index")
         self.checked = aDecoder.decodeBool(forKey: "checked")
         self.answer = aDecoder.decodeObject(forKey: "answer") as! String
         
@@ -376,6 +423,7 @@ class OptionsModal : NSObject, NSCoding {
     func encode(with aCoder: NSCoder) {
         aCoder.encode(selected, forKey: "selected")
         aCoder.encode(label, forKey: "label")
+        aCoder.encode(index, forKey: "index")
         aCoder.encode(checked, forKey: "checked")
         aCoder.encode(answer, forKey: "answer")
         

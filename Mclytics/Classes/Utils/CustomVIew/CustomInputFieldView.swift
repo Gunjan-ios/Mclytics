@@ -32,7 +32,7 @@ class CustomInputFieldView: UIView, UITextFieldDelegate {
         labelTitle = PaddingLabel(frame: CGRect(x: 0, y: 0, width: Int(frame.size.width), height: labelHeight))
         labelTitle.textColor = colorSubHeading_76
         labelTitle.font = UIFont(name: APP_FONT_NAME, size: LABEL_FONT_SIZE)
-        labelTitle.text = pName
+        labelTitle.text = pName.htmlToString
         labelTitle.drawText(in: labelTitle.frame)
         let rectShape = CAShapeLayer()
         rectShape.path = UIBezierPath(roundedRect: labelTitle.bounds, byRoundingCorners: [ .topRight , .topLeft], cornerRadii: CGSize(width: radius, height: radius)).cgPath

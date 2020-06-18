@@ -116,6 +116,50 @@ class ParentClass: UIViewController{
 //        // JSON from string must be initialized using .parse()
 //    }
     // get color from string
+    
+//    func loadImageFromDocumentDirectory(fileName: String) -> UIImage? {
+//
+//        let folderName = fileName.components(separatedBy: "-")[0]
+//        let imageName = fileName.components(separatedBy: "-")[1]
+//        let fileManager = FileManager.default
+//
+//        let imagePath = (URL(fileURLWithPath: self.configureDirectory(folderName))).appendingPathComponent("\(imageName).png")
+//        let urlString: String = imagePath.path
+//        if fileManager.fileExists(atPath: urlString) {
+//            let image = UIImage(contentsOfFile: urlString)
+//            return image
+//        } else {
+//            // print("No Image")
+//            return nil
+//        }
+//    }
+//
+//
+//
+//    func loadVideoFromDocumentDirectory(fileName: String) -> URL? {
+//
+//        let folderName = fileName.components(separatedBy: "-")[0]
+//        let videoName = fileName.components(separatedBy: "-")[1]
+//
+//        let fileManager = FileManager.default
+//
+//        let videoPath = (URL(fileURLWithPath: self.configureDirectory(folderName))).appendingPathComponent("\(videoName).mp4")
+//        let urlString: String = videoPath.path
+//        if fileManager.fileExists(atPath: urlString) {
+//            return videoPath
+//        } else {
+//            return nil
+//        }
+//    }
+//
+//    func configureDirectory(_ folderName : String) -> String {
+//        let fileManager = FileManager.default
+//        let path = (NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as NSString).appendingPathComponent(folderName)
+//        if !fileManager.fileExists(atPath: path) {
+//            try! fileManager.createDirectory(atPath: path, withIntermediateDirectories: true, attributes: nil)
+//        }
+//        return path
+//    }
     func getColorFromString(pString:String) -> UIColor {
         
         var strokeColorInString = pString

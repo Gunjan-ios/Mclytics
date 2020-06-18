@@ -67,6 +67,8 @@
 		53DC26C424765173007995E9 /* DeleteListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53DC26C224765172007995E9 /* DeleteListTableViewController.swift */; };
 		53DC26C524765173007995E9 /* DeleteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53DC26C324765172007995E9 /* DeleteViewController.swift */; };
 		53DC26C72476AE69007995E9 /* EditFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53DC26C62476AE69007995E9 /* EditFormViewController.swift */; };
+		53DD6F8424974A1D00E43157 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53DD6F8324974A1D00E43157 /* MapView.swift */; };
+		53DD6F8624974A2E00E43157 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53DD6F8524974A2E00E43157 /* MapKit.framework */; };
 		53E54C522470115900BD7253 /* GetBlankFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E54C512470115900BD7253 /* GetBlankFormViewController.swift */; };
 		53E54C55247011E700BD7253 /* GetBlankFormCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E54C54247011E700BD7253 /* GetBlankFormCell.swift */; };
 		A12AF6AF2488FEEC00123A00 /* ListButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12AF6AE2488FEEC00123A00 /* ListButton.swift */; };
@@ -158,6 +160,8 @@
 		53DC26C224765172007995E9 /* DeleteListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeleteListTableViewController.swift; sourceTree = "<group>"; };
 		53DC26C324765172007995E9 /* DeleteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeleteViewController.swift; sourceTree = "<group>"; };
 		53DC26C62476AE69007995E9 /* EditFormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditFormViewController.swift; sourceTree = "<group>"; };
+		53DD6F8324974A1D00E43157 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		53DD6F8524974A2E00E43157 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		53E54C512470115900BD7253 /* GetBlankFormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetBlankFormViewController.swift; sourceTree = "<group>"; };
 		53E54C54247011E700BD7253 /* GetBlankFormCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetBlankFormCell.swift; sourceTree = "<group>"; };
 		78E2A00718C95A5F06EB2BD8 /* Pods_Mclytics.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Mclytics.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -172,6 +176,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				53DD6F8624974A2E00E43157 /* MapKit.framework in Frameworks */,
 				AA0461401ACE3EAD3B051209 /* Pods_Mclytics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -377,6 +382,7 @@
 				532564A1246935870055EBAE /* CustomInputTextView.swift */,
 				5325649F246935810055EBAE /* CustomTextView.swift */,
 				5325649D246935760055EBAE /* CustomButton.swift */,
+				53DD6F8324974A1D00E43157 /* MapView.swift */,
 			);
 			path = CustomVIew;
 			sourceTree = "<group>";
@@ -459,6 +465,7 @@
 		F5AE77314C17F0C3B2E5FEAF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				53DD6F8524974A2E00E43157 /* MapKit.framework */,
 				78E2A00718C95A5F06EB2BD8 /* Pods_Mclytics.framework */,
 			);
 			name = Frameworks;
@@ -684,6 +691,7 @@
 				5319CF0B24690B0F00140E8F /* CS.swift in Sources */,
 				532C694D24740ACE0026A28A /* FormListCell.swift in Sources */,
 				532564AC246935D20055EBAE /* GenderView.swift in Sources */,
+				53DD6F8424974A1D00E43157 /* MapView.swift in Sources */,
 				5319CF0D24690B0F00140E8F /* Enums.swift in Sources */,
 				A1E989DD24895A98004B94E6 /* FormModal.swift in Sources */,
 				53E54C55247011E700BD7253 /* GetBlankFormCell.swift in Sources */,
@@ -874,14 +882,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 57YS5G3458;
+				DEVELOPMENT_TEAM = YA4536WK7P;
 				INFOPLIST_FILE = Mclytics/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = DigitalFriend.Mclytics;
+				PRODUCT_BUNDLE_IDENTIFIER = Gunjan.Mclytics;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -894,14 +902,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 57YS5G3458;
+				DEVELOPMENT_TEAM = YA4536WK7P;
 				INFOPLIST_FILE = Mclytics/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = DigitalFriend.Mclytics;
+				PRODUCT_BUNDLE_IDENTIFIER = Gunjan.Mclytics;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

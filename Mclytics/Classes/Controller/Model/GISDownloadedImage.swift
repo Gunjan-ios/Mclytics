@@ -9,6 +9,14 @@
 import Foundation
 
 class GISDownloadedImage {
+    internal init(size: String?, name: String?, path: String?, imageData: Data?, type: String?) {
+        self.size = size
+        self.name = name
+        self.path = path
+        self.imageData = imageData
+        self.type = type
+    }
+    
     
     var size: String?
     var name: String?
@@ -23,4 +31,9 @@ class GISDownloadedImage {
         self.path = pPath
     }
     
+}
+struct AGImageInfo {
+    var fileName: String
+    var type: String
+    var data: Data
 }

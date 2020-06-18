@@ -43,7 +43,8 @@ class ViewController: ParentClass,UITextFieldDelegate {
                 saveListArray = decodedArray
             }
         }
-        
+        print(ParentClass.sharedInstance.getDataForKey(strKey:TOKEN_KEY))
+
         self.loadHeaderView()
         // Do any additional setup after loading the view.
     }
@@ -214,7 +215,7 @@ class ViewController: ParentClass,UITextFieldDelegate {
     
     
     @objc func onButtonPrssed(sender : UIButton)  {
-        
+       
         switch sender.tag {
         case 1:
             self.getFillForm = FillFormViewController()

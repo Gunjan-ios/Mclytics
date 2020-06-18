@@ -86,7 +86,8 @@ extension String {
             return NSAttributedString()
         }
     }
-    
+ 
+   
     var htmlToString: String {
         return htmlToAttributedString?.string ?? ""
     }
@@ -97,6 +98,7 @@ extension String {
 	mutating func capitalizeFirstLetter() {
 		self = self.capitalizingFirstLetter()
 	}
+  
 
 	func trim() -> String {
 		return self.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
@@ -105,8 +107,8 @@ extension String {
 	func index(from: Int) -> Index {
 		return self.index(startIndex, offsetBy: from)
     }
+  
     
-   
 
 	subscript(_ range: NSRange) -> String {
 		let start = self.index(self.startIndex, offsetBy: range.lowerBound)
@@ -491,6 +493,36 @@ extension NSDictionary {
             }
             else{
                 return NSArray()
+            }
+        }
+    }
+    func object_forKeyWithValidationForClass_stringArray(aKey: String) -> [String] {
+        // CHECK FOR EMPTY
+        if(self.allKeys.count == 0) {
+            return [String]()
+        }
+        
+        // CHECK IF KEY EXIST
+        if let val = self.object(forKey: aKey) {
+            if((val as AnyObject).isEqual(NSNull())) {
+                return [String]()
+            }
+        } else {
+            // KEY NOT FOUND
+            return [String]()
+        }
+        
+        // CHECK FOR NIL VALUE
+        let aValue : AnyObject = self.object(forKey: aKey)! as AnyObject
+        if aValue.isEqual(NSNull()) {
+            return [String]()
+        }
+        else {
+            if aValue is [String] {
+                return self.object(forKey: aKey) as! [String]
+            }
+            else{
+                return [String]()
             }
         }
     }

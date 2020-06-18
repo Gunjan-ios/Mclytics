@@ -128,7 +128,7 @@ class GetBlankFormViewController: ParentClass,UITableViewDelegate,UITableViewDat
     }
     @objc func onRefreshPressed()  {
         currentPage = 1
-        apiGetBlankFromData(page: 1)
+        apiGetBlankFromData(page: 8)
     }
 
     @objc func getSelected(){

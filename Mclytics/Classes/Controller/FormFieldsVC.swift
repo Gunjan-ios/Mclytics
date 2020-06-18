@@ -97,26 +97,14 @@ class FormFieldsVC: ParentClass, UIImagePickerControllerDelegate, UINavigationCo
     var name : String = ""
     var slug : String = ""
     var created : Double = 0
-//<<<<<<< HEAD
     var count : Int = 0
-
     var buttonPrevious : CustomButton!
     var buttonNext : CustomButton!
-//
-//    override func viewDidLoad() {
-//        super.viewDidLoad()
-//            arrayfield = arrayList["fields"]
-//
-//            for tampAry1 in arrayfield.arrayValue{
-//                var tamp : JSON = JSON()
-//                tamp = tampAry1
-//                tamp["Ans"].string = ""
-//                self.tempAraay.append(tamp)
-//            }
-//            name =  arrayList["name"].stringValue
-//            slug =  arrayList["slug"].stringValue
-//            created = arrayList["created_at"].doubleValue
-//=======
+    var buttonSubmit: CustomButton!
+
+    
+   
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -142,6 +130,13 @@ class FormFieldsVC: ParentClass, UIImagePickerControllerDelegate, UINavigationCo
             buttonNext.addTarget(self, action: #selector(onNextPressed), for: .touchUpInside)
             buttonNext.setTitle("Next", for: .normal)
             self.view.addSubview(buttonNext)
+            
+            buttonSubmit = CustomButton(frame: CGRect(x: SCREEN_WIDTH - SCREEN_WIDTH/2 + X_PADDING , y: SCREEN_HEIGHT - (CUSTOM_BUTTON_HEIGHT*2), width: SCREEN_WIDTH/2 - (X_PADDING*2), height: CUSTOM_BUTTON_HEIGHT))
+            buttonSubmit.addTarget(self, action: #selector(onSubmitPressed), for: .touchUpInside)
+            buttonSubmit.setTitle("Submit", for: .normal)
+            buttonSubmit.isHidden = true
+            self.view.addSubview(buttonSubmit)
+
 
         }else{
             dataSetupformAPI()
@@ -150,13 +145,11 @@ class FormFieldsVC: ParentClass, UIImagePickerControllerDelegate, UINavigationCo
         
     }
     
-//<<<<<<< HEAD
     func setupRatingView() {
         StarRatingView.delegate = self
         StarRatingView.ratingValue = -1
     }
     
-//=======
     func loadHeaderView() {
         
         headerview = UIView(frame: CGRect(x: 0, y:( STATUS_BAR_HEIGHT + Int(ParentClass.sharedInstance.iPhone_X_Top_Padding)), width: Int(UIScreen.main.bounds.width), height: NAV_HEADER_HEIGHT));
@@ -187,28 +180,27 @@ class FormFieldsVC: ParentClass, UIImagePickerControllerDelegate, UINavigationCo
         
         scrlView = UIScrollView (frame: CGRect (x: 0, y: yPosition, width: SCREEN_WIDTH, height: SCREEN_HEIGHT - yPosition - CUSTOM_BUTTON_HEIGHT * 2))
         scrlView.backgroundColor = .white
-            scrlView.bounces = false
-        //        scrlView.isPagingEnabled = true
+        scrlView.bounces = false
         
-        var yposition : Int! = X_PADDING
-//        for object in selectedForm.fields {
-        
-            //<<<<<<< HEAD
-            //            let dataType = object["type"].stringValue
-            //
-            //            if dataType == DATATYPE_HEADING{
-            //=======
+            var yposition : Int! = X_PADDING
+
             let dataType = object.type
-            
+            let required = object.required
+            var requiredText : String = ""
+        
+            if required{
+                requiredText =  Utils.requiredText(str: object.label.htmlToString)
+            }else{
+                requiredText = object.label.htmlToString
+            }
+        
             if dataType == DATATYPE_HEADING {
-                //>>>>>>> 5f1d6bd4002acece87b3cf83a55b27fc962600b6
                 
                 let buttonAddImage = CustomLabel(frame: CGRect(x: X_PADDING, y: yposition, width: SCREEN_WIDTH - X_PADDING*2 , height: CUSTOM_BUTTON_HEIGHT))
                 buttonAddImage.text = object.text
                 buttonAddImage.tag = TAG1
                 scrlView.addSubview(buttonAddImage)
                 
-//                yposition += X_PADDING + CUSTOM_BUTTON_HEIGHT
                 
             } else if dataType == DATATYPE_PARAGRAPH {
                 
@@ -218,61 +210,41 @@ class FormFieldsVC: ParentClass, UIImagePickerControllerDelegate, UINavigationCo
                 txtField.isUserInteractionEnabled = false
                 scrlView.addSubview(txtField)
                 
-//                yposition += X_PADDING + Int(txtField.bounds.height)
                 
             } else if dataType == DATATYPE_TEXT {
                 
                 let name = CustomInputFieldView(frame: CGRect(x: X_PADDING, y: yposition, width: SCREEN_WIDTH - X_PADDING*2 , height: controls_height))
                 name.delegateAppForm = self
-                name.initDesign(pName: object.label.htmlToString , pTag: UploadTAG109, pPlaceHolder: object.placeholder, str_id: object.id)
-                print(object.answer)
+                name.initDesign(pName:requiredText , pTag: UploadTAG109, pPlaceHolder: object.placeholder, str_id: object.id)
                 name.txtField.text =  object.answer
                 scrlView.addSubview(name)
                 
-//                yposition += X_PADDING + Int(name.bounds.height)
                 
-            } else if dataType == DATATYPE_Email{
+            } else if dataType == DATATYPE_EMAIL{
                 
                 let email = CustomInputFieldView(frame: CGRect(x: X_PADDING, y: yposition, width: SCREEN_WIDTH - X_PADDING*2 , height: controls_height))
-                email.initDesign(pName: object.label.htmlToString, pTag: TAG4, pPlaceHolder: object.placeholder, str_id: object.id)
+                email.initDesign(pName:requiredText, pTag: TAG4, pPlaceHolder: object.placeholder, str_id: object.id)
                 email.delegateAppForm = self
                 email.txtField.keyboardType = .emailAddress
                 email.txtField.text = object.answer
                 scrlView.addSubview(email)
-                
-                //<<<<<<< HEAD
-                //              yposition += X_PADDING + Int(email.bounds.height)
-                //
-                //            } else if dataType == DATATYPE_PHONE{
-                //
-                //                let phone = CustomInputFieldView(frame: CGRect(x: X_PADDING, y: yposition, width: SCREEN_WIDTH - X_PADDING*2 , height: controls_height))
-                //                phone.initDesign(pName: object["label"].stringValue.htmlToString, pTag: TAG4, pPlaceHolder: object["placeholder"].stringValue, str_id: object["id"].stringValue)
-                //                phone.delegateAppForm = self
-                //                phone.txtField.keyboardType = .phonePad
-                //                scrlView.addSubview(phone)
-                //                yposition += X_PADDING + Int(phone.bounds.height)
-                //
-                //=======
-//                yposition += X_PADDING + Int(email.bounds.height)
-                
+
             } else if dataType == DATATYPE_PHONE{
                 let phone = CustomInputFieldView(frame: CGRect(x: X_PADDING, y: yposition, width: SCREEN_WIDTH - X_PADDING*2 , height: controls_height))
-                phone.initDesign(pName: object.label.htmlToString, pTag: TAG4, pPlaceHolder: object.placeholder, str_id: object.id)
+                phone.initDesign(pName:requiredText, pTag: TAG4, pPlaceHolder: object.placeholder, str_id: object.id)
                 phone.delegateAppForm = self
                 phone.txtField.keyboardType = .phonePad
                 phone.txtField.text = object.answer
                 scrlView.addSubview(phone)
-//                yposition += X_PADDING + Int(phone.bounds.height)
                 
             } else if dataType == DATATYPE_TEXTAREA{
                 
                 let districtView = CustomInputTextView(frame: CGRect(x: X_PADDING, y: yposition, width:  SCREEN_WIDTH - X_PADDING*2, height: 125))
                 districtView.delegateAppForm = self
-                districtView.initDesign(pName:  object.label.htmlToString, pTag: 13, pPlaceHolder: object.predefinedValue, str_id: object.id)
+                districtView.initDesign(pName: requiredText, pTag: 13, pPlaceHolder: object.predefinedValue, str_id: object.id)
                 districtView.txtField.text = object.answer
                 scrlView.addSubview(districtView)
                 
-//                yposition += X_PADDING  + 125
                 
             }else if dataType == DATATYPE_DATE{
                 
@@ -283,7 +255,6 @@ class FormFieldsVC: ParentClass, UIImagePickerControllerDelegate, UINavigationCo
                 UnitEstablishmentDate.txtField.text = object.answer
                 scrlView.addSubview(UnitEstablishmentDate)
                 
-//                yposition += X_PADDING + Int( UnitEstablishmentDate.bounds.height)
                 
             }else if dataType == DATATYPE_SELECTLIST{
                 
@@ -293,19 +264,16 @@ class FormFieldsVC: ParentClass, UIImagePickerControllerDelegate, UINavigationCo
                 for option in object.options {
                     strOption.append(option.label)
                 }
-                titleComboBox.initDesign(pName: object.label.htmlToString, pTag: 12, pOptions: strOption,pPlaceHolder: "", str_id: object.id)
+                titleComboBox.initDesign(pName:requiredText, pTag: 12, pOptions: strOption,pPlaceHolder: "", str_id: object.id)
                 titleComboBox.txtField.text = object.answer
                 scrlView.addSubview(titleComboBox)
                 
-//                yposition += X_PADDING + Int( titleComboBox.bounds.height)
                 
             }else if dataType == DATATYPE_RADIO{
-                
+                print(object.selectedOptions)
+
                 let genderView = GenderView(frame:  CGRect(x: X_PADDING, y: yposition, width: Int(scrlView.frame.size.width) - X_PADDING*2, height: controls_height))
-                //                var strOption : [String] = [String]()
-                //                for option in object.options {
-                //                    strOption.append(option.label)
-                //                }
+           
                 genderView.initDesign(pName:object.label.htmlToString, pTag: 6, pOptions: object.options, str_id: object.id)
                 genderView.frame = genderView.resetHeight()
                 genderView.layer.cornerRadius = radius
@@ -314,26 +282,93 @@ class FormFieldsVC: ParentClass, UIImagePickerControllerDelegate, UINavigationCo
                 genderView.delegateApp = self
                 scrlView.addSubview(genderView)
                 
-//                yposition += X_PADDING + Int( genderView.bounds.height)
                 
             }else if dataType == DATATYPE_CHECKBOX{
+                print(object.selectedOptions)
+                print(object.options)
+                if object.checkbox_answer.count != 0{
+                    for mainObejct in selectedForm.fields {
+                        if   object.id ==  mainObejct.id {
+                            for option in mainObejct.options {
+                                if mainObejct.checkbox_answer.contains(option.label) {
+                                    option.selected = true
+                                }else{
+                                    option.selected = false
+                                }
+                            }
+                        }
+                    }
+                }
                 
                 let multiple = MarginSelectView(frame:  CGRect(x: X_PADDING, y: yposition, width: Int(scrlView.frame.size.width) - X_PADDING*2, height: controls_height))
-                //                var strOption : [String] = [String]()
-                //                for option in object.options {
-                //                    strOption.append(option.label)
-                //                }
                 multiple.delegateApp = self
-                multiple.initDesign(pName: object.label.htmlToString, pTag: 122, pOptions: object.options, str_id: object.id)
+                multiple.initDesign(pName:requiredText, pTag: 122, pOptions: object.options, str_id: object.id)
                 multiple.frame = multiple.resetHeight()
                 multiple.layer.cornerRadius = radius
                 multiple.layer.borderWidth = borderWidth
                 multiple.layer.borderColor =  colorDividerBG_f4.cgColor
                 scrlView.addSubview(multiple)
                 
-//                yposition += X_PADDING + Int( multiple.bounds.height)
+                //TODO: -----------------------
                 
-            }else if dataType == DATATYPE_RANKINGSCALE{
+            }else if dataType == DATATYPE_CARRYFORWARD{
+                print(object.options)
+
+                let inputType = object.inputType
+
+                if object.checkbox_answer.count == 0 || object.answer == ""{
+                    object.options = [OptionsModal]()
+                    for mainObejct in selectedForm.fields {
+                        if   object.carryforwardsource ==  mainObejct.id {
+                            for option in mainObejct.options {
+                                if mainObejct.checkbox_answer.contains(option.label) {
+                                    option.selected = false
+                                    object.options.append(option)
+                                }
+                            }
+                        }
+                    }
+                }
+             
+                if inputType == DATATYPE_CHECKBOX{
+                    if object.checkbox_answer.count != 0{
+                        for option in object.options {
+                            if object.checkbox_answer.contains(option.label) {
+                                option.selected = true
+                            }else{
+                                 option.selected = false
+                            }
+                        }
+                    }
+                    let multiple = MarginSelectView(frame:  CGRect(x: X_PADDING, y: yposition, width: Int(scrlView.frame.size.width) - X_PADDING*2, height: controls_height))
+                    multiple.delegateApp = self
+                    multiple.initDesign(pName: requiredText, pTag: 1022, pOptions: object.options, str_id: object.id)
+                    multiple.frame = multiple.resetHeight()
+                    multiple.layer.cornerRadius = radius
+                    multiple.layer.borderWidth = borderWidth
+                    multiple.layer.borderColor =  colorDividerBG_f4.cgColor
+                    scrlView.addSubview(multiple)
+                } else if inputType == DATATYPE_RADIO{
+                    if object.answer != ""{
+                        for option in object.options {
+                            if object.answer == option.label  {
+                                option.selected = true
+                            } else {
+                                option.selected = false
+                            }
+                          }
+                    }
+                    
+                    let genderView = GenderView(frame:  CGRect(x: X_PADDING, y: yposition, width: Int(scrlView.frame.size.width) - X_PADDING*2, height: controls_height))
+                    genderView.initDesign(pName:object.label.htmlToString, pTag: 1023, pOptions: object.options, str_id: object.id)
+                    genderView.frame = genderView.resetHeight()
+                    genderView.layer.cornerRadius = radius
+                    genderView.layer.borderWidth = borderWidth
+                    genderView.layer.borderColor =  colorDividerBG_f4.cgColor
+                    genderView.delegateApp = self
+                    scrlView.addSubview(genderView)
+                }
+                }else if dataType == DATATYPE_RANKINGSCALE{
                 
                 var strOption : [String] = [String]()
                 
@@ -344,7 +379,7 @@ class FormFieldsVC: ParentClass, UIImagePickerControllerDelegate, UINavigationCo
                 }
                 
                 let title = PaddingLabel (frame: CGRect (x: X_PADDING, y: yposition, width: SCREEN_WIDTH - X_PADDING*2, height: 25))
-                title.text = object.label.htmlToString
+                title.text = requiredText
                 title.font = UIFont(name: APP_FONT_NAME, size: 17)
                 title.textColor = colorSubHeading_76
                 let rectShape = CAShapeLayer()
@@ -366,12 +401,6 @@ class FormFieldsVC: ParentClass, UIImagePickerControllerDelegate, UINavigationCo
                 
                 var y_Internal_position : Int! = X_PADDING
                 
-                //<<<<<<< HEAD
-                //                for (_, value) in object["options"] {
-                //
-                //                    let  titleComboBox = RankingView(frame: CGRect(x: X_PADDING, y: y_Internal_position, width: Int(scrlView.frame.size.width) - X_PADDING*2 , height: 35))
-                //                    titleComboBox.initDesign(pName: value["label"].stringValue, pTag: TAG18, pOptions: strOption,pPlaceHolder: "")
-                //=======
                 var count = 0
                 for option in object.options {
                     
@@ -381,7 +410,6 @@ class FormFieldsVC: ParentClass, UIImagePickerControllerDelegate, UINavigationCo
                     titleComboBox.txtField.text = option.answer
                     vv1.addSubview(titleComboBox)
                     count += 1
-                    
                     y_Internal_position +=  X_PADDING +  Int( titleComboBox.bounds.height)
                 }
                 
@@ -389,7 +417,6 @@ class FormFieldsVC: ParentClass, UIImagePickerControllerDelegate, UINavigationCo
                 vv1.frame =  CGRect(x: X_PADDING, y: yposition, width: Int(self.view.frame.size.width) - X_PADDING*2, height: 35*optionsCount + X_PADDING*(optionsCount+1))
                 scrlView.addSubview(vv1)
                 
-//                yposition +=  X_PADDING +  Int( vv1.bounds.height)
                 
             }
             else if dataType == DATATYPE_SIDEBYSIDE{
@@ -404,8 +431,6 @@ class FormFieldsVC: ParentClass, UIImagePickerControllerDelegate, UINavigationCo
                 scrlView.addSubview(vSideBySide)
                 
                 sideBySideDisplay(display: object.ranks, leftName: object.side1, rightName: object.side2, str_id: object.id, answer: object.answer)
-                
-//                yposition += X_PADDING +  Int(vSideBySide.bounds.height)
                 
                 
             }else if dataType == DATATYPE_RATING{
@@ -424,13 +449,12 @@ class FormFieldsVC: ParentClass, UIImagePickerControllerDelegate, UINavigationCo
                     vv.layer.borderColor = colorDividerBG_f4.cgColor
                     
                     let lblSelectChoise = PaddingLabel(frame: CGRect(x: 0, y: 0, width: Int(self.view.frame.size.width) - X_PADDING, height: 29))
-                    lblSelectChoise.text = object.label.htmlToString
+                    lblSelectChoise.text = requiredText
                     lblSelectChoise.font = UIFont(name: APP_FONT_NAME, size: 17)
                     lblSelectChoise.textColor = colorSubHeading_76
                     
                     let line = UIView(frame: CGRect(x: 0, y: Int(lblSelectChoise.bounds.height), width: Int(vv.frame.size.width), height: 1))
                     line.backgroundColor = buttonBorderColor
-                    
                     
                     StarRatingView = StarRateView(frame: CGRect(x: X_PADDING, y: 40, width: 40, height: 40))
                     StarRatingView.maxCount = strOption.count
@@ -441,7 +465,6 @@ class FormFieldsVC: ParentClass, UIImagePickerControllerDelegate, UINavigationCo
                     scrlView.addSubview(vv)
                     StarRatingView.frame = CGRect (x: X_PADDING, y: 40, width: 40*strOption.count, height: 40)
                     
-//                    yposition += X_PADDING +  Int( vv.bounds.height)
                     
                     StarRatingView.delegate = self
                     
@@ -464,7 +487,6 @@ class FormFieldsVC: ParentClass, UIImagePickerControllerDelegate, UINavigationCo
                     }
                     scrlView.addSubview(vSliderSelection)
                     
-//                    yposition += X_PADDING +  Int(vSliderSelection.bounds.height)
                 }
                 
             }else if dataType == DATATYPE_IMAGE{
@@ -491,18 +513,15 @@ class FormFieldsVC: ParentClass, UIImagePickerControllerDelegate, UINavigationCo
                     attachImage.setImage(iconImage, for: .normal)
                 }
                 
-//                yposition += X_PADDING + 130
                 
             }else if dataType == DATATYPE_VIDEO{
                 //video file
                 
                 let iconImage1:UIImage? = UIImage(named: "gallery")
                 attachVideo = CustomeAttacheFile(frame: CGRect(x: X_PADDING, y: yposition, width: 130, height: 130))
-                
                 attachVideo.addTarget(self, action: #selector(openCamera), for: .touchUpInside)
                 attachVideo.accessibilityIdentifier = object.id
                 scrlView.addSubview(attachVideo)
-                
                 
                 if object.answer != "" {
                     if let videoURL = loadVideoFromDocumentDirectory(fileName: object.answer) {
@@ -524,7 +543,6 @@ class FormFieldsVC: ParentClass, UIImagePickerControllerDelegate, UINavigationCo
                     attachVideo.setImage(iconImage1, for: .normal)
                 }
                 
-//                yposition += X_PADDING + 130
                 
             }else if dataType == DATATYPE_FILE{
                 //Attche file
@@ -543,10 +561,7 @@ class FormFieldsVC: ParentClass, UIImagePickerControllerDelegate, UINavigationCo
                 } else {
                     self.attacheFile.setTitle(object.label.htmlToString, for: .normal)
                 }
-                
-//                yposition += X_PADDING + 130
-                
-                
+
             }else if dataType == DATATYPE_SIGNATURE{
                 
                 //SignatureView
@@ -578,7 +593,6 @@ class FormFieldsVC: ParentClass, UIImagePickerControllerDelegate, UINavigationCo
                     signatureView.addSubview(signatureImageView)
                 }
                 
-//                yposition += X_PADDING +  Int( signatureView.bounds.height)
                 
             }else if dataType == DATATYPE_RECAPTCHA{
                 
@@ -590,15 +604,21 @@ class FormFieldsVC: ParentClass, UIImagePickerControllerDelegate, UINavigationCo
                 vCaptcha.accessibilityIdentifier = object.id
                 scrlView.addSubview(vCaptcha)
                 
+                setupReCaptcha()
                 if object.answer == "" {
                     visibleChallengeSwitch.setOn(false, animated: true)
-                    setupReCaptcha()
                 } else {
                     visibleChallengeSwitch.setOn(true, animated: true)
                     vCaptcha.isUserInteractionEnabled = false
                 }
-//                yposition += X_PADDING +  Int( vCaptcha.bounds.height)
             }
+            else if dataType == DATATYPE_GEOLOCATION{
+                let map = MapView(frame: CGRect(x: X_PADDING, y: yposition, width: Int(scrlView.frame.size.width)  - (X_PADDING * 2), height: Int(scrlView.frame.size.width)  - (X_PADDING * 2)))
+                map.delegateApp = self
+                map.initDesign(latitude: object.lat, longitute: object.long, str_id: object.id)
+                scrlView.addSubview(map)
+                yposition += X_PADDING + Int( map.bounds.height)
+                }
 //        }
         
         scrlView.contentSize = CGSize (width: SCREEN_WIDTH, height: SCREEN_HEIGHT - yPosition - CUSTOM_BUTTON_HEIGHT * 2)
@@ -609,28 +629,41 @@ class FormFieldsVC: ParentClass, UIImagePickerControllerDelegate, UINavigationCo
         sliderSelection?.setValue(Float(index), animated: false)
     }
     @objc func onNextPressed() {
+        let object  = selectedForm.fields[count]
+        if object.answer == "" && object.required{
+            self.showAlert(message: CS.Common.singleValidationMsg, type: .error, navBar: false)
+            return;
+        }
          count += 1
+        print(selectedForm.fields.count)
+        print(count)
          if count == 0{
             buttonPrevious.setTitleColor(.darkGray, for: .disabled)
             buttonPrevious.backgroundColor = UIColor.lightGray
             buttonPrevious.isEnabled = false
             buttonNext.isEnabled = true
             buttonNext.backgroundColor = colorPrimary
-            dataSetupformOnebyOne(object: selectedForm.fields[count])
-        }else if selectedForm.fields.count > count{
-            buttonPrevious.isEnabled = true
-            buttonNext.isEnabled = true
-            buttonNext.backgroundColor = colorPrimary
-            buttonPrevious.backgroundColor = colorPrimary
-            dataSetupformOnebyOne(object: selectedForm.fields[count])
-        }else if  selectedForm.fields.count == count{
+//            dataSetupformOnebyOne(object: selectedForm.fields[count])
+        }else if  selectedForm.fields.count == count + 1{
             buttonPrevious.isEnabled = true
             buttonPrevious.backgroundColor = colorPrimary
             buttonNext.setTitleColor(.darkGray, for: .disabled)
             buttonNext.backgroundColor = UIColor.lightGray
             buttonNext.isEnabled = false
-            dataSetupformOnebyOne(object: selectedForm.fields[count-1])
+            buttonNext.isHidden = true
+            buttonSubmit.isHidden = false
+         }
+         else if selectedForm.fields.count > count{
+            buttonPrevious.isEnabled = true
+            buttonNext.isEnabled = true
+            buttonNext.backgroundColor = colorPrimary
+            buttonPrevious.backgroundColor = colorPrimary
+//            dataSetupformOnebyOne(object: selectedForm.fields[count])
+            buttonNext.isHidden = false
+            buttonSubmit.isHidden = true
         }
+        dataSetupformOnebyOne(object: selectedForm.fields[count])
+
     }
     @objc func onPreviousPressed() {
         count -= 1
@@ -640,25 +673,25 @@ class FormFieldsVC: ParentClass, UIImagePickerControllerDelegate, UINavigationCo
             buttonPrevious.isEnabled = false
             buttonNext.isEnabled = true
             buttonNext.backgroundColor = colorPrimary
-            dataSetupformOnebyOne(object: selectedForm.fields[count])
         }else if count > 0{
             buttonPrevious.isEnabled = true
             buttonNext.isEnabled = true
             buttonNext.backgroundColor = colorPrimary
             buttonPrevious.backgroundColor = colorPrimary
-            dataSetupformOnebyOne(object: selectedForm.fields[count])
-        }else  if count == selectedForm.fields.count{
+            buttonNext.isHidden = false
+            buttonSubmit.isHidden = true
+          }else  if count == selectedForm.fields.count{
             buttonPrevious.isEnabled = true
             buttonPrevious.backgroundColor = colorPrimary
             buttonNext.setTitleColor(.darkGray, for: .disabled)
             buttonNext.backgroundColor = UIColor.lightGray
             buttonNext.isEnabled = false
-            dataSetupformOnebyOne(object: selectedForm.fields[count-1])
         }
-        
+        dataSetupformOnebyOne(object: selectedForm.fields[count])
+
     }
     
-    
+
     func dataSetupformAPI() {
         
         scrlView = UIScrollView (frame: CGRect (x: 0, y: yPosition, width: SCREEN_WIDTH, height: SCREEN_HEIGHT - yPosition))
@@ -668,12 +701,15 @@ class FormFieldsVC: ParentClass, UIImagePickerControllerDelegate, UINavigationCo
         
         for object in selectedForm.fields {
             
-//<<<<<<< HEAD
-//            let dataType = object["type"].stringValue
-//
-//            if dataType == DATATYPE_HEADING{
-//=======
             let dataType = object.type
+            let required = object.required
+            var requiredText : String = ""
+            
+            if required{
+                requiredText =  Utils.requiredText(str: object.label.htmlToString)
+            }else{
+                requiredText = object.label.htmlToString
+            }
             
             if dataType == DATATYPE_HEADING {
                 
@@ -698,40 +734,27 @@ class FormFieldsVC: ParentClass, UIImagePickerControllerDelegate, UINavigationCo
                 
                 let name = CustomInputFieldView(frame: CGRect(x: X_PADDING, y: yposition, width: SCREEN_WIDTH - X_PADDING*2 , height: controls_height))
                 name.delegateAppForm = self
-                name.initDesign(pName: object.label.htmlToString , pTag: UploadTAG109, pPlaceHolder: object.placeholder, str_id: object.id)
-                print(object.answer)
+                name.initDesign(pName: requiredText , pTag: UploadTAG109, pPlaceHolder: object.placeholder, str_id: object.id)
                 name.txtField.text =  object.answer
                 scrlView.addSubview(name)
                 
                 yposition += X_PADDING + Int(name.bounds.height)
                 
-            } else if dataType == DATATYPE_Email{
+            } else if dataType == DATATYPE_EMAIL{
                 
                 let email = CustomInputFieldView(frame: CGRect(x: X_PADDING, y: yposition, width: SCREEN_WIDTH - X_PADDING*2 , height: controls_height))
-                email.initDesign(pName: object.label.htmlToString, pTag: TAG4, pPlaceHolder: object.placeholder, str_id: object.id)
+                email.initDesign(pName:requiredText, pTag: TAG4, pPlaceHolder: object.placeholder, str_id: object.id)
                 email.delegateAppForm = self
                 email.txtField.keyboardType = .emailAddress
                 email.txtField.text = object.answer
                 scrlView.addSubview(email)
                 
-//<<<<<<< HEAD
-//              yposition += X_PADDING + Int(email.bounds.height)
-//
-//            } else if dataType == DATATYPE_PHONE{
-//
-//                let phone = CustomInputFieldView(frame: CGRect(x: X_PADDING, y: yposition, width: SCREEN_WIDTH - X_PADDING*2 , height: controls_height))
-//                phone.initDesign(pName: object["label"].stringValue.htmlToString, pTag: TAG4, pPlaceHolder: object["placeholder"].stringValue, str_id: object["id"].stringValue)
-//                phone.delegateAppForm = self
-//                phone.txtField.keyboardType = .phonePad
-//                scrlView.addSubview(phone)
-//                yposition += X_PADDING + Int(phone.bounds.height)
-//
-//=======
+
                 yposition += X_PADDING + Int(email.bounds.height)
                 
             } else if dataType == DATATYPE_PHONE{
                 let phone = CustomInputFieldView(frame: CGRect(x: X_PADDING, y: yposition, width: SCREEN_WIDTH - X_PADDING*2 , height: controls_height))
-                phone.initDesign(pName: object.label.htmlToString, pTag: TAG4, pPlaceHolder: object.placeholder, str_id: object.id)
+                phone.initDesign(pName:requiredText, pTag: TAG4, pPlaceHolder: object.placeholder, str_id: object.id)
                 phone.delegateAppForm = self
                 phone.txtField.keyboardType = .phonePad
                 phone.txtField.text = object.answer
@@ -742,7 +765,7 @@ class FormFieldsVC: ParentClass, UIImagePickerControllerDelegate, UINavigationCo
                 
                 let districtView = CustomInputTextView(frame: CGRect(x: X_PADDING, y: yposition, width:  SCREEN_WIDTH - X_PADDING*2, height: 125))
                 districtView.delegateAppForm = self
-                districtView.initDesign(pName:  object.label.htmlToString, pTag: 13, pPlaceHolder: object.predefinedValue, str_id: object.id)
+                districtView.initDesign(pName: requiredText, pTag: 13, pPlaceHolder: object.predefinedValue, str_id: object.id)
                 districtView.txtField.text = object.answer
                 scrlView.addSubview(districtView)
                 
@@ -767,7 +790,7 @@ class FormFieldsVC: ParentClass, UIImagePickerControllerDelegate, UINavigationCo
                 for option in object.options {
                     strOption.append(option.label)
                 }
-                titleComboBox.initDesign(pName: object.label.htmlToString, pTag: 12, pOptions: strOption,pPlaceHolder: "", str_id: object.id)
+                titleComboBox.initDesign(pName:requiredText, pTag: 12, pOptions: strOption,pPlaceHolder: "", str_id: object.id)
                 titleComboBox.txtField.text = object.answer
                 scrlView.addSubview(titleComboBox)
                 
@@ -779,13 +802,13 @@ class FormFieldsVC: ParentClass, UIImagePickerControllerDelegate, UINavigationCo
 //                var strOption : [String] = [String]()
 //                for option in object.options {
 //                    strOption.append(option.label)
-//                }
+                //                }
+                genderView.delegateApp = self
                 genderView.initDesign(pName:object.label.htmlToString, pTag: 6, pOptions: object.options, str_id: object.id)
                 genderView.frame = genderView.resetHeight()
                 genderView.layer.cornerRadius = radius
                 genderView.layer.borderWidth = borderWidth
                 genderView.layer.borderColor =  colorDividerBG_f4.cgColor
-                genderView.delegateApp = self
                 scrlView.addSubview(genderView)
                 
                 yposition += X_PADDING + Int( genderView.bounds.height)
@@ -793,12 +816,8 @@ class FormFieldsVC: ParentClass, UIImagePickerControllerDelegate, UINavigationCo
             }else if dataType == DATATYPE_CHECKBOX{
                 
                 let multiple = MarginSelectView(frame:  CGRect(x: X_PADDING, y: yposition, width: Int(scrlView.frame.size.width) - X_PADDING*2, height: controls_height))
-//                var strOption : [String] = [String]()
-//                for option in object.options {
-//                    strOption.append(option.label)
-//                }
                 multiple.delegateApp = self
-                multiple.initDesign(pName: object.label.htmlToString, pTag: 122, pOptions: object.options, str_id: object.id)
+                multiple.initDesign(pName:requiredText, pTag: 122, pOptions: object.options, str_id: object.id)
                 multiple.frame = multiple.resetHeight()
                 multiple.layer.cornerRadius = radius
                 multiple.layer.borderWidth = borderWidth
@@ -806,6 +825,17 @@ class FormFieldsVC: ParentClass, UIImagePickerControllerDelegate, UINavigationCo
                 scrlView.addSubview(multiple)
                 
                 yposition += X_PADDING + Int( multiple.bounds.height)
+            }
+            else if dataType == DATATYPE_CARRYFORWARD{
+                
+                let name = CustomInputFieldView(frame: CGRect(x: X_PADDING, y: yposition, width: SCREEN_WIDTH - X_PADDING*2 , height: controls_height))
+                name.delegateAppForm = self
+                name.initDesign(pName: requiredText , pTag: TAG21, pPlaceHolder: "", str_id: object.id)
+                name.txtField.text = CS.Common.carryForwardMsg
+                name.txtField.textColor = .red
+                scrlView.addSubview(name)
+                
+                yposition += X_PADDING + Int(name.bounds.height)
                 
             }else if dataType == DATATYPE_RANKINGSCALE{
                 
@@ -818,7 +848,7 @@ class FormFieldsVC: ParentClass, UIImagePickerControllerDelegate, UINavigationCo
                 }
                 
                 let title = PaddingLabel (frame: CGRect (x: X_PADDING, y: yposition, width: SCREEN_WIDTH - X_PADDING*2, height: 25))
-                title.text = object.label.htmlToString
+                title.text = requiredText
                 title.font = UIFont(name: APP_FONT_NAME, size: 17)
                 title.textColor = colorSubHeading_76
                 let rectShape = CAShapeLayer()
@@ -834,20 +864,15 @@ class FormFieldsVC: ParentClass, UIImagePickerControllerDelegate, UINavigationCo
                 yposition +=  Int( title.bounds.height)
                 
                 let vv1 = UIView(frame: CGRect(x: X_PADDING, y: yposition, width: Int(self.view.frame.size.width) - X_PADDING*2, height: 90))
-//                vv1.layer.cornerRadius = radius
-//                vv1.layer.borderWidth = borderWidth
-//                vv1.layer.borderColor = colorDividerBG_f4.cgColor
-                
-           
-                
+
                 var y_Internal_position : Int! = X_PADDING
                 
                 var count = 0
                 for option in object.options {
                     
                     let  titleComboBox = RankingView(frame: CGRect(x: X_PADDING, y: y_Internal_position, width: Int(scrlView.frame.size.width) - X_PADDING*2 , height: 35))
-                    titleComboBox.initDesign(pName: option.label, pTag: TAG18, pOptions: strOption,pPlaceHolder: "", str_id: object.id, textFieldIndex: count)
                     titleComboBox.delegateAppForm = self
+                    titleComboBox.initDesign(pName: option.label, pTag: TAG18, pOptions: strOption,pPlaceHolder: "", str_id: object.id, textFieldIndex: count)
                     titleComboBox.txtField.text = option.answer
                     vv1.addSubview(titleComboBox)
                     count += 1
@@ -902,7 +927,7 @@ class FormFieldsVC: ParentClass, UIImagePickerControllerDelegate, UINavigationCo
                     vv.layer.borderColor = colorDividerBG_f4.cgColor
                     
                     let lblSelectChoise = PaddingLabel(frame: CGRect(x: 0, y: 0, width: Int(self.view.frame.size.width) - X_PADDING, height: 29))
-                    lblSelectChoise.text = object.label.htmlToString
+                    lblSelectChoise.text = requiredText
                     lblSelectChoise.font = UIFont(name: APP_FONT_NAME, size: 17)
                     lblSelectChoise.textColor = colorSubHeading_76
                     
@@ -1016,8 +1041,8 @@ class FormFieldsVC: ParentClass, UIImagePickerControllerDelegate, UINavigationCo
                 scrlView.addSubview(attacheFile)
 
                 if object.answer != "" {
-                    let url = URL(fileURLWithPath: object.answer)
-                    self.attacheFile.setTitle(url.lastPathComponent, for: .normal)
+                    let filename =  object.answer.components(separatedBy: "-")[1]
+                    self.attacheFile.setTitle(filename, for: .normal)
                 } else {
                     self.attacheFile.setTitle(object.label.htmlToString, for: .normal)
                 }
@@ -1069,21 +1094,34 @@ class FormFieldsVC: ParentClass, UIImagePickerControllerDelegate, UINavigationCo
                 vCaptcha.layer.cornerRadius = radius
                 vCaptcha.accessibilityIdentifier = object.id
                 scrlView.addSubview(vCaptcha)
+                setupReCaptcha()
 
                 if object.answer == "" {
                     visibleChallengeSwitch.setOn(false, animated: true)
-                    setupReCaptcha()
                 } else {
                     visibleChallengeSwitch.setOn(true, animated: true)
                     vCaptcha.isUserInteractionEnabled = false
                 }
                 yposition += X_PADDING +  Int( vCaptcha.bounds.height)
+            }else if dataType == DATATYPE_GEOLOCATION{
+                let map = MapView(frame: CGRect(x: X_PADDING, y: yposition, width: Int(scrlView.frame.size.width)  - (X_PADDING * 2), height: Int(scrlView.frame.size.width)  - (X_PADDING * 2)))
+                map.delegateApp = self
+                
+                if object.answer == "" {
+                      map.initDesign(latitude: 0.0, longitute: 0.0, str_id: object.id)
+                } else {
+                    map.initDesign(latitude: object.lat, longitute: object.long, str_id: object.id)
+
+                }
+              
+                scrlView.addSubview(map)
+                yposition += X_PADDING + Int( map.bounds.height)
             }
         }
         
         let buttonREFRESH = CustomButton(frame: CGRect(x: X_PADDING, y: yposition, width: SCREEN_WIDTH - (X_PADDING*2), height: CUSTOM_BUTTON_HEIGHT))
         buttonREFRESH.setTitle("SUBMIT", for: .normal)
-        //buttonREFRESH.addTarget(self, action: #selector(onRefreshPressed), for: .touchUpInside)
+        buttonREFRESH.addTarget(self, action: #selector(onSubmitPressed), for: .touchUpInside)
         scrlView.addSubview(buttonREFRESH)
         self.view.addSubview(scrlView)
         
@@ -1092,6 +1130,122 @@ class FormFieldsVC: ParentClass, UIImagePickerControllerDelegate, UINavigationCo
         scrlView.contentSize = CGSize (width: SCREEN_WIDTH, height: yposition)
         
     }
+    //MARK:- SUBMIT
+
+    @objc func onSubmitPressed()  {
+        
+        var param = [String : Any]()
+        let id = selectedForm.id
+        param.updateValue(id, forKey: "id")
+        
+        for object in selectedForm.fields{
+            if object.answer == "" && object.required{
+                self.showAlert(message: CS.Common.validationMsg, type: .error, navBar: false)
+                return;
+            }
+            
+            
+        switch String(object.type) {
+                
+            case DATATYPE_IMAGE,DATATYPE_SIGNATURE :
+                if object.answer != ""{
+                    let image = loadImageFromDocumentDirectory(fileName: object.answer)
+                    let imgData = image?.jpegData(compressionQuality: 0.3)
+                    let ans = AGImageInfo (fileName: "\(object.id).jpg", type: Utils.mimeType(for: imgData!), data:imgData!)
+                    param.updateValue(ans, forKey: object.id)
+                }
+                break
+            case DATATYPE_VIDEO :
+                if object.answer != ""{
+                    let videoURL = loadVideoFromDocumentDirectory(fileName: object.answer)
+                    let videoData = try? Data(contentsOf: videoURL!)
+                    let ans = AGImageInfo (fileName: "\(object.id).mov", type: Utils.mimeType(for: videoData!), data: videoData!)
+                    param.updateValue(ans, forKey: object.id)
+                }
+                break
+            case DATATYPE_FILE :
+                if object.answer != ""{
+                    let url = URL(fileURLWithPath: object.answer)
+                    let attachment = loadAttamentFromDocumentDirectory(fileName: object.answer)
+                    let attmentData = try? Data(contentsOf: attachment!)
+                    let ans = AGImageInfo (fileName: url.lastPathComponent, type: Utils.mimeType(for: attmentData!), data: attmentData!)
+                    param.updateValue(ans, forKey: object.id)
+                }
+                break
+            case DATATYPE_RANKINGSCALE :
+                if object.answer != ""{
+                    for obj in object.options{
+                        param.updateValue(obj.ans_value, forKey: obj.ans_key)
+                    }
+                }
+                break
+            case DATATYPE_CHECKBOX :
+                if object.checkbox_answer.count > 0{
+                    var final_id = ""
+                    for obj in object.checkbox_answer{
+                        for option in object.options {
+                            if obj == option.label{
+                                final_id = option.answer
+                                param.updateValue(option.label, forKey: final_id)
+                            }
+                        }
+                    }
+                }
+                break
+        case DATATYPE_CARRYFORWARD :
+            
+            if object.type == DATATYPE_CHECKBOX{
+                if object.checkbox_answer.count > 0{
+                    var final_id = ""
+                    for obj in object.checkbox_answer{
+                        for option in object.options {
+                            if obj == option.label{
+                                final_id = option.answer
+                                param.updateValue(option.label, forKey: final_id)
+                            }
+                        }
+                    }
+                }
+            }else{
+                if object.answer != ""{
+                    param.updateValue(object.answer, forKey: object.id)
+                }
+            }
+            break
+            case DATATYPE_GEOLOCATION :
+                if object.answer != ""{
+                    let strAns = "\(object.lat),\(object.long)"
+                        param.updateValue(strAns, forKey: object.id)
+                }
+                break
+            default:
+                if object.answer != ""{
+                    param.updateValue(object.answer, forKey: object.id)
+                }
+            break
+            }
+    }
+        
+        print(param)
+        
+            
+        WebServicesManager.formSubmit(formData: param, fromId: id, andCompletion: { (isSuccess, response) in
+            if isSuccess {
+                if let strMsg = response["message"] as? String {
+                    if strMsg != ""{
+                        super.showAlert(message: strMsg.htmlToString, type: .error, navBar: false)
+                        return
+                    }
+                }
+            } else {
+                super.showAlert(message: CS.Common.wrongMsg, type: .error, navBar: false)
+            }
+        }) { (error) in
+            super.showAlert(message: CS.Common.wrongMsg, type: .error, navBar: false)
+        }
+    
+    }
+
     @objc func goToBack()  {
         
          self.navigationController?.interactivePopGestureRecognizer?.isEnabled = true
@@ -1121,11 +1275,16 @@ class FormFieldsVC: ParentClass, UIImagePickerControllerDelegate, UINavigationCo
    
 
     func  getTextfield(textField :UITextField , str_id : String, selectedOption : Int){
-        
+
         for obejct in selectedForm.fields {
             if  str_id ==  obejct.id {
                 if selectedOption != 1000 {
-                    obejct.options[selectedOption].answer = textField.text!
+                     let str_ans = "\(obejct.options[selectedOption].label): \(textField.text!)"
+                    let id_ans = "\(str_id)[\(selectedOption)]"
+                    obejct.answer = "yes"
+                    obejct.options[selectedOption].ans_value = str_ans
+                    obejct.options[selectedOption].ans_key = id_ans
+                     obejct.options[selectedOption].answer = textField.text!
                 } else {
                     obejct.answer = textField.text!
                 }
@@ -1135,38 +1294,54 @@ class FormFieldsVC: ParentClass, UIImagePickerControllerDelegate, UINavigationCo
     
     func textViewDidBeginEditing_VC(_ textView :UITextView , str_id : String) {
         for obejct in selectedForm.fields {
-            
             if  str_id ==  obejct.id {
                 obejct.answer = textView.text!
             }
         }
     }
     
-    func checkboxSelected(_ selectedOptions : [String] , str_id : String) {
+    func checkboxSelected(_ selectedOptions : [String] , str_id : String,pTag : Int) {
+        
+            for obejct in selectedForm.fields {
+                if  str_id ==  obejct.id {
+                    obejct.checkbox_answer = [String]()
+                    for option in obejct.options {
+                        if selectedOptions.contains(option.label) {
+                            option.answer = "\(str_id)[\(option.index)]"
+                            option.selected = true
+                            obejct.checkbox_answer.append(option.label)
+                            obejct.answer = "yes"
+                        } else {
+                            option.selected = false
+                        }
+                    }
+                }
+            }
+    }
+    func radioSelected(_ selectedOptions : String , str_id : String,pTag : Int) {
         for obejct in selectedForm.fields {
-            
             if  str_id ==  obejct.id {
                 for option in obejct.options {
-                    if selectedOptions.contains(option.label) {
+                    if selectedOptions == option.label  {
                         option.selected = true
+                        obejct.answer = option.label
                     } else {
                         option.selected = false
-//    func  getTextfield(textField :UITextField , str_id : String){
-//            for var obejct in tempAraay{
-//                var tamp : JSON = JSON()
-//                tamp = obejct
-//                if  str_id ==  obejct["id"].stringValue{
-//                    tamp["Ans"].string = textField.text
-//                    let updated = try? obejct.merged(with:tamp)
-//                    if (updated != nil){
-//                        editData.append(updated!)
-//>>>>>>> 65b71c90fd6599efeab0e95aced54ffe3239f9fe
                     }
                 }
             }
         }
     }
-    
+    func getLatlongFormMAP(lat : Double,long:Double,str_id : String) {
+        
+        for obejct in selectedForm.fields {
+            if  str_id ==  obejct.id {
+                obejct.answer = "yes"
+                obejct.lat = lat
+                obejct.long = long
+            }
+        }
+    }
     @objc func signClearPressed(sender:UIButton) {
         signatureView.clear()
     }
@@ -1219,11 +1394,9 @@ class FormFieldsVC: ParentClass, UIImagePickerControllerDelegate, UINavigationCo
             recaptcha.configureWebView { [weak self] webview in
                 webview.frame = self?.view.bounds ?? CGRect.zero
                 webview.tag = Constants.webViewTag
-                print(webview)
                 // For testing purposes
                 // If the webview requires presentation, this should work as a way of detecting the webview in UI tests
-                self?.scrlView.viewWithTag(Constants.testLabelTag)?.removeFromSuperview()
-                print("vERIFY")
+                self?.view.viewWithTag(Constants.testLabelTag)?.removeFromSuperview()
                 let label = UILabel(frame: CGRect(x: 0, y: 0, width: 1, height: 1))
                 label.tag = Constants.testLabelTag
                 label.accessibilityLabel = "webview"
@@ -1271,7 +1444,7 @@ class FormFieldsVC: ParentClass, UIImagePickerControllerDelegate, UINavigationCo
 
             validate
                 .map { [weak self] _ in
-                    self?.scrlView.viewWithTag(Constants.webViewTag)
+                    self?.view.viewWithTag(Constants.webViewTag)
                 }
                 .subscribe(onNext: { subview in
                     subview?.removeFromSuperview()
@@ -1283,19 +1456,15 @@ class FormFieldsVC: ParentClass, UIImagePickerControllerDelegate, UINavigationCo
                     }
                 })
                 .disposed(by: disposeBag)
-                print("validate")
             validate
                 .bind(to: label.rx.text)
                 .disposed(by: disposeBag)
-                print("validate ")
 
             visibleChallengeSwitch.rx.value
                 .subscribe(onNext: { [weak recaptcha] value in
                     recaptcha?.forceVisibleChallenge = value
-                    print("validate subscribe")
                 })
                 .disposed(by: disposeBag)
-                print("validate YES")
         }
         
         
@@ -1305,7 +1474,6 @@ class FormFieldsVC: ParentClass, UIImagePickerControllerDelegate, UINavigationCo
 //            let newValue = Int(sender.value/25) * 25
 //            sender.setValue(Float(newValue), animated: false)
             let index = (Int)(sliderSelection!.value)
-            print(index)
             for obejct in selectedForm.fields {
                 if  sender.accessibilityIdentifier ==  obejct.id {
                     obejct.answer = "\(index)"
@@ -1327,25 +1495,25 @@ class FormFieldsVC: ParentClass, UIImagePickerControllerDelegate, UINavigationCo
             btnSide9.setImage(#imageLiteral(resourceName: "radioBtnOff"), for: .normal)
             btnSide10.setImage(#imageLiteral(resourceName: "radioBtnOff"), for: .normal)
             
-            if sender.tag == 101{
+            if sender.tag == 1{
                 btnSide1.setImage(#imageLiteral(resourceName: "radioBtnOn"), for: .normal)
-            } else if sender.tag == 102 {
+            } else if sender.tag == 2 {
                 btnSide2.setImage(#imageLiteral(resourceName: "radioBtnOn"), for: .normal)
-            } else if sender.tag == 103 {
+            } else if sender.tag == 3 {
                 btnSide3.setImage(#imageLiteral(resourceName: "radioBtnOn"), for: .normal)
-            } else if sender.tag == 104 {
+            } else if sender.tag == 4 {
                 btnSide4.setImage(#imageLiteral(resourceName: "radioBtnOn"), for: .normal)
-            } else if sender.tag == 105 {
+            } else if sender.tag == 5 {
                 btnSide5.setImage(#imageLiteral(resourceName: "radioBtnOn"), for: .normal)
-            } else if sender.tag == 106 {
+            } else if sender.tag == 6 {
                 btnSide6.setImage(#imageLiteral(resourceName: "radioBtnOn"), for: .normal)
-            } else if sender.tag == 107 {
+            } else if sender.tag == 7 {
                 btnSide7.setImage(#imageLiteral(resourceName: "radioBtnOn"), for: .normal)
-            } else if sender.tag == 108 {
+            } else if sender.tag == 8 {
                 btnSide8.setImage(#imageLiteral(resourceName: "radioBtnOn"), for: .normal)
-            } else if sender.tag == 109 {
+            } else if sender.tag == 9 {
                 btnSide9.setImage(#imageLiteral(resourceName: "radioBtnOn"), for: .normal)
-            } else if sender.tag == 110 {
+            } else if sender.tag == 10 {
                 btnSide10.setImage(#imageLiteral(resourceName: "radioBtnOn"), for: .normal)
             }
             
@@ -1456,25 +1624,25 @@ class FormFieldsVC: ParentClass, UIImagePickerControllerDelegate, UINavigationCo
         
         if answer != "" && Int(answer) != nil {
             let ans = Int(answer)!
-            if ans == 101{
+            if ans == 1{
                 btnSide1.setImage(#imageLiteral(resourceName: "radioBtnOn"), for: .normal)
-            } else if ans == 102 {
+            } else if ans == 2 {
                 btnSide2.setImage(#imageLiteral(resourceName: "radioBtnOn"), for: .normal)
-            } else if ans == 103 {
+            } else if ans == 3 {
                 btnSide3.setImage(#imageLiteral(resourceName: "radioBtnOn"), for: .normal)
-            } else if ans == 104 {
+            } else if ans == 4 {
                 btnSide4.setImage(#imageLiteral(resourceName: "radioBtnOn"), for: .normal)
-            } else if ans == 105 {
+            } else if ans == 5 {
                 btnSide5.setImage(#imageLiteral(resourceName: "radioBtnOn"), for: .normal)
-            } else if ans == 106 {
+            } else if ans == 6 {
                 btnSide6.setImage(#imageLiteral(resourceName: "radioBtnOn"), for: .normal)
-            } else if ans == 107 {
+            } else if ans == 7 {
                 btnSide7.setImage(#imageLiteral(resourceName: "radioBtnOn"), for: .normal)
-            } else if ans == 108 {
+            } else if ans == 8 {
                 btnSide8.setImage(#imageLiteral(resourceName: "radioBtnOn"), for: .normal)
-            } else if ans == 109 {
+            } else if ans == 9 {
                 btnSide9.setImage(#imageLiteral(resourceName: "radioBtnOn"), for: .normal)
-            } else if ans == 110 {
+            } else if ans == 10 {
                 btnSide10.setImage(#imageLiteral(resourceName: "radioBtnOn"), for: .normal)
             }
         }
@@ -1483,7 +1651,6 @@ class FormFieldsVC: ParentClass, UIImagePickerControllerDelegate, UINavigationCo
 
 extension FormFieldsVC: RatingViewDelegate, YPSignatureDelegate {
     func updateRatingFormatValue(_ value: Int, str_id: String) {
-        print("Rating : = ", value)
         if isRatingSet == true {
             for obejct in selectedForm.fields {
                 if  str_id ==  obejct.id {
@@ -1497,7 +1664,6 @@ extension FormFieldsVC: RatingViewDelegate, YPSignatureDelegate {
     
     //Image
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        print("selected image")
         if let image = info[.originalImage] as? UIImage {
             self.attachImage.setImage(image, for: .normal)
             self.attachImage.setTitle("", for: .normal)
@@ -1524,32 +1690,36 @@ extension FormFieldsVC: RatingViewDelegate, YPSignatureDelegate {
     }
     
     func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
-        print(urls)
         if urls.count > 0 {
-//            Downloader.load(URL: urls.first!)
             
-            FileDownloader.loadFileAsync(imagesFolderName, url: urls.first!) { (path, error) in
-                print("PDF File downloaded to : \(path!)")
-                DispatchQueue.main.async {
-                    self.attacheFile.setTitle(path!.components(separatedBy: "/").last!, for: .normal)
-                    for obejct in self.selectedForm.fields {
-                        if  self.attacheFile.accessibilityIdentifier ==  obejct.id {
-                            obejct.answer = path!
-                        }
-                    }
+            let fileManager = FileManager.default
+
+            let path = (NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as NSString).appendingPathComponent(imagesFolderName)
+            
+            if !fileManager.fileExists(atPath: path) {
+                try! fileManager.createDirectory(atPath: path, withIntermediateDirectories: true, attributes: nil)
+            }
+            let documentsUrl = URL(string: path)!
+            let destinationUrl = documentsUrl.appendingPathComponent(urls.first!.lastPathComponent)
+            let data = try! Data(contentsOf: urls[0])
+            
+            self.attacheFile.setTitle(destinationUrl.path.components(separatedBy: "/").last!, for: .normal)
+            
+            for obejct in self.selectedForm.fields {
+                if  self.attacheFile.accessibilityIdentifier ==  obejct.id {
+                    obejct.answer = destinationUrl.path
+                    self.saveAttamentInDocsDir(self.imagesFolderName, doc: data, docName: obejct.id , filename: destinationUrl.path.components(separatedBy: "/").last!)
                 }
             }
         }
     }
     
     func documentPickerWasCancelled(_ controller: UIDocumentPickerViewController) {
-            print("view was cancelled")
             dismiss(animated: true, completion: nil)
     }
     
     //Signature
     func didStart(_ view : YPDrawSignatureView) {
-        print("Started Drawing")
         scrlView.isScrollEnabled = false
         
         if signatureImageView != nil{
@@ -1557,7 +1727,6 @@ extension FormFieldsVC: RatingViewDelegate, YPSignatureDelegate {
         }
     }
     func didFinish(_ view : YPDrawSignatureView) {
-        print("Finished Drawing")
         scrlView.isScrollEnabled = true
         let sign = view.getSignature()
         if sign != nil {
@@ -1597,7 +1766,6 @@ extension FormFieldsVC: RatingViewDelegate, YPSignatureDelegate {
           let image = UIImage(contentsOfFile: urlString)
           return image
         } else {
-        // print("No Image")
             return nil
         }
     }
@@ -1609,7 +1777,7 @@ extension FormFieldsVC: RatingViewDelegate, YPSignatureDelegate {
             try! fileManager.createDirectory(atPath: path, withIntermediateDirectories: true, attributes: nil)
         }
         let url = NSURL(string: path)
-        let imagePath = url!.appendingPathComponent("\(videoName).mp4")
+        let imagePath = url!.appendingPathComponent("\(videoName).mov")
         let urlString: String = imagePath!.absoluteString
         
         fileManager.createFile(atPath: urlString as String, contents: video, attributes: nil)
@@ -1620,6 +1788,39 @@ extension FormFieldsVC: RatingViewDelegate, YPSignatureDelegate {
         }
     }
     
+    func saveAttamentInDocsDir(_ folderName : String, doc : Data, docName : String, filename : String) {
+        let fileManager = FileManager.default
+        let path = (NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as NSString).appendingPathComponent(folderName)
+        if !fileManager.fileExists(atPath: path) {
+            try! fileManager.createDirectory(atPath: path, withIntermediateDirectories: true, attributes: nil)
+        }
+        let url = NSURL(string: path)
+        let imagePath = url!.appendingPathComponent("\(filename)")
+        let urlString: String = imagePath!.absoluteString
+        
+        fileManager.createFile(atPath: urlString as String, contents: doc, attributes: nil)
+        for obejct in selectedForm.fields {
+            if  docName ==  obejct.id {
+                obejct.answer =  "\(folderName)-\(filename)"
+            }
+        }
+    }
+    func loadAttamentFromDocumentDirectory(fileName: String) -> URL? {
+        
+        let folderName = fileName.components(separatedBy: "-")[0]
+        imagesFolderName = folderName
+        let videoName = fileName.components(separatedBy: "-")[1]
+        
+        let fileManager = FileManager.default
+        
+        let videoPath = (URL(fileURLWithPath: self.configureDirectory(folderName))).appendingPathComponent(videoName)
+        let urlString: String = videoPath.path
+        if fileManager.fileExists(atPath: urlString) {
+            return videoPath
+        } else {
+            return nil
+        }
+    }
     func loadVideoFromDocumentDirectory(fileName: String) -> URL? {
         
         let folderName = fileName.components(separatedBy: "-")[0]
@@ -1628,7 +1829,7 @@ extension FormFieldsVC: RatingViewDelegate, YPSignatureDelegate {
         
         let fileManager = FileManager.default
         
-        let videoPath = (URL(fileURLWithPath: self.configureDirectory(folderName))).appendingPathComponent("\(videoName).mp4")
+        let videoPath = (URL(fileURLWithPath: self.configureDirectory(folderName))).appendingPathComponent("\(videoName).mov")
         let urlString: String = videoPath.path
         if fileManager.fileExists(atPath: urlString) {
             return videoPath
@@ -1658,7 +1859,6 @@ extension FormFieldsVC: RatingViewDelegate, YPSignatureDelegate {
                 // Delete file
                 try fileManager.removeItem(atPath: db)
             } else {
-                print("File does not exist")
             }
             
         }
@@ -1706,53 +1906,57 @@ class FileDownloader {
 //            completion(destinationUrl.path, error)
 //        }
 //    }
-
-    static func loadFileAsync(_ folderName : String, url: URL, completion: @escaping (String?, Error?) -> Void) {
-        let fileManager = FileManager.default
-        
-        let path = (NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as NSString).appendingPathComponent(folderName)
-        
-        if !fileManager.fileExists(atPath: path) {
-            try! fileManager.createDirectory(atPath: path, withIntermediateDirectories: true, attributes: nil)
-        }
-        
-        let documentsUrl = URL(string: path)!
-        
-        let destinationUrl = documentsUrl.appendingPathComponent(url.lastPathComponent)
-        
-        if fileManager.fileExists(atPath: destinationUrl.path)
-        {
-            print("File already exists [\(destinationUrl.path)]")
-            completion(destinationUrl.path, nil)
-        }
-        else
-        {
-            let session = URLSession(configuration: URLSessionConfiguration.default, delegate: nil, delegateQueue: nil)
-            var request = URLRequest(url: url)
-            request.httpMethod = "GET"
-            let task = session.dataTask(with: request, completionHandler:
-            {
-                data, response, error in
-                if error == nil
-                {
-                    if let data = data
-                    {
-                        if let _ = try? data.write(to: destinationUrl, options: Data.WritingOptions.atomic)
-                        {
-                            completion(destinationUrl.path, error)
-                        }
-                        else
-                        {
-                            completion(destinationUrl.path, error)
-                        }
-                    }
-                }
-                else
-                {
-                    completion(destinationUrl.path, error)
-                }
-            })
-            task.resume()
-        }
-    }
+//
+//    static func loadFileAsync(_ folderName : String, url: URL, completion: @escaping (String? , Error?) -> Void) {
+//        let fileManager = FileManager.default
+//
+//        let path = (NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as NSString).appendingPathComponent(folderName)
+//
+////        let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
+//
+//        if !fileManager.fileExists(atPath: path) {
+//            try! fileManager.createDirectory(atPath: path, withIntermediateDirectories: true, attributes: nil)
+//        }
+//
+//        let documentsUrl = URL(string: path)!
+//
+//        let destinationUrl = documentsUrl.appendingPathComponent(url.lastPathComponent)
+//
+//        if fileManager.fileExists(atPath: destinationUrl.path)
+//        {
+//            print("File already exists [\(destinationUrl.path)]")
+//            completion(destinationUrl.path,nil)
+//        }
+//        else
+//        {
+//            let session = URLSession(configuration: URLSessionConfiguration.default, delegate: nil, delegateQueue: nil)
+//            var request = URLRequest(url: url)
+//            request.httpMethod = "GET"
+//
+//            let task = session.dataTask(with: request, completionHandler:
+//            {
+//                data, response, error in
+//
+//                if error == nil
+//                {
+//                    if let data = data
+//                    {
+//                        if let _ = try? data.write(to: destinationUrl, options: Data.WritingOptions.atomic)
+//                        {
+//                            completion(destinationUrl.path,error)
+//                        }
+//                        else
+//                        {
+//                            completion(destinationUrl.path,error)
+//                        }
+//                    }
+//                }
+//                else
+//                {
+//                  completion(destinationUrl.path,error)
+//                }
+//            })
+//            task.resume()
+//        }
+//    }
 }

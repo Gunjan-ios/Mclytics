@@ -22,9 +22,11 @@ class MarginSelectView : UIView {
     let labelHeight = 25
     let radioBtnHeight = 35
     var idString = ""
-    
+    var btnTag = 0
+
     func initDesign(pName:String,pTag:Int,pOptions:[OptionsModal], str_id :String) {
         idString = str_id
+        btnTag = pTag
         labelTitle = PaddingLabel(frame: CGRect(x: 0, y: 0, width: Int(frame.size.width), height: labelHeight))
         labelTitle.textColor = colorSubHeading_76
         labelTitle.font = UIFont(name: APP_FONT_NAME, size: 17)
@@ -37,12 +39,24 @@ class MarginSelectView : UIView {
         self.addSubview(labelVIew)
         
         var otherButtons : [DLRadioButton] = [];
+        if pOptions.count <= 0{
+            return;
+        }
+        let firstRadioButton = self.createRadioButton(frame: CGRect(x: 8, y: labelHeight + 1 , width: SCREEN_WIDTH, height: radioBtnHeight), title: pOptions[0].label, color: UIColor.black, isSelected: pOptions[0].selected, index: pOptions[0].index , view: self);
         
-        let firstRadioButton = self.createRadioButton(frame: CGRect(x: 8, y: labelHeight + 1 , width: SCREEN_WIDTH, height: radioBtnHeight), title: pOptions[0].label, color: UIColor.black, isSelected: pOptions[0].selected, view: self);
         print(firstRadioButton.frame)
         firstRadioButton.tag = pTag
 //        firstRadioButton.isSelected = true
         
+//        if pOptions[0].checked == true{
+//            if let delegate = delegateApp {
+//                if pTag == 1022{
+//                    
+//                }else{
+//                    delegate.checkboxSelected([pOptions[0].label], str_id: idString)
+//                }
+//            }
+//        }
         self.isMarginMoneyCallback = false
         
         var index = 0
@@ -53,26 +67,29 @@ class MarginSelectView : UIView {
                 index+=1
                 continue
             }
-            
             x_Spacing += radioBtnHeight
             
+            name.index = index
             let frame = CGRect(x: 8, y: x_Spacing, width: SCREEN_WIDTH, height: radioBtnHeight);
             print(frame)
-            let radioButton = createRadioButton(frame: frame, title: name.label, color: UIColor.black, isSelected: name.selected,view: self);
+          
+            let radioButton = createRadioButton(frame: frame, title: name.label, color: UIColor.black, isSelected: name.selected, index: name.index ,view: self);
             otherButtons.append(radioButton);
+            index+=1
         }
         
         firstRadioButton.otherButtons = otherButtons;
         print( firstRadioButton.otherButtons.count + 1)
         let size = radioBtnHeight*(firstRadioButton.otherButtons.count+1)
         newHeigt = CGFloat(labelHeight + size)
+        
     }
     
     func resetHeight()  -> CGRect {
         return  CGRect (x: self.frame.origin.x, y: self.frame.origin.y, width: self.frame.size.width, height: newHeigt)
     }
     
-    private func createRadioButton(frame : CGRect, title : String, color : UIColor, isSelected  : Bool, view:UIView) -> DLRadioButton {
+    private func createRadioButton(frame : CGRect, title : String, color : UIColor, isSelected  : Bool,index : Int , view:UIView) -> DLRadioButton {
         
         let radioButton = DLRadioButton(frame: frame);
         radioButton.titleLabel!.font = UIFont.systemFont(ofSize: 14);
@@ -82,6 +99,7 @@ class MarginSelectView : UIView {
         radioButton.indicatorColor = color;
         radioButton.icon = UIImage(named: "deselectedCheckbox")!
         radioButton.iconSelected = UIImage(named: "selectedCheckboxBlue")!
+        radioButton.tag = btnTag
         if isSelected {
             radioButton.isSelected = true
         } else {
@@ -107,7 +125,7 @@ class MarginSelectView : UIView {
                 count -= 1
                 if count == 0 {
                     if let delegate = delegateApp {
-                        delegate.checkboxSelected(selectedTitles, str_id: idString)
+                        delegate.checkboxSelected(selectedTitles, str_id: idString, pTag: button.tag)
                     }
                 }
             }
