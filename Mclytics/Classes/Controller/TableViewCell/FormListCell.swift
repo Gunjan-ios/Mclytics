@@ -18,6 +18,16 @@ class FormListCell: UITableViewCell {
         return btn
     }()
     
+    var btnValidation : UIButton = {
+        let btn = UIButton(type: .custom)
+        btn.setImage(UIImage(named: "selectedCheckboxBlue"), for: .normal)
+//        btn.setImage(UIImage(named: "selectedCheckboxBlue"), for: .selected)
+        btn.contentHorizontalAlignment = .center
+        btn.setTitle("Validated", for: .normal)
+        btn.setTitleColor(blueTextColor, for: .normal)
+        return btn
+    }()
+
     var lblFieldName : UILabel = {
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 15)
@@ -52,12 +62,15 @@ class FormListCell: UITableViewCell {
         self.btncheckbox.frame = CGRect (x: SCREEN_WIDTH - Int(TABLEVIEW_CELL_HEIGHT) - 10 , y: 0, width:Int(TABLEVIEW_CELL_HEIGHT) , height: Int(TABLEVIEW_CELL_HEIGHT))
         self.lblFieldName.frame = CGRect(x: X_PADDING, y: 0, width: SCREEN_WIDTH - X_PADDING , height: Int(TABLEVIEW_CELL_HEIGHT/3))
         self.lblSubFieldName.frame = CGRect(x: X_PADDING, y:Int(TABLEVIEW_CELL_HEIGHT/3 - 3) , width: SCREEN_WIDTH - X_PADDING, height: Int(TABLEVIEW_CELL_HEIGHT/3))
-        self.lblSubFieldDate.frame = CGRect(x: X_PADDING, y:Int(TABLEVIEW_CELL_HEIGHT/3)*2 - 6 , width: SCREEN_WIDTH - X_PADDING, height: Int(TABLEVIEW_CELL_HEIGHT/3))
-        
+        self.lblSubFieldDate.frame = CGRect(x: X_PADDING, y:Int(TABLEVIEW_CELL_HEIGHT/3)*2 - 6 , width: SCREEN_WIDTH - X_PADDING - 120, height: Int(TABLEVIEW_CELL_HEIGHT/3))
+        self.btnValidation.frame = CGRect (x: SCREEN_WIDTH - 120 - 10 , y: Int(TABLEVIEW_CELL_HEIGHT) - 25 , width: 120, height: 25)
+        self.btnValidation.isHidden = true
         addSubview(btncheckbox)
         addSubview(lblFieldName)
         addSubview(lblSubFieldName)
         addSubview(lblSubFieldDate)
+        addSubview(btnValidation)
+
 
         
         

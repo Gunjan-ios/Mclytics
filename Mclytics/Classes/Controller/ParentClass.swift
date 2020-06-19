@@ -27,7 +27,7 @@ class ParentClass: UIViewController{
     var iPhone_X_Top_Padding:CGFloat = 0
     var iPhone_X_Bottom_Padding:CGFloat = 0
     var token : String!
-//    var CONNECTED_WIFI : String!
+    var CONNECTED_WITH : String!
 //    var CONNECTED_NET : String!
 //    var saveListArray : [[String : Any]] = [[String:Any]]()
     var saveListArray1 : [JSON] = [JSON]()
@@ -37,7 +37,9 @@ class ParentClass: UIViewController{
     
     var saveListArray = [MainFormModal]()
     var editListArray = [MainFormModal]()
+    var finalizedListArray = [MainFormModal]()
 
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -49,17 +51,16 @@ class ParentClass: UIViewController{
         self.view.addSubview(imgNav)
         
 //        if ParentClass.sharedInstance.getDataForKey(strKey: AUTO_WIFI) as? Bool == true{
-//            CONNECTED_WIFI = "CONNECTED_WIFI"
+//            CONNECTED_WITH = "CONNECTED_WIFI"
 //        }
 //        if ParentClass.sharedInstance.getDataForKey(strKey: AUTO_NETWORK)  as? Bool == true{
-//            CONNECTED_NET = "CONNECTED_NET"
+//            CONNECTED_WITH = "CONNECTED_NET"
 //        }
        if APP.open_count == 1{
         APP.open_count = 0
         NotificationCenter.default.addObserver(self, selector: #selector(self.networkStatusChanged(_:)), name: NSNotification.Name(rawValue: ReachabilityStatusChangedNotification), object: nil)
         Reach().monitorReachabilityChanges()
         }
-        
     }
     func setData(strData:Any,strKey:String) {
         
@@ -84,30 +85,18 @@ class ParentClass: UIViewController{
             return ""
         }
     }
-    func saveJSON(json: JSON, key:String){
-        if let jsonString = json.rawString() {
-            UserDefaults.standard.setValue(jsonString, forKey: key)
+    func getDataJSON(key:String) -> [MainFormModal] {
+        if let listArray = self.getDataForKey(strKey: key) as? Data {
+            if let decodedArray = NSKeyedUnarchiver.unarchiveObject(with: listArray) as? [MainFormModal] {
+                return decodedArray
+            }
         }
+        return [MainFormModal]()
     }
     
-    func getJSON(_ key: String)-> JSON? {
-        var p = ""
-        if let result = UserDefaults.standard.string(forKey: key) {
-            p = result
-        }
-        if p != "" {
-            if let json = p.data(using: String.Encoding.utf8, allowLossyConversion: false) {
-                do {
-                    return try JSON(data: json)
-                } catch {
-                    return nil
-                }
-            } else {
-                return nil
-            }
-        } else {
-            return nil
-        }
+    func setJSON(json: [MainFormModal], key:String)  {
+      let encodedData: Data = NSKeyedArchiver.archivedData(withRootObject:json)
+       self.setData(strData: encodedData, strKey: key)
     }
 //    public func loadJSON(strKey:String) -> JSON {
 //        let defaults = UserDefaults.standard
@@ -115,51 +104,7 @@ class ParentClass: UIViewController{
 ////        return JSON.parse(defaults.valueForKey(strKey) as! String))
 //        // JSON from string must be initialized using .parse()
 //    }
-    // get color from string
-    
-//    func loadImageFromDocumentDirectory(fileName: String) -> UIImage? {
-//
-//        let folderName = fileName.components(separatedBy: "-")[0]
-//        let imageName = fileName.components(separatedBy: "-")[1]
-//        let fileManager = FileManager.default
-//
-//        let imagePath = (URL(fileURLWithPath: self.configureDirectory(folderName))).appendingPathComponent("\(imageName).png")
-//        let urlString: String = imagePath.path
-//        if fileManager.fileExists(atPath: urlString) {
-//            let image = UIImage(contentsOfFile: urlString)
-//            return image
-//        } else {
-//            // print("No Image")
-//            return nil
-//        }
-//    }
-//
-//
-//
-//    func loadVideoFromDocumentDirectory(fileName: String) -> URL? {
-//
-//        let folderName = fileName.components(separatedBy: "-")[0]
-//        let videoName = fileName.components(separatedBy: "-")[1]
-//
-//        let fileManager = FileManager.default
-//
-//        let videoPath = (URL(fileURLWithPath: self.configureDirectory(folderName))).appendingPathComponent("\(videoName).mp4")
-//        let urlString: String = videoPath.path
-//        if fileManager.fileExists(atPath: urlString) {
-//            return videoPath
-//        } else {
-//            return nil
-//        }
-//    }
-//
-//    func configureDirectory(_ folderName : String) -> String {
-//        let fileManager = FileManager.default
-//        let path = (NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as NSString).appendingPathComponent(folderName)
-//        if !fileManager.fileExists(atPath: path) {
-//            try! fileManager.createDirectory(atPath: path, withIntermediateDirectories: true, attributes: nil)
-//        }
-//        return path
-//    }
+
     func getColorFromString(pString:String) -> UIColor {
         
         var strokeColorInString = pString
@@ -180,7 +125,8 @@ class ParentClass: UIViewController{
 //           self.processingAlert?.show(nil, hidden: nil)
          case .online(.wwan):
             print("Connected via WWAN")
-//            CONNECTED_NET = "CONNECTED_NET"
+            
+            self.setData(strData: CONNECTED_NET  , strKey: CONNECTED)
             self.processingAlert?.hideAlert({ () -> () in
                 if self.APP.open_count == 2 {
                     self.APP.open_count = 0
@@ -189,7 +135,9 @@ class ParentClass: UIViewController{
                     })
         case .online(.wiFi):
             print("Connected via WiFi")
-//          CONNECTED_WIFI = "CONNECTED_WIFI"
+          CONNECTED_WITH = "CONNECTED_WIFI"
+            self.setData(strData: CONNECTED_WIFI, strKey: CONNECTED)
+
             self.processingAlert?.hideAlert({ () -> () in
                 if self.APP.open_count == 2 {
                     self.APP.open_count = 0
@@ -198,21 +146,6 @@ class ParentClass: UIViewController{
                     })
         }
     }
-
-//        if UserDefaults.standard.object(forKey: uLATITUDE) != nil && UserDefaults.standard.object(forKey: uLOGNITUDE) != nil
-//        {
-//            latitude = UserDefaults.standard.object(forKey: uLATITUDE) as! String
-//            longitude = UserDefaults.standard.object(forKey: uLOGNITUDE) as! String
-//        }
-//        UDID =  KeychainManager() .getDeviceIdentifierFromKeychain()
-//
-//        let countryLocale = NSLocale.current
-//        let countryCode = countryLocale.regionCode
-//        let country = (countryLocale as NSLocale).displayName(forKey: NSLocale.Key.countryCode, value: countryCode!)
-//        print(countryCode!, country!)
-//        country_region = country!
-    
-//    }
     
     func initAlerts() {
         self.alert = AlertManager.getErrorAlert()

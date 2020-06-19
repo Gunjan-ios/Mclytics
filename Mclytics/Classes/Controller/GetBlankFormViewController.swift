@@ -35,11 +35,14 @@ class GetBlankFormViewController: ParentClass,UITableViewDelegate,UITableViewDat
         loadHeaderView()
         apiGetBlankFromData(page: currentPage)
         
-        if let listArray = ParentClass.sharedInstance.getDataForKey(strKey: FILL_BLANK_ARRAY) as? Data {
-            if let decodedArray = NSKeyedUnarchiver.unarchiveObject(with: listArray) as? [MainFormModal] {
-                saveListArray = decodedArray
-            }
-        }
+//        if let listArray = ParentClass.sharedInstance.getDataForKey(strKey: FILL_BLANK_ARRAY) as? Data {
+//            if let decodedArray = NSKeyedUnarchiver.unarchiveObject(with: listArray) as? [MainFormModal] {
+//                saveListArray = decodedArray
+//            }
+//        }
+        saveListArray = ParentClass.sharedInstance.getDataJSON(key: FILL_BLANK_ARRAY)
+
+        
     }
     
     func apiGetBlankFromData(page : Int) {

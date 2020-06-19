@@ -146,7 +146,7 @@ class DeleteListTableViewController: ParentClass,UITableViewDelegate,UITableView
         let strDate = ParentClass.sharedInstance.dateConvert(date: formObject.created_at)
         cell.lblSubFieldDate.text = "Added on \(strDate)"
         cell.btncheckbox.tag = indexPath.row
-        cell.btncheckbox.isSelected = false
+//        cell.btncheckbox.isSelected = false
         cell.btncheckbox.addTarget(self, action: #selector(onCheckListPressed(sender:)), for: .touchUpInside)
         return cell
        

@@ -132,7 +132,7 @@ class FormFieldsVC: ParentClass, UIImagePickerControllerDelegate, UINavigationCo
             self.view.addSubview(buttonNext)
             
             buttonSubmit = CustomButton(frame: CGRect(x: SCREEN_WIDTH - SCREEN_WIDTH/2 + X_PADDING , y: SCREEN_HEIGHT - (CUSTOM_BUTTON_HEIGHT*2), width: SCREEN_WIDTH/2 - (X_PADDING*2), height: CUSTOM_BUTTON_HEIGHT))
-            buttonSubmit.addTarget(self, action: #selector(onSubmitPressed), for: .touchUpInside)
+            buttonSubmit.addTarget(self, action: #selector(onDataSubmitPressed), for: .touchUpInside)
             buttonSubmit.setTitle("Submit", for: .normal)
             buttonSubmit.isHidden = true
             self.view.addSubview(buttonSubmit)
@@ -1121,7 +1121,7 @@ class FormFieldsVC: ParentClass, UIImagePickerControllerDelegate, UINavigationCo
         
         let buttonREFRESH = CustomButton(frame: CGRect(x: X_PADDING, y: yposition, width: SCREEN_WIDTH - (X_PADDING*2), height: CUSTOM_BUTTON_HEIGHT))
         buttonREFRESH.setTitle("SUBMIT", for: .normal)
-        buttonREFRESH.addTarget(self, action: #selector(onSubmitPressed), for: .touchUpInside)
+        buttonREFRESH.addTarget(self, action: #selector(onDataSubmitPressed), for: .touchUpInside)
         scrlView.addSubview(buttonREFRESH)
         self.view.addSubview(scrlView)
         
@@ -1131,8 +1131,7 @@ class FormFieldsVC: ParentClass, UIImagePickerControllerDelegate, UINavigationCo
         
     }
     //MARK:- SUBMIT
-
-    @objc func onSubmitPressed()  {
+    @objc func onDataSubmitPressed()  {
         
         var param = [String : Any]()
         let id = selectedForm.id
@@ -1144,9 +1143,19 @@ class FormFieldsVC: ParentClass, UIImagePickerControllerDelegate, UINavigationCo
                 return;
             }
             
-            
-        switch String(object.type) {
-                
+            switch String(object.type) {
+            case DATATYPE_EMAIL :
+                if   !object.answer.isEmpty || !Validation().isValidEmail(email: object.answer.trim()){
+                    self.showAlert(message: CS.Login.invalidEmail, type: .error, navBar: false)
+                    return;
+                }
+                 break
+            case DATATYPE_PHONE:
+                if   !object.answer.isEmpty || !Validation().isValidPhone(phone: object.answer.trim()){
+                    self.showAlert(message: CS.Login.invalidNumber, type: .error, navBar: false)
+                    return;
+                }
+                break
             case DATATYPE_IMAGE,DATATYPE_SIGNATURE :
                 if object.answer != ""{
                     let image = loadImageFromDocumentDirectory(fileName: object.answer)
@@ -1192,48 +1201,67 @@ class FormFieldsVC: ParentClass, UIImagePickerControllerDelegate, UINavigationCo
                     }
                 }
                 break
-        case DATATYPE_CARRYFORWARD :
-            
-            if object.type == DATATYPE_CHECKBOX{
-                if object.checkbox_answer.count > 0{
-                    var final_id = ""
-                    for obj in object.checkbox_answer{
-                        for option in object.options {
-                            if obj == option.label{
-                                final_id = option.answer
-                                param.updateValue(option.label, forKey: final_id)
+            case DATATYPE_CARRYFORWARD :
+                
+                if object.type == DATATYPE_CHECKBOX{
+                    if object.checkbox_answer.count > 0{
+                        var final_id = ""
+                        for obj in object.checkbox_answer{
+                            for option in object.options {
+                                if obj == option.label{
+                                    final_id = option.answer
+                                    param.updateValue(option.label, forKey: final_id)
+                                }
                             }
                         }
                     }
+                }else{
+                    if object.answer != ""{
+                        param.updateValue(object.answer, forKey: object.id)
+                    }
                 }
-            }else{
-                if object.answer != ""{
-                    param.updateValue(object.answer, forKey: object.id)
-                }
-            }
-            break
+                break
             case DATATYPE_GEOLOCATION :
                 if object.answer != ""{
                     let strAns = "\(object.lat),\(object.long)"
-                        param.updateValue(strAns, forKey: object.id)
+                    param.updateValue(strAns, forKey: object.id)
                 }
                 break
             default:
                 if object.answer != ""{
                     param.updateValue(object.answer, forKey: object.id)
                 }
-            break
+                break
             }
-    }
+        }
+      
+        selectedForm.param = param
         
-        print(param)
-        
+        if ParentClass.sharedInstance.getDataForKey(strKey: AUTO_WIFI) as? Bool == true{
+            if self.getDataForKey(strKey: CONNECTED) as? String == CONNECTED_WIFI{
+                onSubmitPressed(param: param, id: id)
+            }
+        }
+       else if ParentClass.sharedInstance.getDataForKey(strKey: AUTO_NETWORK)  as? Bool == true{
+            if self.getDataForKey(strKey: CONNECTED) as? String == CONNECTED_NET{
+                onSubmitPressed(param: param, id: id)
+            }
+        }else{
+            finalizedListArray = ParentClass.sharedInstance.getDataJSON(key: FINALIZED_ARRAY)
             
+            ParentClass.sharedInstance.finalizedListArray.append(selectedForm)
+            ParentClass.sharedInstance.setJSON(json: ParentClass.sharedInstance.finalizedListArray, key: FINALIZED_ARRAY)
+            self.navigationController?.popViewController(animated: true)
+        }
+    }
+    func onSubmitPressed(param : [String : Any],id :Int)  {
+        
         WebServicesManager.formSubmit(formData: param, fromId: id, andCompletion: { (isSuccess, response) in
             if isSuccess {
                 if let strMsg = response["message"] as? String {
                     if strMsg != ""{
                         super.showAlert(message: strMsg.htmlToString, type: .error, navBar: false)
+                        self.navigationController?.popViewController(animated: true)
                         return
                     }
                 }
@@ -1251,19 +1279,19 @@ class FormFieldsVC: ParentClass, UIImagePickerControllerDelegate, UINavigationCo
          self.navigationController?.interactivePopGestureRecognizer?.isEnabled = true
 
 
-        if let listArray = ParentClass.sharedInstance.getDataForKey(strKey: EDIT_BLANK_ARRAY) as? Data {
-            if let decodedArray = NSKeyedUnarchiver.unarchiveObject(with: listArray) as? [MainFormModal] {
-                editListArray = decodedArray
-            }
-        }
-     
+//        if let listArray = ParentClass.sharedInstance.getDataForKey(strKey: EDIT_BLANK_ARRAY) as? Data {
+//            if let decodedArray = NSKeyedUnarchiver.unarchiveObject(with: listArray) as? [MainFormModal] {
+//                editListArray = decodedArray
+//            }
+//        }
+        editListArray = ParentClass.sharedInstance.getDataJSON(key: EDIT_BLANK_ARRAY)
+
         if type == "Edit" {
             formArray[selectedFormIndex] = selectedForm
             ParentClass.sharedInstance.editListArray = formArray
         } else {
             ParentClass.sharedInstance.editListArray.append(selectedForm)
         }
-
         
         let encodedData: Data = NSKeyedArchiver.archivedData(withRootObject: ParentClass.sharedInstance.editListArray)
         ParentClass.sharedInstance.setData(strData: encodedData, strKey: EDIT_BLANK_ARRAY)

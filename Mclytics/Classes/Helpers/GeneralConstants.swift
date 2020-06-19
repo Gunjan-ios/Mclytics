@@ -138,22 +138,7 @@ let DATATYPE_DOCUMENT_ICON_SELECTED = "documentIconBlue-datatype"
 let DATATYPE_AUDIO_ICON_SELECTED = "audioIconBlue"
 let DATATYPE_VIDEO_ICON_SELECTED = "videoIconBlue"
 
-// style types
-let POINT_STYLETYPE_POINT = "Point"
-let POINT_STYLETYPE_CIRCLE = "Circle"
-let POINT_STYLETYPE_BOX = "Box"
-let POINT_STYLETYPE_CROSS = "Cross"
-let POINT_STYLETYPE_TRIANGLE = "Triangle"
 
-let LINESTRING_STYLETYPE_SOLID = "Linesring_Solid"
-let LINESTRING_STYLETYPE_DASH = "Linesring_Dash"
-let LINESTRING_STYLETYPE_DOT = "Linesring_Dot"
-let LINESTRING_STYLETYPE_DASH_DOT = "Linesring_Dash Dot"
-
-let POLYGON_STYLETYPE_SOLID = "Polygon_Solid"
-let POLYGON_STYLETYPE_DASH = "Polygon_Dash"
-let POLYGON_STYLETYPE_DOT = "Polygon_Dot"
-let POLYGON_STYLETYPE_DASH_DOT = "Polygon_Dash Dot"
 
 
 let X_PADDING = 15
@@ -268,48 +253,9 @@ let  LOADING_TITLE = "Please Wait..."
 let  UPLAOD_TITLE = "Uploading..."
 
 
-let STORED_UNIT_PHOTOS_KEY = "STORED_UNIT_PHOTOS"
-let STORED_PRODUCT_PHOTOS_KEY = "STORED_PRODUCT_PHOTOS"
-let STORED_MANIFACTURING_UNIT_PHOTOS_KEY = "STORED_MANIFACTURING_UNIT_PHOTOS_KEY"
-let STORED_MANIFACTURING_UNIT_VIDEO_KEY = "STORED_MANIFACTURING_UNIT_VIDEO_KEY"
-let STORED_ACHIEVEMENT_PHOTO_KEY = "STORED_ACHIEVEMENT_PHOTO_KEY"
 
-// ============================== java script fun =================
-let ADD_BTN_FUNCTION = "startDraw"
-let STOP_BTN_FUNCTION = "endDraw"
-let EDIT_BTN_FUNCTION = "toggleEdit"
-let DELETE_BTN_FUNCTION = "toggleDelete"
 
-// UNDO / REDO
-let REDO_BTN_FUNCTION = "redo"
-let UNDO_BTN_FUNCTION = "undo"
 
-let REMOVE_FEATURE_FUNCTION = "removeFeature"
-let RESET_DELETE_FUNCTION = "resetDelete"
-let LOAD_FEATURE_FUNCTION = "loadFeatures"
-let ZOOM_TO_FEATURE_FUNCTION = "zoomToFeature"
-let GET_DRAWN_GEOMETRY_FUNCTION = "getDrawnGeometry"
-let UNDO_EDIT_GEOMETRY_FUNCTION = "undoEdit"
-
-// LIVE LOCATION
-let SEND_LIVE_LOCATION_FUNCTION = "sendLiveLocation"
-
-// SHOW LAYER / TRACKS
-let SHOW_LAYER_FUNCTION = "showLayer"
-let HIDE_LAYER_FUNCTION = "hideLayer"
-let GET_LAYER_FUNCTION = "getLayerData"
-let ADD_LAYER_FUNCTION = "addLayer"
-// HSOW hide extrnal layers
-let SHOW_EXTERNAL_LAYER_FUNCTION = "showWMSLayer"
-let HIDE_EXTERNAL_LAYER_FUNCTION = "hideWMSLayer"
-
-let JS_PARAMETER_TYPE_TRACK = "track"
-let JS_PARAMETER_TYPE_LAYER = "layer"
-let JS_PARAMETER_TYPE_EDIT = "edit"
-
-// ===============================================================
-
-let GEOMETRY_DB_TAG = "3857"
 
 //let LAYER_DATA_SYNC_URL = "http://192.168.20.199:8082/api/upload/"
 let LAYER_DATA_SYNC_URL = "http://192.168.20.62:8082/api/upload/"
@@ -339,6 +285,7 @@ let ACCESS_ID = "ACCESS_ID"
 let CATEGORY_ID = "CATEGORY_ID"
 let FILL_BLANK_ARRAY = "FILL_BLANK_ARRAY"
 let EDIT_BLANK_ARRAY = "EDIT_BLANK_ARRAY"
+let FINALIZED_ARRAY = "FINALIZED_ARRAY"
 let SAVE_ARRAY = "SAVE_ARRAY"
 
 //Setting
@@ -349,6 +296,11 @@ let AUTO_NETWORK = "AUTO_NETWORK"
 let DISPLAY_STATUS = "DISPLAY_STATUS"
 let RESUME = "RESUME"
 let USER_INTERFACE = "SAVE_ARRAY"
+let CONNECTED = "CONNECTED"
+let CONNECTED_NET = "CONNECTED_NET"
+let CONNECTED_WIFI = "CONNECTED_WIFI"
+
+
 
 
 

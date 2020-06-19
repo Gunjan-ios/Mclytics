@@ -38,11 +38,13 @@ class ViewController: ParentClass,UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let listArray = ParentClass.sharedInstance.getDataForKey(strKey: FILL_BLANK_ARRAY) as? Data {
-            if let decodedArray = NSKeyedUnarchiver.unarchiveObject(with: listArray) as? [MainFormModal] {
-                saveListArray = decodedArray
-            }
-        }
+//        if let listArray = ParentClass.sharedInstance.getDataForKey(strKey: FILL_BLANK_ARRAY) as? Data {
+//            if let decodedArray = NSKeyedUnarchiver.unarchiveObject(with: listArray) as? [MainFormModal] {
+//                saveListArray = decodedArray
+//            }
+//        }
+        saveListArray = ParentClass.sharedInstance.getDataJSON(key: FILL_BLANK_ARRAY)
+
         print(ParentClass.sharedInstance.getDataForKey(strKey:TOKEN_KEY))
 
         self.loadHeaderView()
@@ -61,6 +63,13 @@ class ViewController: ParentClass,UITextFieldDelegate {
             if let decodedArray = NSKeyedUnarchiver.unarchiveObject(with: listArray) as? [MainFormModal] {
                 editListArray = decodedArray
                 btnEditSave.setTitle("Edit Saved Form (\(editListArray.count))", for: .normal)
+            }
+        }
+        
+        if let listArray1 = ParentClass.sharedInstance.getDataForKey(strKey: FINALIZED_ARRAY) as? Data {
+            if let decodedArray1 = NSKeyedUnarchiver.unarchiveObject(with: listArray1) as? [MainFormModal] {
+                finalizedListArray = decodedArray1
+                btnSendFinalized.setTitle("Send Finalized Form (\(finalizedListArray.count))", for: .normal)
             }
         }
 

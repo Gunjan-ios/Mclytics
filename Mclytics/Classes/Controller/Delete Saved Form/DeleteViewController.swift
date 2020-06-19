@@ -40,12 +40,13 @@ class DeleteViewController: SegmentedViewController, UIGestureRecognizerDelegate
 //        self.separatingStores()
         
         var savedForms = [MainFormModal]()
-        if let listArray = ParentClass.sharedInstance.getDataForKey(strKey: EDIT_BLANK_ARRAY) as? Data {
-            if let decodedArray = NSKeyedUnarchiver.unarchiveObject(with: listArray) as? [MainFormModal] {
-                savedForms = decodedArray
-            }
-        }
-        
+//        if let listArray = ParentClass.sharedInstance.getDataForKey(strKey: EDIT_BLANK_ARRAY) as? Data {
+//            if let decodedArray = NSKeyedUnarchiver.unarchiveObject(with: listArray) as? [MainFormModal] {
+//                savedForms = decodedArray
+//            }
+//        }
+        savedForms = ParentClass.sharedInstance.getDataJSON(key: EDIT_BLANK_ARRAY)
+
         var test: [(title: SegmentedControl.SegmentedItem, controller: UIViewController)] = []
         pendingVC = DeleteListTableViewController()
         pendingVC.arrayStoreLists = savedForms
@@ -54,12 +55,13 @@ class DeleteViewController: SegmentedViewController, UIGestureRecognizerDelegate
         pendingVC.type = "Saved Forms"
         
         var blankForms = [MainFormModal]()
-        if let listArray = ParentClass.sharedInstance.getDataForKey(strKey: FILL_BLANK_ARRAY) as? Data {
-            if let decodedArray = NSKeyedUnarchiver.unarchiveObject(with: listArray) as? [MainFormModal] {
-                blankForms = decodedArray
-            }
-        }
-        
+//        if let listArray = ParentClass.sharedInstance.getDataForKey(strKey: FILL_BLANK_ARRAY) as? Data {
+//            if let decodedArray = NSKeyedUnarchiver.unarchiveObject(with: listArray) as? [MainFormModal] {
+//                blankForms = decodedArray
+//            }
+//        }
+        blankForms = ParentClass.sharedInstance.getDataJSON(key: FILL_BLANK_ARRAY)
+
         visitedVC = DeleteListTableViewController()
         visitedVC.arrayStoreLists = blankForms
         visitedVC.vcDelegate = self
@@ -151,7 +153,7 @@ class DeleteViewController: SegmentedViewController, UIGestureRecognizerDelegate
         
         if index == 2 {
 
-            let tags: [String] = ["tag1", "new2", "tag3", "tag4", "tag5", "tag6", "tag7"]
+//            let tags: [String] = ["tag1", "new2", "tag3", "tag4", "tag5", "tag6", "tag7"]
             let tab1 = SegmentedControl.SegmentedItem(value: "ne234w")
             let tab2 = SegmentedControl.SegmentedItem(value: "ol34d")
             let tab3 = SegmentedControl.SegmentedItem(value: "n234ew")

@@ -29,7 +29,7 @@ class Utils: NSObject {
     static func mulitplelinebutton(strText :NSString , btn :UIButton){
         
         
-        let fulltext : String = strText as String
+//        let fulltext : String = strText as String
         //getting the range to separate the button title strings
         let newlineRange: NSRange = strText.range(of: "\n")
         

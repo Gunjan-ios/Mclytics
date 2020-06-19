@@ -11,6 +11,7 @@ import Foundation
 class MainFormModal : NSObject, NSCoding {
     
     var fields = [FieldsModal]()
+    var param : [String:Any] = [String:Any]()
     var autonumbering : Int = 0
     var resume : Int = 0
     var index : Int = 0
@@ -52,6 +53,7 @@ class MainFormModal : NSObject, NSCoding {
             let modelData = FieldsModal(dictData)
             self.fields.append(modelData)
         }
+        let param = dict.object_forKeyWithValidationForClass_StringAny(aKey:"param")
         
         self.autonumbering = dict.object_forKeyWithValidationForClass_Int(aKey: "autonumbering")
         self.resume = dict.object_forKeyWithValidationForClass_Int(aKey: "resume")
@@ -86,6 +88,10 @@ class MainFormModal : NSObject, NSCoding {
         let obj = aDecoder.decodeObject(forKey: "fields") as! Data
         self.fields = NSKeyedUnarchiver.unarchiveObject(with: obj) as! [FieldsModal]
         
+        let objParam = aDecoder.decodeObject(forKey: "param") as! Data
+        self.param = NSKeyedUnarchiver.unarchiveObject(with: objParam) as! [String:Any]
+
+        
         self.autonumbering = aDecoder.decodeInteger(forKey: "autonumbering")
         self.resume = aDecoder.decodeInteger(forKey: "resume")
         self.index = aDecoder.decodeInteger(forKey: "index")
@@ -118,6 +124,9 @@ class MainFormModal : NSObject, NSCoding {
         
         let fieldsData = NSKeyedArchiver.archivedData(withRootObject: fields)
         aCoder.encode(fieldsData, forKey: "fields")
+        
+        let paramData = NSKeyedArchiver.archivedData(withRootObject: param)
+        aCoder.encode(paramData, forKey: "param")
         
         aCoder.encode(autonumbering, forKey: "autonumbering")
         aCoder.encode(resume, forKey: "resume")

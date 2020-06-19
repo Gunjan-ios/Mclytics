@@ -205,7 +205,7 @@ class GISImageDataTypeView: UIView {
 
         // remove from view /  screen
         let smView = self.view(withId: String(sender.tag + tagStaticCountForViews))
-        print("deleted img view \(smView?.tag)")
+//        print("deleted img view \(smView?.tag)")
         smView?.removeFromSuperview()
 
         // remove from array

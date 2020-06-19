@@ -27,11 +27,12 @@ class EditFormViewController: ParentClass,UITableViewDelegate,UITableViewDataSou
         super.viewDidLoad()
         loadHeaderView()
         
-        if let listArray = ParentClass.sharedInstance.getDataForKey(strKey: EDIT_BLANK_ARRAY) as? Data {
-            if let decodedArray = NSKeyedUnarchiver.unarchiveObject(with: listArray) as? [MainFormModal] {
-                editListArray = decodedArray
-            }
-        }
+//        if let listArray = ParentClass.sharedInstance.getDataForKey(strKey: EDIT_BLANK_ARRAY) as? Data {
+//            if let decodedArray = NSKeyedUnarchiver.unarchiveObject(with: listArray) as? [MainFormModal] {
+//                editListArray = decodedArray
+//            }
+//        }
+        editListArray = ParentClass.sharedInstance.getDataJSON(key: EDIT_BLANK_ARRAY)
 
         if editListArray.count > 0 {
             self.initTableview()

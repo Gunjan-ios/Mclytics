@@ -56,7 +56,7 @@ class CS {
         static let defaultFailedMessage = "Failed. Please try again."
         static let cameramessage = "Can't aceess camera in this device."
         static let Getdata = "Getting Data Successfully"
-        static let pushdata = "Data saved."
+        static let pushdata = "Form submit Successfully"
         static let Connected = "Internet connected."
         static let NoData = "Nothing availbable to display. \n\nTry getting and filling out a blank form."
         static let Internet = "Check your internet connection."
@@ -66,6 +66,7 @@ class CS {
         static let singleValidationMsg = "Field is required"
         static let carryForwardMsg = "CarryForward is not supported"
         static let RoasterMsg = "Roaster Group is not supported"
+        static let submitMsg = "Form is ready to submit"
 
         
 
@@ -76,6 +77,7 @@ class CS {
     struct Login {
         static let invalidName = "Please enter a valid name."
         static let invalidEmail = "Please enter a valid Email."
+        static let invalidNumber = "Please enter a valid number."
         static let invalidpasswrod = "Please enter a valid password."
         static let invalidConfirmpasswrod = "Please enter a valid Confirmpassword."
         static let ConfrimPasswrod = "Do not match password."

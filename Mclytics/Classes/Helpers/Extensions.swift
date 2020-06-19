@@ -621,4 +621,34 @@ extension NSDictionary {
             }
         }
     }
+    func object_forKeyWithValidationForClass_StringAny(aKey: String) -> [String:Any] {
+        // CHECK FOR EMPTY
+        if(self.allKeys.count == 0) {
+            return [String:Any]()
+        }
+        
+        // CHECK IF KEY EXIST
+        if let val = self.object(forKey: aKey) {
+            if((val as AnyObject).isEqual(NSNull())) {
+                return [String:Any]()
+            }
+        } else {
+            // KEY NOT FOUND
+            return [String:Any]()
+        }
+        
+        // CHECK FOR NIL VALUE
+        let aValue : AnyObject = self.object(forKey: aKey)! as AnyObject
+        if aValue.isEqual(NSNull()) {
+            return [String:Any]()
+        }
+        else {
+            if aValue is NSMutableDictionary {
+                return self.object(forKey: aKey) as! [String:Any]
+            }
+            else{
+                return [String:Any]()
+            }
+        }
+    }
 }

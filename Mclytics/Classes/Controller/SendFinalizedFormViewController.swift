@@ -19,20 +19,35 @@ class SendFinalizedFormViewController: ParentClass,UITableViewDelegate,UITableVi
     fileprivate var tblList: UITableView!
     private var currentPage = 1
     private var totalPage = 1
-    
+
+    var selectedArray = [MainFormModal]()
+
     fileprivate var buttonSave: CustomButton!
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+//        if let listArray = ParentClass.sharedInstance.getDataForKey(strKey: FINALIZED_ARRAY) as? Data {
+//            if let decodedArray = NSKeyedUnarchiver.unarchiveObject(with: listArray) as? [MainFormModal] {
+//                finalizedListArray = decodedArray
+//            }
+//        }
+        finalizedListArray = ParentClass.sharedInstance.getDataJSON(key: FINALIZED_ARRAY)
+
+        
         loadHeaderView()
-        
-        if let listArray = ParentClass.sharedInstance.getDataForKey(strKey: FILL_BLANK_ARRAY) as? Data {
-            if let decodedArray = NSKeyedUnarchiver.unarchiveObject(with: listArray) as? [MainFormModal] {
-                saveListArray = decodedArray
-            }
-        }
-        
-        if saveListArray.count > 0 {
+
+        if finalizedListArray.count > 0 {
             self.initTableview()
+            
+            buttonSave = CustomButton(frame: CGRect(x: X_PADDING , y: SCREEN_HEIGHT -  CUSTOM_BUTTON_HEIGHT - X_PADDING, width: SCREEN_WIDTH - (X_PADDING*2), height: CUSTOM_BUTTON_HEIGHT))
+            buttonSave.setTitle("SUBMIT SELECTED", for: .normal)
+            buttonSave.setTitleColor(.darkGray, for: .disabled)
+            buttonSave.backgroundColor = UIColor.lightGray
+            buttonSave.isEnabled = false
+            buttonSave.addTarget(self, action: #selector(onSelectedPressed), for: .touchUpInside)
+            buttonSave.tag = 99990
+            self.view.addSubview(buttonSave)
+            
         }else{
             let lblSubTitle = UILabel (frame: CGRect (x: X_PADDING, y: 0, width: SCREEN_WIDTH - X_PADDING*2, height: SCREEN_HEIGHT))
             //            lblSubTitle.center = CGPoint (x: self.view.center.x, y: lblSubTitle.center.y)
@@ -68,22 +83,6 @@ class SendFinalizedFormViewController: ParentClass,UITableViewDelegate,UITableVi
         
         yPosition = Int(headerview.frame.maxY) + Y_PADDING
         
-        //        //save button
-        //        let buttonREFRESH = CustomButton(frame: CGRect(x: X_PADDING, y: SCREEN_HEIGHT -  CUSTOM_BUTTON_HEIGHT - X_PADDING, width: SCREEN_WIDTH/2 - (X_PADDING*2), height: CUSTOM_BUTTON_HEIGHT))
-        //        buttonREFRESH.setTitle("REFRESH", for: .normal)
-        //        buttonREFRESH.addTarget(self, action: #selector(onRefreshPressed), for: .touchUpInside)
-        //        self.view.addSubview(buttonREFRESH)
-        //
-        //        //save button
-        //        buttonSave = CustomButton(frame: CGRect(x: SCREEN_WIDTH - SCREEN_WIDTH/2 + X_PADDING , y: SCREEN_HEIGHT -  CUSTOM_BUTTON_HEIGHT - X_PADDING, width: SCREEN_WIDTH/2 - (X_PADDING*2), height: CUSTOM_BUTTON_HEIGHT))
-        //        buttonSave.setTitle("GET SELECTED", for: .normal)
-        //        buttonSave.setTitleColor(.darkGray, for: .disabled)
-        //        buttonSave.backgroundColor = UIColor.lightGray
-        //        buttonSave.isEnabled = false
-        //        //        buttonSave.addTarget(self, action: #selector(btnSavePressed), for: .touchUpInside)
-        //        //        buttonSave.tag = 9999
-        //        self.view.addSubview(buttonSave)
-        //
     }
     @objc func goToBack()  {
         self.navigationController?.popViewController(animated: true)
@@ -91,7 +90,7 @@ class SendFinalizedFormViewController: ParentClass,UITableViewDelegate,UITableVi
     
     func initTableview()  {
         // layer list
-        self.tblList = UITableView (frame: CGRect(x: 0, y: yPosition, width: SCREEN_WIDTH, height: SCREEN_HEIGHT - yPosition), style: .plain)
+        self.tblList = UITableView (frame: CGRect(x: 0, y: yPosition, width: SCREEN_WIDTH, height: SCREEN_HEIGHT - yPosition - CUSTOM_BUTTON_HEIGHT - X_PADDING*2), style: .plain)
         self.tblList.delegate = self
         self.tblList.dataSource = self
         self.tblList.tag = 8888
@@ -107,7 +106,7 @@ class SendFinalizedFormViewController: ParentClass,UITableViewDelegate,UITableVi
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return  self.saveListArray.count
+        return  finalizedListArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -117,19 +116,101 @@ class SendFinalizedFormViewController: ParentClass,UITableViewDelegate,UITableVi
         cell.selectionStyle = .none
         cell.backgroundColor = UIColor.clear
         
-        let formObject = MainFormModal()
+        let formObject = finalizedListArray[indexPath.row]
+        
+        let dataFoundInselectedArr =  selectedArray.filter { $0.slug == formObject.slug}
+        
+        if(dataFoundInselectedArr.count > 0){
+            cell.btncheckbox.isSelected = true
+        }else{
+            cell.btncheckbox.isSelected = false
+        }
+        
         cell.lblFieldName.text = formObject.name
         cell.lblSubFieldName.text = "sulg: \(formObject.slug)"
         let strDate = ParentClass.sharedInstance.dateConvert(date: formObject.created_at)
         cell.lblSubFieldDate.text = "Added on \(strDate)"
-        cell.btncheckbox.isHidden = true
-        
-//        cell.lblFieldName.text = flistArray[indexPath.row]["name"].stringValue
-//        cell.lblSubFieldName.text = "sulg: \(flistArray[indexPath.row]["slug"].stringValue)"
-//        let strDate = ParentClass.sharedInstance.dateConvert(date: flistArray[indexPath.row]["created_at"].doubleValue)
-     
-        //        cell.btncheckbox.tag = indexPath.row
-        //        cell.btncheckbox.addTarget(self, action: #selector(onCheckListPressed(sender:)), for: .touchUpInside)
+        cell.btncheckbox.addTarget(self, action: #selector(onCheckListPressed(sender:)), for: .touchUpInside)
+
+//        cell.btncheckbox.isHidden = true
+//        cell.btnValidation.isHidden = false
+
         return cell
     }
+    
+    @objc func onCheckListPressed(sender:UIButton)  {
+        
+        if sender.isSelected {
+            if ((selectedArray.count) != 0){
+                let tempSlug2 =  self.finalizedListArray[sender.tag].index
+                if let object = selectedArray.filter({ $0.index == tempSlug2 }).first {
+                    print("found")
+                    let index = selectedArray.firstIndex(of: object)
+                    selectedArray.remove(at: index!)
+                } else {
+                    print("not found")
+                }
+                sender.isSelected = false
+            }
+        }else{
+            let temp = finalizedListArray[sender.tag]
+            print(selectedArray.count)
+            selectedArray.append(temp)
+            sender.isSelected = true
+        }
+        
+        if selectedArray.count >= 1{
+            buttonSave.isEnabled = true
+            buttonSave.backgroundColor = colorPrimary
+        }else{
+            buttonSave.setTitleColor(.darkGray, for: .disabled)
+            buttonSave.backgroundColor = UIColor.lightGray
+            buttonSave.isEnabled = false
+        }
+    }
+     func onDeletePressed(){
+        
+        for temp in selectedArray {
+            let tempSlug2 = temp.index
+            if let object = finalizedListArray.filter({ $0.index == tempSlug2 }).first {
+                print("found")
+                let index = finalizedListArray.firstIndex(of: object)
+                finalizedListArray.remove(at: index!)
+                let encodedData: Data = NSKeyedArchiver.archivedData(withRootObject: finalizedListArray)
+                ParentClass.sharedInstance.setData(strData: encodedData, strKey: FINALIZED_ARRAY)
+            }
+        }
+        tblList.reloadData()
+        selectedArray.removeAll()
+        buttonSave.setTitleColor(.darkGray, for: .disabled)
+        buttonSave.backgroundColor = UIColor.lightGray
+        buttonSave.isEnabled = false
+    }
+    
+    @objc func onSelectedPressed()  {
+        var count = selectedArray.count
+        for obj in selectedArray{
+            DispatchQueue.main.async {
+                WebServicesManager.formSubmit(formData: obj.param , fromId: obj.id, andCompletion: { (isSuccess, response) in
+                    if isSuccess {
+                        if let strMsg = response["message"] as? String {
+                            if strMsg != ""{
+                                count -= 1
+                                if count == 0 {
+                                    self.onDeletePressed()
+                                    super.showAlert(message: CS.Common.pushdata, type: .error, navBar: false)
+                                }
+//                                super.showAlert(message: strMsg.htmlToString, type: .error, navBar: false)
+                                return
+                            }
+                        }
+                    } else {
+                        super.showAlert(message: CS.Common.wrongMsg, type: .error, navBar: false)
+                    }
+                }) { (error) in
+                    super.showAlert(message: CS.Common.wrongMsg, type: .error, navBar: false)
+                }
+             }
+          }
+     }
 }

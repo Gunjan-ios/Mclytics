@@ -69,23 +69,21 @@ class UserData {
         UserDefaults.standard.set(encodedData, forKey: key)
         UserDefaults.standard.synchronize()
      }
-    static func GetArraydata(key: String) -> NSMutableArray {
+    static func getArrayData(key: String) -> NSMutableArray {
         let decodedDIC = NSMutableArray()
         let decoded  = UserDefaults.standard.object(forKey: key) as? Data
         
-        if decoded != nil
-        {
+        if decoded != nil{
             let decodedTeams  = NSKeyedUnarchiver.unarchiveObject(with: decoded!)
             return decodedTeams as! NSMutableArray
         }
         return decodedDIC
     }
-    static func GetDictionarydata(key: String) -> NSMutableDictionary {
+    static func getDictionaryData(key: String) -> NSMutableDictionary {
         let decodedDIC = NSMutableDictionary()
         let decoded  = UserDefaults.standard.object(forKey: key) as? Data
         
-        if decoded != nil
-        {
+        if decoded != nil{
             let decodedTeams  = NSKeyedUnarchiver.unarchiveObject(with: decoded!)
             return decodedTeams as! NSMutableDictionary
         }

@@ -48,11 +48,13 @@ class FillFormViewController: ParentClass,UITableViewDelegate,UITableViewDataSou
 //        }
         
         
-        if let listArray = ParentClass.sharedInstance.getDataForKey(strKey: FILL_BLANK_ARRAY) as? Data {
-            if let decodedArray = NSKeyedUnarchiver.unarchiveObject(with: listArray) as? [MainFormModal] {
-                selectedFromArray = decodedArray
-            }
-        }
+//        if let listArray = ParentClass.sharedInstance.getDataForKey(strKey: FILL_BLANK_ARRAY) as? Data {
+//            if let decodedArray = NSKeyedUnarchiver.unarchiveObject(with: listArray) as? [MainFormModal] {
+//                selectedFromArray = decodedArray
+//            }
+//        }
+        selectedFromArray = ParentClass.sharedInstance.getDataJSON(key: FILL_BLANK_ARRAY)
+
         
         if selectedFromArray.count > 0 {
             self.initTableview()
@@ -167,7 +169,8 @@ class FillFormViewController: ParentClass,UITableViewDelegate,UITableViewDataSou
         cell.lblSubFieldDate.text = "Added on \(strDate)"
     
         cell.btncheckbox.isHidden = true
-        
+        cell.btnValidation.isHidden = true
+
         return cell
     }
     
