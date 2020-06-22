@@ -116,7 +116,7 @@ class FormFieldsVC: ParentClass, UIImagePickerControllerDelegate, UINavigationCo
         loadHeaderView()
         
         if ParentClass.sharedInstance.getDataForKey(strKey: USER_INTERFACE) as? Bool == true{
-            dataSetupformOnebyOne(object: selectedForm.fields[count])
+            
 
             buttonPrevious = CustomButton(frame: CGRect(x: X_PADDING, y: SCREEN_HEIGHT - (CUSTOM_BUTTON_HEIGHT*2), width: SCREEN_WIDTH/2 - (X_PADDING*2), height: CUSTOM_BUTTON_HEIGHT))
             buttonPrevious.setTitle("Previous", for: .normal)
@@ -137,7 +137,16 @@ class FormFieldsVC: ParentClass, UIImagePickerControllerDelegate, UINavigationCo
             buttonSubmit.isHidden = true
             self.view.addSubview(buttonSubmit)
 
-
+            if ParentClass.sharedInstance.getDataForKey(strKey: RESUME) as? Bool == true{
+                count = selectedForm.resume
+            }
+            dataSetupformOnebyOne(object: selectedForm.fields[count])
+            
+            if count > 0 {
+                buttonPrevious.isEnabled = true
+                buttonPrevious.backgroundColor = colorPrimary
+            }
+            
         }else{
             dataSetupformAPI()
         }
@@ -1287,8 +1296,15 @@ class FormFieldsVC: ParentClass, UIImagePickerControllerDelegate, UINavigationCo
         editListArray = ParentClass.sharedInstance.getDataJSON(key: EDIT_BLANK_ARRAY)
 
         if type == "Edit" {
+            
+            if ParentClass.sharedInstance.getDataForKey(strKey: RESUME) as? Bool == true{
+             selectedForm.resume = count
+            }
+
             formArray[selectedFormIndex] = selectedForm
             ParentClass.sharedInstance.editListArray = formArray
+            
+        
         } else {
             ParentClass.sharedInstance.editListArray.append(selectedForm)
         }

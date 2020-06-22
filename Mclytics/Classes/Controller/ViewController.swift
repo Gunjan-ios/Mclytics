@@ -14,6 +14,8 @@ class ViewController: ParentClass,UITextFieldDelegate {
     fileprivate var headerview:UIView!
     fileprivate var buttonBack: UIButton!
     fileprivate var buttonMenu: UIButton!
+    fileprivate var buttonImport: UIButton!
+    fileprivate var buttonSync: UIButton!
     fileprivate var yPosition: Int!
     
     fileprivate var lblTitle: UILabel!
@@ -72,6 +74,15 @@ class ViewController: ParentClass,UITextFieldDelegate {
                 btnSendFinalized.setTitle("Send Finalized Form (\(finalizedListArray.count))", for: .normal)
             }
         }
+        if ParentClass.sharedInstance.getDataForKey(strKey: DISPLAY_STATUS) as? Bool == true{
+            self.buttonImport.isHidden = false
+            self.buttonSync.isHidden = false
+        }else{
+            self.buttonImport.isHidden = true
+            self.buttonSync.isHidden = true
+        }
+
+
 
     }
     func loadHeaderView() {
@@ -96,10 +107,65 @@ class ViewController: ParentClass,UITextFieldDelegate {
         self.buttonMenu.addTarget(self, action: #selector(goToSetting), for: .touchUpInside)
         headerview.addSubview(self.buttonMenu)
         
+        self.buttonSync = UIButton(frame: CGRect(x: (SCREEN_WIDTH - NAV_HEADER_HEIGHT*2 - X_PADDING*2), y: 0, width: NAV_HEADER_HEIGHT, height: NAV_HEADER_HEIGHT))
+        self.buttonSync.setImage(UIImage (named: "sync"), for: .normal)
+        self.buttonSync.contentHorizontalAlignment = .right
+        self.buttonSync.backgroundColor = .clear
+        self.buttonSync.isHidden = true
+        self.buttonSync.addTarget(self, action: #selector(onSyncPressed), for: .touchUpInside)
+        headerview.addSubview(self.buttonSync)
+        
+        self.buttonImport = UIButton(frame: CGRect(x: (SCREEN_WIDTH - NAV_HEADER_HEIGHT*3 - X_PADDING*3), y: 0, width: NAV_HEADER_HEIGHT, height: NAV_HEADER_HEIGHT))
+        self.buttonImport.setImage(UIImage (named: "import"), for: .normal)
+        self.buttonImport.contentHorizontalAlignment = .right
+        self.buttonImport.backgroundColor = .clear
+        self.buttonImport.isHidden = true
+        self.buttonImport.addTarget(self, action: #selector(goToSetting), for: .touchUpInside)
+        headerview.addSubview(self.buttonImport)
+        
         yPosition = Int(headerview.frame.maxY) + Y_PADDING
+        
+        
+        if ParentClass.sharedInstance.getDataForKey(strKey: DISPLAY_STATUS) as? Bool == true{
+            self.buttonImport.isHidden = false
+            self.buttonSync.isHidden = false
+
+        }
         
         self.initDesign()
     }
+    
+    @objc func onSyncPressed()  {
+        finalizedListArray = ParentClass.sharedInstance.getDataJSON(key: FINALIZED_ARRAY)
+        var count = finalizedListArray.count
+        
+        if count > 0{
+            for obj in finalizedListArray{
+                DispatchQueue.main.async {
+                    WebServicesManager.formSubmit(formData: obj.param , fromId: obj.id, andCompletion: { (isSuccess, response) in
+                        if isSuccess {
+                            if let strMsg = response["message"] as? String {
+                                if strMsg != ""{
+                                    count -= 1
+                                    if count == 0 {
+                                        super.showAlert(message: CS.Common.pushdata, type: .error, navBar: false)
+                                    }
+                                    return
+                                }
+                            }
+                        } else {
+                            super.showAlert(message: CS.Common.wrongMsg, type: .error, navBar: false)
+                        }
+                    }) { (error) in
+                        super.showAlert(message: CS.Common.wrongMsg, type: .error, navBar: false)
+                    }
+                }
+            }
+        }else{
+            super.showAlert(message: CS.Common.blankSyncMsg, type: .error, navBar: false)
+        }
+
+      }
     
     @objc func goToSetting()  {
         

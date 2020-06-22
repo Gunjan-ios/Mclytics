@@ -53,8 +53,7 @@ class MainFormModal : NSObject, NSCoding {
             let modelData = FieldsModal(dictData)
             self.fields.append(modelData)
         }
-        let param = dict.object_forKeyWithValidationForClass_StringAny(aKey:"param")
-        
+         self.param = dict.object_forKeyWithValidationForClass_StringAny(aKey:"param")
         self.autonumbering = dict.object_forKeyWithValidationForClass_Int(aKey: "autonumbering")
         self.resume = dict.object_forKeyWithValidationForClass_Int(aKey: "resume")
         self.index = dict.object_forKeyWithValidationForClass_Int(aKey: "index")
@@ -163,7 +162,7 @@ class FieldsModal : NSObject, NSCoding {
     var id : String = ""
     var form_id : Int = 0
     var type : String = ""
-    
+    var count_index : Int = 0
     var carry : String = ""
     var readOnly : Bool = false
     var pattern : String = ""
@@ -215,6 +214,7 @@ class FieldsModal : NSObject, NSCoding {
         self.text = dict.object_forKeyWithValidationForClass_String(aKey: "text")
         self.id = dict.object_forKeyWithValidationForClass_String(aKey: "id")
         self.form_id = dict.object_forKeyWithValidationForClass_Int(aKey: "form_id")
+         self.count_index = dict.object_forKeyWithValidationForClass_Int(aKey: "count_index")
         self.type = dict.object_forKeyWithValidationForClass_String(aKey: "type")
         self.carry = dict.object_forKeyWithValidationForClass_String(aKey: "carry")
         self.readOnly = dict.object_forKeyWithValidationForClass_Bool(aKey: "readOnly")
@@ -288,6 +288,7 @@ class FieldsModal : NSObject, NSCoding {
         self.text = aDecoder.decodeObject(forKey: "text") as! String
         self.id = aDecoder.decodeObject(forKey: "id") as! String
         self.form_id = aDecoder.decodeInteger(forKey: "form_id")
+        self.count_index = aDecoder.decodeInteger(forKey: "count_index")
         self.type = aDecoder.decodeObject(forKey: "type") as! String
         self.carry = aDecoder.decodeObject(forKey: "carry") as! String
         self.readOnly = aDecoder.decodeBool(forKey: "readOnly")
@@ -342,8 +343,8 @@ class FieldsModal : NSObject, NSCoding {
         aCoder.encode(text, forKey: "text")
         aCoder.encode(id, forKey: "id")
         aCoder.encode(form_id, forKey: "form_id")
+        aCoder.encode(form_id, forKey: "count_index")
         aCoder.encode(type, forKey: "type")
-        
         aCoder.encode(carry, forKey: "carry")
         aCoder.encode(readOnly, forKey: "readOnly")
         aCoder.encode(pattern, forKey: "pattern")

@@ -67,6 +67,7 @@ class CS {
         static let carryForwardMsg = "CarryForward is not supported"
         static let RoasterMsg = "Roaster Group is not supported"
         static let submitMsg = "Form is ready to submit"
+        static let blankSyncMsg = "All data have been sync."
 
         
 
