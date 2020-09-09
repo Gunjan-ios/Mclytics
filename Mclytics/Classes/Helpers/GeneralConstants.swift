@@ -212,7 +212,7 @@ let blueTextColor = UIColor(red: 25.0/255.0, green: 118.0/255.0, blue: 210.0/255
 let grayTextColor = UIColor(red: 0/255.0, green: 0/255.0, blue: 0/255.0, alpha: 0.6)
 let themeColor = UIColor(red: 0/255.0, green: 150/255.0, blue: 136/255.0, alpha: 1)
 
-let colorPrimary = UIColor (hex: "008577")
+let colorPrimary = UIColor (hex: "2992c1")
 let colorPrimaryDark = UIColor (hex: "00574")
 let colorListingHeading_25 = UIColor (hex: "5F5F5F")
 let colorSubHeading_76 = UIColor (hex: "767676")
